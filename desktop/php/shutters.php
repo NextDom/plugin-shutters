@@ -233,18 +233,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Angle d'entrée du soleil}}</label>
-                                <div class="col-sm-6">
-                                    <input id="incomingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Angle de sortie du soleil}}</label>
-                                <div class="col-sm-6">
-                                    <input id="outgoingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-sm-6">               
                             <div class="form-group">
@@ -296,21 +284,40 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Zone de volets}}</label>
-                                <div class="col-sm-6">
-                                    <select id="shutterArea" class="form-control eqLogicAttr configuration" data-l1key="configuration" data-l2key="shutterArea">
-                                        <?php
-                                        foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                            if ($shutters->getConfiguration('objectType') == 'shuttersArea') {
-                                                echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                            } 
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
+                        </div>
+                    </fieldset>
+                    <fieldset id="shutterHeliotropeSettings" style="display:none">
+                        <legend>{{Paramètres héliotrope du volet}}</legend>
+                        <div class="form-group">
+                            <label class="col-sm-6 control-label">{{Façade}}</label>
+                            <div class="col-sm-6">
+                                <select id="shutterArea" class="form-control eqLogicAttr configuration" data-l1key="configuration" data-l2key="shutterArea">
+                                    <?php
+                                    foreach (eqLogic::byType('shutters', true) as $shutters) {
+                                        if ($shutters->getConfiguration('objectType') == 'shuttersArea') {
+                                            echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
+                                        } 
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-6 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-6 control-label">{{Angle d'entrée du soleil}}</label>
+                            <div class="col-sm-6">
+                                <input id="incomingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-6 control-label">{{Angle de sortie du soleil}}</label>
+                            <div class="col-sm-6">
+                                <input id="outgoingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
+                            </div>
+                        </div>
+
                     </fieldset>
                 </form>
             </div>
