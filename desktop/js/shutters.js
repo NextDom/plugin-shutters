@@ -46,26 +46,6 @@ $(document).ready(function() {
     if (typeof tempValue == 'undefined') {
         $('#outgoingAzimuthAngle').val(180);
     }
-    var map = L.map('map', {
-        center: [49.0,0.3],
-        zoom: 20,
-        layers: [
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            })
-        ]
-    })
-    var arrow = L.polyline([[49.0,0.3], [49.001,0.301]], {}).addTo(map);
-    var arrowHead = L.polylineDecorator(arrow, {
-        patterns: [
-            {offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {stroke: true}})}
-        ]
-    }).addTo(map);
-    var markerPatterns = L.polylineDecorator(arrow, {
-        patterns: [
-            { offset: '0%', repeat: '0%', symbol: L.Symbol.marker()}
-        ]
-}).addTo(map);
 });
 
 $('#objectType').change(function(){
