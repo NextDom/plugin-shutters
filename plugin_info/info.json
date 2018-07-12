@@ -1,0 +1,15 @@
+{
+  "id": "shutters",
+  "name": "Volets",
+  "description": "Plugin pour la gestion de volets",
+  "licence": "AGPL",
+  "author": "NextDom[Ikes72000]",
+  "require": "3.0",
+  "version": "0.1",
+  "category": "automatisation",
+  "hasDependency": false,
+  "hasOwnDaemon": false,
+  "maxDependancyInstallTime": 0,
+  "documentation": "https://nextdom.github.io/plugin-shutters/#language#/",
+  "changelog": "https://nextdom.github.io/plugin-shutters/#language#/changelog"
+}
