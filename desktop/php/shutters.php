@@ -23,9 +23,7 @@ if (!isConnect('admin')) {
 $plugin = plugin::byId('shutters');
 sendVarToJS('eqType', $plugin->getId());
 $eqLogics = eqLogic::byType($plugin->getId());
-include_file("desktop", "leaflet", "js", "shutters");
-include_file("desktop", "leaflet", "css", "shutters");
-include_file("desktop", "leaflet.polylineDecorator", "js", "shutters");
+
 ?>
 
 
@@ -79,7 +77,7 @@ include_file("desktop", "leaflet.polylineDecorator", "js", "shutters");
             ?>
         </div>
         <legend>
-            <i class="fa fa-table"></i> {{Mes zones de volets}}</legend>
+            <i class="fa fa-table"></i> {{Mes façades}}</legend>
         <div class="eqLogicThumbnailContainer">
             <?php
             foreach ($eqLogics as $eqLogic) {
@@ -173,7 +171,7 @@ include_file("desktop", "leaflet.polylineDecorator", "js", "shutters");
                             <div class="col-sm-3">
                                 <select id="objectType" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="objectType">
                                     <option value="shutter" selected>{{Volet}}</option>
-                                    <option value="shuttersArea">{{Zone de volets}}</option>
+                                    <option value="shuttersArea">{{Façade}}</option>
                                 </select>
                             </div>
                         </div>
