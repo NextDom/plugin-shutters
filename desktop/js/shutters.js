@@ -56,10 +56,12 @@ $('#objectType').change(function(){
     if ($('#objectType').val() == 'shutter') {
         $('#heliotropeSettings').hide();
         $('#shutterSettings').show();
+        $('#shutterHeliotropeSettings').show();
     }
     else if ($('#objectType').val() == 'shuttersArea') {
         $('#heliotropeSettings').show();
         $('#shutterSettings').hide();
+        $('#shutterHeliotropeSettings').hide();
     }
 });
 

@@ -236,8 +236,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         </div>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Lever du soleil}}</label>
-                                <div id="map" style="width:100% ; height: 300px;"></div>
+                                <canvas id="myCanvas" width="100%" height="auto" style="border:1px solid #000000;"></canvas> 
                             </div>
                         </div>
                     </fieldset>
