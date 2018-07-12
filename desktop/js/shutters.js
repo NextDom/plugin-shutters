@@ -38,6 +38,10 @@ $(document).ready(function() {
     if (typeof tempValue == 'undefined') {
         $('#openedPosition').val(100);
     }
+    tempValue = $('wallAngle').val();
+    if (typeof tempValue == 'undefined') {
+        $('#wallAngle').val(0);
+    }
     tempValue = $('incomingAzimuthAngle').val();
     if (typeof tempValue == 'undefined') {
         $('#incomingAzimuthAngle').val(0);
