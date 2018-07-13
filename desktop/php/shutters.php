@@ -288,8 +288,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <fieldset id="shutterHeliotropeSettings" style="display:none">
                         <legend>{{Paramètres héliotrope du volet}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-6 control-label">{{Façade}}</label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-3 control-label">{{Façade}}</label>
+                            <div class="col-sm-3">
                                 <select id="shutterArea" class="form-control eqLogicAttr configuration" data-l1key="configuration" data-l2key="shutterArea">
                                     <?php
                                     foreach (eqLogic::byType('shutters', true) as $shutters) {
@@ -305,14 +305,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <label class="col-sm-6 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-6 control-label">{{Angle d'entrée du soleil}}</label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-3 control-label">{{Angle d'entrée du soleil}}</label>
+                            <div class="col-sm-3">
                                 <input id="incomingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-6 control-label">{{Angle de sortie du soleil}}</label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-3 control-label">{{Angle de sortie du soleil}}</label>
+                            <div class="col-sm-3">
                                 <input id="outgoingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
                             </div>
                         </div>
