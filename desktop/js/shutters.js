@@ -65,6 +65,13 @@ $('#objectType').change(function(){
     }
 });
 
+$('#wallAngle').change(function(){
+    var minIncomingAzimuthAngle = $('wallAngle').val();
+    minIncomingAzimuthAngle = minIncomingAzimuthAngle -180;
+    alert(minIncomingAzimuthAngle);
+});
+
+
 $('body').off('click','.listCmdAction').on('click','.listCmdAction', function () {
     var type = $(this).attr('data-type');
     var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
