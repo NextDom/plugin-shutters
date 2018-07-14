@@ -14,6 +14,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+var $shuttersAreaPlan = $('shuttersAreaPlan');
+shuttersAreaPlan.drawSlice({
+    fillStyle: '#f63',
+    x: 100, y: 100,
+    radius: 150,
+    // start and end angles in degrees
+    start: 60, end: 120
+  });
+  
 $(document).ready(function() {
     
     var tempValue;
@@ -47,11 +56,6 @@ $(document).ready(function() {
     if (typeof tempValue == 'undefined') {
         $('#outgoingAzimuthAngle').val(90);
     }
-    $('shuttersAreaPlan').drawImage({
-        source: 'images/window.jpg',
-        x: 0, y: 0
-    });
-      
 });
 
 $('#objectType').change(function(){

@@ -20,6 +20,9 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
+
+include_file('desktop', 'jcanvas.min', 'js', 'shutters');
+
 $plugin = plugin::byId('shutters');
 sendVarToJS('eqType', $plugin->getId());
 $eqLogics = eqLogic::byType($plugin->getId());
@@ -236,7 +239,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         </div>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas> 
+                                <canvas id="shuttersAreaPlan" width="400" height="400" style="border:1px solid #000000;"></canvas> 
                             </div>
                         </div>
                     </fieldset>
@@ -351,6 +354,5 @@ $eqLogics = eqLogic::byType($plugin->getId());
     </div>
 </div>
 
-<?php include_file('desktop', 'jcanvas.min', 'js', 'shutters');?>
 <?php include_file('desktop', 'shutters', 'js', 'shutters');?>
 <?php include_file('core', 'plugin.template', 'js');?>
