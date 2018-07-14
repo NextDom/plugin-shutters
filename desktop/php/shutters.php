@@ -228,7 +228,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Angle façade / Nord}}</label>
+                                <label class="col-sm-6 control-label">{{Angle façade / Nord [0° : 360°]}}</label>
                                 <div class="col-sm-6">
                                     <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
                                 </div>
@@ -236,7 +236,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         </div>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <canvas id="myCanvas" width="100%" height="auto" style="border:1px solid #000000;"></canvas> 
+                                <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas> 
                             </div>
                         </div>
                     </fieldset>
@@ -244,13 +244,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <legend>{{Paramètres volet}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Position fermeture (%) [0-100]}}</label>
+                                <label class="col-sm-6 control-label">{{Position fermeture [0% : 100%]}}</label>
                                 <div class="col-sm-6">
                                     <input id="closedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPosition"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Position ouverture (%) [0-100]}}</label>
+                                <label class="col-sm-6 control-label">{{Position ouverture [0% : 100%]}}</label>
                                 <div class="col-sm-6">
                                     <input id="openedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPosition"/>
                                 </div>
@@ -305,13 +305,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <label class="col-sm-6 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Angle d'entrée [-90 : -30]}}</label>
+                            <label class="col-sm-3 control-label">{{Angle d'entrée [-90° : -30°]}}</label>
                             <div class="col-sm-3">
                                 <input id="incomingAzimuthAngle" type="number" min="-90" max="-30" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Angle de sortie du soleil}}</label>
+                            <label class="col-sm-3 control-label">{{Angle de sortie  [+30° : +90°]}}</label>
                             <div class="col-sm-3">
                                 <input id="outgoingAzimuthAngle" type="number" min="30" max="90" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
                             </div>
@@ -351,5 +351,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
     </div>
 </div>
 
+<?php include_file('desktop', 'jcanvas.min', 'js', 'shutters');?>
 <?php include_file('desktop', 'shutters', 'js', 'shutters');?>
 <?php include_file('core', 'plugin.template', 'js');?>

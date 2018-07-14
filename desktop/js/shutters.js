@@ -20,15 +20,12 @@ $(document).ready(function() {
 
     if ($('#dawnType').val() == null) {
         $('#dawnType').val('sunrise');
-//        $('#dawnType option[value="sunrise"]').prop('selected', true);
     }
     if ($('#duskType').val() == null) {
         $('#duskType').val('sunset');
-//        $('#duskType option[value="sunset"]').prop('selected', true);
     }
     if ($('#openingType').val() == null) {
         $('#openingType').val('window');
-//        $('#openingType option[value="window"]').prop('selected', true);
     }
     tempValue = $('closedPosition').val();
     if (typeof tempValue == 'undefined') {
@@ -50,6 +47,11 @@ $(document).ready(function() {
     if (typeof tempValue == 'undefined') {
         $('#outgoingAzimuthAngle').val(90);
     }
+    $('shuttersAreaPlan').drawImage({
+        source: 'images/window.jpg',
+        x: 0, y: 0
+    });
+      
 });
 
 $('#objectType').change(function(){
