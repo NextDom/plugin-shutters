@@ -44,11 +44,11 @@ $(document).ready(function() {
     }
     tempValue = $('incomingAzimuthAngle').val();
     if (typeof tempValue == 'undefined') {
-        $('#incomingAzimuthAngle').val(0);
+        $('#incomingAzimuthAngle').val(-90);
     }
     tempValue = $('outgoingAzimuthAngle').val();
     if (typeof tempValue == 'undefined') {
-        $('#outgoingAzimuthAngle').val(180);
+        $('#outgoingAzimuthAngle').val(90);
     }
 });
 
@@ -64,13 +64,6 @@ $('#objectType').change(function(){
         $('#shutterHeliotropeSettings').hide();
     }
 });
-
-$('#wallAngle').change(function(){
-    var minIncomingAzimuthAngle = $('wallAngle').val();
-    minIncomingAzimuthAngle = minIncomingAzimuthAngle -180;
-    alert(minIncomingAzimuthAngle);
-});
-
 
 $('body').off('click','.listCmdAction').on('click','.listCmdAction', function () {
     var type = $(this).attr('data-type');

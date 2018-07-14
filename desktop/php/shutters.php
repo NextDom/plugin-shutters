@@ -305,15 +305,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <label class="col-sm-6 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Angle d'entrée du soleil}}</label>
+                            <label class="col-sm-3 control-label">{{Angle d'entrée [-90 : -30]}}</label>
                             <div class="col-sm-3">
-                                <input id="incomingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
+                                <input id="incomingAzimuthAngle" type="number" min="-90" max="-30" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Angle de sortie du soleil}}</label>
                             <div class="col-sm-3">
-                                <input id="outgoingAzimuthAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
+                                <input id="outgoingAzimuthAngle" type="number" min="30" max="90" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
                             </div>
                         </div>
 
