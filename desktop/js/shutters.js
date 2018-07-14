@@ -15,14 +15,14 @@
  */
 
 var $shuttersAreaPlan = $('shuttersAreaPlan');
-shuttersAreaPlan.drawSlice({
+$shuttersAreaPlan.drawSlice({
     fillStyle: '#f63',
     x: 100, y: 100,
     radius: 150,
     // start and end angles in degrees
     start: 60, end: 120
   });
-  
+
 $(document).ready(function() {
     
     var tempValue;
@@ -71,13 +71,13 @@ $('#objectType').change(function(){
     }
 });
 
-$('body').off('click','.listCmdAction').on('click','.listCmdAction', function () {
-    var type = $(this).attr('data-type');
-    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
-    jeedom.cmd.getSelectModal({cmd: {type: type}}, function (result) {
+$('body').off('click','.listCmd').on('click','.listCmd', function () {
+    var dataType = $(this).attr('data-type');
+    var dataInput = $(this).attr('data-input');
+    alert(dataType);
+    alert(dataInput);
+    var el = $(this).closest('input').find('.cmdAttr[data-l1key=configuration][data-l2key=' + dataInput + ']');
+    jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
         el.value(result.human);
-        jeedom.cmd.displayActionOption(el.value(), '', function (html) {
-            el.closest('.' + type).find('.actionOptions').html(html);
-        });
     });
 });

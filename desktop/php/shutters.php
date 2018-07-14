@@ -138,7 +138,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Objet parent}}</label>
                             <div class="col-sm-3">
-                                <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
+                                <select id="sel_object" class="eqLogicAttr cursor form-control" data-l1key="object_id">
                                     <option value="">{{Aucun}}</option>
                                     <?php
                                     foreach (object::all() as $object) {
@@ -172,7 +172,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="form-group">
 							<label class="col-sm-3 control-label">{{Type d'objet}}</label>
                             <div class="col-sm-3">
-                                <select id="objectType" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="objectType">
+                                <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
                                     <option value="shutter" selected>{{Volet}}</option>
                                     <option value="shuttersArea">{{Façade}}</option>
                                 </select>
@@ -195,7 +195,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </sup>
                                 </label>
                                 <div class="col-sm-6">
-                                    <select id="heliotrope" class="form-control eqLogicAttr configuration" data-l1key="configuration" data-l2key="heliotrope">
+                                    <select id="heliotrope" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="heliotrope">
                                         <?php
                                         if (class_exists('heliotropeCmd')) {
                                             foreach (eqLogic::byType('heliotrope') as $heliotrope) {
@@ -211,7 +211,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">{{Lever du soleil}}</label>
                                 <div class="col-sm-6">
-                                    <select id="dawnType" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="dawnType">
+                                    <select id="dawnType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="dawnType">
                                         <option value="astronomicalDawn">{{Aube astronomique}}</option>
                                         <option value="nauticalDawn">{{Aube nautique}}</option>
                                         <option value="civilDawn">{{Aube civile}}</option>
@@ -222,7 +222,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">{{Coucher du soleil}}</label>
                                 <div class="col-sm-6">
-                                    <select id="duskType" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="duskType">
+                                    <select id="duskType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="duskType">
                                         <option value="sunset">{{Coucher du soleil}}</option>
                                         <option value="civilDusk">{{Crépuscule civil}}</option>
                                         <option value="nauticalDusk">{{Crépuscule nautique}}</option>
@@ -266,9 +266,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </label>
                                 <div class="col-sm-6">
                                     <div class="input-group">
-                                        <input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="info"/>
+                                        <input id="shutterActualPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterActualPosition"/>
                                         <span class="input-group-btn">
-                                            <a class="btn btn-success btn-sm listCmdAction" data-type="info">
+                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterActualPosition" title="{{Sélectionner une commande}}">
                                                     <i class="fa fa-list-alt"></i>
                                             </a>
                                         </span>
@@ -278,10 +278,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         </div>   
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Type d'ouvrant}}</label>
+                                <label class="col-sm-5 control-label">{{Type d'ouvrant}}</label>
                                 <div class="col-sm-6">
-                                    <select id="openingType" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openingType">
-                                        <option value="window" selected>{{Fenêtre}}</option>
+                                    <select id="openingType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="openingType">
+                                        <option value="window">{{Fenêtre}}</option>
                                         <option value="door">{{Porte}}</option>
                                     </select>
                                 </div>
@@ -293,7 +293,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Façade}}</label>
                             <div class="col-sm-3">
-                                <select id="shutterArea" class="form-control eqLogicAttr configuration" data-l1key="configuration" data-l2key="shutterArea">
+                                <select id="shutterArea" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="shutterArea">
                                     <?php
                                     foreach (eqLogic::byType('shutters', true) as $shutters) {
                                         if ($shutters->getConfiguration('objectType') == 'shuttersArea') {
@@ -305,7 +305,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-6 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
+                            <label class="col-sm-3 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Angle d'entrée [-90° : -30°]}}</label>
