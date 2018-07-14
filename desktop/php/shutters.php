@@ -247,38 +247,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <legend>{{Paramètres volet}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Position fermeture [0% : 100%]}}</label>
-                                <div class="col-sm-6">
-                                    <input id="closedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPosition"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Position ouverture [0% : 100%]}}</label>
-                                <div class="col-sm-6">
-                                    <input id="openedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPosition"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Retour de position du volet}}
-                                    <sup>
-                                        <i class="fa fa-question-circle tooltips" title="Commande de type info renvoyant la position actuelle du volet."></i>
-                                    </sup>
-                                </label>
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <input id="shutterActualPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterActualPosition"/>
-                                        <span class="input-group-btn">
-                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterActualPosition" title="{{Sélectionner une commande}}">
-                                                    <i class="fa fa-list-alt"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>   
-                        <div class="col-sm-6">               
-                            <div class="form-group">
-                                <label class="col-sm-5 control-label">{{Type d'ouvrant}}</label>
+                                <label class="col-sm-6 control-label">{{Type d'ouvrant}}</label>
                                 <div class="col-sm-6">
                                     <select id="openingType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="openingType">
                                         <option value="window">{{Fenêtre}}</option>
@@ -286,7 +255,50 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-56 control-label">{{Retour de position}}</label>
+                                <div class="col-sm-6">
+                                    <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
+                                        <option value="analog">{{Analogique}}</option>
+                                        <option value="limitSwitch">{{Fin de course ouvert et fermé}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <fieldset id="analogPositionSettings"  style="display:none">  
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">{{Retour de position du volet}}
+                                        <sup>
+                                            <i class="fa fa-question-circle tooltips" title="Commande de type info renvoyant la position actuelle du volet."></i>
+                                        </sup>
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input id="shutterActualPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterActualPosition"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterActualPosition" title="{{Sélectionner une commande}}">
+                                                        <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">{{Position fermeture [0% : 100%]}}</label>
+                                    <div class="col-sm-6">
+                                        <input id="closedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPosition"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">{{Position ouverture [0% : 100%]}}</label>
+                                    <div class="col-sm-6">
+                                        <input id="openedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPosition"/>
+                                    </div>
+                                </div>
+                            </fielset>
+                        </div>   
+                    <div class="col-sm-6">               
+
+                    </div>
                     </fieldset>
                     <fieldset id="shutterHeliotropeSettings" style="display:none">
                         <legend>{{Paramètres héliotrope du volet}}</legend>

@@ -84,6 +84,14 @@ class shutters extends eqLogic
         }        
 
         if($this->getConfiguration('objectType') == 'shutter'){
+            if($this->getConfiguration('openingType') == ''){
+                throw new \Exception(__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
+                return;
+            } 
+            if($this->getConfiguration('shutterActualPosition') == ''){
+                throw new \Exception(__('La commande de retour de position du volet doit être renseignée!', __FILE__));
+                return;
+            } 
             if($this->getConfiguration('closedPosition') == ''){
                 throw new \Exception(__('La position fermeture du volet doit être renseignée!', __FILE__));
                 return;
@@ -94,10 +102,6 @@ class shutters extends eqLogic
             }        
             if($this->getConfiguration('openedPosition') < $this->getConfiguration('closedPosition')){
                 throw new \Exception(__('La position ouverture du volet doit être supérieure à la position fermeture!', __FILE__));
-                return;
-            } 
-            if($this->getConfiguration('openingType') == ''){
-                throw new \Exception(__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                 return;
             } 
         }       

@@ -36,6 +36,9 @@ $(document).ready(function() {
     if ($('#openingType').val() == null) {
         $('#openingType').val('window');
     }
+    if ($('#positionSensorType').val() == null) {
+        $('#positionSensorType').val('analog');
+    }
     tempValue = $('closedPosition').val();
     if (typeof tempValue == 'undefined') {
         $('#closedPosition').val(0);
@@ -71,12 +74,20 @@ $('#objectType').change(function(){
     }
 });
 
+$('#positionSensorType').change(function(){
+    if ($('#positionSensorType').val() == 'analog') {
+        $('#analogPositionSettings').show();
+    }
+    else if ($('#positionSensorType').val() == 'limitSwitch') {
+        $('#analogPositionSettings').hide();
+    }
+});
+
+
 $('body').off('click','.listCmd').on('click','.listCmd', function () {
     var dataType = $(this).attr('data-type');
     var dataInput = $(this).attr('data-input');
-    alert(dataType);
-    alert(dataInput);
-    var el = $(this).closest('input').find('.cmdAttr[data-l1key=configuration][data-l2key=' + dataInput + ']');
+    var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
     jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
         el.value(result.human);
     });
