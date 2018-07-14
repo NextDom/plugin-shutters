@@ -93,21 +93,31 @@ class shutters extends eqLogic
                     throw new \Exception(__('La commande de retour de position du volet doit être renseignée!', __FILE__));
                     return;
                 } 
-                if($this->getConfiguration('closedPosition') == ''){
+                if($this->getConfiguration('analogClosedPosition') == ''){
                     throw new \Exception(__('La position fermeture du volet doit être renseignée!', __FILE__));
                     return;
                 }        
-                if($this->getConfiguration('openedPosition') == ''){
+                if($this->getConfiguration('analogOpenedPosition') == ''){
                     throw new \Exception(__('La position ouverture du volet doit être renseignée!', __FILE__));
                     return;
                 }        
-                if($this->getConfiguration('openedPosition') < $this->getConfiguration('closedPosition')){
-                    throw new \Exception(__('La position ouverture du volet doit être supérieure à la position fermeture!', __FILE__));
+                if($this->getConfiguration('analogOpenedPosition') < $this->getConfiguration('analogClosedPosition')){
+                    throw new \Exception(__('La position analogique d\'ouverture du volet doit être supérieure à la position analogique de fermeture!', __FILE__));
                     return;
                 } 
-            }
+            } elseif ($this->getConfiguration('positionSensorType') == 'openedClosedLimitSwitch' || $this->getConfiguration('positionSensorType') == 'closedLimitSwitch'){
+                if($this->getConfiguration('closedLimitSwith') == ''){
+                    throw new \Exception(__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
+                    return;
+                }        
+            } elseif ($this->getConfiguration('positionSensorType') == 'openedClosedLimitSwitch' || $this->getConfiguration('positionSensorType') == 'openedLimitSwitch'){
+                if($this->getConfiguration('openedLimitSwith') == ''){
+                    throw new \Exception(__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
+                    return;
+                }        
+            } 
         }   
-           
+
         if($this->getConfiguration('objectType') == 'shuttersArea'){
             $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope'));
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {

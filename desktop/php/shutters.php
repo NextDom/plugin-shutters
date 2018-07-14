@@ -260,22 +260,20 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="col-sm-6">
                                     <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
                                         <option value="analog">{{Analogique}}</option>
-                                        <option value="limitSwitch">{{Fin de course ouvert et fermé}}</option>
+                                        <option value="openedClosedLimitSwitch">{{Fins de course ouvert et fermé}}</option>
+                                        <option value="openedLimitSwitch">{{Fin de course ouvert}}</option>
+                                        <option value="closedLimitSwitch">{{Fin de course fermé}}</option>
                                     </select>
                                 </div>
                             </div>
                             <fieldset id="analogPositionSettings"  style="display:none">  
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Retour de position du volet}}
-                                        <sup>
-                                            <i class="fa fa-question-circle tooltips" title="Commande de type info renvoyant la position actuelle du volet."></i>
-                                        </sup>
-                                    </label>
+                                    <label class="col-sm-6 control-label">{{Retour de position du volet}}</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
-                                            <input id="shutterActualPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterActualPosition"/>
+                                            <input id="shutterAnalogPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPosition"/>
                                             <span class="input-group-btn">
-                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterActualPosition" title="{{Sélectionner une commande}}">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterAnalogPosition" title="{{Sélectionner une commande}}">
                                                         <i class="fa fa-list-alt"></i>
                                                 </a>
                                             </span>
@@ -285,16 +283,50 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="form-group">
                                     <label class="col-sm-6 control-label">{{Position fermeture [0% : 100%]}}</label>
                                     <div class="col-sm-6">
-                                        <input id="closedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPosition"/>
+                                        <input id="analogClosedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogClosedPosition"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-6 control-label">{{Position ouverture [0% : 100%]}}</label>
                                     <div class="col-sm-6">
-                                        <input id="openedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPosition"/>
+                                        <input id="analogOpenedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
                                     </div>
                                 </div>
                             </fielset>
+
+
+                            <fieldset id="limitSwithPositionSettings"  style="display:none">  
+                                <div id="closedLimitSwitchSettings" class="form-group" style="display:none">
+                                    <label class="col-sm-6 control-label">{{Fin de course fermé}}</label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith" title="{{Sélectionner une commande}}">
+                                                        <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="openedLimitSwitchSettings" class="form-group" style="display:none">
+                                    <label class="col-sm-6 control-label">{{Fin de course ouvert}}</label>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith" title="{{Sélectionner une commande}}">
+                                                        <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fielset>
+
+
+
+
                         </div>   
                     <div class="col-sm-6">               
 

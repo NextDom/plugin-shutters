@@ -36,13 +36,13 @@ $(document).ready(function() {
     if ($('#openingType').val() == null) {
         $('#openingType').val('window');
     }
-    tempValue = $('closedPosition').val();
+    tempValue = $('analogClosedPosition').val();
     if (typeof tempValue == 'undefined') {
-        $('#closedPosition').val(0);
+        $('#analogClosedPosition').val(0);
     }
-    tempValue = $('openedPosition').val();
+    tempValue = $('analogOpenedPosition').val();
     if (typeof tempValue == 'undefined') {
-        $('#openedPosition').val(100);
+        $('#analogOpenedPosition').val(100);
     }
     tempValue = $('wallAngle').val();
     if (typeof tempValue == 'undefined') {
@@ -69,15 +69,41 @@ $('#objectType').change(function(){
         $('#shutterSettings').hide();
         $('#shutterHeliotropeSettings').hide();
     }
+    else {
+        $('#heliotropeSettings').hide();
+        $('#shutterSettings').hide();
+        $('#shutterHeliotropeSettings').hide();
+    }
 });
 
 $('#positionSensorType').change(function(){
     if ($('#positionSensorType').val() == 'analog') {
         $('#analogPositionSettings').show();
+        $('#limitSwithPositionSettings').hide();
     }
-    else if ($('#positionSensorType').val() == 'limitSwitch') {
+    else if ($('#positionSensorType').val() == 'openedClosedLimitSwitch') {
         $('#analogPositionSettings').hide();
+        $('#limitSwithPositionSettings').show();
+        $('#closedLimitSwitchSettings').show();
+        $('#openedLimitSwitchSettings').show();
     }
+    else if ($('#positionSensorType').val() == 'closedLimitSwitch') {
+        $('#analogPositionSettings').hide();
+        $('#limitSwithPositionSettings').show();
+        $('#closedLimitSwitchSettings').show();
+        $('#openedLimitSwitchSettings').hide();
+    }
+    else if ($('#positionSensorType').val() == 'openedLimitSwitch') {
+        $('#analogPositionSettings').hide();
+        $('#limitSwithPositionSettings').show();
+        $('#closedLimitSwitchSettings').hide();
+        $('#openedLimitSwitchSettings').show();
+    }
+    else {
+        $('#analogPositionSettings').hide();
+        $('#limitSwithPositionSettings').hide();
+    }
+
 });
 
 
