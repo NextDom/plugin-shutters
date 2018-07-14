@@ -36,9 +36,6 @@ $(document).ready(function() {
     if ($('#openingType').val() == null) {
         $('#openingType').val('window');
     }
-    if ($('#positionSensorType').val() == null) {
-        $('#positionSensorType').val('analog');
-    }
     tempValue = $('closedPosition').val();
     if (typeof tempValue == 'undefined') {
         $('#closedPosition').val(0);

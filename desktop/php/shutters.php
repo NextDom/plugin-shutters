@@ -256,7 +256,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-56 control-label">{{Retour de position}}</label>
+                                <label class="col-sm-6 control-label">{{Retour de position}}</label>
                                 <div class="col-sm-6">
                                     <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
                                         <option value="analog">{{Analogique}}</option>
