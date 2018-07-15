@@ -260,13 +260,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="col-sm-6">
                                     <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
                                         <option value="analog">{{Analogique}}</option>
-                                        <option value="openedClosedLimitSwitch">{{Fins de course ouvert et fermé}}</option>
-                                        <option value="openedLimitSwitch">{{Fin de course ouvert}}</option>
-                                        <option value="closedLimitSwitch">{{Fin de course fermé}}</option>
+                                        <option value="openedClosedLimitSwitch">{{Fins de course ouverture et fermeture}}</option>
+                                        <option value="openedLimitSwitch">{{Fin de course ouverture}}</option>
+                                        <option value="closedLimitSwitch">{{Fin de course fermeture}}</option>
                                     </select>
                                 </div>
                             </div>
-                            <fieldset id="analogPositionSettings"  style="display:none;">  
+                            <fieldset id="analogPositionSettings" style="display:none;">  
                                 <div class="form-group">
                                     <label class="col-sm-6 control-label">{{Retour de position du volet}}</label>
                                     <div class="col-sm-6">
@@ -292,12 +292,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <input id="analogOpenedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
                                     </div>
                                 </div>
-                            </fielset>
-
-
-                            <fieldset id="closedLimitSwitchSettings"  style="display:none;">  
+                            </fieldset>
+                            <fieldset id="closedLimitSwitchSettings" style="display:none;">  
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Fin de course fermé}}</label>
+                                    <label class="col-sm-6 control-label">{{Fin de course fermeture}}</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith"/>
@@ -309,10 +307,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                 </div>
-                            </fielset>
-                            <fieldset id="openedLimitSwitchSettings"  style="display:none;">  
+                            </fieldset>
+                            <fieldset id="openedLimitSwitchSettings" style="display:none;">  
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Fin de course ouvert}}</label>
+                                    <label class="col-sm-6 control-label">{{Fin de course ouverture}}</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith"/>
@@ -325,14 +323,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                             </fielset>
-
-
-
-
                         </div>   
+                        
                     <div class="col-sm-6">               
 
                     </div>
+
                     </fieldset>
                     <fieldset id="shutterHeliotropeSettings" style="display:none;">
                         <legend>{{Paramètres héliotrope du volet}}</legend>

@@ -14,15 +14,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var $shuttersAreaPlan = $('shuttersAreaPlan');
-$shuttersAreaPlan.drawSlice({
-    fillStyle: '#f63',
-    x: 100, y: 100,
-    radius: 150,
-    // start and end angles in degrees
-    start: 60, end: 120
-  });
-
 $(document).ready(function() {
     
     var tempValue;
@@ -58,9 +49,9 @@ $(document).ready(function() {
     }
 });
 
-$('#objectType').change(function() {
-    var objectType = $('#objectType').val();
-    switch (objectType) {
+var objectType = $('#objectType');
+objectType.on('change', function() {
+    switch (objectType.val()) {
         case 'shutter':
             $('#heliotropeSettings').hide();
             $('#shutterSettings').show();
@@ -78,6 +69,44 @@ $('#objectType').change(function() {
     }
 });
 
+var positionSensorType = $('#positionSensorType');
+positionSensorType.on('change', function() {
+    switch (positionSensorType.val()) {
+        case 'analog':
+        $('#analogPositionSettings').show();
+        $('#closedLimitSwitchSettings').hide();
+        $('#openedLimitSwitchSettings').hide();
+        break;
+    case 'openedClosedLimitSwitch':
+        $('#analogPositionSettings').hide();
+        $('#closedLimitSwitchSettings').show();
+        $('#openedLimitSwitchSettings').show();
+        break;
+    case 'closedLimitSwitch':
+        $('#analogPositionSettings').hide();
+        $('#closedLimitSwitchSettings').show();
+        $('#openedLimitSwitchSettings').hide();
+        break;
+    case 'openedLimitSwitch':
+        $('#analogPositionSettings').hide();
+        $('#closedLimitSwitchSettings').hide();
+        $('#openedLimitSwitchSettings').show();
+        break;
+    default:
+        $('#analogPositionSettings').hide();
+        $('#closedLimitSwitchSettings').hide();
+        $('#openedLimitSwitchSettings').hide();
+        break;
+    }
+});
+
+var shuttersAreaPlan = $('#shuttersAreaPlan');
+shuttersAreaPlan.drawImage({
+    source: 'images/window.pnd',
+    x: 0, y: 0,
+    fromCenter: false
+  });
+
 $('body').off('click','.listCmd').on('click','.listCmd', function () {
     var dataType = $(this).attr('data-type');
     var dataInput = $(this).attr('data-input');
@@ -87,37 +116,3 @@ $('body').off('click','.listCmd').on('click','.listCmd', function () {
     });
 });
 
-var positionSensorType = $('#positionSensorType');
-    console.log(positionSensorType.val());
-    console.log($('#analogPositionSettings'));
-    console.log($('#closedLimitSwitchSettings'));
-    console.log($('#openedLimitSwitchSettings'));
-    positionSensorType.on('change', function() {
-        switch (positionSensorType.val()) {
-            case 'analog':
-            $('#analogPositionSettings').show();
-            $('#closedLimitSwitchSettings').hide();
-            $('#openedLimitSwitchSettings').hide();
-            break;
-        case 'openedClosedLimitSwitch':
-            $('#analogPositionSettings').hide();
-            $('#closedLimitSwitchSettings').show();
-            $('#openedLimitSwitchSettings').show();
-            break;
-        case 'closedLimitSwitch':
-            $('#analogPositionSettings').hide();
-            $('#closedLimitSwitchSettings').show();
-            $('#openedLimitSwitchSettings').hide();
-            break;
-        case 'openedLimitSwitch':
-            $('#analogPositionSettings').hide();
-            $('#closedLimitSwitchSettings').hide();
-            $('#openedLimitSwitchSettings').show();
-            break;
-        default:
-            $('#analogPositionSettings').hide();
-            $('#closedLimitSwitchSettings').hide();
-            $('#openedLimitSwitchSettings').hide();
-            break;
-    }
-});
