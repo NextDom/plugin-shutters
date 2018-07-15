@@ -58,54 +58,55 @@ $(document).ready(function() {
     }
 });
 
-$('#objectType').change(function(){
-    if ($('#objectType').val() == 'shutter') {
-        $('#heliotropeSettings').hide();
-        $('#shutterSettings').show();
-        $('#shutterHeliotropeSettings').show();
-    }
-    else if ($('#objectType').val() == 'shuttersArea') {
-        $('#heliotropeSettings').show();
-        $('#shutterSettings').hide();
-        $('#shutterHeliotropeSettings').hide();
-    }
-    else {
-        $('#heliotropeSettings').hide();
-        $('#shutterSettings').hide();
-        $('#shutterHeliotropeSettings').hide();
+$('#objectType').change(function() {
+    var $objectType = $('#objectType').val();
+    switch ($objectType) {
+        case 'shutter':
+            $('#heliotropeSettings').hide();
+            $('#shutterSettings').show();
+            $('#shutterHeliotropeSettings').show();
+            break;
+        case 'shuttersArea':
+            $('#shutterSettings').hide();
+            $('#shutterHeliotropeSettings').hide();
+            $('#heliotropeSettings').show();
+            break;
+        default:
+            $('#heliotropeSettings').hide();
+            $('#shutterSettings').hide();
+            $('#shutterHeliotropeSettings').hide();
     }
 });
 
-$('#positionSensorType').change(function(){
-    if ($('#positionSensorType').val() == 'analog') {
-        $('#analogPositionSettings').show();
-        $('#limitSwithPositionSettings').hide();
+$('#positionSensorType').change(function() {
+    var $positionSensorType = $('#positionSensorType').val();
+    switch (positionSensorType) {
+        case 'analog':
+            $('#closedLimitSwitchSettings').hide();
+            $('#openedLimitSwitchSettings').hide();
+            $('#analogPositionSettings').show();
+            break;
+        case 'openedClosedLimitSwitch':
+            $('#analogPositionSettings').hide();
+            $('#closedLimitSwitchSettings').show();
+            $('#openedLimitSwitchSettings').show();
+            break;
+        case 'closedLimitSwitch':
+            $('#analogPositionSettings').hide();
+            $('#openedLimitSwitchSettings').hide();
+            $('#closedLimitSwitchSettings').show();
+        break;
+        case 'openedLimitSwitch':
+            $('#analogPositionSettings').hide();
+            $('#closedLimitSwitchSettings').hide();
+            $('#openedLimitSwitchSettings').show();
+            break;
+        default:
+            $('#analogPositionSettings').hide();
+            $('#closedLimitSwitchSettings').hide();
+            $('#openedLimitSwitchSettings').hide();
     }
-    else if ($('#positionSensorType').val() == 'openedClosedLimitSwitch') {
-        $('#analogPositionSettings').hide();
-        $('#limitSwithPositionSettings').show();
-        $('#closedLimitSwitchSettings').show();
-        $('#openedLimitSwitchSettings').show();
-    }
-    else if ($('#positionSensorType').val() == 'closedLimitSwitch') {
-        $('#analogPositionSettings').hide();
-        $('#limitSwithPositionSettings').show();
-        $('#closedLimitSwitchSettings').show();
-        $('#openedLimitSwitchSettings').hide();
-    }
-    else if ($('#positionSensorType').val() == 'openedLimitSwitch') {
-        $('#analogPositionSettings').hide();
-        $('#limitSwithPositionSettings').show();
-        $('#closedLimitSwitchSettings').hide();
-        $('#openedLimitSwitchSettings').show();
-    }
-    else {
-        $('#analogPositionSettings').hide();
-        $('#limitSwithPositionSettings').hide();
-    }
-
 });
-
 
 $('body').off('click','.listCmd').on('click','.listCmd', function () {
     var dataType = $(this).attr('data-type');

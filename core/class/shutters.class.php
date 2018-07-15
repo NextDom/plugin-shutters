@@ -89,7 +89,7 @@ class shutters extends eqLogic
                 return;
             } 
             if($this->getConfiguration('positionSensorType') == 'analog'){
-                if($this->getConfiguration('shutterActualPosition') == ''){
+                if($this->getConfiguration('shutterAnalogPosition') == ''){
                     throw new \Exception(__('La commande de retour de position du volet doit être renseignée!', __FILE__));
                     return;
                 } 
