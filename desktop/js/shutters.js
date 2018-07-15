@@ -59,8 +59,8 @@ $(document).ready(function() {
 });
 
 $('#objectType').change(function() {
-    var $objectType = $('#objectType').val();
-    switch ($objectType) {
+    var objectType = $('#objectType').val();
+    switch (objectType) {
         case 'shutter':
             $('#heliotropeSettings').hide();
             $('#shutterSettings').show();
@@ -78,13 +78,26 @@ $('#objectType').change(function() {
     }
 });
 
-$('#positionSensorType').change(function() {
-    var $positionSensorType = $('#positionSensorType').val();
-    switch (positionSensorType) {
-        case 'analog':
+$('body').off('click','.listCmd').on('click','.listCmd', function () {
+    var dataType = $(this).attr('data-type');
+    var dataInput = $(this).attr('data-input');
+    var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+    jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
+        el.value(result.human);
+    });
+});
+
+var positionSensorType = $('#positionSensorType');
+    console.log(positionSensorType.val());
+    console.log($('#analogPositionSettings'));
+    console.log($('#closedLimitSwitchSettings'));
+    console.log($('#openedLimitSwitchSettings'));
+    positionSensorType.on('change', function() {
+        switch (positionSensorType.val()) {
+            case 'analog':
+            $('#analogPositionSettings').show();
             $('#closedLimitSwitchSettings').hide();
             $('#openedLimitSwitchSettings').hide();
-            $('#analogPositionSettings').show();
             break;
         case 'openedClosedLimitSwitch':
             $('#analogPositionSettings').hide();
@@ -93,9 +106,9 @@ $('#positionSensorType').change(function() {
             break;
         case 'closedLimitSwitch':
             $('#analogPositionSettings').hide();
-            $('#openedLimitSwitchSettings').hide();
             $('#closedLimitSwitchSettings').show();
-        break;
+            $('#openedLimitSwitchSettings').hide();
+            break;
         case 'openedLimitSwitch':
             $('#analogPositionSettings').hide();
             $('#closedLimitSwitchSettings').hide();
@@ -105,14 +118,6 @@ $('#positionSensorType').change(function() {
             $('#analogPositionSettings').hide();
             $('#closedLimitSwitchSettings').hide();
             $('#openedLimitSwitchSettings').hide();
+            break;
     }
-});
-
-$('body').off('click','.listCmd').on('click','.listCmd', function () {
-    var dataType = $(this).attr('data-type');
-    var dataInput = $(this).attr('data-input');
-    var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
-    jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
-        el.value(result.human);
-    });
 });
