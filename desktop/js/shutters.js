@@ -102,7 +102,7 @@ positionSensorType.on('change', function() {
 
 var shuttersAreaPlan = $('#shuttersAreaPlan');
 shuttersAreaPlan.drawImage({
-    source: 'images/window.pnd',
+    source: 'images/window.png',
     x: 0, y: 0,
     fromCenter: false
   });
