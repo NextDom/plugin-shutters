@@ -78,74 +78,90 @@ class shutters extends eqLogic
 
     public function preUpdate()
     {
-        if($this->getConfiguration('objectType') == ''){
-            throw new \Exception(__('Le type d\'objet doit être renseignée!', __FILE__));
-            return;
-        }        
+        $objectType = $this->getConfiguration('objectType');
+        $exceptionMessage = NULL;
+        $openingType = $this->getConfiguration('openingType');
+        $positionSensorType = $this->getConfiguration('positionSensorType');
+        $shutterAnalogPosition = $this->getConfiguration('shutterAnalogPosition');
+        $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
+        $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
+        $closedLimitSwith = $this->getConfiguration('closedLimitSwith');
+        $openedLimitSwith = $this->getConfiguration('openedLimitSwith');
+        $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope'));
+        $dawnType = $this->getConfiguration('dawnType');
+        $duskType = $this->getConfiguration('duskType');
+        $incomingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
+        $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
+        $shutterArea = $this->getConfiguration('shutterArea');
 
-        if($this->getConfiguration('objectType') == 'shutter'){
-            if($this->getConfiguration('openingType') == ''){
-                throw new \Exception(__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
-                return;
-            } 
-            if($this->getConfiguration('positionSensorType') == 'analog'){
-                if($this->getConfiguration('shutterAnalogPosition') == ''){
-                    throw new \Exception(__('La commande de retour de position du volet doit être renseignée!', __FILE__));
-                    return;
-                } 
-                if($this->getConfiguration('analogClosedPosition') == ''){
-                    throw new \Exception(__('La position fermeture du volet doit être renseignée!', __FILE__));
-                    return;
-                }        
-                if($this->getConfiguration('analogOpenedPosition') == ''){
-                    throw new \Exception(__('La position ouverture du volet doit être renseignée!', __FILE__));
-                    return;
-                }        
-                if($this->getConfiguration('analogOpenedPosition') < $this->getConfiguration('analogClosedPosition')){
-                    throw new \Exception(__('La position analogique d\'ouverture du volet doit être supérieure à la position analogique de fermeture!', __FILE__));
-                    return;
-                } 
-            } elseif ($this->getConfiguration('positionSensorType') == 'openedClosedLimitSwitch' || $this->getConfiguration('positionSensorType') == 'closedLimitSwitch'){
-                if($this->getConfiguration('closedLimitSwith') == ''){
-                    throw new \Exception(__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
-                    return;
-                }        
-            } elseif ($this->getConfiguration('positionSensorType') == 'openedClosedLimitSwitch' || $this->getConfiguration('positionSensorType') == 'openedLimitSwitch'){
-                if($this->getConfiguration('openedLimitSwith') == ''){
-                    throw new \Exception(__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
-                    return;
-                }        
-            } 
-        }   
+        $openingTypeList = array('window', 'door');
+        $dawnTypeList =  array('sunrise', 'civilDawn', 'nauticalDawn', 'astronomicalDawn');
+        $duskTypeList = array('sunset', 'civilDusk', 'nauticalDusk', 'astronomicalDusk');
 
-        if($this->getConfiguration('objectType') == 'shuttersArea'){
-            $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope'));
+        if($objectType == 'shutter') {
+
+                if (!in_array($openingType, $openingTypeList, true)) {
+                    $exceptionMessage = __('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__);
+                }
+
+                if ($positionSensorType = 'analog') {
+                        if (!isset($shutterAnalogPosition)){
+                            $exceptionMessage = __('La commande de retour de position du volet doit être renseignée!', __FILE__);
+                        } 
+                        if ($analogClosedPosition < 0 || $analogClosedPosition > 100){
+                            $exceptionMessage = __('La position fermeture du volet doit être renseignée!', __FILE__);
+                        }        
+                        if($analogOpenedPosition < 0 || $analogOpenedPosition > 100){
+                            $exceptionMessage = __('La position ouverture du volet doit être renseignée!', __FILE__);
+                        }        
+                        if($analogOpenedPosition < $analogClosedPosition){
+                            $exceptionMessage = __('La position analogique d\'ouverture du volet doit être supérieure à la position analogique de fermeture!', __FILE__);
+                        } 
+
+                } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'closedLimitSwitch') {
+                    if(!isset($closedLimitSwitch)){
+                        $exceptionMessage =__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__);
+                    }        
+    
+                } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'openedLimitSwitch') {
+                    if(!isset($openedLimitSwitch)){
+                        $exceptionMessage = __('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__);
+                    }        
+                }
+                if (isset($shutterArea)) {
+                    if($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100){
+                        $exceptionMessage = __('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__);
+                    }        
+                    if($outgoingAzimuthAngle  < 0 || $outgoingAzimuthAngle > 100){
+                        $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être renseigné!', __FILE__);
+                    }        
+                    if($outgoingAzimuthAngle < $incomingAzimuthAngle){
+                        $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être supérieur à l\'angle d\'entrée!', __FILE__);
+                    } 
+                }
+    
+        } elseif ($objectType == 'shuttersArea'){
+
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
-                throw new \Exception(__('L\'objet héliotrope doit être renseigné!', __FILE__));
-                return;
+                $exceptionMessage = __('L\'objet héliotrope doit être renseigné!', __FILE__);
             }        
-            if($this->getConfiguration('dawnType') == ''){
-                throw new \Exception(__('Le lever du soleil doit être renseigné!', __FILE__));
-                return;
+            if(!in_array($dawnType, $dawnTypeList, true)){
+                $exceptionMessage = __('Le lever du soleil doit être renseigné!', __FILE__);
             }        
-            if($this->getConfiguration('duskType') == ''){
-                throw new \Exception(__('La coucher du soleil doit être renseigné!', __FILE__));
-                return;
+            if(!in_array($duskType, $duskTypeList, true)){
+                $exceptionMessage = __('La coucher du soleil doit être renseigné!', __FILE__);
             }        
-            if($this->getConfiguration('incomingAzimuthAngle') == ''){
-                throw new \Exception(__('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__));
-                return;
-            }        
-            if($this->getConfiguration('outgoingAzimuthAngle') == ''){
-                throw new \Exception(__('L\'angle de sortie du soleil de l\'ouvrant doit être renseigné!', __FILE__));
-                return;
-            }        
-            if($this->getConfiguration('outgoingAzimuthAngle') < $this->getConfiguration('incomingAzimuthAngle')){
-                throw new \Exception(__('L\'angle de sortie du soleil de l\'ouvrant doit être supérieur à l\'angle d\'entrée!', __FILE__));
-                return;
-            }        
-        }       
+                   
+        } else {
+            $exceptionMessage = __('Le type d\'objet doit être renseignée!', __FILE__);
+        }
+
+        if (isset($exceptionMessage)) {
+            throw new Exception($exceptionMessage);
+            return;
+        }
     }
+    
 
     public function postUpdate()
     {
