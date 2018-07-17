@@ -78,8 +78,13 @@ class shutters extends eqLogic
 
     public function preUpdate()
     {
-        $objectType = $this->getConfiguration('objectType');
         $exceptionMessage = NULL;
+
+        $openingTypeList = array('window', 'door');
+        $dawnTypeList =  array('sunrise', 'civilDawn', 'nauticalDawn', 'astronomicalDawn');
+        $duskTypeList = array('sunset', 'civilDusk', 'nauticalDusk', 'astronomicalDusk');
+
+        $objectType = $this->getConfiguration('objectType');
         $openingType = $this->getConfiguration('openingType');
         $positionSensorType = $this->getConfiguration('positionSensorType');
         $shutterAnalogPosition = $this->getConfiguration('shutterAnalogPosition');
@@ -94,10 +99,6 @@ class shutters extends eqLogic
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
 
-        $openingTypeList = array('window', 'door');
-        $dawnTypeList =  array('sunrise', 'civilDawn', 'nauticalDawn', 'astronomicalDawn');
-        $duskTypeList = array('sunset', 'civilDusk', 'nauticalDusk', 'astronomicalDusk');
-
         if($objectType == 'shutter') {
 
                 if (!in_array($openingType, $openingTypeList, true)) {
@@ -105,30 +106,30 @@ class shutters extends eqLogic
                 }
 
                 if ($positionSensorType = 'analog') {
-                        if (!isset($shutterAnalogPosition)){
+                        if (empty($shutterAnalogPosition)){
                             $exceptionMessage = __('La commande de retour de position du volet doit être renseignée!', __FILE__);
                         } 
                         if ($analogClosedPosition < 0 || $analogClosedPosition > 100){
-                            $exceptionMessage = __('La position fermeture du volet doit être renseignée!', __FILE__);
+                            $exceptionMessage = __('La position fermeture du volet doit être renseignée et comprise entre 0% et 100%!', __FILE__);
                         }        
                         if($analogOpenedPosition < 0 || $analogOpenedPosition > 100){
-                            $exceptionMessage = __('La position ouverture du volet doit être renseignée!', __FILE__);
+                            $exceptionMessage = __('La position ouverture du volet doit être renseignée et comprise entre 0% et 100%!', __FILE__);
                         }        
                         if($analogOpenedPosition < $analogClosedPosition){
                             $exceptionMessage = __('La position analogique d\'ouverture du volet doit être supérieure à la position analogique de fermeture!', __FILE__);
                         } 
 
                 } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'closedLimitSwitch') {
-                    if(!isset($closedLimitSwitch)){
+                    if(empty($closedLimitSwitch)){
                         $exceptionMessage =__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__);
                     }        
     
                 } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'openedLimitSwitch') {
-                    if(!isset($openedLimitSwitch)){
+                    if(empty($openedLimitSwitch)){
                         $exceptionMessage = __('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__);
                     }        
                 }
-                if (isset($shutterArea)) {
+                if (!empty($shutterArea)) {
                     if($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100){
                         $exceptionMessage = __('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__);
                     }        
