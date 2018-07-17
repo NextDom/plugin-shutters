@@ -129,14 +129,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <fieldset>
                         <legend>{{Général}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
+                            <label class="col-sm-2 control-label">{{Nom de l'équipement}}</label>
                             <div class="col-sm-3">
                                 <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display:none" />
                                 <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Objet parent}}</label>
+                            <label class="col-sm-2 control-label">{{Objet parent}}</label>
                             <div class="col-sm-3">
                                 <select id="sel_object" class="eqLogicAttr cursor form-control" data-l1key="object_id">
                                     <option value="">{{Aucun}}</option>
@@ -149,7 +149,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Catégorie}}</label>
+                            <label class="col-sm-2 control-label">{{Catégorie}}</label>
                             <div class="col-sm-3">
                                 <?php
                                 foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
@@ -161,7 +161,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"></label>
+                            <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-3">
                                 <label class="checkbox-inline">
                                     <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
@@ -170,7 +170,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                         <div class="form-group">
-							<label class="col-sm-3 control-label">{{Type d'objet}}</label>
+							<label class="col-sm-2 control-label">{{Type d'objet}}</label>
                             <div class="col-sm-3">
                                 <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
                                     <option value="shutter" selected>{{Volet}}</option>
@@ -179,7 +179,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Commentaire}}</label>
+                            <label class="col-sm-2 control-label">{{Commentaire}}</label>
                             <div class="col-sm-3">
                                 <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire"></textarea>
                             </div>
@@ -189,7 +189,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <legend>{{Paramètres héliotrope}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Héliotrope}}
+                                <label class="col-sm-4 control-label">{{Héliotrope}}
                                     <sup>
                                         <i class="fa fa-question-circle tooltips" title="{{Objet héliotrope permettant la gestion du volet en fonction de la position du soleil.}}"></i>
                                     </sup>
@@ -209,7 +209,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Lever du soleil}}</label>
+                                <label class="col-sm-4 control-label">{{Lever du soleil}}</label>
                                 <div class="col-sm-6">
                                     <select id="dawnType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="dawnType">
                                         <option value="astronomicalDawn">{{Aube astronomique}}</option>
@@ -220,7 +220,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Coucher du soleil}}</label>
+                                <label class="col-sm-4 control-label">{{Coucher du soleil}}</label>
                                 <div class="col-sm-6">
                                     <select id="duskType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="duskType">
                                         <option value="sunset">{{Coucher du soleil}}</option>
@@ -231,7 +231,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Angle façade / Nord [0° : 360°]}}</label>
+                                <label class="col-sm-4 control-label">{{Angle façade / Nord [0° : 360°]}}</label>
                                 <div class="col-sm-6">
                                     <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
                                 </div>
@@ -247,7 +247,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <legend>{{Paramètres volet}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Type d'ouvrant}}</label>
+                                <label class="col-sm-4 control-label">{{Type d'ouvrant}}</label>
                                 <div class="col-sm-6">
                                     <select id="openingType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="openingType">
                                         <option value="window">{{Fenêtre}}</option>
@@ -256,9 +256,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-6 control-label">{{Retour de position}}</label>
+                                <label class="col-sm-4 control-label">{{Retour de position}}</label>
                                 <div class="col-sm-6">
                                     <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
+                                        <option value="none">{{Sans}}</option>
                                         <option value="analog">{{Analogique}}</option>
                                         <option value="openedClosedLimitSwitch">{{Fins de course ouverture et fermeture}}</option>
                                         <option value="openedLimitSwitch">{{Fin de course ouverture}}</option>
@@ -268,7 +269,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                             <fieldset id="analogPositionSettings" style="display:none;">  
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Retour de position du volet}}</label>
+                                    <label class="col-sm-4 control-label">{{Retour de position du volet}}</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <input id="shutterAnalogPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPosition"/>
@@ -281,13 +282,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Position fermeture [0% : 100%]}}</label>
+                                    <label class="col-sm-4 control-label">{{Position fermeture [0% : 100%]}}</label>
                                     <div class="col-sm-6">
                                         <input id="analogClosedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogClosedPosition"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Position ouverture [0% : 100%]}}</label>
+                                    <label class="col-sm-4 control-label">{{Position ouverture [0% : 100%]}}</label>
                                     <div class="col-sm-6">
                                         <input id="analogOpenedPosition" type="number" min="0" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
                                     </div>
@@ -295,7 +296,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </fieldset>
                             <fieldset id="closedLimitSwitchSettings" style="display:none;">  
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Fin de course fermeture}}</label>
+                                    <label class="col-sm-4 control-label">{{Fin de course fermeture}}</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith"/>
@@ -310,7 +311,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </fieldset>
                             <fieldset id="openedLimitSwitchSettings" style="display:none;">  
                                 <div class="form-group">
-                                    <label class="col-sm-6 control-label">{{Fin de course ouverture}}</label>
+                                    <label class="col-sm-4 control-label">{{Fin de course ouverture}}</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith"/>
@@ -333,30 +334,31 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <fieldset id="shutterHeliotropeSettings" style="display:none;">
                         <legend>{{Paramètres héliotrope du volet}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Façade}}</label>
+                            <label class="col-sm-2 control-label">{{Façade}}</label>
                             <div class="col-sm-3">
                                 <select id="shutterArea" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="shutterArea">
+                                    <option value="none">{{Non afectée}}</option>
                                     <?php
-                                    foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                        if ($shutters->getConfiguration('objectType') == 'shuttersArea') {
-                                            echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                        } 
-                                    }
+                                        foreach (eqLogic::byType('shutters', true) as $shutters) {
+                                            if ($shutters->getConfiguration('objectType') == 'shuttersArea') {
+                                                echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
+                                            } 
+                                        }
                                     ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
+                            <label class="col-sm-2 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Angle d'entrée [-90° : -30°]}}</label>
+                            <label class="col-sm-2 control-label">{{Angle d'entrée [-90° : -30°]}}</label>
                             <div class="col-sm-3">
                                 <input id="incomingAzimuthAngle" type="number" min="-90" max="-30" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Angle de sortie  [+30° : +90°]}}</label>
+                            <label class="col-sm-2 control-label">{{Angle de sortie  [+30° : +90°]}}</label>
                             <div class="col-sm-3">
                                 <input id="outgoingAzimuthAngle" type="number" min="30" max="90" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
                             </div>

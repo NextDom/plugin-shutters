@@ -27,6 +27,12 @@ $(document).ready(function() {
     if ($('#openingType').val() == null) {
         $('#openingType').val('window');
     }
+    if ($('#positionSensorType').val() == null) {
+        $('#positionSensorType').val('none');
+    }
+    if ($('#shutterArea').val() == null) {
+        $('#shutterArea').val('none');
+    }
     tempValue = $('analogClosedPosition').val();
     if (typeof tempValue == 'undefined') {
         $('#analogClosedPosition').val(0);

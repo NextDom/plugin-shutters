@@ -103,6 +103,7 @@ class shutters extends eqLogic
 
                 if (!in_array($openingType, $openingTypeList, true)) {
                     $exceptionMessage = __('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__);
+                    throwException($exceptionMessage, true);
                 }
 
                 if ($positionSensorType = 'analog') {
@@ -157,10 +158,6 @@ class shutters extends eqLogic
             $exceptionMessage = __('Le type d\'objet doit être renseignée!', __FILE__);
         }
 
-        if (isset($exceptionMessage)) {
-            throw new Exception($exceptionMessage);
-            return;
-        }
     }
     
 
@@ -179,6 +176,16 @@ class shutters extends eqLogic
         
     }
 
+    public function throwException($exceptionMessage = null, bool $writeToLog = false)
+    {
+        if (isset($exceptionMessage)) {
+            throw new Exception($exceptionMessage);
+            if ($writeToLog) {
+                log::add('shutters','debug','[exception] => '.$exceptionMessage);
+            }
+        }
+
+    }
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 
      en avez besoin
