@@ -58,6 +58,11 @@ $(document).ready(function() {
 var objectType = $('#objectType');
 objectType.on('change', function() {
     switch (objectType.val()) {
+        case 'heliotropeArea':
+            $('#shutterSettings').hide();
+            $('#shutterHeliotropeSettings').hide();
+            $('#heliotropeSettings').show();
+            break;
         case 'shutter':
             $('#heliotropeSettings').hide();
             $('#shutterSettings').show();

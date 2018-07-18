@@ -35,7 +35,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
         <div class="bs-sidebar">
             <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
                 <a class="btn btn-default eqLogicAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="add">
-                    <i class="fa fa-plus-circle"></i> {{Ajouter un volet}}</a>
+                    <i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
                 <li class="filter" style="margin-bottom: 5px;">
                     <input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" />
                 </li>
@@ -64,11 +64,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
             </div>
         </div>
         <legend>
-            <i class="fa fa-table"></i> {{Mes volets}}</legend>
+            <i class="fa fa-table"></i> {{Mes zones héliotropes}}</legend>
         <div class="eqLogicThumbnailContainer">
             <?php
             foreach ($eqLogics as $eqLogic) {
-                if ($eqLogic->getConfiguration('objectType') == 'shutter') {
+                if ($eqLogic->getConfiguration('objectType') == 'heliotropeArea') {
                     $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
                     echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
                     echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
@@ -80,11 +80,27 @@ $eqLogics = eqLogic::byType($plugin->getId());
             ?>
         </div>
         <legend>
-            <i class="fa fa-table"></i> {{Mes façades}}</legend>
+            <i class="fa fa-table"></i> {{Mes zones de volets}}</legend>
         <div class="eqLogicThumbnailContainer">
             <?php
             foreach ($eqLogics as $eqLogic) {
                 if ($eqLogic->getConfiguration('objectType') == 'shuttersArea') {
+                    $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+                    echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+                    echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
+                    echo "<br>";
+                    echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
+                    echo '</div>';
+                }
+            }
+            ?>
+        </div>
+        <legend>
+            <i class="fa fa-table"></i> {{Mes volets}}</legend>
+        <div class="eqLogicThumbnailContainer">
+            <?php
+            foreach ($eqLogics as $eqLogic) {
+                if ($eqLogic->getConfiguration('objectType') == 'shutter') {
                     $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
                     echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
                     echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
@@ -173,8 +189,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<label class="col-sm-2 control-label">{{Type d'objet}}</label>
                             <div class="col-sm-3">
                                 <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
-                                    <option value="shutter" selected>{{Volet}}</option>
-                                    <option value="shuttersArea">{{Façade}}</option>
+                                <option value="heliotropeArea">{{Zone héliotrope}}</option>
+                                <option value="shuttersArea">{{Zone de volets}}</option>
+                                    <option value="shutter">{{Volet}}</option>
                                 </select>
                             </div>
                         </div>
@@ -337,7 +354,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <label class="col-sm-2 control-label">{{Façade}}</label>
                             <div class="col-sm-3">
                                 <select id="shutterArea" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="shutterArea">
-                                    <option value="none">{{Non afectée}}</option>
+                                    <option value="none">{{Non affectée}}</option>
                                     <?php
                                         foreach (eqLogic::byType('shutters', true) as $shutters) {
                                             if ($shutters->getConfiguration('objectType') == 'shuttersArea') {
