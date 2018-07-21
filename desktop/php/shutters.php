@@ -178,7 +178,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Options}}</label>
+                                <label class="col-sm-3 control-label">{{Equipement}}</label>
                                 <div class="col-sm-5">
                                     <label class="checkbox-inline">
                                         <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
@@ -187,7 +187,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="objectType">{{Type d'objet}}</label>
+                                <label class="col-sm-3 control-label" for="objectType">{{Type d'équipement}}</label>
                                 <div class="col-sm-5">
                                     <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
                                     <option value="heliotropeArea">{{Zone héliotrope}}</option>

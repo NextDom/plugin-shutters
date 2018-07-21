@@ -33,35 +33,35 @@ $(document).ready(function() {
     if ($('#shutterArea').val() == null) {
         $('#shutterArea').val('none');
     }
-    tempValue = $('analogClosedPosition').val();
-    if (typeof tempValue == 'undefined') {
+    tempValue = $('#analogClosedPosition').val();
+    if (typeof tempValue === 'undefined') {
         $('#analogClosedPosition').val(0);
     }
-    tempValue = $('analogOpenedPosition').val();
-    if (typeof tempValue == 'undefined') {
+    tempValue = $('#analogOpenedPosition').val();
+    if (typeof tempValue === 'undefined') {
         $('#analogOpenedPosition').val(100);
     }
-    tempValue = $('wallAngle').val();
-    if (typeof tempValue == 'undefined') {
+    tempValue = $('#wallAngle').val();
+    if (typeof tempValue === 'undefined') {
         $('#wallAngle').val(0);
     }
-    tempValue = $('incomingAzimuthAngle').val();
-    if (typeof tempValue == 'undefined') {
+    tempValue = $('#incomingAzimuthAngle').val();
+    if (typeof tempValue === 'undefined') {
         $('#incomingAzimuthAngle').val(-90);
     }
-    tempValue = $('outgoingAzimuthAngle').val();
-    if (typeof tempValue == 'undefined') {
+    tempValue = $('#outgoingAzimuthAngle').val();
+    if (typeof tempValue === 'undefined') {
         $('#outgoingAzimuthAngle').val(90);
     }
 
     var wallAngle = $('#wallAngle');
-    var shuttersAreaPlan = $('#shuttersAreaPlan');
+    var heliotropeAreaPlan = $('#heliotropeAreaPlan');
     var angle = parseInt(wallAngle.val() - 90);
     
-    shuttersAreaPlan.addLayer({
+    heliotropeAreaPlan.addLayer({
         type: 'image',
         name: 'wall',
-        source: 'plugins/shutters/desktop/js/images/window.png',
+        source: 'plugins/shutters/desktop/resources/images/window.png',
         rotate: angle,
         x: 0, y: 0,
         fromCenter: false
@@ -113,7 +113,7 @@ $(document).ready(function() {
       
     wallAngle.on('change', function() {
         angle = parseInt(wallAngle.val() - 90);
-        shuttersAreaPlan.removeLayer('axe')
+        heliotropeAreaPlan.removeLayer('axe')
             .removeLayer('arc')
             .setLayer('wall', {
                 rotate: angle
