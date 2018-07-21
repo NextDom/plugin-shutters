@@ -16,11 +16,9 @@
 
 $(document).ready(function() {
     
-    var wallAngle = $('#wallAngle');
-    var heliotropeAreaPlan = $('#heliotropeAreaPlan');
-    var angle = parseInt(wallAngle.val() - 90);
+    var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
     
-    heliotropeAreaPlan.addLayer({
+    $('#heliotropeAreaPlan').addLayer({
         type: 'image',
         name: 'wall',
         source: 'plugins/shutters/resources/images/window.png',
@@ -69,66 +67,24 @@ $(document).ready(function() {
         rounded: true,
         x: 200, y: 200,
         radius: 50,
-        start: 0, end:  parseInt(wallAngle.val())
+        start: 0, end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
     })
     .drawLayers();
       
-    wallAngle.on('change', function() {
-        angle = parseInt(wallAngle.val() - 90);
-        heliotropeAreaPlan.removeLayer('axe')
-            .removeLayer('arc')
-            .setLayer('wall', {
-                rotate: angle
-            })
-            .addLayer({
-                type: 'line',
-                name: 'axe',
-                strokeStyle: '#d9534f',
-                strokeWidth: 5,
-                strokeDash: [10],
-                strokeDashOffset: 0,
-                rounded: true,
-                x1: 200, y1: 200,
-                x2: parseInt(200 + (150 * (Math.cos(angle * Math.PI / 180)))),
-                y2: parseInt(200 + (150 * (Math.sin(angle * Math.PI / 180))))
-            })
-            .addLayer({
-                type: 'arc',
-                name: 'arc',
-                strokeStyle: '#d9534f',
-                strokeWidth: 1,
-                strokeDash: [4],
-                strokeDashOffset: 0,
-                rounded: true,
-                x: 200, y: 200,
-                radius: 50,
-                start: 0, end:  parseInt(wallAngle.val())
-            })
-            .drawLayers();  
+    $('#wallAngle').off('change').on('change', function() {
+        updateHeliotropeAreaPlan();
+    });
+    
+    $('#wallAngleUnit').off('change').on('change', function() {
+        updateHeliotropeAreaPlan();
     });
 
     $('#objectType').off('change').on('change', function() {
-        switch ($('#objectType').val()) {
-            case 'heliotropeArea':
-                $('#shutterSettings').hide();
-                $('#shutterHeliotropeSettings').hide();
-                $('#heliotropeSettings').show();
-                break;
-            case 'shutter':
-                $('#heliotropeSettings').hide();
-                $('#shutterSettings').show();
-                $('#shutterHeliotropeSettings').show();
-                break;
-            case 'shuttersArea':
-                $('#shutterSettings').hide();
-                $('#shutterHeliotropeSettings').hide();
-                $('#heliotropeSettings').show();
-                break;
-            default:
-                $('#heliotropeSettings').hide();
-                $('#shutterSettings').hide();
-                $('#shutterHeliotropeSettings').hide();
-        }
+        displayObjectConf();
+    });
+
+    $('#wallAngleUnit').off('change').on('change', function() {
+        displayObjectConf();
     });
 
     $('#positionSensorType').off('change').on('change', function() {
@@ -173,6 +129,8 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
+    displayObjectConf();
+    
     if ($('#dawnType').val() === null) {
         $('#dawnType').val('sunrise');
     }
@@ -182,5 +140,77 @@ function printEqLogic(_eqLogic) {
     if ($('#wallAngle').val() === '') {
       $('#wallAngle').val(0);
     }
+    if ($('#wallAngleUnit').val() === null) {
+        $('#wallAngleUnit').val('deg');
+    }
+  
+}
 
+function displayObjectConf() {
+    switch ($('#objectType').val()) {
+        case 'heliotropeArea':
+            $('#shutterSettings').hide();
+            $('#shutterHeliotropeSettings').hide();
+            $('#heliotropeSettings').show();
+            break;
+        case 'shutter':
+            $('#heliotropeSettings').hide();
+            $('#shutterSettings').show();
+            $('#shutterHeliotropeSettings').show();
+            break;
+        case 'shuttersArea':
+            $('#shutterSettings').hide();
+            $('#shutterHeliotropeSettings').hide();
+            $('#heliotropeSettings').show();
+            break;
+        default:
+            $('#heliotropeSettings').hide();
+            $('#shutterSettings').hide();
+            $('#shutterHeliotropeSettings').hide();
+    }
+}
+
+function updateHeliotropeAreaPlan() {
+    var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
+    $('#heliotropeAreaPlan').removeLayer('axe')
+        .removeLayer('arc')
+        .setLayer('wall', {
+            rotate: angle
+        })
+        .addLayer({
+            type: 'line',
+            name: 'axe',
+            strokeStyle: '#d9534f',
+            strokeWidth: 5,
+            strokeDash: [10],
+            strokeDashOffset: 0,
+            rounded: true,
+            x1: 200, y1: 200,
+            x2: parseInt(200 + (150 * (Math.cos(angle * Math.PI / 180)))),
+            y2: parseInt(200 + (150 * (Math.sin(angle * Math.PI / 180))))
+        })
+        .addLayer({
+            type: 'arc',
+            name: 'arc',
+            strokeStyle: '#d9534f',
+            strokeWidth: 1,
+            strokeDash: [4],
+            strokeDashOffset: 0,
+            rounded: true,
+            x: 200, y: 200,
+            radius: 50,
+            start: 0, end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
+        })
+        .drawLayers();  
+    }
+
+function convertAngleToDegree(angle = 0, unit = 'deg') {
+    switch (unit) {
+        case 'deg':
+            return parseInt(angle);
+        case 'gon':
+            return parseInt(angle) / 0.9;
+        default:
+            return 0;
+    }
 }

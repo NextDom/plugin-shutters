@@ -83,8 +83,14 @@ class shutters extends eqLogic
         $openingTypeList = array('window', 'door');
         $dawnTypeList =  array('sunrise', 'civilDawn', 'nauticalDawn', 'astronomicalDawn');
         $duskTypeList = array('sunset', 'civilDusk', 'nauticalDusk', 'astronomicalDusk');
+        $angleUnitList = array('deg', 'gon');
 
         $objectType = $this->getConfiguration('objectType');
+        $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope'));
+        $dawnType = $this->getConfiguration('dawnType');
+        $duskType = $this->getConfiguration('duskType');
+        $wallAngle = $this->getConfiguration('wallAngle');
+        $wallAngleUnit = $this->getConfiguration('wallAngleUnit');
         $openingType = $this->getConfiguration('openingType');
         $positionSensorType = $this->getConfiguration('positionSensorType');
         $shutterAnalogPosition = $this->getConfiguration('shutterAnalogPosition');
@@ -92,14 +98,43 @@ class shutters extends eqLogic
         $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
         $closedLimitSwith = $this->getConfiguration('closedLimitSwith');
         $openedLimitSwith = $this->getConfiguration('openedLimitSwith');
-        $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope'));
-        $dawnType = $this->getConfiguration('dawnType');
-        $duskType = $this->getConfiguration('duskType');
         $incomingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
 
-        if($objectType == 'shutter') {
+        if($objectType == 'heliotropeArea') {
+            if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
+                throw new Exception (__('L\'objet héliotrope doit être renseigné!', __FILE__));
+                log::add('shutters','error','[exception] => L\'objet héliotrope doit être renseigné!');
+                return;
+            }        
+            if(!in_array($dawnType, $dawnTypeList, true)){
+                throw new Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
+                log::add('shutters','error','[exception] => Le lever du soleil doit être renseigné!');
+                return;
+            }        
+            if(!in_array($duskType, $duskTypeList, true)){
+                throw new Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
+                log::add('shutters','error','[exception] => La coucher du soleil doit être renseigné!');
+                return;
+            } 
+            if(!in_array($wallAngleUnit, $angleUnitList, true)){
+                throw new Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
+                log::add('shutters','error','[exception] => L\'unité de l\'angle doit être renseignée!');
+                return;
+            } 
+            if($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)){
+                throw new Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
+                log::add('shutters','error','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
+                return;
+            }
+            if($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)){
+                throw new Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
+                log::add('shutters','error','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
+                return;
+            }
+        
+        } elseif($objectType == 'shutter') {
 
                 if (!in_array($openingType, $openingTypeList, true)) {
                     $exceptionMessage = __('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__);
@@ -144,19 +179,12 @@ class shutters extends eqLogic
     
         } elseif ($objectType == 'shuttersArea'){
 
-            if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
-                $exceptionMessage = __('L\'objet héliotrope doit être renseigné!', __FILE__);
-            }        
-            if(!in_array($dawnType, $dawnTypeList, true)){
-                $exceptionMessage = __('Le lever du soleil doit être renseigné!', __FILE__);
-            }        
-            if(!in_array($duskType, $duskTypeList, true)){
-                $exceptionMessage = __('La coucher du soleil doit être renseigné!', __FILE__);
-            }        
                    
         } else {
-            $exceptionMessage = __('Le type d\'objet doit être renseignée!', __FILE__);
-        }
+            throw new Exception (__('Le type d\'objet doit être renseigné!', __FILE__));
+            log::add('shutters','error','[exception] => Le type d\'objet doit être renseigné!');
+            return;
+    }
 
     }
     

@@ -246,9 +246,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord [0° : 360°]}}</label>
-                                <div class="col-sm-5">
+                                <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
+                                <div class="col-sm-3">
                                     <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select id="wallAngleUnit" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="wallAngleUnit">
+                                    <option value="deg">{{degré}}</option>
+                                    <option value="gra">{{grade}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
