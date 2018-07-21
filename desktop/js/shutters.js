@@ -16,44 +16,6 @@
 
 $(document).ready(function() {
     
-    var tempValue;
-
-    if ($('#dawnType').val() == null) {
-        $('#dawnType').val('sunrise');
-    }
-    if ($('#duskType').val() == null) {
-        $('#duskType').val('sunset');
-    }
-    if ($('#openingType').val() == null) {
-        $('#openingType').val('window');
-    }
-    if ($('#positionSensorType').val() == null) {
-        $('#positionSensorType').val('none');
-    }
-    if ($('#shutterArea').val() == null) {
-        $('#shutterArea').val('none');
-    }
-    tempValue = $('#analogClosedPosition').val();
-    if (typeof tempValue === 'undefined') {
-        $('#analogClosedPosition').val(0);
-    }
-    tempValue = $('#analogOpenedPosition').val();
-    if (typeof tempValue === 'undefined') {
-        $('#analogOpenedPosition').val(100);
-    }
-    tempValue = $('#wallAngle').val();
-    if (typeof tempValue === 'undefined') {
-        $('#wallAngle').val(0);
-    }
-    tempValue = $('#incomingAzimuthAngle').val();
-    if (typeof tempValue === 'undefined') {
-        $('#incomingAzimuthAngle').val(-90);
-    }
-    tempValue = $('#outgoingAzimuthAngle').val();
-    if (typeof tempValue === 'undefined') {
-        $('#outgoingAzimuthAngle').val(90);
-    }
-
     var wallAngle = $('#wallAngle');
     var heliotropeAreaPlan = $('#heliotropeAreaPlan');
     var angle = parseInt(wallAngle.val() - 90);
@@ -61,7 +23,7 @@ $(document).ready(function() {
     heliotropeAreaPlan.addLayer({
         type: 'image',
         name: 'wall',
-        source: 'plugins/shutters/desktop/resources/images/window.png',
+        source: 'plugins/shutters/resources/images/window.png',
         rotate: angle,
         x: 0, y: 0,
         fromCenter: false
@@ -144,96 +106,81 @@ $(document).ready(function() {
             })
             .drawLayers();  
     });
-    
 
+    $('#objectType').off('change').on('change', function() {
+        switch ($('#objectType').val()) {
+            case 'heliotropeArea':
+                $('#shutterSettings').hide();
+                $('#shutterHeliotropeSettings').hide();
+                $('#heliotropeSettings').show();
+                break;
+            case 'shutter':
+                $('#heliotropeSettings').hide();
+                $('#shutterSettings').show();
+                $('#shutterHeliotropeSettings').show();
+                break;
+            case 'shuttersArea':
+                $('#shutterSettings').hide();
+                $('#shutterHeliotropeSettings').hide();
+                $('#heliotropeSettings').show();
+                break;
+            default:
+                $('#heliotropeSettings').hide();
+                $('#shutterSettings').hide();
+                $('#shutterHeliotropeSettings').hide();
+        }
+    });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
-
-var objectType = $('#objectType');
-objectType.on('change', function() {
-    switch (objectType.val()) {
-        case 'heliotropeArea':
-            $('#shutterSettings').hide();
-            $('#shutterHeliotropeSettings').hide();
-            $('#heliotropeSettings').show();
+    $('#positionSensorType').off('change').on('change', function() {
+        switch ($('#positionSensorType').val()) {
+            case 'analog':
+            $('#analogPositionSettings').show();
+            $('#closedLimitSwitchSettings').hide();
+            $('#openedLimitSwitchSettings').hide();
             break;
-        case 'shutter':
-            $('#heliotropeSettings').hide();
-            $('#shutterSettings').show();
-            $('#shutterHeliotropeSettings').show();
+        case 'openedClosedLimitSwitch':
+            $('#analogPositionSettings').hide();
+            $('#closedLimitSwitchSettings').show();
+            $('#openedLimitSwitchSettings').show();
             break;
-        case 'shuttersArea':
-            $('#shutterSettings').hide();
-            $('#shutterHeliotropeSettings').hide();
-            $('#heliotropeSettings').show();
+        case 'closedLimitSwitch':
+            $('#analogPositionSettings').hide();
+            $('#closedLimitSwitchSettings').show();
+            $('#openedLimitSwitchSettings').hide();
+            break;
+        case 'openedLimitSwitch':
+            $('#analogPositionSettings').hide();
+            $('#closedLimitSwitchSettings').hide();
+            $('#openedLimitSwitchSettings').show();
             break;
         default:
-            $('#heliotropeSettings').hide();
-            $('#shutterSettings').hide();
-            $('#shutterHeliotropeSettings').hide();
-    }
-});
+            $('#analogPositionSettings').hide();
+            $('#closedLimitSwitchSettings').hide();
+            $('#openedLimitSwitchSettings').hide();
+            break;
+        }
+    });
 
-var positionSensorType = $('#positionSensorType');
-positionSensorType.on('change', function() {
-    switch (positionSensorType.val()) {
-        case 'analog':
-        $('#analogPositionSettings').show();
-        $('#closedLimitSwitchSettings').hide();
-        $('#openedLimitSwitchSettings').hide();
-        break;
-    case 'openedClosedLimitSwitch':
-        $('#analogPositionSettings').hide();
-        $('#closedLimitSwitchSettings').show();
-        $('#openedLimitSwitchSettings').show();
-        break;
-    case 'closedLimitSwitch':
-        $('#analogPositionSettings').hide();
-        $('#closedLimitSwitchSettings').show();
-        $('#openedLimitSwitchSettings').hide();
-        break;
-    case 'openedLimitSwitch':
-        $('#analogPositionSettings').hide();
-        $('#closedLimitSwitchSettings').hide();
-        $('#openedLimitSwitchSettings').show();
-        break;
-    default:
-        $('#analogPositionSettings').hide();
-        $('#closedLimitSwitchSettings').hide();
-        $('#openedLimitSwitchSettings').hide();
-        break;
-    }
-});
-
-$('body').off('click','.listCmd').on('click','.listCmd', function () {
-    var dataType = $(this).attr('data-type');
-    var dataInput = $(this).attr('data-input');
-    var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
-    jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
-        el.value(result.human);
+    $('body').off('click','.listCmd').on('click','.listCmd', function () {
+        var dataType = $(this).attr('data-type');
+        var dataInput = $(this).attr('data-input');
+        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
+            el.value(result.human);
+        });
     });
 });
 
+function printEqLogic(_eqLogic) {
+
+    if ($('#dawnType').val() === null) {
+        $('#dawnType').val('sunrise');
+    }
+    if ($('#duskType').val() === null) {
+        $('#duskType').val('sunset');
+    }
+    if ($('#wallAngle').val() === '') {
+      $('#wallAngle').val(0);
+    }
+
+}
