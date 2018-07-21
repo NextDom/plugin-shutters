@@ -53,6 +53,123 @@ $(document).ready(function() {
     if (typeof tempValue == 'undefined') {
         $('#outgoingAzimuthAngle').val(90);
     }
+
+    var wallAngle = $('#wallAngle');
+    var shuttersAreaPlan = $('#shuttersAreaPlan');
+    var angle = parseInt(wallAngle.val() - 90);
+    
+    shuttersAreaPlan.addLayer({
+        type: 'image',
+        name: 'wall',
+        source: 'plugins/shutters/desktop/js/images/window.png',
+        rotate: angle,
+        x: 0, y: 0,
+        fromCenter: false
+    })
+    .addLayer({
+        type: 'line',
+        strokeStyle: '#d9534f',
+        strokeWidth: 5,
+        rounded: true,
+        endArrow: true,
+        arrowRadius: 15,
+        arrowAngle: 90,
+        x1: 200, y1: 200,
+        x2: 200, y2: 50
+    })
+    .addLayer({
+        type: 'text',
+        fillStyle: '#d9534f',
+        x: 200, y: 20,
+        fontSize: '20pt',
+        align: 'center',
+        text: 'Nord'
+    })
+    .addLayer({
+        type: 'line',
+        name: 'axe',
+        strokeStyle: '#d9534f',
+        strokeWidth: 5,
+        strokeDash: [10],
+        strokeDashOffset: 0,
+        rounded: true,
+        x1: 200, y1: 200,
+        x2: parseInt(200 + (150 * (Math.cos(angle * Math.PI / 180)))),
+        y2: parseInt(200 + (150 * (Math.sin(angle * Math.PI / 180))))
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'arc',
+        strokeStyle: '#d9534f',
+        strokeWidth: 1,
+        strokeDash: [4],
+        strokeDashOffset: 0,
+        rounded: true,
+        x: 200, y: 200,
+        radius: 50,
+        start: 0, end:  parseInt(wallAngle.val())
+    })
+    .drawLayers();
+      
+    wallAngle.on('change', function() {
+        angle = parseInt(wallAngle.val() - 90);
+        shuttersAreaPlan.removeLayer('axe')
+            .removeLayer('arc')
+            .setLayer('wall', {
+                rotate: angle
+            })
+            .addLayer({
+                type: 'line',
+                name: 'axe',
+                strokeStyle: '#d9534f',
+                strokeWidth: 5,
+                strokeDash: [10],
+                strokeDashOffset: 0,
+                rounded: true,
+                x1: 200, y1: 200,
+                x2: parseInt(200 + (150 * (Math.cos(angle * Math.PI / 180)))),
+                y2: parseInt(200 + (150 * (Math.sin(angle * Math.PI / 180))))
+            })
+            .addLayer({
+                type: 'arc',
+                name: 'arc',
+                strokeStyle: '#d9534f',
+                strokeWidth: 1,
+                strokeDash: [4],
+                strokeDashOffset: 0,
+                rounded: true,
+                x: 200, y: 200,
+                radius: 50,
+                start: 0, end:  parseInt(wallAngle.val())
+            })
+            .drawLayers();  
+    });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 var objectType = $('#objectType');
@@ -110,13 +227,6 @@ positionSensorType.on('change', function() {
         break;
     }
 });
-
-var shuttersAreaPlan = $('#shuttersAreaPlan');
-shuttersAreaPlan.drawImage({
-    source: 'images/window.png',
-    x: 0, y: 0,
-    fromCenter: false
-  });
 
 $('body').off('click','.listCmd').on('click','.listCmd', function () {
     var dataType = $(this).attr('data-type');

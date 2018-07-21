@@ -144,61 +144,63 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <form class="form-horizontal">
                     <fieldset>
                         <legend>{{Général}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Nom de l'équipement}}</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display:none" />
-                                <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
+                        <div class="col-sm-6">    
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="objectName">{{Nom de l'équipement}}</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display:none" />
+                                    <input type="text" id="objectName" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Objet parent}}</label>
-                            <div class="col-sm-3">
-                                <select id="sel_object" class="eqLogicAttr cursor form-control" data-l1key="object_id">
-                                    <option value="">{{Aucun}}</option>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="sel_object">{{Objet parent}}</label>
+                                <div class="col-sm-5">
+                                    <select id="sel_object" class="eqLogicAttr cursor form-control" data-l1key="object_id">
+                                        <option value="">{{Aucun}}</option>
+                                        <?php
+                                        foreach (object::all() as $object) {
+                                            echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Catégorie}}</label>
+                                <div class="col-sm-9">
                                     <?php
-                                    foreach (object::all() as $object) {
-                                        echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+                                    foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+                                        echo '<label class="checkbox-inline">';
+                                        echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
+                                        echo '</label>';
                                     }
                                     ?>
-                                </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Catégorie}}</label>
-                            <div class="col-sm-3">
-                                <?php
-                                foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-                                    echo '<label class="checkbox-inline">';
-                                    echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
-                                    echo '</label>';
-                                }
-                                ?>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Options}}</label>
+                                <div class="col-sm-5">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-sm-3">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-							<label class="col-sm-2 control-label">{{Type d'objet}}</label>
-                            <div class="col-sm-3">
-                                <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
-                                <option value="heliotropeArea">{{Zone héliotrope}}</option>
-                                <option value="shuttersArea">{{Zone de volets}}</option>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="objectType">{{Type d'objet}}</label>
+                                <div class="col-sm-5">
+                                    <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
+                                    <option value="heliotropeArea">{{Zone héliotrope}}</option>
+                                    <option value="shuttersArea">{{Zone de volets}}</option>
                                     <option value="shutter">{{Volet}}</option>
-                                </select>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Commentaire}}</label>
-                            <div class="col-sm-3">
-                                <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire"></textarea>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="comment">{{Commentaire}}</label>
+                                <div class="col-sm-5">
+                                    <textarea id="comment" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire"></textarea>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
@@ -206,12 +208,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <legend>{{Paramètres héliotrope}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Héliotrope}}
-                                    <sup>
-                                        <i class="fa fa-question-circle tooltips" title="{{Objet héliotrope permettant la gestion du volet en fonction de la position du soleil.}}"></i>
-                                    </sup>
-                                </label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
+                                <div class="col-sm-5">
                                     <select id="heliotrope" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="heliotrope">
                                         <?php
                                         if (class_exists('heliotropeCmd')) {
@@ -226,8 +224,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Lever du soleil}}</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-3 control-label" for="dawnType">{{Lever du soleil}}</label>
+                                <div class="col-sm-5">
                                     <select id="dawnType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="dawnType">
                                         <option value="astronomicalDawn">{{Aube astronomique}}</option>
                                         <option value="nauticalDawn">{{Aube nautique}}</option>
@@ -237,8 +235,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Coucher du soleil}}</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-3 control-label" for="duskType">{{Coucher du soleil}}</label>
+                                <div class="col-sm-5">
                                     <select id="duskType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="duskType">
                                         <option value="sunset">{{Coucher du soleil}}</option>
                                         <option value="civilDusk">{{Crépuscule civil}}</option>
@@ -248,15 +246,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">{{Angle façade / Nord [0° : 360°]}}</label>
-                                <div class="col-sm-6">
+                                <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord [0° : 360°]}}</label>
+                                <div class="col-sm-5">
                                     <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <canvas id="shuttersAreaPlan" width="400" height="400" style="border:1px solid #000000;"></canvas> 
+                                <canvas id="heliotropeAreaPlan" class="col-sm-offset-2" width="400" height="400" style="border:1px solid #000000;"></canvas> 
                             </div>
                         </div>
                     </fieldset>
