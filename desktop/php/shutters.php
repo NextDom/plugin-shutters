@@ -253,7 +253,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="col-sm-2">
                                     <select id="wallAngleUnit" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="wallAngleUnit">
                                     <option value="deg">{{degré}}</option>
-                                    <option value="gra">{{grade}}</option>
+                                    <option value="gon">{{grade}}</option>
                                     </select>
                                 </div>
                             </div>

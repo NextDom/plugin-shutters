@@ -71,21 +71,18 @@ $(document).ready(function() {
     })
     .drawLayers();
       
-    $('#wallAngle').off('change').on('change', function() {
-        updateHeliotropeAreaPlan();
-    });
-    
-    $('#wallAngleUnit').off('change').on('change', function() {
-        updateHeliotropeAreaPlan();
-    });
-
     $('#objectType').off('change').on('change', function() {
         displayObjectConf();
     });
 
-    $('#wallAngleUnit').off('change').on('change', function() {
-        displayObjectConf();
+    $('#wallAngle').off('change').on('change', function() {
+        updateHeliotropeAreaPlan();
     });
+
+    $('#wallAngleUnit').off('change').on('change', function() {
+        updateHeliotropeAreaPlan();
+    });
+
 
     $('#positionSensorType').off('change').on('change', function() {
         switch ($('#positionSensorType').val()) {
@@ -143,7 +140,7 @@ function printEqLogic(_eqLogic) {
     if ($('#wallAngleUnit').val() === null) {
         $('#wallAngleUnit').val('deg');
     }
-  
+    updateHeliotropeAreaPlan();
 }
 
 function displayObjectConf() {
@@ -209,7 +206,7 @@ function convertAngleToDegree(angle = 0, unit = 'deg') {
         case 'deg':
             return parseInt(angle);
         case 'gon':
-            return parseInt(angle) / 0.9;
+            return parseInt(angle) * 0.9;
         default:
             return 0;
     }

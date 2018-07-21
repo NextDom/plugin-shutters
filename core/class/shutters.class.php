@@ -105,32 +105,32 @@ class shutters extends eqLogic
         if($objectType == 'heliotropeArea') {
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
                 throw new Exception (__('L\'objet héliotrope doit être renseigné!', __FILE__));
-                log::add('shutters','error','[exception] => L\'objet héliotrope doit être renseigné!');
+                log::add('shutters','info','[exception] => L\'objet héliotrope doit être renseigné!');
                 return;
             }        
             if(!in_array($dawnType, $dawnTypeList, true)){
                 throw new Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
-                log::add('shutters','error','[exception] => Le lever du soleil doit être renseigné!');
+                log::add('shutters','info','[exception] => Le lever du soleil doit être renseigné!');
                 return;
             }        
             if(!in_array($duskType, $duskTypeList, true)){
                 throw new Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
-                log::add('shutters','error','[exception] => La coucher du soleil doit être renseigné!');
+                log::add('shutters','info','[exception] => La coucher du soleil doit être renseigné!');
                 return;
             } 
             if(!in_array($wallAngleUnit, $angleUnitList, true)){
                 throw new Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
-                log::add('shutters','error','[exception] => L\'unité de l\'angle doit être renseignée!');
+                log::add('shutters','info','[exception] => L\'unité de l\'angle doit être renseignée!');
                 return;
             } 
             if($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)){
                 throw new Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
-                log::add('shutters','error','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
+                log::add('shutters','info','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
                 return;
             }
             if($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)){
                 throw new Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
-                log::add('shutters','error','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
+                log::add('shutters','info','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
                 return;
             }
         
@@ -182,7 +182,7 @@ class shutters extends eqLogic
                    
         } else {
             throw new Exception (__('Le type d\'objet doit être renseigné!', __FILE__));
-            log::add('shutters','error','[exception] => Le type d\'objet doit être renseigné!');
+            log::add('shutters','info','[exception] => Le type d\'objet doit être renseigné!');
             return;
     }
 
