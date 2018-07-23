@@ -176,6 +176,27 @@ $(document).ready(function() {
         text: 'Nuit'
     })
     .addLayer({
+        type: 'text',
+		name: 'sun',
+      	fillStyle: '#FEE200',
+        x: 200, y: 50,
+        fontSize: 48,
+        fontFamily: 'FontAwesome',
+        text: '\uf185'
+    })
+    .addLayer({
+        type: 'arc',
+        strokeStyle: '#B3B3B3',
+        strokeWidth: 2,
+        x: 200, y: 200,
+        radius: 180,
+ 		start: -10, end: 10,
+   		rounded: true,
+        startArrow: true,
+        arrowRadius: 10,
+        arrowAngle: 90
+    })
+    .addLayer({
         type: 'arc',
         name: 'sunrise',
  		groups: ['civilDawnDeselectedGroup', 'nauticalDawnDeselectedGroup', 'astronomicalDawnDeselectedGroup'],
@@ -460,7 +481,7 @@ function hideTooltip() {
 }
 
 function displayTooltip(message) {
-    $('#tooltip').html(message).css('visibility', 'hidden');
+    $('#tooltip').html(message).css('visibility', 'visible');
 }
 
 function refreshWallPlan() {
