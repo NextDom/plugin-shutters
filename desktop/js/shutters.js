@@ -186,7 +186,7 @@ $(document).ready(function() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function(layer) {
-            $('#dawnType').val('sunrise');
+            $('#dawnType').val('sunrise').trigger('change');
         },
         mouseover: function(layer) {
             displayTooltip('{{Lever du soleil}}');
@@ -207,7 +207,7 @@ $(document).ready(function() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function(layer) {
-            $('#dawnType').val('civilDawn');
+            $('#dawnType').val('civilDawn').trigger('change');
         },
         mouseover: function(layer) {
             displayTooltip('{{Aube civile}}');
@@ -228,7 +228,7 @@ $(document).ready(function() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function(layer) {
-            $('#dawnType').val('nauticalDawn');
+            $('#dawnType').val('nauticalDawn').trigger('change');
         },
         mouseover: function(layer) {
             displayTooltip('{{Aube nautique}}');
@@ -249,10 +249,93 @@ $(document).ready(function() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function(layer) {
-            $('#dawnType').val('astronomicalDawn');
+            $('#dawnType').val('astronomicalDawn').trigger('change');
         },
         mouseover: function(layer) {
             displayTooltip('{{Aube astronomique}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'sunset',
+ 		groups: ['civilDuskDeselectedGroup', 'nauticalDuskDeselectedGroup', 'astronomicalDuskDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: 50, y: 200,
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#duskType').val('sunset').trigger('change');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Coucher du soleil}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'civilDusk',
+  		groups: ['sunsetDeselectedGroup', 'nauticalDuskDeselectedGroup', 'astronomicalDuskDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: parseInt(200 + (150 * (Math.cos(264 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(264 * Math.PI / 180)))),
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#duskType').val('civilDusk').trigger('change');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Crépuscule civil}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'nauticalDusk',
+  		groups: ['sunsetDeselectedGroup', 'civilDuskDeselectedGroup', 'astronomicalDuskDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: parseInt(200 + (150 * (Math.cos(258 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(258 * Math.PI / 180)))),
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#duskType').val('nauticalDusk').trigger('change');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Crépuscule nautique}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'astronomicalDusk',
+  		groups: ['sunsetDeselectedGroup', 'civilDuskDeselectedGroup', 'nauticalDuskDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: parseInt(200 + (150 * (Math.cos(252 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(252 * Math.PI / 180)))),
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#duskType').val('astronomicalDusk').trigger('change');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Crépuscule astronomique}}');
         },
         mouseout: function(layer) {
             hideTooltip();
