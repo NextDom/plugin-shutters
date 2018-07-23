@@ -18,7 +18,7 @@ $(document).ready(function() {
     
     var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
     
-    $('#heliotropeAreaPlan').addLayer({
+    $('#wallPlan').addLayer({
         type: 'image',
         name: 'wall',
         source: 'plugins/shutters/resources/images/window.png',
@@ -70,17 +70,214 @@ $(document).ready(function() {
         start: 0, end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
     })
     .drawLayers();
-      
+    
+    $('#heliotropePlan').addLayer({
+        type: 'slice',
+        name: 'day',
+        fillStyle: '#DBE9FF',
+        x: 200, y: 200,
+        start: 270, end: 90,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'slice',
+        name: 'morningCivilTwilight',
+        fillStyle: '#87A4D3',
+        x: 200, y: 200,
+        start: 90, end: 96,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'slice',
+        name: 'morningNauticalTwilight',
+        fillStyle: '#4773BB',
+        x: 200, y: 200,
+        start: 96, end: 102,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'slice',
+        name: 'morningAstronomicalTwilight',
+        fillStyle: '#263E66',
+        x: 200, y: 200,
+        start: 102, end: 108,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'slice',
+        name: 'night',
+        fillStyle: '#1F252D',
+        x: 200, y: 200,
+        start: 108, end: 252,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'slice',
+        name: 'eveningAstronomicalTwilight',
+        fillStyle: '#263E66',
+        x: 200, y: 200,
+        start: 252, end: 258,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'slice',
+        name: 'eveningNauticalTwilight',
+        fillStyle: '#4773BB',
+        x: 200, y: 200,
+        start: 258, end: 264,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'slice',
+        name: 'eveningCivilTwilight',
+        fillStyle: '#87A4D3',
+        x: 200, y: 200,
+        start: 264, end: 270,
+        radius: 150,
+        spread: 0 / 40
+    })
+    .addLayer({
+        type: 'line',
+        name: 'skyline',
+        strokeStyle: '#B3B3B3',
+        strokeWidth: 2,
+        x1: 20, y1: 200,
+        x2: 380, y2: 200
+    })     
+    .addLayer({
+        type: 'text',
+        fillStyle: '#B3B3B3',
+        x: 200, y: 190,
+        fontSize: '10pt',
+        align: 'center',
+        text: 'horizon'
+    })
+    .addLayer({
+        type: 'text',
+        fillStyle: '#7d7d7d',
+        x: 200, y: 100,
+        fontSize: '12pt',
+        align: 'center',
+        text: 'Jour'
+    })
+    .addLayer({
+        type: 'text',
+        fillStyle: '#7d7d7d',
+        x: 200, y: 300,
+        fontSize: '12pt',
+        align: 'center',
+        text: 'Nuit'
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'sunrise',
+ 		groups: ['civilDawnDeselectedGroup', 'nauticalDawnDeselectedGroup', 'astronomicalDawnDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: 350, y: 200,
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#dawnType').val('sunrise');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Lever du soleil}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'civilDawn',
+  		groups: ['sunriseDeselectedGroup', 'nauticalDawnDeselectedGroup', 'astronomicalDawnDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: parseInt(200 + (150 * (Math.cos(6 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(6 * Math.PI / 180)))),
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#dawnType').val('civilDawn');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Aube civile}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'nauticalDawn',
+  		groups: ['sunriseDeselectedGroup', 'civilDawnDeselectedGroup', 'astronomicalDawnDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: parseInt(200 + (150 * (Math.cos(12 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(12 * Math.PI / 180)))),
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#dawnType').val('nauticalDawn');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Aube nautique}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .addLayer({
+        type: 'arc',
+        name: 'astronomicalDawn',
+  		groups: ['sunriseDeselectedGroup', 'civilDawnDeselectedGroup', 'nauticalDawnDeselectedGroup'],
+        strokeStyle: '#FEE200',
+        strokeWidth: 1,
+        fillStyle: '#FEE200',
+        x: parseInt(200 + (150 * (Math.cos(18 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(18 * Math.PI / 180)))),
+        radius: 5,
+        cursors: {mouseover: 'pointer'},
+        click: function(layer) {
+            $('#dawnType').val('astronomicalDawn');
+        },
+        mouseover: function(layer) {
+            displayTooltip('{{Aube astronomique}}');
+        },
+        mouseout: function(layer) {
+            hideTooltip();
+        }
+    })
+    .drawLayers();
+
     $('#objectType').off('change').on('change', function() {
         displayObjectConf();
     });
 
+    $('#dawnType').off('change').on('change', function() {
+        displaySelectedDawnOrDusk($('#dawnType').val());
+    });
+
+    $('#duskType').off('change').on('change', function() {
+        displaySelectedDawnOrDusk($('#duskType').val());
+    });
+
     $('#wallAngle').off('change').on('change', function() {
-        updateHeliotropeAreaPlan();
+        refreshWallPlan();
     });
 
     $('#wallAngleUnit').off('change').on('change', function() {
-        updateHeliotropeAreaPlan();
+        refreshWallPlan();
     });
 
 
@@ -140,7 +337,9 @@ function printEqLogic(_eqLogic) {
     if ($('#wallAngleUnit').val() === null) {
         $('#wallAngleUnit').val('deg');
     }
-    updateHeliotropeAreaPlan();
+    refreshWallPlan();
+    displaySelectedDawnOrDusk($('#dawnType').val());
+    displaySelectedDawnOrDusk($('#duskType').val());
 }
 
 function displayObjectConf() {
@@ -167,9 +366,17 @@ function displayObjectConf() {
     }
 }
 
-function updateHeliotropeAreaPlan() {
+function hideTooltip() {
+    $('#tooltip').css('visibility', 'hidden');
+}
+
+function displayTooltip(message) {
+    $('#tooltip').html(message).css('visibility', 'hidden');
+}
+
+function refreshWallPlan() {
     var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
-    $('#heliotropeAreaPlan').removeLayer('axe')
+    $('#wallPlan').removeLayer('axe')
         .removeLayer('arc')
         .setLayer('wall', {
             rotate: angle
@@ -199,7 +406,7 @@ function updateHeliotropeAreaPlan() {
             start: 0, end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
         })
         .drawLayers();  
-    }
+}
 
 function convertAngleToDegree(angle = 0, unit = 'deg') {
     switch (unit) {
@@ -211,3 +418,14 @@ function convertAngleToDegree(angle = 0, unit = 'deg') {
             return 0;
     }
 }
+
+function displaySelectedDawnOrDusk(name) {
+    $('#heliotropePlan').animateLayer(name, {
+        fillStyle: '#d9534f'
+    });
+    var deselectedGroupName = name + 'DeselectedGroup';
+    $('#heliotropePlan').animateLayerGroup(deselectedGroupName, {
+        fillStyle: '#FEE200'
+    });
+}
+     

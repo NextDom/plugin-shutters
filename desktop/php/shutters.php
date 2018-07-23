@@ -30,6 +30,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
 
+<div id="tooltip" class="" style="position: absolute; z-index: 1; top: 389px; left: 925px; background-color: #000; color: #fff; padding: 5px; border-radius: 3px; visibility: hidden"></div>
+
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar">
@@ -257,10 +259,27 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </select>
                                 </div>
                             </div>
+                            <div class="panel panel-default col-sm-9 col-sm-offset-1">
+                                <div class="panel-body">
+                                    <b>{{Procédure de réglage de l'angle}}</b>
+                                    <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
+                                    <li>{{Soit aller sur le site du }}<a href="https://www.cadastre.gouv.fr/scpc/accueil.do" target="_blank">{{cadastre}}</a> :</li>
+                                    <ol>
+                                        <li>{{Saisir votre adresse.}}</li>
+                                        <li>{{Sélectionner la feuille correspondante à votre parcelle.}}</li>
+                                        <li>{{Une fois le plan affiché, dans l'onglet outils avancés, sélectionner mesurer.}}</li>
+                                        <li>{{Sélectionner l'outil 'mesurer un gisement'.}}</li>
+                                        <li>{{Tracer sur le plan une droite parallèle à votre façade (sens horaire par rapport au centre de l'habitation).}}</li>
+                                        <li>{{Relever la valeur de l'angle mesuré (en grades) et le renseigner dans le champ du plugin.}}</li>
+                                        <li>{{Vérifier que l'orientation du graphique dans le plugin est conforme à la réalité.}}</li>
+                                    </ol>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-6">               
                             <div class="form-group">
-                                <canvas id="heliotropeAreaPlan" class="col-sm-offset-2" width="400" height="400" style="border:1px solid #000000;"></canvas> 
+                                <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
                             </div>
                         </div>
                     </fieldset>
