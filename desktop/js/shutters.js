@@ -196,7 +196,7 @@ $(document).ready(function() {
         arrowRadius: 10,
         arrowAngle: 90
     })
-    .addLayer({
+         .addLayer({
         type: 'arc',
         name: 'sunrise',
  		groups: ['civilDawnDeselectedGroup', 'nauticalDawnDeselectedGroup', 'astronomicalDawnDeselectedGroup'],
@@ -433,19 +433,26 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
+    var changingObjectTypeAuthorized = JSON.stringify(_eqLogic.configuration.changingObjectTypeAuthorized); 
+    if (changingObjectTypeAuthorized = true) {
+        $('#objectType').prop("disabled", false);
+    } else {
+        $('#objectType').prop("disabled", true);
+    }
+    
     displayObjectConf();
     
     if ($('#dawnType').val() === null) {
-        $('#dawnType').val('sunrise');
+        $('#dawnType').val('sunrise').trigger('change');
     }
     if ($('#duskType').val() === null) {
-        $('#duskType').val('sunset');
+        $('#duskType').val('sunset').trigger('change');
     }
     if ($('#wallAngle').val() === '') {
-      $('#wallAngle').val(0);
+      $('#wallAngle').val(0).trigger('change');
     }
     if ($('#wallAngleUnit').val() === null) {
-        $('#wallAngleUnit').val('deg');
+        $('#wallAngleUnit').val('deg').trigger('change');
     }
     refreshWallPlan();
     displaySelectedDawnOrDusk($('#dawnType').val());

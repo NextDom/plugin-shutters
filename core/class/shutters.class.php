@@ -63,7 +63,8 @@ class shutters extends eqLogic
 
     public function postInsert()
     {
-    
+        $this->setConfiguration('changingObjectTypeAuthorized', true);
+        $this->save();
     }
 
     public function preSave()
@@ -73,7 +74,8 @@ class shutters extends eqLogic
 
     public function postSave()
     {
-
+        $this->setConfiguration('changingObjectTypeAuthorized', false);
+        $this->save();
     }
 
     public function preUpdate()
