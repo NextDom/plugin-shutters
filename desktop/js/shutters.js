@@ -185,13 +185,13 @@ $(document).ready(function() {
         x: 350, y: 200,
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#dawnType').val('sunrise').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Lever du soleil}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
@@ -206,13 +206,13 @@ $(document).ready(function() {
         y: parseInt(200 + (150 * (Math.sin(6 * Math.PI / 180)))),
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#dawnType').val('civilDawn').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Aube civile}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
@@ -227,13 +227,13 @@ $(document).ready(function() {
         y: parseInt(200 + (150 * (Math.sin(12 * Math.PI / 180)))),
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#dawnType').val('nauticalDawn').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Aube nautique}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
@@ -248,13 +248,13 @@ $(document).ready(function() {
         y: parseInt(200 + (150 * (Math.sin(18 * Math.PI / 180)))),
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#dawnType').val('astronomicalDawn').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Aube astronomique}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
@@ -268,13 +268,13 @@ $(document).ready(function() {
         x: 50, y: 200,
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#duskType').val('sunset').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Coucher du soleil}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
@@ -285,17 +285,17 @@ $(document).ready(function() {
         strokeStyle: '#FEE200',
         strokeWidth: 1,
         fillStyle: '#FEE200',
-        x: parseInt(200 + (150 * (Math.cos(264 * Math.PI / 180)))),
-        y: parseInt(200 + (150 * (Math.sin(264 * Math.PI / 180)))),
+        x: parseInt(200 + (150 * (Math.cos(174 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(174 * Math.PI / 180)))),
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#duskType').val('civilDusk').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Crépuscule civil}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
@@ -306,17 +306,17 @@ $(document).ready(function() {
         strokeStyle: '#FEE200',
         strokeWidth: 1,
         fillStyle: '#FEE200',
-        x: parseInt(200 + (150 * (Math.cos(258 * Math.PI / 180)))),
-        y: parseInt(200 + (150 * (Math.sin(258 * Math.PI / 180)))),
+        x: parseInt(200 + (150 * (Math.cos(168 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(168 * Math.PI / 180)))),
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#duskType').val('nauticalDusk').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Crépuscule nautique}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
@@ -327,21 +327,27 @@ $(document).ready(function() {
         strokeStyle: '#FEE200',
         strokeWidth: 1,
         fillStyle: '#FEE200',
-        x: parseInt(200 + (150 * (Math.cos(252 * Math.PI / 180)))),
-        y: parseInt(200 + (150 * (Math.sin(252 * Math.PI / 180)))),
+        x: parseInt(200 + (150 * (Math.cos(162 * Math.PI / 180)))),
+        y: parseInt(200 + (150 * (Math.sin(162 * Math.PI / 180)))),
         radius: 5,
         cursors: {mouseover: 'pointer'},
-        click: function(layer) {
+        click: function() {
             $('#duskType').val('astronomicalDusk').trigger('change');
         },
-        mouseover: function(layer) {
+        mouseover: function() {
             displayTooltip('{{Crépuscule astronomique}}');
         },
-        mouseout: function(layer) {
+        mouseout: function() {
             hideTooltip();
         }
     })
-    .drawLayers();
+    .drawLayers()
+    .on('mousemove', function(event) {
+        $('#tooltip').css({
+            top: event.pageY + 10,
+            left: event.pageX
+        })
+    });
 
     $('#objectType').off('change').on('change', function() {
         displayObjectConf();
