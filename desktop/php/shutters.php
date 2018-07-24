@@ -209,8 +209,16 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6"> 
+                        <div class="form-group">
+                                <label class="col-sm-3 control-label" for="configName">{{Nom de la configuration}}</label>
+                                <div class="col-sm-5">
+                                    <input type="text" id="configName" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="configName" placeholder="{{Nom de l'équipement}}"/>
+                                </div>
+                            </div>
+                        </div>   
                     </fieldset>
-                    <fieldset id="heliotropeSettings" style="display:none">
+                    <fieldset id="heliotropeSettings" class="display-parameter">
                         <legend>{{Paramètres héliotrope}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
@@ -287,7 +295,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset id="shutterSettings" style="display:none;">
+                    <fieldset id="shutterSettings" class="display-parameter">
                         <legend>{{Paramètres volet}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
@@ -311,7 +319,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </select>
                                 </div>
                             </div>
-                            <fieldset id="analogPositionSettings" style="display:none;">  
+                            <fieldset id="analogPositionSettings" class="display-parameter">  
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">{{Retour de position du volet}}</label>
                                     <div class="col-sm-6">
@@ -338,7 +346,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset id="closedLimitSwitchSettings" style="display:none;">  
+                            <fieldset id="closedLimitSwitchSettings" class="display-parameter">  
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">{{Fin de course fermeture}}</label>
                                     <div class="col-sm-6">
@@ -353,7 +361,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset id="openedLimitSwitchSettings" style="display:none;">  
+                            <fieldset id="openedLimitSwitchSettings" class="display-parameter">  
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">{{Fin de course ouverture}}</label>
                                     <div class="col-sm-6">
@@ -375,7 +383,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </div>
 
                     </fieldset>
-                    <fieldset id="shutterHeliotropeSettings" style="display:none;">
+                    <fieldset id="shutterHeliotropeSettings" class="display-parameter">
                         <legend>{{Paramètres héliotrope du volet}}</legend>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{{Façade}}</label>

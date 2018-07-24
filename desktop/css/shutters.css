@@ -5,6 +5,10 @@
     color: #fff;
     padding: 3px 9px;
     border-radius: 3px;
+    visibility: hidden;
+}
+.display-parameter {
+    display: none;
 }
 
 .unlock-btn {

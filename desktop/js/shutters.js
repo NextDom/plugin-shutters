@@ -365,7 +365,7 @@ $(document).ready(function() {
     .drawLayers()
     .on('mousemove', function(event) {
         $('#tooltip').css({
-            top: event.pageY + 10,
+            top: event.pageY + 20,
             left: event.pageX
         })
     });
@@ -380,9 +380,13 @@ $(document).ready(function() {
             $('#unlockBtnIcon').removeClass("fa-unlock");
             $('#unlockBtnIcon').addClass("fa-lock");
         } else {
-            $('#objectType').prop('disabled', false);
-            $('#unlockBtnIcon').removeClass("fa-lock");
-            $('#unlockBtnIcon').addClass("fa-unlock");
+          	bootbox.confirm("{{Etes-vous sûr de vouloir changer le type d'objet? Cela peut entraîner des dysfonctionnements du système!}}", function (result) {
+				if (result) {
+                    $('#objectType').prop('disabled', false);
+                    $('#unlockBtnIcon').removeClass("fa-lock");
+                    $('#unlockBtnIcon').addClass("fa-unlock");
+                }
+            });
         }
     });
 
@@ -478,24 +482,24 @@ function printEqLogic(_eqLogic) {
 function displayObjectConf() {
     switch ($('#objectType').val()) {
         case 'heliotropeArea':
-            $('#shutterSettings').hide();
-            $('#shutterHeliotropeSettings').hide();
-            $('#heliotropeSettings').show();
+            //$('#shutterSettings').hide();
+            //$('#shutterHeliotropeSettings').hide();
+            $('#heliotropeSettings').css('display', 'block');
             break;
         case 'shutter':
-            $('#heliotropeSettings').hide();
-            $('#shutterSettings').show();
-            $('#shutterHeliotropeSettings').show();
+            $('#heliotropeSettings').css('display', 'none');
+            //$('#shutterSettings').show();
+           // $('#shutterHeliotropeSettings').show();
             break;
         case 'shuttersArea':
-            $('#shutterSettings').hide();
-            $('#shutterHeliotropeSettings').hide();
-            $('#heliotropeSettings').show();
+            //$('#shutterSettings').hide();
+            //$('#shutterHeliotropeSettings').hide();
+            $('#heliotropeSettings').css('display', 'none');
             break;
         default:
-            $('#heliotropeSettings').hide();
-            $('#shutterSettings').hide();
-            $('#shutterHeliotropeSettings').hide();
+            //$('#heliotropeSettings').hide();
+            //$('#shutterSettings').hide();
+            $('#shutterHeliotropeSettings').css('display', 'none');
     }
 }
 
