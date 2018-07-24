@@ -186,7 +186,7 @@ class shutters extends eqLogic
             return;
     }
 
-        $this->setConfiguration('ObjectTypeChanging', 'disable');
+        $this->setConfiguration('objectTypeChanging', 'disable');
 
     }
     
