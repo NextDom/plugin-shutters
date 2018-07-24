@@ -21,6 +21,7 @@ if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 
+include_file('desktop', 'shutters', 'css', 'shutters');
 include_file('desktop', 'jcanvas.min', 'js', 'shutters');
 
 $plugin = plugin::byId('shutters');
@@ -30,7 +31,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
 
-<div id="tooltip" class="" style="position: absolute; z-index: 1; top: 389px; left: 925px; background-color: #000; color: #fff; padding: 5px; border-radius: 3px; visibility: hidden"></div>
+<div id="tooltip" class="tooltip"></div>
 
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">
@@ -197,6 +198,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     <option value="shutter">{{Volet}}</option>
                                     </select>
                                 </div>
+                                <a id="unlockObjectTypeSelection" class="unlock-btn">
+                                    <i id="unlockBtnIcon" class="fa fa-unlock unlock-btn-icon"></i>
+                                </a>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="comment">{{Commentaire}}</label>

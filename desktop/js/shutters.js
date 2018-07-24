@@ -374,6 +374,18 @@ $(document).ready(function() {
         displayObjectConf();
     });
 
+    $('#unlockObjectTypeSelection').off('click').on('click', function() {
+        if ($('#unlockBtnIcon').hasClass('fa-unlock')){
+            $('#objectType').prop('disabled', true);
+            $('#unlockBtnIcon').removeClass("fa-unlock");
+            $('#unlockBtnIcon').addClass("fa-lock");
+        } else {
+            $('#objectType').prop('disabled', false);
+            $('#unlockBtnIcon').removeClass("fa-lock");
+            $('#unlockBtnIcon').addClass("fa-unlock");
+        }
+    });
+
     $('#dawnType').off('change').on('change', function() {
         displaySelectedDawnOrDusk($('#dawnType').val());
     });
@@ -433,13 +445,17 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
-    var changingObjectTypeAuthorized = JSON.stringify(_eqLogic.configuration.changingObjectTypeAuthorized); 
-    if (changingObjectTypeAuthorized = true) {
-        $('#objectType').prop("disabled", false);
+    var disableObjectTypeChanging = JSON.stringify(_eqLogic.configuration.disableObjectTypeChanging);
+    if (disableObjectTypeChanging === '"disable"') {
+        $('#objectType').prop('disabled', true);
+        $('#unlockBtnIcon').removeClass("fa-unlock");
+        $('#unlockBtnIcon').addClass("fa-lock");
     } else {
-        $('#objectType').prop("disabled", true);
+        $('#objectType').prop('disabled', false);
+        $('#unlockBtnIcon').removeClass("fa-lock");
+        $('#unlockBtnIcon').addClass("fa-unlock");
     }
-    
+
     displayObjectConf();
     
     if ($('#dawnType').val() === null) {
