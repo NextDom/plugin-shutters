@@ -1,13 +1,10 @@
-.tooltip {
+.cursor-tooltip {
     position: absolute;
     z-index: 1;
-    top: 389px;
-    left: 925px;
     background-color: #000;
     color: #fff;
     padding: 3px 9px;
     border-radius: 3px;
-    visibility: hidden; 
 }
 
 .unlock-btn {

@@ -31,7 +31,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
 
-<div id="tooltip" class="tooltip"></div>
+<div id="tooltip" class="cursor-tooltip"></div>
 
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">

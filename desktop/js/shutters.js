@@ -445,8 +445,8 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
-    var disableObjectTypeChanging = JSON.stringify(_eqLogic.configuration.disableObjectTypeChanging);
-    if (disableObjectTypeChanging === '"disable"') {
+    var objectTypeChanging = JSON.stringify(_eqLogic.configuration.objectTypeChanging);
+    if (objectTypeChanging === '"disable"') {
         $('#objectType').prop('disabled', true);
         $('#unlockBtnIcon').removeClass("fa-unlock");
         $('#unlockBtnIcon').addClass("fa-lock");
