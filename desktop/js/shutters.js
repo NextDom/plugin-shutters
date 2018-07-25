@@ -461,7 +461,8 @@ function printEqLogic(_eqLogic) {
     }
 
     displayObjectConf();
-    
+
+//Initialize default values for object heliotrope area      
     if ($('#dawnType').val() === null) {
         $('#dawnType').val('sunrise').trigger('change');
     }
@@ -474,6 +475,15 @@ function printEqLogic(_eqLogic) {
     if ($('#wallAngleUnit').val() === null) {
         $('#wallAngleUnit').val('deg').trigger('change');
     }
+
+//Initialize default values for object shutter     
+    if ($('#openingType').val() === null) {
+        $('#openingType').val('window');
+    }
+    if ($('#positionSensorType').val() === null) {
+        $('#positionSensorType').val('none');
+    }
+
     refreshWallPlan();
     displaySelectedDawnOrDusk($('#dawnType').val());
     displaySelectedDawnOrDusk($('#duskType').val());
@@ -482,25 +492,25 @@ function printEqLogic(_eqLogic) {
 function displayObjectConf() {
     switch ($('#objectType').val()) {
         case 'heliotropeArea':
-            //$('#shutterSettings').hide();
+            $('#shutterSettings').css('display', 'none');
             //$('#shutterHeliotropeSettings').hide();
             $('#heliotropeSettings').css('display', 'block');
             break;
         case 'shutter':
             $('#heliotropeSettings').css('display', 'none');
-            //$('#shutterSettings').show();
-           // $('#shutterHeliotropeSettings').show();
+            // $('#shutterHeliotropeSettings').show();
+            $('#shutterSettings').css('display', 'block');
             break;
         case 'shuttersArea':
-            //$('#shutterSettings').hide();
             //$('#shutterHeliotropeSettings').hide();
             $('#heliotropeSettings').css('display', 'none');
+            $('#shutterSettings').css('display', 'none');
             break;
         default:
             //$('#heliotropeSettings').hide();
-            //$('#shutterSettings').hide();
             $('#shutterHeliotropeSettings').css('display', 'none');
-    }
+            $('#shutterSettings').css('display', 'none');
+        }
 }
 
 function hideTooltip() {
