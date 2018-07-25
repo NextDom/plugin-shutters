@@ -49,12 +49,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
         <legend>
             <i class="fa fa-cog"></i> {{Gestion}}</legend>
         <div class="eqLogicThumbnailContainer">
-            <div class="cursor eqLogicAction" data-action="add" style="text-align: center; background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
+            <div class="eqLogicAction iconlist" data-action="add">
                 <i class="fa fa-plus-circle" style="font-size : 6em;color:#33b8cc;"></i>
                 <br>
                 <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#33b8cc">{{Ajouter}}</span>
             </div>
-            <div class="cursor eqLogicAction" data-action="gotoPluginConf" style="text-align: center; background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
+            <div class="eqLogicAction iconlist" data-action="gotoPluginConf">
                 <i class="fa fa-wrench" style="font-size : 6em;color:#767676;"></i>
                 <br>
                 <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676">{{Configuration}}</span>
@@ -67,7 +67,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             foreach ($eqLogics as $eqLogic) {
                 if ($eqLogic->getConfiguration('objectType') == 'shutter') {
                     $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-                    echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+                    echo '<div class="eqLogicDisplayCard iconlist" data-eqLogic_id="' . $eqLogic->getId() . '" style="' . $opacity . '" >';
                     echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
                     echo "<br>";
                     echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
@@ -83,7 +83,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             foreach ($eqLogics as $eqLogic) {
                 if ($eqLogic->getConfiguration('objectType') == 'shuttersArea') {
                     $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-                    echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+                    echo '<div class="eqLogicDisplayCard iconlist" data-eqLogic_id="' . $eqLogic->getId() . '" style="' . $opacity . '" >';
                     echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
                     echo "<br>";
                     echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
@@ -184,7 +184,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </fieldset>
                     <fieldset id="heliotropeSettings" style="display:none">
                         <legend>{{Paramètres héliotrope}}</legend>
-                        <div class="col-sm-6">               
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">{{Héliotrope}}
                                     <sup>
@@ -243,7 +243,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">               
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">{{Lever du soleil}}</label>
                                 <div id="map" style="width:100% ; height: 300px;"></div>
@@ -252,7 +252,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </fieldset>
                     <fieldset id="shutterSettings" style="display:none">
                         <legend>{{Paramètres volet}}</legend>
-                        <div class="col-sm-6">               
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">{{Position fermeture (%) [0-100]}}</label>
                                 <div class="col-sm-6">
@@ -282,8 +282,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                             </div>
-                        </div>   
-                        <div class="col-sm-6">               
+                        </div>
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">{{Type d'ouvrant}}</label>
                                 <div class="col-sm-6">
@@ -301,7 +301,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         foreach (eqLogic::byType('shutters', true) as $shutters) {
                                             if ($shutters->getConfiguration('objectType') == 'shuttersArea') {
                                                 echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                            } 
+                                            }
                                         }
                                         ?>
                                     </select>
