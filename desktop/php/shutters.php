@@ -23,6 +23,7 @@ if (!isConnect('admin')) {
 
 include_file('desktop', 'shutters', 'css', 'shutters');
 include_file('desktop', 'jcanvas.min', 'js', 'shutters');
+include_file('desktop', 'shutters-jcanvas', 'js', 'shutters');
 
 $plugin = plugin::byId('shutters');
 sendVarToJS('eqType', $plugin->getId());
@@ -87,10 +88,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
         <div class="eqLogicThumbnailContainer">
             <?php
             foreach ($eqLogics as $eqLogic) {
-                if ($eqLogic->getConfiguration('objectType') == 'heliotropeArea') {
+                if ($eqLogic->getConfiguration('objectType') == 'heliotropeZone') {
                     $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
                     echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-                    echo '<img src="plugins/shutters/resources/images/heliotropeArea.png" height="100" width="100" />';
+                    echo '<img src="plugins/shutters/resources/images/heliotropeZone.png" height="100" width="100" />';
                     echo "<br>";
                     echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
                     echo '</div>';
@@ -161,7 +162,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             <div role="tabpanel" class="tab-pane active" id="eqlogictab">
                 <br/>
                 <form class="form-horizontal">
-                    <fieldset>
+                    <fieldset id="generalSettings">
                         <legend>{{Général}}</legend>
                         <div class="col-sm-6">    
                             <div class="form-group">
@@ -210,7 +211,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="col-sm-5">
                                     <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
                                     <option value="externalInfo">{{Informations externes générales}}</option>
-                                    <option value="heliotropeArea">{{Zone héliotrope}}</option>
+                                    <option value="heliotropeZone">{{Zone héliotrope}}</option>
                                     <option value="shuttersGroup">{{Groupe de volets}}</option>
                                     <option value="shutter">{{Volet}}</option>
                                     </select>
@@ -235,7 +236,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>   
                     </fieldset>
-                    <fieldset id="externalInfoSettings" class="display-parameter" data-object="externalInfo">
+                    <fieldset id="externalInfoSettings" class="display-parameter" data-l1settings="externalInfoSettings">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Information d'absence}}</label>
                             <div class="col-sm-5">
@@ -318,7 +319,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset id="heliotropeSettings" class="display-parameter" data-object="heliotropeArea">
+                    <fieldset id="heliotropeZoneSettings" class="display-parameter" data-l1settings="heliotropeZoneSettings">
                         <legend>{{Paramètres héliotrope}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
@@ -394,7 +395,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset id="shutterSettings" class="display-parameter" data-object="shutter">
+                    <fieldset id="shutterSettings" class="display-parameter" data-l1settings="shutterSettings">
                         <legend>{{Paramètres du volet}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
@@ -411,14 +412,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="col-sm-5">
                                     <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
                                         <option value="none">{{Sans}}</option>
-                                        <option value="analog">{{Analogique}}</option>
+                                        <option value="analogPosition">{{Analogique}}</option>
                                         <option value="openedClosedLimitSwitch">{{Fins de course ouverture et fermeture}}</option>
                                         <option value="openedLimitSwitch">{{Fin de course ouverture}}</option>
                                         <option value="closedLimitSwitch">{{Fin de course fermeture}}</option>
                                     </select>
                                 </div>
                             </div>
-                            <fieldset id="analogPositionSettings" class="display-parameter" data-object="shutter" data-settings="analog">  
+                            <fieldset id="analogPositionSettings" class="display-parameter" data-l1settings="shutterSettings" data-l2settings="analogPositionSettings">  
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Retour de position du volet}}</label>
                                     <div class="col-sm-5">
@@ -447,7 +448,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     <label class="col-sm-1 control-unit">%</label>
                                 </div>
                             </fieldset>
-                            <fieldset id="closedLimitSwitchSettings" class="display-parameter" data-object="shutter" data-settings="openedClosedLimitSwitch closedLimitSwitch">  
+                            <fieldset id="closedLimitSwitchSettings" class="display-parameter" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings closedLimitSwitchSettings">  
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Fin de course fermeture}}</label>
                                     <div class="col-sm-5">
@@ -462,7 +463,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset id="openedLimitSwitchSettings" class="display-parameter" data-object="shutter" data-settings="openedClosedLimitSwitch openedLimitSwitch">  
+                            <fieldset id="openedLimitSwitchSettings" class="display-parameter" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings openedLimitSwitchSettings">  
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Fin de course ouverture}}</label>
                                     <div class="col-sm-5">

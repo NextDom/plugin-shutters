@@ -16,13 +16,13 @@
 
 $(document).ready(function() {
     
-    displayObjectSettings($('#objectType').val());
-    displaySettings($('#positionSensorType').val());
+    displayl1Settings($('#objectType').val());
+    displayl2Settings($('#positionSensorType').val());
     drawHeliotropePlan();
     drawWallPlan();
 
     $('#objectType').off('change').on('change', function() {
-        displayObjectSettings($('#objectType').val());
+        displayl1Settings($('#objectType').val());
     });
 
     $('#unlockObjectTypeSelection').off('click').on('click', function() {
@@ -59,7 +59,7 @@ $(document).ready(function() {
     });
 
     $('#positionSensorType').off('change').on('change', function() {
-        displaySettings($('#positionSensorType').val());
+        displayl2Settings($('#positionSensorType').val());
     });
 
     $('body').off('click','.listCmd').on('click','.listCmd', function () {
@@ -85,7 +85,7 @@ function printEqLogic(_eqLogic) {
         $('#unlockBtnIcon').addClass("fa-unlock");
     }
 
-    displayObjectSettings($('#objectType').val());
+    displayl1Settings($('#objectType').val());
 
 //Initialize default values for object heliotrope area      
     if ($('#dawnType').val() === null) {
@@ -122,14 +122,14 @@ function displayTooltip(message) {
     $('#tooltip').html(message).css('visibility', 'visible');
 }
 
-function displayObjectSettings(object) {
-    $('fieldset[data-object!=' + object + ']').css('display', 'none');
-	$('fieldset[data-object~=' + object + ']').css('display', 'block');
+function displayl1Settings(object) {
+    $('fieldset[data-object*=' + object + 'Settings]').css('display', 'none');
+	$('fieldset[data-object~=' + object + 'Settings]').css('display', 'block');
 }
 
-function displaySettings(setting) {
-    $('fieldset[data-settings!=' + setting + ']').css('display', 'none');
-	$('fieldset[data-settings~=' + setting + ']').css('display', 'block');
+function displayl2Settings(object) {
+    $('fieldset[data-settings*=' + object + 'Settings]').css('display', 'none');
+	$('fieldset[data-settings~=' + object + 'Settings]').css('display', 'block');
 }
 
 function updateAngleRange() {

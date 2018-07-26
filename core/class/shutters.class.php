@@ -102,7 +102,7 @@ class shutters extends eqLogic
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
 
-        if($objectType == 'heliotropeArea') {
+        if($objectType == 'heliotropeZone') {
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
                 throw new Exception (__('L\'objet héliotrope doit être renseigné!', __FILE__));
                 log::add('shutters','info','[exception] => L\'objet héliotrope doit être renseigné!');
