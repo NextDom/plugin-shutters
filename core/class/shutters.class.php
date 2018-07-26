@@ -177,7 +177,7 @@ class shutters extends eqLogic
                     } 
                 }
     
-        } elseif ($objectType == 'shuttersArea'){
+        } elseif ($objectType == 'shuttersGroup'){
 
                    
         } else {
