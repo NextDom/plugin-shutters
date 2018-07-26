@@ -237,84 +237,86 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         </div>   
                     </fieldset>
                     <fieldset id="externalInfoSettings" class="display-parameter" data-l1settings="externalInfoSettings">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Information d'absence}}</label>
-                            <div class="col-sm-5">
-                                <div class="input-group">
-                                    <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation"/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation" title="{{Sélectionner une commande}}">
-                                            <i class="fa fa-list-alt"></i>
-                                        </a>
-                                    </span>
+                        <div class="col-sm-6"> 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Information d'absence}}</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation"/>
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation" title="{{Sélectionner une commande}}">
+                                                <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Information de présence}}</label>
-                            <div class="col-sm-5">
-                                <div class="input-group">
-                                    <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation"/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation" title="{{Sélectionner une commande}}">
-                                            <i class="fa fa-list-alt"></i>
-                                        </a>
-                                    </span>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Information de présence}}</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation"/>
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation" title="{{Sélectionner une commande}}">
+                                                <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Détection incendie}}</label>
-                            <div class="col-sm-5">
-                                <div class="input-group">
-                                    <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection"/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection" title="{{Sélectionner une commande}}">
-                                            <i class="fa fa-list-alt"></i>
-                                        </a>
-                                    </span>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Détection incendie}}</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection"/>
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection" title="{{Sélectionner une commande}}">
+                                                <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
-                            <div class="col-sm-5">
-                                <select id="heliotrope" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="heliotrope">
-                                    <?php
-                                    if (class_exists('heliotropeCmd')) {
-                                        foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-                                            echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
+                                <div class="col-sm-5">
+                                    <select id="heliotrope" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="heliotrope">
+                                        <?php
+                                        if (class_exists('heliotropeCmd')) {
+                                            foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+                                                echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
+                                            }
+                                        } else {
+                                            echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
                                         }
-                                    } else {
-                                        echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Luninosité extérieure}}</label>
-                            <div class="col-sm-5">
-                                <div class="input-group">
-                                    <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity"/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity" title="{{Sélectionner une commande}}">
-                                            <i class="fa fa-list-alt"></i>
-                                        </a>
-                                    </span>
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Température extérieure}}</label>
-                            <div class="col-sm-5">
-                                <div class="input-group">
-                                    <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature"/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature" title="{{Sélectionner une commande}}">
-                                            <i class="fa fa-list-alt"></i>
-                                        </a>
-                                    </span>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Luninosité extérieure}}</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity"/>
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity" title="{{Sélectionner une commande}}">
+                                                <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Température extérieure}}</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature"/>
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature" title="{{Sélectionner une commande}}">
+                                                <i class="fa fa-list-alt"></i>
+                                            </a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

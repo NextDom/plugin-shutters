@@ -102,7 +102,9 @@ class shutters extends eqLogic
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
 
-        if($objectType == 'heliotropeZone') {
+        if($objectType == 'externalInfo') {
+
+        } elseif($objectType == 'heliotropeZone') {
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
                 throw new Exception (__('L\'objet héliotrope doit être renseigné!', __FILE__));
                 log::add('shutters','info','[exception] => L\'objet héliotrope doit être renseigné!');
@@ -141,7 +143,7 @@ class shutters extends eqLogic
                     throwException($exceptionMessage, true);
                 }
 
-                if ($positionSensorType = 'analog') {
+                if ($positionSensorType = 'analogPosition') {
                         if (empty($shutterAnalogPosition)){
                             $exceptionMessage = __('La commande de retour de position du volet doit être renseignée!', __FILE__);
                         } 

@@ -123,13 +123,13 @@ function displayTooltip(message) {
 }
 
 function displayl1Settings(object) {
-    $('fieldset[data-object*=' + object + 'Settings]').css('display', 'none');
-	$('fieldset[data-object~=' + object + 'Settings]').css('display', 'block');
+    $('fieldset[data-l1Settings*=' + 'Settings' + ']').css('display', 'none');
+	$('fieldset[data-l1Settings~=' + object + 'Settings' + ']').css('display', 'block');
 }
 
 function displayl2Settings(object) {
-    $('fieldset[data-settings*=' + object + 'Settings]').css('display', 'none');
-	$('fieldset[data-settings~=' + object + 'Settings]').css('display', 'block');
+    $('fieldset[data-l2Settings*=' + 'Settings' + ']').css('display', 'none');
+	$('fieldset[data-l2Settings~=' + object + 'Settings' + ']').css('display', 'block');
 }
 
 function updateAngleRange() {
