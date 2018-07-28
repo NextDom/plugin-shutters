@@ -10,27 +10,23 @@
 .display-none {
     display: none;
 }
+.panel-title > a:before {
+    font-family: FontAwesome;
+    content:"\f139";
+    padding-right: 5px;
+}
+.panel-title > a.collapsed:before {
+    content:"\f13a";
+}
+.panel-title > a:hover, 
+.panel-title > a:active, 
+.panel-title > a:focus  {
+    text-decoration:none;
+}
 .control-unit {
     padding: 7px 0px;
     margin-bottom: 0;
     text-align: left;
-}
-.spoiler-title {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 21px;
-    color: #333;
-}
-.spoiler-button {
-    text-decoration: none;
-    cursor: pointer;
-}
-.spoiler-btn-icon {
-    font-size: 36px;
-    color: #33b8cc;
-}
-.spoiler-badge {
-    color: #33b8cc;
 }
 .unlock-btn {
     text-decoration: none;
