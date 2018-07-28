@@ -67,25 +67,38 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676">{{Configuration}}</span>
             </div>
         </div>
-        <legend>
-            <i class="fa fa-table"></i> {{Mes informations générales externes}}</legend>
-        <div class="eqLogicThumbnailContainer">
-            <?php
-            foreach ($eqLogics as $eqLogic) {
-                if ($eqLogic->getConfiguration('objectType') == 'externalInfo') {
-                    $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-                    echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-                    echo '<img src="plugins/shutters/resources/images/externalInfo.png" height="100" width="100" />';
-                    echo "<br>";
-                    echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
-                    echo '</div>';
-                }
-            }
-            ?>
-        </div>
+        <div id="objectList" class="panel-group" >
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#objectList" href="#externalInfoObjectList">
+                            {{Mes informations générales externes}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="externalInfoObjectList" class="panel-collapse collapse in">
+                    <div class="panel-body"> 
+                        <div class="eqLogicThumbnailContainer display-none">
+                            <?php
+                                foreach ($eqLogics as $eqLogic) {
+                                    if ($eqLogic->getConfiguration('objectType') == 'externalInfo') {
+                                        $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+                                        echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+                                        echo '<img src="plugins/shutters/resources/images/externalInfo.png" height="100" width="100" />';
+                                        echo "<br>";
+                                        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
+                                        echo '</div>';
+                                    }
+                                }
+                            ?>
+                        </div>
+                    </div> 
+                </div>
+            </div>  
+        </div> 
         <legend>
             <i class="fa fa-table"></i> {{Mes zones héliotrope}}</legend>
-        <div class="eqLogicThumbnailContainer">
+        <div class="eqLogicThumbnailContainer display-none">
             <?php
             foreach ($eqLogics as $eqLogic) {
                 if ($eqLogic->getConfiguration('objectType') == 'heliotropeZone') {
@@ -101,7 +114,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
         </div>
         <legend>
             <i class="fa fa-table"></i> {{Mes groupes de volets}}</legend>
-        <div class="eqLogicThumbnailContainer">
+        <div class="eqLogicThumbnailContainer display-none">
             <?php
             foreach ($eqLogics as $eqLogic) {
                 if ($eqLogic->getConfiguration('objectType') == 'shuttersGroup') {
@@ -117,7 +130,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
         </div>
         <legend>
             <i class="fa fa-table"></i> {{Mes volets}}</legend>
-        <div class="eqLogicThumbnailContainer">
+        <div class="eqLogicThumbnailContainer display-none">
             <?php
             foreach ($eqLogics as $eqLogic) {
                 if ($eqLogic->getConfiguration('objectType') == 'shutter') {
@@ -131,6 +144,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             }
             ?>
         </div>
+    </div>
     </div>
     <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
         <a class="btn btn-success eqLogicAction pull-right" data-action="save">
@@ -236,7 +250,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>   
                     </fieldset>
-                    <fieldset id="externalInfoSettings" class="display-parameter" data-l1settings="externalInfoSettings">
+                    <fieldset id="externalInfoSettings" class="display-none" data-l1settings="externalInfoSettings">
+                        <legend>{{Informations générales externes}}</legend>
                         <div class="col-sm-6"> 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">{{Information d'absence}}</label>
@@ -320,8 +335,19 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6"> 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">{{Gestion prioritaire}}</label>
+                                <div class="col-sm-5">
+                                    <select id="priorityManagement" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="priorityManagement">
+                                        <option value="fireManagement">{{Gestion incendie}}</option>
+                                        <option value="absenceManagement">{{Gestion absence}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
-                    <fieldset id="heliotropeZoneSettings" class="display-parameter" data-l1settings="heliotropeZoneSettings">
+                    <fieldset id="heliotropeZoneSettings" class="display-none" data-l1settings="heliotropeZoneSettings">
                         <legend>{{Paramètres héliotrope}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
@@ -397,7 +423,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset id="shutterSettings" class="display-parameter" data-l1settings="shutterSettings">
+                    <fieldset id="shutterSettings" class="display-none" data-l1settings="shutterSettings">
                         <legend>{{Paramètres du volet}}</legend>
                         <div class="col-sm-6">               
                             <div class="form-group">
@@ -421,7 +447,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </select>
                                 </div>
                             </div>
-                            <fieldset id="analogPositionSettings" class="display-parameter" data-l1settings="shutterSettings" data-l2settings="analogPositionSettings">  
+                            <fieldset id="analogPositionSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="analogPositionSettings">  
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Retour de position du volet}}</label>
                                     <div class="col-sm-5">
@@ -450,7 +476,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     <label class="col-sm-1 control-unit">%</label>
                                 </div>
                             </fieldset>
-                            <fieldset id="closedLimitSwitchSettings" class="display-parameter" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings closedLimitSwitchSettings">  
+                            <fieldset id="closedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings closedLimitSwitchSettings">  
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Fin de course fermeture}}</label>
                                     <div class="col-sm-5">
@@ -465,7 +491,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset id="openedLimitSwitchSettings" class="display-parameter" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings openedLimitSwitchSettings">  
+                            <fieldset id="openedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings openedLimitSwitchSettings">  
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Fin de course ouverture}}</label>
                                     <div class="col-sm-5">
@@ -487,7 +513,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </div>
 
                     </fieldset>
-                    <fieldset id="shutterHeliotropeSettings" class="display-parameter">
+                    <fieldset id="shutterHeliotropeSettings" class="display-none">
                         <legend>{{Paramètres héliotrope du volet}}</legend>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{{Façade}}</label>

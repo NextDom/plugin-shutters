@@ -41,6 +41,14 @@ $(document).ready(function() {
         }
     });
 
+    // Object external informations -> event handler
+    $('#absenceInformation').off('change').on('change', function() {
+        priorityManagement();
+    });
+    $('#fireDetection').off('change').on('change', function() {
+        priorityManagement();
+    });
+
     $('#dawnType').off('change').on('change', function() {
         displaySelectedDawnOrDusk($('#dawnType').val());
     });
@@ -70,6 +78,7 @@ $(document).ready(function() {
             el.value(result.human);
         });
     });
+
 });
 
 function printEqLogic(_eqLogic) {
@@ -130,6 +139,18 @@ function displayl1Settings(object) {
 function displayl2Settings(object) {
     $('fieldset[data-l2Settings*=' + 'Settings' + ']').css('display', 'none');
 	$('fieldset[data-l2Settings~=' + object + 'Settings' + ']').css('display', 'block');
+}
+
+function priorityManagement() {
+    if($('#absenceInformation').val() != '' && $('#fireDetection').val() != '') {
+        $('#priorityManagement').prop('disabled', false);
+        if($('#priorityManagement').val() == '') {
+            $('#priorityManagement').val('fireManagement');
+        }
+    } else {
+        $('#priorityManagement').val('');
+        $('#priorityManagement').prop('disabled', true);
+    }
 }
 
 function updateAngleRange() {

@@ -7,13 +7,30 @@
     border-radius: 3px;
     visibility: hidden;
 }
+.display-none {
+    display: none;
+}
 .control-unit {
     padding: 7px 0px;
     margin-bottom: 0;
     text-align: left;
 }
-.display-parameter {
-    display: none;
+.spoiler-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 21px;
+    color: #333;
+}
+.spoiler-button {
+    text-decoration: none;
+    cursor: pointer;
+}
+.spoiler-btn-icon {
+    font-size: 36px;
+    color: #33b8cc;
+}
+.spoiler-badge {
+    color: #33b8cc;
 }
 .unlock-btn {
     text-decoration: none;
