@@ -103,10 +103,19 @@ class shutters extends eqLogic
         $shutterArea = $this->getConfiguration('shutterArea');
 
         if($objectType == 'externalInfo') {
+            if($this->getConfiguration('absenceInformation') != '') {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInformation')));
+                if(!is_object($cmd)) {
+                    throw new \Exception (__('La commande [information absence] n\'est pas une commande existante!', __FILE__));
+                    log::add('shutters','info','[exception] => La commande [information absence] n\'est pas une commande existante!');
+                    return;
+                }
+            }
+            
 
         } elseif($objectType == 'heliotropeZone') {
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
-                throw new Exception (__('L\'objet héliotrope doit être renseigné!', __FILE__));
+                throw new \Exception (__('L\'objet héliotrope doit être renseigné!', __FILE__));
                 log::add('shutters','info','[exception] => L\'objet héliotrope doit être renseigné!');
                 return;
             }        
