@@ -20,5 +20,13 @@ function initEvents() {
         displaySettingPanel($(this).val());
     });
 
+    $('#absenceInformation').off('change').on('change', function() {
+        priorityManagement();
+    });
+    $('#fireDetection').off('change').on('change', function() {
+        priorityManagement();
+    });
+
+    
     
 }

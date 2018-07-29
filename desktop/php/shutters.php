@@ -432,6 +432,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="panel panel-default col-sm-8">
+                                            <div class="panel-body">
+                                                <b>{{Gestion prioritaire}}</b>
+                                                <li>{{La gestion prioritaire n'est paramétrable que si les informations d'absence et de détection incendie sont renseignées.}}</li>
+                                                <li>{{Absence: les volets se ferment sans tenir compte des autres conditions.}}</li>
+                                                <li>{{Incendie: les volets s'ouvrent sans tenir compte des autres conditions.}}</li>
+                                             </div>
+                                        </div>
                                     </div>
                                 </form>    
                             </div>

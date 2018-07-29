@@ -106,12 +106,43 @@ class shutters extends eqLogic
             if($this->getConfiguration('absenceInformation') != '') {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInformation')));
                 if(!is_object($cmd)) {
-                    throw new \Exception (__('La commande [information absence] n\'est pas une commande existante!', __FILE__));
-                    log::add('shutters','info','[exception] => La commande [information absence] n\'est pas une commande existante!');
+                    throw new \Exception (__('La commande [Information d\'absence] n\'est pas une commande existante!', __FILE__));
+                    log::add('shutters','info','[exception] => invalid command for [absenceInformation]');
                     return;
                 }
             }
-            
+            if($this->getConfiguration('presenceInformation') != '') {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('presenceInformation')));
+                if(!is_object($cmd)) {
+                    throw new \Exception (__('La commande [Information de présence] n\'est pas une commande existante!', __FILE__));
+                    log::add('shutters','info','[exception] => invalid command for [presenceInformation]');
+                    return;
+                }
+            }
+            if($this->getConfiguration('fireDetection') != '') {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('fireDetection')));
+                if(!is_object($cmd)) {
+                    throw new \Exception (__('La commande [Détection incendie] n\'est pas une commande existante!', __FILE__));
+                    log::add('shutters','info','[exception] => invalid command for [fireDetection]');
+                    return;
+                }
+            }
+            if($this->getConfiguration('outdoorLuninosity') != '') {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorLuninosity')));
+                if(!is_object($cmd)) {
+                    throw new \Exception (__('La commande [Luninosité extérieure] n\'est pas une commande existante!', __FILE__));
+                    log::add('shutters','info','[exception] => invalid command for [outdoorLuninosity]');
+                    return;
+                }
+            }
+            if($this->getConfiguration('outdoorTemperature') != '') {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorTemperature')));
+                if(!is_object($cmd)) {
+                    throw new \Exception (__('La commande [Température extérieure] n\'est pas une commande existante!', __FILE__));
+                    log::add('shutters','info','[exception] => invalid command for [outdoorTemperature]');
+                    return;
+                }
+            }
 
         } elseif($objectType == 'heliotropeZone') {
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
@@ -120,27 +151,27 @@ class shutters extends eqLogic
                 return;
             }        
             if(!in_array($dawnType, $dawnTypeList, true)){
-                throw new Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
+                throw new \Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
                 log::add('shutters','info','[exception] => Le lever du soleil doit être renseigné!');
                 return;
             }        
             if(!in_array($duskType, $duskTypeList, true)){
-                throw new Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
+                throw new \Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
                 log::add('shutters','info','[exception] => La coucher du soleil doit être renseigné!');
                 return;
             } 
             if(!in_array($wallAngleUnit, $angleUnitList, true)){
-                throw new Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
+                throw new \Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
                 log::add('shutters','info','[exception] => L\'unité de l\'angle doit être renseignée!');
                 return;
             } 
             if($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)){
-                throw new Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
+                throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
                 log::add('shutters','info','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
                 return;
             }
             if($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)){
-                throw new Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
+                throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
                 log::add('shutters','info','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
                 return;
             }
@@ -192,7 +223,7 @@ class shutters extends eqLogic
 
                    
         } else {
-            throw new Exception (__('Le type d\'objet doit être renseigné!', __FILE__));
+            throw new \Exception (__('Le type d\'objet doit être renseigné!', __FILE__));
             log::add('shutters','info','[exception] => Le type d\'objet doit être renseigné!');
             return;
     }
@@ -218,7 +249,7 @@ class shutters extends eqLogic
     public function throwException($exceptionMessage = null, bool $writeToLog = false)
     {
         if (isset($exceptionMessage)) {
-            throw new Exception($exceptionMessage);
+            throw new \Exception($exceptionMessage);
             if ($writeToLog) {
                 log::add('shutters','debug','[exception] => '.$exceptionMessage);
             }

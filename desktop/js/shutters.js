@@ -22,15 +22,6 @@ $(document).ready(function() {
     drawHeliotropePlan();
     drawWallPlan();
 
-
-     // Object external informations -> event handler
-    $('#absenceInformation').off('change').on('change', function() {
-        priorityManagement();
-    });
-    $('#fireDetection').off('change').on('change', function() {
-        priorityManagement();
-    });
-
     $('#dawnType').off('change').on('change', function() {
         displaySelectedDawnOrDusk($('#dawnType').val());
     });
@@ -150,10 +141,13 @@ function displayl2Settings(object) {
 	$('fieldset[data-l2Settings~=' + object + 'Settings' + ']').css('display', 'block');
 }
 
+/**
+ * selection of priority management (fire detection / absence)
+ */
 function priorityManagement() {
     if($('#absenceInformation').val() != '' && $('#fireDetection').val() != '') {
         $('#priorityManagement').prop('disabled', false);
-        if($('#priorityManagement').val() == '') {
+        if($('#priorityManagement').val() == null) {
             $('#priorityManagement').val('fireManagement');
         }
     } else {
