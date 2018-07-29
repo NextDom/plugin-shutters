@@ -12,7 +12,7 @@ function initEvents() {
         });
     });
 
-    $('a.button-lock').on('click',function(){
+    $('a.button-lock').on('click',function() {
         lockControl($(this));
     })
 
@@ -27,6 +27,6 @@ function initEvents() {
         priorityManagement();
     });
 
-    
+
     
 }

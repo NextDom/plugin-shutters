@@ -86,7 +86,7 @@ class shutters extends eqLogic
         $angleUnitList = array('deg', 'gon');
 
         $objectType = $this->getConfiguration('objectType');
-        $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope'));
+        
         $dawnType = $this->getConfiguration('dawnType');
         $duskType = $this->getConfiguration('duskType');
         $wallAngle = $this->getConfiguration('wallAngle');
@@ -102,75 +102,75 @@ class shutters extends eqLogic
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
 
-        if($objectType == 'externalInfo') {
-            if($this->getConfiguration('absenceInformation') != '') {
+        if ($objectType == 'externalInfo') {
+            if ($this->getConfiguration('absenceInformation') != '') {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInformation')));
-                if(!is_object($cmd)) {
-                    throw new \Exception (__('La commande [Information d\'absence] n\'est pas une commande existante!', __FILE__));
-                    log::add('shutters','info','[exception] => invalid command for [absenceInformation]');
+                if (!is_object($cmd)) {
+                    throw new \Exception (__('[Information d\'absence] La commande n\'est pas une commande valide!', __FILE__));
                     return;
                 }
             }
-            if($this->getConfiguration('presenceInformation') != '') {
+            if ($this->getConfiguration('presenceInformation') != '') {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('presenceInformation')));
-                if(!is_object($cmd)) {
-                    throw new \Exception (__('La commande [Information de présence] n\'est pas une commande existante!', __FILE__));
-                    log::add('shutters','info','[exception] => invalid command for [presenceInformation]');
+                if (!is_object($cmd)) {
+                    throw new \Exception (__('[Information de présence] La commande n\'est pas une commande valide!', __FILE__));
                     return;
                 }
             }
-            if($this->getConfiguration('fireDetection') != '') {
+            if ($this->getConfiguration('fireDetection') != '') {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('fireDetection')));
-                if(!is_object($cmd)) {
-                    throw new \Exception (__('La commande [Détection incendie] n\'est pas une commande existante!', __FILE__));
-                    log::add('shutters','info','[exception] => invalid command for [fireDetection]');
+                if (!is_object($cmd)) {
+                    throw new \Exception (__('[Détection incendie] La commande n\'est pas une commande valide!', __FILE__));
                     return;
                 }
             }
-            if($this->getConfiguration('outdoorLuninosity') != '') {
+            if ($this->getConfiguration('outdoorLuninosity') != '') {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorLuninosity')));
-                if(!is_object($cmd)) {
-                    throw new \Exception (__('La commande [Luninosité extérieure] n\'est pas une commande existante!', __FILE__));
-                    log::add('shutters','info','[exception] => invalid command for [outdoorLuninosity]');
+                if (!is_object($cmd)) {
+                    throw new \Exception (__('[Luninosité extérieure] La commande n\'est pas une commande valide!', __FILE__));
                     return;
                 }
             }
-            if($this->getConfiguration('outdoorTemperature') != '') {
+            if ($this->getConfiguration('outdoorTemperature') != '') {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorTemperature')));
-                if(!is_object($cmd)) {
-                    throw new \Exception (__('La commande [Température extérieure] n\'est pas une commande existante!', __FILE__));
-                    log::add('shutters','info','[exception] => invalid command for [outdoorTemperature]');
+                if (!is_object($cmd)) {
+                    throw new \Exception (__('[Température extérieure] La commande n\'est pas une commande valide!', __FILE__));
                     return;
                 }
             }
 
         } elseif($objectType == 'heliotropeZone') {
+            if ($this->getConfiguration('externalInfoObject') == 'none') {
+                throw new \Exception (__('Le lien vers les infos externes doit être renseigné!', __FILE__));
+                return;
+           }
+            $externalInfoObject = eqLogic::byId($this->getConfiguration('externalInfoObject'));
+            $heliotrope = eqLogic::byId($externalInfoObject->getConfiguration('heliotrope'));
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
-                throw new \Exception (__('L\'objet héliotrope doit être renseigné!', __FILE__));
-                log::add('shutters','info','[exception] => L\'objet héliotrope doit être renseigné!');
+                throw new \Exception (__('Il n\'y a pas d\'héliotrope configuré dans l\'objet [Informations extérieures] sélectionné!', __FILE__));
                 return;
             }        
-            if(!in_array($dawnType, $dawnTypeList, true)){
+            if (!in_array($dawnType, $dawnTypeList, true)) {
                 throw new \Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
                 log::add('shutters','info','[exception] => Le lever du soleil doit être renseigné!');
                 return;
             }        
-            if(!in_array($duskType, $duskTypeList, true)){
+            if (!in_array($duskType, $duskTypeList, true)) {
                 throw new \Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
                 log::add('shutters','info','[exception] => La coucher du soleil doit être renseigné!');
                 return;
             } 
-            if(!in_array($wallAngleUnit, $angleUnitList, true)){
+            if (!in_array($wallAngleUnit, $angleUnitList, true)) {
                 throw new \Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
                 log::add('shutters','info','[exception] => L\'unité de l\'angle doit être renseignée!');
                 return;
             } 
-            if($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)){
+            if ($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)) {
                 throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
                 log::add('shutters','info','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
                 return;
             }
-            if($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)){
+            if ($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)) {
                 throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
                 log::add('shutters','info','[exception] => L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0° et 360°!');
                 return;
@@ -184,42 +184,42 @@ class shutters extends eqLogic
                 }
 
                 if ($positionSensorType = 'analogPosition') {
-                        if (empty($shutterAnalogPosition)){
+                        if (empty($shutterAnalogPosition)) {
                             $exceptionMessage = __('La commande de retour de position du volet doit être renseignée!', __FILE__);
                         } 
-                        if ($analogClosedPosition < 0 || $analogClosedPosition > 100){
+                        if ($analogClosedPosition < 0 || $analogClosedPosition > 100) {
                             $exceptionMessage = __('La position fermeture du volet doit être renseignée et comprise entre 0% et 100%!', __FILE__);
                         }        
-                        if($analogOpenedPosition < 0 || $analogOpenedPosition > 100){
+                        if ($analogOpenedPosition < 0 || $analogOpenedPosition > 100) {
                             $exceptionMessage = __('La position ouverture du volet doit être renseignée et comprise entre 0% et 100%!', __FILE__);
                         }        
-                        if($analogOpenedPosition < $analogClosedPosition){
+                        if ($analogOpenedPosition < $analogClosedPosition) {
                             $exceptionMessage = __('La position analogique d\'ouverture du volet doit être supérieure à la position analogique de fermeture!', __FILE__);
                         } 
 
                 } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'closedLimitSwitch') {
-                    if(empty($closedLimitSwitch)){
+                    if (empty($closedLimitSwitch)) {
                         $exceptionMessage =__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__);
                     }        
     
                 } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'openedLimitSwitch') {
-                    if(empty($openedLimitSwitch)){
+                    if (empty($openedLimitSwitch)) {
                         $exceptionMessage = __('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__);
                     }        
                 }
                 if (!empty($shutterArea)) {
-                    if($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100){
+                    if ($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100) {
                         $exceptionMessage = __('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__);
                     }        
-                    if($outgoingAzimuthAngle  < 0 || $outgoingAzimuthAngle > 100){
+                    if ($outgoingAzimuthAngle  < 0 || $outgoingAzimuthAngle > 100) {
                         $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être renseigné!', __FILE__);
                     }        
-                    if($outgoingAzimuthAngle < $incomingAzimuthAngle){
+                    if ($outgoingAzimuthAngle < $incomingAzimuthAngle) {
                         $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être supérieur à l\'angle d\'entrée!', __FILE__);
                     } 
                 }
     
-        } elseif ($objectType == 'shuttersGroup'){
+        } elseif ($objectType == 'shuttersGroup') {
 
                    
         } else {

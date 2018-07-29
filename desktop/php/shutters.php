@@ -456,8 +456,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <form class="form-horizontal">
                                     <div class="col-sm-6">               
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">{{Lien informations externes}}</label>
-                                            <div class="col-sm-3">
+                                            <label class="col-sm-3 control-label">{{Lien informations externes}}</label>
+                                            <div class="col-sm-5">
                                                 <select id="externalInfoObject" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="externalInfoObject">
                                                     <option value="none">{{Non affecté}}</option>
                                                     <?php

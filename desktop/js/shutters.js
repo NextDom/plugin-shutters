@@ -51,7 +51,10 @@ function printEqLogic(_eqLogic) {
     lockControl($('#lockObjectTypeSelection'), true);
     displaySettingPanel($('#objectType').val());
 
-//Initialize default values for object heliotrope area      
+//Initialize default values for object heliotrope zone  
+    if ($('#externalInfoObject').val() === null) {
+        $(this).val('none');
+    }
     if ($('#dawnType').val() === null) {
         $('#dawnType').val('sunrise').trigger('change');
     }
@@ -98,21 +101,21 @@ function displayTooltip(message = '') {
  * @param {object} lockCmdBtn command button for lock / unlock
  * @param {boolean} init lock object if object as a value
 */
-function lockControl(lockCmdBtn, init = false){
+function lockControl(lockCmdBtn, init = false) {
     var controlToLock = $(lockCmdBtn).parent().find('.control-lockable');
     var objectType = controlToLock.val();
     var lockCommand = $(lockCmdBtn).children(":first");
-    if(objectType === null){
+    if (objectType === null) {
         controlToLock.prop('disabled', false);
         lockCommand.removeClass('fa-lock').addClass("fa-unlock");
         return;
     }
-    if(init == true &&  objectType !== null){
+    if (init == true &&  objectType !== null) {
         controlToLock.prop('disabled', true);
         lockCommand.removeClass('fa-unlock').addClass("fa-lock");
         return;
     }
-    if(controlToLock.is(':disabled')){
+    if (controlToLock.is(':disabled')) {
         bootbox.confirm("{{Etes-vous sûr de vouloir changer le type d'objet? Cela peut entraîner des dysfonctionnements du système!}}", function (result) {
             if (result) {
                 controlToLock.prop('disabled', false);
@@ -145,9 +148,9 @@ function displayl2Settings(object) {
  * selection of priority management (fire detection / absence)
  */
 function priorityManagement() {
-    if($('#absenceInformation').val() != '' && $('#fireDetection').val() != '') {
+    if ($('#absenceInformation').val() != '' && $('#fireDetection').val() != '') {
         $('#priorityManagement').prop('disabled', false);
-        if($('#priorityManagement').val() == null) {
+        if ($('#priorityManagement').val() == null) {
             $('#priorityManagement').val('fireManagement');
         }
     } else {
