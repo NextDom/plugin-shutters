@@ -251,6 +251,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Général}} </a>
                             </h4>
+                        </div>
                     </div>
                     <div id="generalSettings" class="panel-collapse collapse in">
                         <div class="panel-body"> 
@@ -334,6 +335,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#objectSettings" href="#externalInfoSettings"> {{{{Informations générales externes}}}} </a>
                             </h4>
+                        </div>
                     </div>
                     <div id="externalInfoSettings" class="panel-collapse collapse">
                         <div class="panel-body"> 
