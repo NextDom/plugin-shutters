@@ -463,7 +463,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <option value="none">{{Non affecté}}</option>
                                                     <?php
                                                         foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo') {
+                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo' && $shutters->getConfiguration('heliotrope') !== null && $shutters->getConfiguration('heliotrope') !== 'none') {
                                                                 echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
                                                             } 
                                                         }
