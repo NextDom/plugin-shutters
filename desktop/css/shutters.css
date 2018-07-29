@@ -28,11 +28,12 @@
     margin-bottom: 0;
     text-align: left;
 }
-.unlock-btn {
+.lock-button {
     text-decoration: none;
     cursor: pointer;
 }
-.unlock-btn-icon {
+.lock-button-icon {
     font-size: 36px;
     color: #b3b3b3;
 }
+

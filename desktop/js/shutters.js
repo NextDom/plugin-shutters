@@ -25,23 +25,7 @@ $(document).ready(function() {
         displayl1Settings($('#objectType').val());
     });
 
-    $('#unlockObjectTypeSelection').off('click').on('click', function() {
-        if ($('#unlockBtnIcon').hasClass('fa-unlock')){
-            $('#objectType').prop('disabled', true);
-            $('#unlockBtnIcon').removeClass("fa-unlock");
-            $('#unlockBtnIcon').addClass("fa-lock");
-        } else {
-          	bootbox.confirm("{{Etes-vous sûr de vouloir changer le type d'objet? Cela peut entraîner des dysfonctionnements du système!}}", function (result) {
-				if (result) {
-                    $('#objectType').prop('disabled', false);
-                    $('#unlockBtnIcon').removeClass("fa-lock");
-                    $('#unlockBtnIcon').addClass("fa-unlock");
-                }
-            });
-        }
-    });
-
-    // Object external informations -> event handler
+     // Object external informations -> event handler
     $('#absenceInformation').off('change').on('change', function() {
         priorityManagement();
     });
@@ -70,29 +54,13 @@ $(document).ready(function() {
         displayl2Settings($('#positionSensorType').val());
     });
 
-    $('body').off('click','.listCmd').on('click','.listCmd', function () {
-        var dataType = $(this).attr('data-type');
-        var dataInput = $(this).attr('data-input');
-        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
-        jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
-            el.value(result.human);
-        });
-    });
 
 });
 
 function printEqLogic(_eqLogic) {
 
-    var objectTypeChanging = JSON.stringify(_eqLogic.configuration.objectTypeChanging);
-    if (objectTypeChanging === '"disable"') {
-        $('#objectType').prop('disabled', true);
-        $('#unlockBtnIcon').removeClass("fa-unlock");
-        $('#unlockBtnIcon').addClass("fa-lock");
-    } else {
-        $('#objectType').prop('disabled', false);
-        $('#unlockBtnIcon').removeClass("fa-lock");
-        $('#unlockBtnIcon').addClass("fa-unlock");
-    }
+    var objectTypeSelection = JSON.stringify(_eqLogic.configuration.objectTypeSelection);
+    lockControl($('#lockObjectTypeSelection'), objectTypeSelection);
 
     displayl1Settings($('#objectType').val());
 
@@ -123,13 +91,49 @@ function printEqLogic(_eqLogic) {
     displaySelectedDawnOrDusk($('#duskType').val());
 }
 
+/**
+ * Hide tooltip attach to cursor
+ */
 function hideTooltip() {
     $('#tooltip').css('visibility', 'hidden');
 }
 
-function displayTooltip(message) {
+/**
+ * Display tooltip attach to cursor
+ * @param {string} message 
+ */
+function displayTooltip(message = '') {
     $('#tooltip').html(message).css('visibility', 'visible');
 }
+
+/**
+ * Lock or unlock an object with a toggle button
+ * @param {object} lockCmdBtn command button for lock / unlock
+ * @param {string} forcingState force object in lock or unlock state
+*/
+function lockControl(lockCmdBtn, forcingState = ''){
+    var controlToLock = $(lockCmdBtn).parent().find('.lock-control');
+    var lockCommand = $(lockCmdBtn).children(":first");
+    if(forcingState === 'unlock'){
+        controlToLock.prop('disabled', false);
+        lockCommand.removeClass('fa-lock').addClass("fa-unlock");
+        return;
+    }
+    if(controlToLock.is(':disabled')){
+        bootbox.confirm("{{Etes-vous sûr de vouloir changer le type d'objet? Cela peut entraîner des dysfonctionnements du système!}}", function (result) {
+            if (result) {
+                controlToLock.prop('disabled', false);
+                lockCommand.removeClass('fa-lock').addClass("fa-unlock");
+                return;
+            }
+        }) 
+    } 
+    if(controlToLock.is(':enabled')|| forcingState === 'lock'){
+    controlToLock.prop('disabled', true);
+    lockCommand.removeClass('fa-unlock').addClass("fa-lock");
+    return;
+    }
+}  
 
 function displayl1Settings(object) {
     $('fieldset[data-l1Settings*=' + 'Settings' + ']').css('display', 'none');
@@ -163,5 +167,3 @@ function updateAngleRange() {
     }
 }
 
-
-     

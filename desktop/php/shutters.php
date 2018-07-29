@@ -21,8 +21,9 @@ if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-include_file('desktop', 'shutters', 'css', 'shutters');
 include_file('desktop', 'jcanvas.min', 'js', 'shutters');
+include_file('desktop', 'shutters', 'css', 'shutters');
+include_file('desktop', 'shutters-events', 'css', 'shutters');
 include_file('desktop', 'shutters-jcanvas', 'js', 'shutters');
 
 $plugin = plugin::byId('shutters');
@@ -299,8 +300,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     <option value="shutter">{{Volet}}</option>
                                     </select>
                                 </div>
-                                <a id="unlockObjectTypeSelection" class="unlock-btn">
-                                    <i id="unlockBtnIcon" class="fa fa-unlock unlock-btn-icon"></i>
+                                <a class="lock-button">
+                                    <i class="fa fa-unlock lock-button-icon"></i>
                                 </a>
                             </div>
                             <div class="form-group">
