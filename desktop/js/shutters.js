@@ -16,6 +16,8 @@
 
 $(document).ready(function() {
     
+    console.log('document ready');
+
     initEvents();
 
     displayl2Settings($('#positionSensorType').val());
@@ -48,40 +50,13 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
-    $(".panel[data-paneltype='generalSettings']").collapse('show');
+    //$(".collapse[data-paneltype='generalSettings']").collapse('show');
+    console.log('printEqLogic');
 
+    initDefaultValues()
+    
     lockControl($('#lockObjectTypeSelection'), true);
     displaySettingPanel($('#objectType').val());
-
-//Initialize default values for object external info      
-if ($('#heliotrope').val() === null) {
-    $('#heliotrope').val('none');
-}
-
-//Initialize default values for object heliotrope zone  
-    if ($('#externalInfoObject').val() === null) {
-        $('#externalInfoObject').val('none');
-    }
-    if ($('#dawnType').val() === null) {
-        $('#dawnType').val('sunrise').trigger('change');
-    }
-    if ($('#duskType').val() === null) {
-        $('#duskType').val('sunset').trigger('change');
-    }
-    if ($('#wallAngle').val() === '') {
-      $('#wallAngle').val(0).trigger('change');
-    }
-    if ($('#wallAngleUnit').val() === null) {
-        $('#wallAngleUnit').val('deg').trigger('change');
-    }
-
-//Initialize default values for object shutter     
-    if ($('#openingType').val() === null) {
-        $('#openingType').val('window');
-    }
-    if ($('#positionSensorType').val() === null) {
-        $('#positionSensorType').val('none');
-    }
 
     refreshWallPlan();
     displaySelectedDawnOrDusk($('#dawnType').val());
@@ -176,3 +151,39 @@ function updateAngleRange() {
     }
 }
 
+/**
+ * Initialize default values
+ */
+function initDefaultValues() {
+//Initialize default values for object external info      
+if ($('#heliotrope').val() === null) {
+    $('#heliotrope').val('none');
+}
+
+//Initialize default values for object heliotrope zone  
+if ($('#externalInfoObject').val() === null) {
+    $('#externalInfoObject').val('none');
+}
+if ($('#dawnType').val() === null) {
+    $('#dawnType').val('sunrise').trigger('change');
+}
+if ($('#duskType').val() === null) {
+    $('#duskType').val('sunset').trigger('change');
+}
+if ($('#wallAngle').val() === '') {
+  $('#wallAngle').val(0).trigger('change');
+}
+if ($('#wallAngleUnit').val() === null) {
+    $('#wallAngleUnit').val('deg').trigger('change');
+}
+
+//Initialize default values for object shutter     
+if ($('#openingType').val() === null) {
+    $('#openingType').val('window');
+}
+if ($('#positionSensorType').val() === null) {
+    $('#positionSensorType').val('none');
+}
+
+
+}

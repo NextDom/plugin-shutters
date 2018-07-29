@@ -165,9 +165,19 @@ function drawHeliotropePlan() {
 		name: 'sun',
       	fillStyle: '#FEE200',
         x: 200, y: 50,
-        fontSize: 48,
+        fontSize: '48pt',
         fontFamily: 'FontAwesome',
         text: '\uf185'
+    })
+    .addLayer({
+        type: 'text',
+		name: 'info',
+      	fillStyle: '#000',
+        x: 200, y: 370,
+        maxWidth: 380,
+        fontSize: '12pt',
+        align: 'center',
+        text: 'Cliquer sur les points jaunes pour sélectionner l\'aube ou le crépuscule'
     })
     .addLayer({
         type: 'arc',
