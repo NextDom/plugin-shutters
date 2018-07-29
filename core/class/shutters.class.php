@@ -188,7 +188,7 @@ class shutters extends eqLogic
             return;
     }
         // Lock selection of object type on save. 
-        $this->setConfiguration('objectTypeSelection', 'lock');
+        //$this->setConfiguration('objectTypeSelection', 'lock');
 
     }
     

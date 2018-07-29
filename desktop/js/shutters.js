@@ -16,6 +16,7 @@
 
 $(document).ready(function() {
     
+    initEvents();
     displayl1Settings($('#objectType').val());
     displayl2Settings($('#positionSensorType').val());
     drawHeliotropePlan();
@@ -59,8 +60,8 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
-    var objectTypeSelection = JSON.stringify(_eqLogic.configuration.objectTypeSelection);
-    lockControl($('#lockObjectTypeSelection'), objectTypeSelection);
+    //var objectTypeSelection = JSON.stringify(_eqLogic.configuration.objectTypeSelection);
+    lockControl($('#lockObjectTypeSelection'), true);
 
     displayl1Settings($('#objectType').val());
 
@@ -109,14 +110,20 @@ function displayTooltip(message = '') {
 /**
  * Lock or unlock an object with a toggle button
  * @param {object} lockCmdBtn command button for lock / unlock
- * @param {string} forcingState force object in lock or unlock state
+ * @param {boolean} init lock object if object as a value
 */
-function lockControl(lockCmdBtn, forcingState = ''){
+function lockControl(lockCmdBtn, init = false){
     var controlToLock = $(lockCmdBtn).parent().find('.control-lockable');
+    var objectType = controlToLock.val();
     var lockCommand = $(lockCmdBtn).children(":first");
-    if(forcingState === 'unlock'){
+    if(objectType === null){
         controlToLock.prop('disabled', false);
         lockCommand.removeClass('fa-lock').addClass("fa-unlock");
+        return;
+    }
+    if(init == true &&  objectType !== null){
+        controlToLock.prop('disabled', true);
+        lockCommand.removeClass('fa-unlock').addClass("fa-lock");
         return;
     }
     if(controlToLock.is(':disabled')){
@@ -127,11 +134,10 @@ function lockControl(lockCmdBtn, forcingState = ''){
                 return;
             }
         }) 
-    } 
-    if(controlToLock.is(':enabled')|| forcingState === 'lock'){
-    controlToLock.prop('disabled', true);
-    lockCommand.removeClass('fa-unlock').addClass("fa-lock");
-    return;
+    } else {
+        controlToLock.prop('disabled', true);
+        lockCommand.removeClass('fa-unlock').addClass("fa-lock");
+        return;
     }
 }  
 
