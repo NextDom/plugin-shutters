@@ -23,7 +23,7 @@ if (!isConnect('admin')) {
 
 include_file('desktop', 'jcanvas.min', 'js', 'shutters');
 include_file('desktop', 'shutters', 'css', 'shutters');
-include_file('desktop', 'shutters-events', 'css', 'shutters');
+include_file('desktop', 'shutters-events', 'js', 'shutters');
 include_file('desktop', 'shutters-jcanvas', 'js', 'shutters');
 
 $plugin = plugin::byId('shutters');
@@ -293,15 +293,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="objectType">{{Type d'équipement}}</label>
                                 <div class="col-sm-5">
-                                    <select id="objectType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="objectType">
+                                    <select id="objectType" type="text" class="eqLogicAttr cursor form-control control-lockable" data-l1key="configuration" data-l2key="objectType">
                                     <option value="externalInfo">{{Informations externes générales}}</option>
                                     <option value="heliotropeZone">{{Zone héliotrope}}</option>
                                     <option value="shuttersGroup">{{Groupe de volets}}</option>
                                     <option value="shutter">{{Volet}}</option>
                                     </select>
                                 </div>
-                                <a class="lock-button">
-                                    <i class="fa fa-unlock lock-button-icon"></i>
+                                <a id="lockObjectTypeSelection" class="button-lock">
+                                    <i class="fa fa-unlock button-lock-icon"></i>
                                 </a>
                             </div>
                             <div class="form-group">
