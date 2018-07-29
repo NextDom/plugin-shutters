@@ -17,14 +17,11 @@
 $(document).ready(function() {
     
     initEvents();
-    displayl1Settings($('#objectType').val());
+
     displayl2Settings($('#positionSensorType').val());
     drawHeliotropePlan();
     drawWallPlan();
 
-    $('#objectType').off('change').on('change', function() {
-        displayl1Settings($('#objectType').val());
-    });
 
      // Object external informations -> event handler
     $('#absenceInformation').off('change').on('change', function() {
@@ -60,10 +57,8 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
-    //var objectTypeSelection = JSON.stringify(_eqLogic.configuration.objectTypeSelection);
     lockControl($('#lockObjectTypeSelection'), true);
-
-    displayl1Settings($('#objectType').val());
+    displaySettingPanel($('#objectType').val());
 
 //Initialize default values for object heliotrope area      
     if ($('#dawnType').val() === null) {
@@ -96,15 +91,15 @@ function printEqLogic(_eqLogic) {
  * Hide tooltip attach to cursor
  */
 function hideTooltip() {
-    $('#tooltip').css('visibility', 'hidden');
+    $('.cursor-tooltip').css('visibility', 'hidden');
 }
 
 /**
  * Display tooltip attach to cursor
- * @param {string} message 
+ * @param {string} message message to display in tooltip
  */
 function displayTooltip(message = '') {
-    $('#tooltip').html(message).css('visibility', 'visible');
+    $('.cursor-tooltip').html(message).css('visibility', 'visible');
 }
 
 /**
@@ -141,9 +136,13 @@ function lockControl(lockCmdBtn, init = false){
     }
 }  
 
-function displayl1Settings(object) {
-    $('fieldset[data-l1Settings*=' + 'Settings' + ']').css('display', 'none');
-	$('fieldset[data-l1Settings~=' + object + 'Settings' + ']').css('display', 'block');
+/**
+ * Display setting panels corresponding to object type
+ * @param {string} objectType 
+ */
+function displaySettingPanel(objectType = '') {
+    $(".panel[data-paneltype='setting']").css('display', 'none');
+	$(".panel[data-objecttype=" + objectType + "]").css('display', 'block');
 }
 
 function displayl2Settings(object) {

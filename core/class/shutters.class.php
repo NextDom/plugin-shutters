@@ -187,8 +187,6 @@ class shutters extends eqLogic
             log::add('shutters','info','[exception] => Le type d\'objet doit être renseigné!');
             return;
     }
-        // Lock selection of object type on save. 
-        //$this->setConfiguration('objectTypeSelection', 'lock');
 
     }
     

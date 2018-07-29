@@ -15,5 +15,10 @@ function initEvents() {
     $('a.button-lock').on('click',function(){
         lockControl($(this));
     })
+
+    $('#objectType').off('change').on('change', function() {
+        displaySettingPanel($(this).val());
+    });
+
     
 }
