@@ -48,6 +48,8 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
+    $(".panel[data-paneltype='generalSettings']").collapse('show');
+
     lockControl($('#lockObjectTypeSelection'), true);
     displaySettingPanel($('#objectType').val());
 

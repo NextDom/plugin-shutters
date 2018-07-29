@@ -349,7 +349,7 @@ function drawHeliotropePlan() {
     })
     .drawLayers()
     .on('mousemove', function(event) {
-        $('#tooltip').css({
+        $('.cursor-tooltip').css({
             top: event.pageY + 20,
             left: event.pageX
         })

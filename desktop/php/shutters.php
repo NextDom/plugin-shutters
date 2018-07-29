@@ -246,7 +246,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             <div role="tabpanel" class="tab-pane active" id="eqlogictab">
                 <br/>
                 <div id="objectSettings" class="panel-group" >
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" data-paneltype="generalSettings">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Général}} </a>
@@ -463,7 +463,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <option value="none">{{Non affecté}}</option>
                                                     <?php
                                                         foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo' && $shutters->getConfiguration('heliotrope') !== null && $shutters->getConfiguration('heliotrope') !== 'none') {
+                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo' && $shutters->getConfiguration('heliotrope') != null && $shutters->getConfiguration('heliotrope') != 'none') {
                                                                 echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
                                                             } 
                                                         }
