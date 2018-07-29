@@ -50,17 +50,19 @@ $(document).ready(function() {
 
 function printEqLogic(_eqLogic) {
 
-    //$(".collapse[data-paneltype='generalSettings']").collapse('show');
-    console.log('printEqLogic');
+    $(document).ready(function() {
+        //$(".collapse[data-paneltype='generalSettings']").collapse('show');
+        console.log('printEqLogic');
 
-    initDefaultValues()
-    
-    lockControl($('#lockObjectTypeSelection'), true);
-    displaySettingPanel($('#objectType').val());
+        initDefaultValues()
+        
+        lockControl($('#lockObjectTypeSelection'), true);
+        displaySettingPanel($('#objectType').val());
 
-    refreshWallPlan();
-    displaySelectedDawnOrDusk($('#dawnType').val());
-    displaySelectedDawnOrDusk($('#duskType').val());
+        refreshWallPlan();
+        displaySelectedDawnOrDusk($('#dawnType').val());
+        displaySelectedDawnOrDusk($('#duskType').val());
+    });
 }
 
 /**

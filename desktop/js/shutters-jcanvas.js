@@ -133,8 +133,8 @@ function drawHeliotropePlan() {
         name: 'skyline',
         strokeStyle: '#B3B3B3',
         strokeWidth: 2,
-        x1: 20, y1: 200,
-        x2: 380, y2: 200
+        x1: 50, y1: 200,
+        x2: 350, y2: 200
     })     
     .addLayer({
         type: 'text',
@@ -162,6 +162,26 @@ function drawHeliotropePlan() {
     })
     .addLayer({
         type: 'text',
+        fillStyle: '#7d7d7d',
+        x: 200, y: 200,
+        radius: 165,
+      	rotate: 102,
+        fontSize: '12pt',
+        align: 'center',
+        text: 'Aube'
+    })
+    .addLayer({
+        type: 'text',
+        fillStyle: '#7d7d7d',
+        x: 200, y: 200,
+        radius: 165,
+      	rotate: 258,
+        fontSize: '12pt',
+        align: 'center',
+        text: 'Crépuscule'
+    })
+    .addLayer({
+        type: 'text',
 		name: 'sun',
       	fillStyle: '#FEE200',
         x: 200, y: 50,
@@ -173,7 +193,7 @@ function drawHeliotropePlan() {
         type: 'text',
 		name: 'info',
       	fillStyle: '#000',
-        x: 200, y: 370,
+        x: 200, y: 375,
         maxWidth: 380,
         fontSize: '12pt',
         align: 'center',
@@ -184,7 +204,7 @@ function drawHeliotropePlan() {
         strokeStyle: '#B3B3B3',
         strokeWidth: 2,
         x: 200, y: 200,
-        radius: 180,
+        radius: 185,
  		start: -10, end: 10,
    		rounded: true,
         startArrow: true,
