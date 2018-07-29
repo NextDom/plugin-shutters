@@ -28,11 +28,11 @@
     margin-bottom: 0;
     text-align: left;
 }
-.lock-button {
+.button-lock {
     text-decoration: none;
     cursor: pointer;
 }
-.lock-button-icon {
+.button-lock-icon {
     font-size: 36px;
     color: #b3b3b3;
 }

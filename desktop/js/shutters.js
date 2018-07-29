@@ -112,7 +112,7 @@ function displayTooltip(message = '') {
  * @param {string} forcingState force object in lock or unlock state
 */
 function lockControl(lockCmdBtn, forcingState = ''){
-    var controlToLock = $(lockCmdBtn).parent().find('.lock-control');
+    var controlToLock = $(lockCmdBtn).parent().find('.control-lockable');
     var lockCommand = $(lockCmdBtn).children(":first");
     if(forcingState === 'unlock'){
         controlToLock.prop('disabled', false);
