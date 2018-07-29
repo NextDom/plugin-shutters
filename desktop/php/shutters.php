@@ -245,379 +245,397 @@ $eqLogics = eqLogic::byType($plugin->getId());
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
             <div role="tabpanel" class="tab-pane active" id="eqlogictab">
                 <br/>
-                <form class="form-horizontal">
-                    <fieldset id="generalSettings">
-                        <legend>{{Général}}</legend>
-                        <div class="col-sm-6">    
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="objectName">{{Nom de l'équipement}}</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display:none" />
-                                    <input type="text" id="objectName" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="sel_object">{{Objet parent}}</label>
-                                <div class="col-sm-5">
-                                    <select id="sel_object" class="eqLogicAttr cursor form-control" data-l1key="object_id">
-                                        <option value="">{{Aucun}}</option>
-                                        <?php
-                                        foreach (object::all() as $object) {
-                                            echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Catégorie}}</label>
-                                <div class="col-sm-9">
-                                    <?php
-                                    foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-                                        echo '<label class="checkbox-inline">';
-                                        echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
-                                        echo '</label>';
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Equipement}}</label>
-                                <div class="col-sm-5">
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="objectType">{{Type d'équipement}}</label>
-                                <div class="col-sm-5">
-                                    <select id="objectType" type="text" class="eqLogicAttr cursor form-control control-lockable" data-l1key="configuration" data-l2key="objectType">
-                                    <option value="externalInfo">{{Informations externes générales}}</option>
-                                    <option value="heliotropeZone">{{Zone héliotrope}}</option>
-                                    <option value="shuttersGroup">{{Groupe de volets}}</option>
-                                    <option value="shutter">{{Volet}}</option>
-                                    </select>
-                                </div>
-                                <a id="lockObjectTypeSelection" class="button-lock">
-                                    <i class="fa fa-unlock button-lock-icon"></i>
-                                </a>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="comment">{{Commentaire}}</label>
-                                <div class="col-sm-5">
-                                    <textarea id="comment" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6"> 
-                        <div class="form-group">
-                                <label class="col-sm-3 control-label" for="configName">{{Nom de la configuration}}</label>
-                                <div class="col-sm-5">
-                                    <input type="text" id="configName" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="configName"/>
-                                </div>
-                            </div>
-                        </div>   
-                    </fieldset>
-                    <fieldset id="externalInfoSettings" class="display-none" data-l1settings="externalInfoSettings">
-                        <legend>{{Informations générales externes}}</legend>
-                        <div class="col-sm-6"> 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Information d'absence}}</label>
-                                <div class="col-sm-5">
-                                    <div class="input-group">
-                                        <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation"/>
-                                        <span class="input-group-btn">
-                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation" title="{{Sélectionner une commande}}">
-                                                <i class="fa fa-list-alt"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Information de présence}}</label>
-                                <div class="col-sm-5">
-                                    <div class="input-group">
-                                        <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation"/>
-                                        <span class="input-group-btn">
-                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation" title="{{Sélectionner une commande}}">
-                                                <i class="fa fa-list-alt"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Détection incendie}}</label>
-                                <div class="col-sm-5">
-                                    <div class="input-group">
-                                        <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection"/>
-                                        <span class="input-group-btn">
-                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection" title="{{Sélectionner une commande}}">
-                                                <i class="fa fa-list-alt"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
-                                <div class="col-sm-5">
-                                    <select id="heliotrope" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="heliotrope">
-                                        <?php
-                                        if (class_exists('heliotropeCmd')) {
-                                            foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-                                                echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
-                                            }
-                                        } else {
-                                            echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Luninosité extérieure}}</label>
-                                <div class="col-sm-5">
-                                    <div class="input-group">
-                                        <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity"/>
-                                        <span class="input-group-btn">
-                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity" title="{{Sélectionner une commande}}">
-                                                <i class="fa fa-list-alt"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Température extérieure}}</label>
-                                <div class="col-sm-5">
-                                    <div class="input-group">
-                                        <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature"/>
-                                        <span class="input-group-btn">
-                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature" title="{{Sélectionner une commande}}">
-                                                <i class="fa fa-list-alt"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6"> 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Gestion prioritaire}}</label>
-                                <div class="col-sm-5">
-                                    <select id="priorityManagement" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="priorityManagement">
-                                        <option value="fireManagement">{{Gestion incendie}}</option>
-                                        <option value="absenceManagement">{{Gestion absence}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset id="heliotropeZoneSettings" class="display-none" data-l1settings="heliotropeZoneSettings">
-                        <legend>{{Paramètres héliotrope}}</legend>
-                        <div class="col-sm-6">               
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">{{Lien informations externes}}</label>
-                                <div class="col-sm-3">
-                                    <select id="externalInfoObject" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="externalInfoObject">
-                                        <option value="none">{{Non affecté}}</option>
-                                        <?php
-                                            foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                                if ($shutters->getConfiguration('objectType') == 'externalInfo') {
-                                                    echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                                } 
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="dawnType">{{Lever du soleil}}</label>
-                                <div class="col-sm-5">
-                                    <select id="dawnType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="dawnType">
-                                        <option value="astronomicalDawn">{{Aube astronomique}}</option>
-                                        <option value="nauticalDawn">{{Aube nautique}}</option>
-                                        <option value="civilDawn">{{Aube civile}}</option>
-                                        <option value="sunrise">{{Lever du soleil}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="duskType">{{Coucher du soleil}}</label>
-                                <div class="col-sm-5">
-                                    <select id="duskType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="duskType">
-                                        <option value="sunset">{{Coucher du soleil}}</option>
-                                        <option value="civilDusk">{{Crépuscule civil}}</option>
-                                        <option value="nauticalDusk">{{Crépuscule nautique}}</option>
-                                        <option value="astronomicalDusk">{{Crépuscule astronomique}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}} <span id="wallAngleRange" class="label label-info">0 - 360°</span></label>
-                                <div class="col-sm-3">
-                                    <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
-                                </div>
-                                <div class="col-sm-2">
-                                    <select id="wallAngleUnit" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="wallAngleUnit">
-                                    <option value="deg">{{degré}}</option>
-                                    <option value="gon">{{grade}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="panel panel-default col-sm-9 col-sm-offset-1">
-                                <div class="panel-body">
-                                    <b>{{Procédure de réglage de l'angle}}</b>
-                                    <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
-                                    <li>{{Soit aller sur le site du }}<a href="https://www.cadastre.gouv.fr/scpc/accueil.do" target="_blank">{{cadastre}}</a> :</li>
-                                    <ol>
-                                        <li>{{Saisir votre adresse.}}</li>
-                                        <li>{{Sélectionner la feuille correspondante à votre parcelle.}}</li>
-                                        <li>{{Une fois le plan affiché, dans l'onglet outils avancés, sélectionner mesurer.}}</li>
-                                        <li>{{Sélectionner l'outil 'mesurer un gisement'.}}</li>
-                                        <li>{{Tracer sur le plan une droite parallèle à votre façade (sens horaire par rapport au centre de l'habitation).}}</li>
-                                        <li>{{Relever la valeur de l'angle mesuré (en grades) et le renseigner dans le champ du plugin.}}</li>
-                                        <li>{{Vérifier que l'orientation du graphique dans le plugin est conforme à la réalité.}}</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">               
-                            <div class="form-group">
-                                <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
-                                <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset id="shutterSettings" class="display-none" data-l1settings="shutterSettings">
-                        <legend>{{Paramètres du volet}}</legend>
-                        <div class="col-sm-6">               
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Type d'ouvrant}}</label>
-                                <div class="col-sm-5">
-                                    <select id="openingType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="openingType">
-                                        <option value="window">{{Fenêtre}}</option>
-                                        <option value="door">{{Porte}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Retour de position}}</label>
-                                <div class="col-sm-5">
-                                    <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
-                                        <option value="none">{{Sans}}</option>
-                                        <option value="analogPosition">{{Analogique}}</option>
-                                        <option value="openedClosedLimitSwitch">{{Fins de course ouverture et fermeture}}</option>
-                                        <option value="openedLimitSwitch">{{Fin de course ouverture}}</option>
-                                        <option value="closedLimitSwitch">{{Fin de course fermeture}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <fieldset id="analogPositionSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="analogPositionSettings">  
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Retour de position du volet}}</label>
-                                    <div class="col-sm-5">
-                                        <div class="input-group">
-                                            <input id="shutterAnalogPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPosition"/>
-                                            <span class="input-group-btn">
-                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterAnalogPosition" title="{{Sélectionner une commande}}">
-                                                        <i class="fa fa-list-alt"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Position fermeture}} <span class="label label-info">0 - 5%</span></label>
-                                    <div class="col-sm-5">
-                                        <input id="analogClosedPosition" type="range" min="0" max="5" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogClosedPosition"/>
-                                    </div>
-                                    <label class="col-sm-1 control-unit">%</label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Position ouverture}} <span class="label label-info">95 - 100%</span></label>
-                                    <div class="col-sm-5">
-                                        <input id="analogOpenedPosition" type="range" min="95" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
-                                    </div>
-                                    <label class="col-sm-1 control-unit">%</label>
-                                </div>
-                            </fieldset>
-                            <fieldset id="closedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings closedLimitSwitchSettings">  
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Fin de course fermeture}}</label>
-                                    <div class="col-sm-5">
-                                        <div class="input-group">
-                                            <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith"/>
-                                            <span class="input-group-btn">
-                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith" title="{{Sélectionner une commande}}">
-                                                        <i class="fa fa-list-alt"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset id="openedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings openedLimitSwitchSettings">  
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Fin de course ouverture}}</label>
-                                    <div class="col-sm-5">
-                                        <div class="input-group">
-                                            <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith"/>
-                                            <span class="input-group-btn">
-                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith" title="{{Sélectionner une commande}}">
-                                                        <i class="fa fa-list-alt"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fielset>
-                        </div>   
-                        
-                    <div class="col-sm-6">               
-
+                <div id="objectSettings" class="panel-group" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Général}} </a>
+                            </h4>
                     </div>
-
-                    </fieldset>
-                    <fieldset id="shutterHeliotropeSettings" class="display-none">
-                        <legend>{{Paramètres héliotrope du volet}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Façade}}</label>
-                            <div class="col-sm-3">
-                                <select id="shutterArea" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="shutterArea">
-                                    <option value="none">{{Non affectée}}</option>
-                                    <?php
-                                        foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                            if ($shutters->getConfiguration('objectType') == 'shuttersGroup') {
-                                                echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                            } 
+                    <div id="generalSettings" class="panel-collapse collapse in">
+                        <div class="panel-body"> 
+                            <div class="col-sm-6">    
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="objectName">{{Nom de l'équipement}}</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display:none" />
+                                        <input type="text" id="objectName" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="sel_object">{{Objet parent}}</label>
+                                    <div class="col-sm-5">
+                                        <select id="sel_object" class="eqLogicAttr cursor form-control" data-l1key="object_id">
+                                            <option value="">{{Aucun}}</option>
+                                            <?php
+                                            foreach (object::all() as $object) {
+                                                echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Catégorie}}</label>
+                                    <div class="col-sm-9">
+                                        <?php
+                                        foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+                                            echo '<label class="checkbox-inline">';
+                                            echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
+                                            echo '</label>';
                                         }
-                                    ?>
-                                </select>
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Equipement}}</label>
+                                    <div class="col-sm-5">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="objectType">{{Type d'équipement}}</label>
+                                    <div class="col-sm-5">
+                                        <select id="objectType" type="text" class="eqLogicAttr cursor form-control control-lockable" data-l1key="configuration" data-l2key="objectType">
+                                        <option value="externalInfo">{{Informations externes générales}}</option>
+                                        <option value="heliotropeZone">{{Zone héliotrope}}</option>
+                                        <option value="shuttersGroup">{{Groupe de volets}}</option>
+                                        <option value="shutter">{{Volet}}</option>
+                                        </select>
+                                    </div>
+                                    <a id="lockObjectTypeSelection" class="button-lock">
+                                        <i class="fa fa-unlock button-lock-icon"></i>
+                                    </a>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="comment">{{Commentaire}}</label>
+                                    <div class="col-sm-5">
+                                        <textarea id="comment" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire"></textarea>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Angle d'entrée [-90° : -30°]}}</label>
-                            <div class="col-sm-3">
-                                <input id="incomingAzimuthAngle" type="number" min="-90" max="-30" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{{Angle de sortie  [+30° : +90°]}}</label>
-                            <div class="col-sm-3">
-                                <input id="outgoingAzimuthAngle" type="number" min="30" max="90" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
-                            </div>
-                        </div>
+                            <div class="col-sm-6"> 
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="configName">{{Nom de la configuration}}</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" id="configName" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="configName"/>
+                                    </div>
+                                </div>
+                            </div>   
+                                <fieldset id="externalInfoSettings" class="display-none" data-l1settings="externalInfoSettings">
+                                    <legend>{{Informations générales externes}}</legend>
+                                </fieldset>
+                                <fieldset id="heliotropeZoneSettings" class="display-none" data-l1settings="heliotropeZoneSettings">
+                                    <legend>{{Paramètres héliotrope}}</legend>
+                                    <div class="col-sm-6">               
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{Lien informations externes}}</label>
+                                            <div class="col-sm-3">
+                                                <select id="externalInfoObject" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="externalInfoObject">
+                                                    <option value="none">{{Non affecté}}</option>
+                                                    <?php
+                                                        foreach (eqLogic::byType('shutters', true) as $shutters) {
+                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo') {
+                                                                echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
+                                                            } 
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="dawnType">{{Lever du soleil}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="dawnType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="dawnType">
+                                                    <option value="astronomicalDawn">{{Aube astronomique}}</option>
+                                                    <option value="nauticalDawn">{{Aube nautique}}</option>
+                                                    <option value="civilDawn">{{Aube civile}}</option>
+                                                    <option value="sunrise">{{Lever du soleil}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="duskType">{{Coucher du soleil}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="duskType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="duskType">
+                                                    <option value="sunset">{{Coucher du soleil}}</option>
+                                                    <option value="civilDusk">{{Crépuscule civil}}</option>
+                                                    <option value="nauticalDusk">{{Crépuscule nautique}}</option>
+                                                    <option value="astronomicalDusk">{{Crépuscule astronomique}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}} <span id="wallAngleRange" class="label label-info">0 - 360°</span></label>
+                                            <div class="col-sm-3">
+                                                <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <select id="wallAngleUnit" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="wallAngleUnit">
+                                                <option value="deg">{{degré}}</option>
+                                                <option value="gon">{{grade}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default col-sm-9 col-sm-offset-1">
+                                            <div class="panel-body">
+                                                <b>{{Procédure de réglage de l'angle}}</b>
+                                                <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
+                                                <li>{{Soit aller sur le site du }}<a href="https://www.cadastre.gouv.fr/scpc/accueil.do" target="_blank">{{cadastre}}</a> :</li>
+                                                <ol>
+                                                    <li>{{Saisir votre adresse.}}</li>
+                                                    <li>{{Sélectionner la feuille correspondante à votre parcelle.}}</li>
+                                                    <li>{{Une fois le plan affiché, dans l'onglet outils avancés, sélectionner mesurer.}}</li>
+                                                    <li>{{Sélectionner l'outil 'mesurer un gisement'.}}</li>
+                                                    <li>{{Tracer sur le plan une droite parallèle à votre façade (sens horaire par rapport au centre de l'habitation).}}</li>
+                                                    <li>{{Relever la valeur de l'angle mesuré (en grades) et le renseigner dans le champ du plugin.}}</li>
+                                                    <li>{{Vérifier que l'orientation du graphique dans le plugin est conforme à la réalité.}}</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">               
+                                        <div class="form-group">
+                                            <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                            <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset id="shutterSettings" class="display-none" data-l1settings="shutterSettings">
+                                    <legend>{{Paramètres du volet}}</legend>
+                                    <div class="col-sm-6">               
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Type d'ouvrant}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="openingType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="openingType">
+                                                    <option value="window">{{Fenêtre}}</option>
+                                                    <option value="door">{{Porte}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Retour de position}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType">
+                                                    <option value="none">{{Sans}}</option>
+                                                    <option value="analogPosition">{{Analogique}}</option>
+                                                    <option value="openedClosedLimitSwitch">{{Fins de course ouverture et fermeture}}</option>
+                                                    <option value="openedLimitSwitch">{{Fin de course ouverture}}</option>
+                                                    <option value="closedLimitSwitch">{{Fin de course fermeture}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <fieldset id="analogPositionSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="analogPositionSettings">  
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Retour de position du volet}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="shutterAnalogPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPosition"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterAnalogPosition" title="{{Sélectionner une commande}}">
+                                                                    <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Position fermeture}} <span class="label label-info">0 - 5%</span></label>
+                                                <div class="col-sm-5">
+                                                    <input id="analogClosedPosition" type="range" min="0" max="5" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogClosedPosition"/>
+                                                </div>
+                                                <label class="col-sm-1 control-unit">%</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Position ouverture}} <span class="label label-info">95 - 100%</span></label>
+                                                <div class="col-sm-5">
+                                                    <input id="analogOpenedPosition" type="range" min="95" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
+                                                </div>
+                                                <label class="col-sm-1 control-unit">%</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset id="closedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings closedLimitSwitchSettings">  
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Fin de course fermeture}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith" title="{{Sélectionner une commande}}">
+                                                                    <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset id="openedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings openedLimitSwitchSettings">  
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Fin de course ouverture}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith" title="{{Sélectionner une commande}}">
+                                                                    <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fielset>
+                                    </div>   
+                                    
+                                <div class="col-sm-6">               
 
-                    </fieldset>
-                </form>
+                                </div>
+
+                                </fieldset>
+                                <fieldset id="shutterHeliotropeSettings" class="display-none">
+                                    <legend>{{Paramètres héliotrope du volet}}</legend>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{{Façade}}</label>
+                                        <div class="col-sm-3">
+                                            <select id="shutterArea" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="shutterArea">
+                                                <option value="none">{{Non affectée}}</option>
+                                                <?php
+                                                    foreach (eqLogic::byType('shutters', true) as $shutters) {
+                                                        if ($shutters->getConfiguration('objectType') == 'shuttersGroup') {
+                                                            echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
+                                                        } 
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{{Angles d'entrée et de sortie du soleil de l'ouvrant}}</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{{Angle d'entrée [-90° : -30°]}}</label>
+                                        <div class="col-sm-3">
+                                            <input id="incomingAzimuthAngle" type="number" min="-90" max="-30" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="incomingAzimuthAngle"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{{Angle de sortie  [+30° : +90°]}}</label>
+                                        <div class="col-sm-3">
+                                            <input id="outgoingAzimuthAngle" type="number" min="30" max="90" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outgoingAzimuthAngle"/>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#externalInfoSettings"> {{{{Informations générales externes}}}} </a>
+                            </h4>
+                    </div>
+                    <div id="externalInfoSettings" class="panel-collapse collapse">
+                        <div class="panel-body"> 
+                            <div class="col-sm-6"> 
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Information d'absence}}</label>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation" title="{{Sélectionner une commande}}">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Information de présence}}</label>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation" title="{{Sélectionner une commande}}">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Détection incendie}}</label>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection" title="{{Sélectionner une commande}}">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
+                                    <div class="col-sm-5">
+                                        <select id="heliotrope" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="heliotrope">
+                                            <?php
+                                            if (class_exists('heliotropeCmd')) {
+                                                foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+                                                    echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
+                                                }
+                                            } else {
+                                                echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Luninosité extérieure}}</label>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity" title="{{Sélectionner une commande}}">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Température extérieure}}</label>
+                                    <div class="col-sm-5">
+                                        <div class="input-group">
+                                            <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature"/>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature" title="{{Sélectionner une commande}}">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6"> 
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Gestion prioritaire}}</label>
+                                    <div class="col-sm-5">
+                                        <select id="priorityManagement" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="priorityManagement">
+                                            <option value="fireManagement">{{Gestion incendie}}</option>
+                                            <option value="absenceManagement">{{Gestion absence}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="commandtab">
                 <table id="table_cmd" class="table table-bordered table-condensed">

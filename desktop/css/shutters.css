@@ -23,11 +23,6 @@
 .panel-title > a:focus  {
     text-decoration:none;
 }
-.control-unit {
-    padding: 7px 0px;
-    margin-bottom: 0;
-    text-align: left;
-}
 .button-lock {
     text-decoration: none;
     cursor: pointer;
@@ -36,4 +31,8 @@
     font-size: 36px;
     color: #b3b3b3;
 }
-
+.control-unit {
+    padding: 7px 0px;
+    margin-bottom: 0;
+    text-align: left;
+}
