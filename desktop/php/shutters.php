@@ -383,6 +383,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
                                             <div class="col-sm-5">
                                                 <select id="heliotrope" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="heliotrope">
+                                                    <option value="none">{{Non affecté}}</option>
                                                     <?php
                                                     if (class_exists('heliotropeCmd')) {
                                                         foreach (eqLogic::byType('heliotrope') as $heliotrope) {

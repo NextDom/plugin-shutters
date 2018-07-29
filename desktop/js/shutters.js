@@ -51,9 +51,14 @@ function printEqLogic(_eqLogic) {
     lockControl($('#lockObjectTypeSelection'), true);
     displaySettingPanel($('#objectType').val());
 
+//Initialize default values for object external info      
+if ($('#heliotrope').val() === null) {
+    $('#heliotrope').val('none');
+}
+
 //Initialize default values for object heliotrope zone  
     if ($('#externalInfoObject').val() === null) {
-        $(this).val('none');
+        $('#externalInfoObject').val('none');
     }
     if ($('#dawnType').val() === null) {
         $('#dawnType').val('sunrise').trigger('change');

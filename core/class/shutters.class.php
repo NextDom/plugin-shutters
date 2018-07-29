@@ -147,7 +147,7 @@ class shutters extends eqLogic
             $externalInfoObject = eqLogic::byId($this->getConfiguration('externalInfoObject'));
             $heliotrope = eqLogic::byId($externalInfoObject->getConfiguration('heliotrope'));
             if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
-                throw new \Exception (__('Il n\'y a pas d\'héliotrope configuré dans l\'objet [Informations extérieures] sélectionné!', __FILE__));
+                throw new \Exception (__('Il n\'y a pas d\'héliotrope configuré dans l\'objet [ Informations externes : '.$externalInfoObject->getName().' ] sélectionné!', __FILE__));
                 return;
             }        
             if (!in_array($dawnType, $dawnTypeList, true)) {
