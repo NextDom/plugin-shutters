@@ -181,13 +181,11 @@ function drawHeliotropePlan() {
         text: 'Crépuscule'
     })
     .addLayer({
-        type: 'text',
+        type: 'image',
 		name: 'sun',
-      	fillStyle: '#FEE200',
+        source: 'plugins/shutters/resources/images/sun1.png',
         x: 200, y: 50,
-        fontSize: '48pt',
-        fontFamily: 'FontAwesome',
-        text: '\uf185'
+        fromCenter: true
     })
     .addLayer({
         type: 'text',
