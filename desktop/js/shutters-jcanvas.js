@@ -185,6 +185,7 @@ function drawHeliotropePlan() {
 		name: 'sun',
         source: 'plugins/shutters/resources/images/sun1.png',
         x: 200, y: 50,
+        scale: 0.5,
         fromCenter: true
     })
     .addLayer({
