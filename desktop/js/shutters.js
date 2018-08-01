@@ -129,6 +129,32 @@ function displayl2Settings(object) {
 }
 
 /**
+ * 
+ */
+function listHeliotropeObject() {
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: 'plugins/shutters/core/ajax/shutters.ajax.php',
+        data: {
+            action: 'listHeliotropeObject',
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            console.log(data.result);
+        }
+    });
+}
+
+/**
  * selection of priority management (fire detection / absence)
  */
 function priorityManagement() {
@@ -157,35 +183,33 @@ function updateAngleRange() {
  * Initialize default values
  */
 function initDefaultValues() {
-//Initialize default values for object external info      
-if ($('#heliotrope').val() === null) {
-    $('#heliotrope').val('none');
-}
+    //Initialize default values for object external info      
+    if ($('#heliotrope').val() === null) {
+        $('#heliotrope').val('none');
+    }
 
-//Initialize default values for object heliotrope zone  
-if ($('#externalInfoObject').val() === null) {
-    $('#externalInfoObject').val('none');
-}
-if ($('#dawnType').val() === null) {
-    $('#dawnType').val('sunrise').trigger('change');
-}
-if ($('#duskType').val() === null) {
-    $('#duskType').val('sunset').trigger('change');
-}
-if ($('#wallAngle').val() === '') {
-  $('#wallAngle').val(0).trigger('change');
-}
-if ($('#wallAngleUnit').val() === null) {
-    $('#wallAngleUnit').val('deg').trigger('change');
-}
+    //Initialize default values for object heliotrope zone  
+    if ($('#externalInfoObject').val() === null) {
+        $('#externalInfoObject').val('none');
+    }
+    if ($('#dawnType').val() === null) {
+        $('#dawnType').val('sunrise').trigger('change');
+    }
+    if ($('#duskType').val() === null) {
+        $('#duskType').val('sunset').trigger('change');
+    }
+    if ($('#wallAngle').val() === '') {
+    $('#wallAngle').val(0).trigger('change');
+    }
+    if ($('#wallAngleUnit').val() === null) {
+        $('#wallAngleUnit').val('deg').trigger('change');
+    }
 
-//Initialize default values for object shutter     
-if ($('#openingType').val() === null) {
-    $('#openingType').val('window');
-}
-if ($('#positionSensorType').val() === null) {
-    $('#positionSensorType').val('none');
-}
-
-
+    //Initialize default values for object shutter     
+    if ($('#openingType').val() === null) {
+        $('#openingType').val('window');
+    }
+    if ($('#positionSensorType').val() === null) {
+        $('#positionSensorType').val('none');
+    }
 }
