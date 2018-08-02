@@ -54,7 +54,8 @@ function printEqLogic(_eqLogic) {
         //$(".collapse[data-paneltype='generalSettings']").collapse('show');
         console.log('printEqLogic');
 
-        initDefaultValues()
+        initDefaultValues();
+        listHeliotropeObject();
         
         lockControl($('#lockObjectTypeSelection'), true);
         displaySettingPanel($('#objectType').val());
@@ -129,7 +130,7 @@ function displayl2Settings(object) {
 }
 
 /**
- * 
+ * List external info object with configured heliotrope
  */
 function listHeliotropeObject() {
     $.ajax({
@@ -149,7 +150,11 @@ function listHeliotropeObject() {
                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 return;
             }
-            console.log(data.result);
+            if (data.result.length == 0) {
+                $('#objectType').children("[value='heliotropeZone']").attr('disabled', true);
+            } else {
+                $('#objectType').children("[value='heliotropeZone']").attr('disabled', false);
+            }
         }
     });
 }

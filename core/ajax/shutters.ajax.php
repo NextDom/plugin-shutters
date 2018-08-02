@@ -31,7 +31,7 @@ try {
 			if ((is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
 				$externalInfoObjectList = array(
                     'id' => $eqLogic->getId(),
-                    'human_name' => $eqLogic->getHumanName(),
+                    'name' => $eqLogic->getName(),
                 );
                 $return[] = $externalInfoObjectList;
             }

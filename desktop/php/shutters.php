@@ -134,6 +134,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         echo '<img src="plugins/shutters/resources/images/heliotropeZone.png" height="100" width="100" />';
                                         echo "<br>";
                                         echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
+                                        $externalInfoObject = $eqLogic->getConfiguration('externalInfoObject');
+                                        if ($externalInfoObject != null && $externalInfoObject != 'none') {
+                                            echo '<span><i class="fas fa-link">' . eqLogic::byId($externalInfoObject)->getName() . '</i></span>';
+                                        }
                                         echo '</div>';
                                     }
                                 }
@@ -463,9 +467,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <option value="none">{{Non affecté}}</option>
                                                     <?php
                                                         foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo' && $shutters->getConfiguration('heliotrope') != null && $shutters->getConfiguration('heliotrope') != 'none') {
-                                                                echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                                            } 
+                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo' && $eqLogic->getIsEnable() == true) {
+                                                                if ($shutters->getConfiguration('heliotrope') != null && $shutters->getConfiguration('heliotrope') != 'none') {
+                                                                    echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
+                                                                }
+                                                            }
                                                         }
                                                     ?>
                                                 </select>
