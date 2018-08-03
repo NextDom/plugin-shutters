@@ -12,13 +12,19 @@ function initEvents() {
         });
     });
 
-    // General settings events
+    // General events
     $('a.button-lock').on('click',function() {
         lockControl($(this));
-    })
-    $('#objectType').off('change').on('change', function() {
+    });
+    $('input[type=range]').on("change mousemove", function() {
+        $(this).parent().next().html($(this).val());
+    });
+
+    // General settings events
+     $('#objectType').off('change').on('change', function() {
         displaySettingPanel($(this).val());
     });
+
 
     // External info settings events
     $('#absenceInformation').off('change').on('change', function() {
@@ -43,5 +49,5 @@ function initEvents() {
         refreshWallPlan();
     });
 
-    
+    //shutter settings events
 }

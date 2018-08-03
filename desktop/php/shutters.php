@@ -555,7 +555,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Informations générales externes}} </a>
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Paramètres retour de position / commandes}} </a>
                             </h4>
                         </div>
                         <div id="shutterSettings" class="panel-collapse collapse">
@@ -598,18 +598,26 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Position fermeture}} <span class="label label-info">0 - 5%</span></label>
+                                                <label class="col-sm-3 control-label">{{Position fermeture}}</label>
                                                 <div class="col-sm-5">
-                                                    <input id="analogClosedPosition" type="range" min="0" max="5" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogClosedPosition"/>
+                                                    <div class="input-group">    
+                                                        <span class="input-group-addon">0%</span>
+                                                        <input id="analogClosedPosition" type="range" min="0" max="5" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="analogClosedPosition"/>
+                                                        <span class="input-group-addon">5%</span>
+                                                    </div>
+                                                    <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
-                                                <label class="col-sm-1 control-unit">%</label>
-                                            </div>
+                                            </div>    
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Position ouverture}} <span class="label label-info">95 - 100%</span></label>
+                                                <label class="col-sm-3 control-label">{{Position ouverture}}</label>
                                                 <div class="col-sm-5">
-                                                    <input id="analogOpenedPosition" type="range" min="95" max="100" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
+                                                    <div class="input-group">                                                        
+                                                        <span class="input-group-addon">95%</span>
+                                                        <input id="analogOpenedPosition" type="range" min="95" max="100" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
+                                                        <span class="input-group-addon">100%</span>
+                                                    </div>                                                        
+                                                    <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
-                                                <label class="col-sm-1 control-unit">%</label>
                                             </div>
                                         </fieldset>
                                         <fieldset id="closedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings closedLimitSwitchSettings">  
@@ -649,7 +657,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <div class="col-sm-5">
                                                 <select id="commandType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="commandType">
                                                     <option value="analogCommand">{{Analogique}}</option>
-                                                    <option value="openedClosedLimitSwitch">{{Montée / Descente / Stop}}</option>
+                                                    <option value="OpenCloseStopCmd">{{Montée / Descente / Stop}}</option>
                                                 </select>
                                             </div>
                                         </div>
