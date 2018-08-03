@@ -24,22 +24,6 @@ $(document).ready(function() {
     drawHeliotropePlan();
     drawWallPlan();
 
-    $('#dawnType').off('change').on('change', function() {
-        displaySelectedDawnOrDusk($('#dawnType').val());
-    });
-
-    $('#duskType').off('change').on('change', function() {
-        displaySelectedDawnOrDusk($('#duskType').val());
-    });
-
-    $('#wallAngle').off('change').on('change', function() {
-        refreshWallPlan();
-    });
-
-    $('#wallAngleUnit').off('change').on('change', function() {
-        updateAngleRange()
-        refreshWallPlan();
-    });
 
     $('#positionSensorType').off('change').on('change', function() {
         displayl2Settings($('#positionSensorType').val());
@@ -56,7 +40,6 @@ function printEqLogic(_eqLogic) {
 
         initDefaultValues();
         listHeliotropeObject();
-        
         lockControl($('#lockObjectTypeSelection'), true);
         displaySettingPanel($('#objectType').val());
 
@@ -177,10 +160,8 @@ function priorityManagement() {
 function updateAngleRange() {
     if ($('#wallAngleUnit').val() == 'gon') {
         $('#wallAngle').attr('max', 400);
-        $('#wallAngleRange').html('0-400gon');
-    } else {
+   } else {
         $('#wallAngle').attr('max', 360);
-        $('#wallAngleRange').html('0-360°');
     }
 }
 

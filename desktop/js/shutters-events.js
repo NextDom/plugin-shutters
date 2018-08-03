@@ -12,14 +12,15 @@ function initEvents() {
         });
     });
 
+    // General settings events
     $('a.button-lock').on('click',function() {
         lockControl($(this));
     })
-
     $('#objectType').off('change').on('change', function() {
         displaySettingPanel($(this).val());
     });
 
+    // External info settings events
     $('#absenceInformation').off('change').on('change', function() {
         priorityManagement();
     });
@@ -27,6 +28,20 @@ function initEvents() {
         priorityManagement();
     });
 
+    // Heliotrope zone settings events
+    $('#dawnType').off('change').on('change', function() {
+        displaySelectedDawnOrDusk($('#dawnType').val());
+    });
+    $('#duskType').off('change').on('change', function() {
+        displaySelectedDawnOrDusk($('#duskType').val());
+    });
+    $('#wallAngle').off('change').on('change', function() {
+        refreshWallPlan();
+    });
+    $('#wallAngleUnit').off('change').on('change', function() {
+        updateAngleRange()
+        refreshWallPlan();
+    });
 
     
 }

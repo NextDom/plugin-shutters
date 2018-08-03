@@ -350,7 +350,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <div class="input-group">
                                                     <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation" title="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation" placeholder="{{Sélectionner une commande}}">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -363,7 +363,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <div class="input-group">
                                                     <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation" title="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation" placeholder="{{Sélectionner une commande}}">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -376,7 +376,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <div class="input-group">
                                                     <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection" title="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection" placeholder="{{Sélectionner une commande}}">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -406,7 +406,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <div class="input-group">
                                                     <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity" title="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity" placeholder="{{Sélectionner une commande}}">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -419,7 +419,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <div class="input-group">
                                                     <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature" title="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature" placeholder="{{Sélectionner une commande}}">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -500,7 +500,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}} <span id="wallAngleRange" class="label label-info">0 - 360°</span></label>
+                                            <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
                                             <div class="col-sm-3">
                                                 <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
                                             </div>
@@ -590,7 +590,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <div class="input-group">
                                                         <input id="shutterAnalogPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPosition"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterAnalogPosition" title="{{Sélectionner une commande}}">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterAnalogPosition" placeholder="{{Sélectionner une commande}}">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -619,7 +619,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <div class="input-group">
                                                         <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith" title="{{Sélectionner une commande}}">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith" placeholder="{{Sélectionner une commande}}">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -634,7 +634,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <div class="input-group">
                                                         <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith" title="{{Sélectionner une commande}}">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith" placeholder="{{Sélectionner une commande}}">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -644,6 +644,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </fielset>
                                     </div>   
                                     <div class="col-sm-6">               
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Commandes du volet}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="commandType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="commandType">
+                                                    <option value="analogCommand">{{Analogique}}</option>
+                                                    <option value="openedClosedLimitSwitch">{{Montée / Descente / Stop}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </form>    
