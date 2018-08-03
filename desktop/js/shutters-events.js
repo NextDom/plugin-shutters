@@ -17,7 +17,7 @@ function initEvents() {
         lockControl($(this));
     });
     $('input[type=range]').on("change mousemove", function() {
-        $(this).parent().next().html($(this).val());
+        $(this).parent().next().html($(this).val() + '%');
     });
 
     // General settings events

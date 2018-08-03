@@ -50,4 +50,7 @@
     top: -5px;
     z-index: 1;
   }
+.input-group-addon { 
+    min-width:75px;
+} 
   

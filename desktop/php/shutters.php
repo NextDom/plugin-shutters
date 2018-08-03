@@ -21,10 +21,7 @@ if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-include_file('desktop', 'jcanvas.min', 'js', 'shutters');
 include_file('desktop', 'shutters', 'css', 'shutters');
-include_file('desktop', 'shutters-events', 'js', 'shutters');
-include_file('desktop', 'shutters-jcanvas', 'js', 'shutters');
 
 $plugin = plugin::byId('shutters');
 sendVarToJS('eqType', $plugin->getId());
@@ -256,15 +253,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Général}} </a>
                             </h4>
                         </div>
-                        <div id="generalSettings" class="panel-collapse collapse in" data-paneltype="generalSettings">
+                        <div id="generalSettingsPanel" class="panel-collapse collapse in" data-paneltype="generalSettings">
                             <div class="panel-body"> 
-                                <form class="form-horizontal">
+                                <form id="generalSettingsForm" class="form-horizontal">
                                     <div class="col-sm-6">    
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label" for="objectName">{{Nom de l'équipement}}</label>
                                             <div class="col-sm-5">
                                                 <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display:none" />
-                                                <input type="text" id="objectName" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
+                                                <input type="text" id="objectName" name="objectName" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -348,9 +345,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Information d'absence}}</label>
                                             <div class="col-sm-5">
                                                 <div class="input-group">
-                                                    <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation"/>
+                                                    <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation" placeholder="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -361,9 +358,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Information de présence}}</label>
                                             <div class="col-sm-5">
                                                 <div class="input-group">
-                                                    <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation"/>
+                                                    <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation" placeholder="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="presenceInformation">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -374,9 +371,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Détection incendie}}</label>
                                             <div class="col-sm-5">
                                                 <div class="input-group">
-                                                    <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection"/>
+                                                    <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection" placeholder="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="fireDetection">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -404,9 +401,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Luninosité extérieure}}</label>
                                             <div class="col-sm-5">
                                                 <div class="input-group">
-                                                    <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity"/>
+                                                    <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity" placeholder="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -417,9 +414,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Température extérieure}}</label>
                                             <div class="col-sm-5">
                                                 <div class="input-group">
-                                                    <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature"/>
+                                                    <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature" placeholder="{{Sélectionner une commande}}">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorTemperature">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
@@ -501,8 +498,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
-                                            <div class="col-sm-3">
-                                                <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
+                                            <div class="col-sm-5">
+                                                <div class="input-group">    
+                                                    <span class="input-group-addon">0°</span>
+                                                    <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
+                                                    <span class="input-group-addon">360°</span>
+                                                </div>
                                             </div>
                                             <div class="col-sm-2">
                                                 <select id="wallAngleUnit" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="wallAngleUnit">
@@ -588,9 +589,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Retour de position du volet}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="shutterAnalogPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPosition"/>
+                                                        <input id="shutterAnalogPosition" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPosition" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterAnalogPosition" placeholder="{{Sélectionner une commande}}">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="shutterAnalogPosition">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -598,7 +599,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Position fermeture}}</label>
+                                                <label class="col-sm-3 control-label">{{Position volet fermé}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">    
                                                         <span class="input-group-addon">0%</span>
@@ -609,7 +610,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>    
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Position ouverture}}</label>
+                                                <label class="col-sm-3 control-label">{{Position volet ouvert}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">                                                        
                                                         <span class="input-group-addon">95%</span>
@@ -625,9 +626,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Fin de course fermeture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith"/>
+                                                        <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith" placeholder="{{Sélectionner une commande}}">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -640,9 +641,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Fin de course ouverture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith"/>
+                                                        <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith" placeholder="{{Sélectionner une commande}}">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -701,5 +702,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
     </div>
 </div>
 
-<?php include_file('desktop', 'shutters', 'js', 'shutters');?>
-<?php include_file('core', 'plugin.template', 'js');?>
+<?php
+include_file('desktop', 'jquery.validate.min', 'js', 'shutters');
+include_file('desktop', 'additional-methods.min', 'js', 'shutters');
+include_file('desktop', 'jcanvas.min', 'js', 'shutters');
+include_file('desktop', 'shutters', 'js', 'shutters');
+include_file('desktop', 'shutters-events', 'js', 'shutters');
+include_file('desktop', 'shutters-jcanvas', 'js', 'shutters');
+include_file('core', 'plugin.template', 'js');
+?>

@@ -39,6 +39,7 @@ function printEqLogic(_eqLogic) {
         console.log('printEqLogic');
 
         initDefaultValues();
+        $('input[type=range]').trigger('change');
         listHeliotropeObject();
         lockControl($('#lockObjectTypeSelection'), true);
         displaySettingPanel($('#objectType').val());
@@ -46,6 +47,16 @@ function printEqLogic(_eqLogic) {
         refreshWallPlan();
         displaySelectedDawnOrDusk($('#dawnType').val());
         displaySelectedDawnOrDusk($('#duskType').val());
+
+        $( "#generalSettingsForm" ).validate({
+            rules: {
+                objectName: {
+                    required: true,
+                    minlength: 3
+              }
+            }
+        });
+          
     });
 }
 
@@ -158,11 +169,16 @@ function priorityManagement() {
 }
 
 function updateAngleRange() {
+    var wallAngle = $('#wallAngle');
     if ($('#wallAngleUnit').val() == 'gon') {
-        $('#wallAngle').attr('max', 400);
+        wallAngle.attr('max', 400);
+        wallAngle.prev().html('0gon');
+        wallAngle.next().html('400gon');
    } else {
-        $('#wallAngle').attr('max', 360);
-    }
+        wallAngle.attr('max', 360);
+        wallAngle.prev().html('0°');
+        wallAngle.next().html('360°');
+   }
 }
 
 /**
