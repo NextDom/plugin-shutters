@@ -87,8 +87,6 @@ class shutters extends eqLogic
 
         $objectType = $this->getConfiguration('objectType');
         
-        $closedLimitSwith = $this->getConfiguration('closedLimitSwith');
-        $openedLimitSwith = $this->getConfiguration('openedLimitSwith');
         $incomingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
@@ -132,7 +130,7 @@ class shutters extends eqLogic
 
         } elseif($objectType == 'heliotropeZone') {
             $externalInfoObject = eqLogic::byId($this->getConfiguration('externalInfoObject'));
-            if ($externalInfoObject == 'none') {
+            if (empty($externalInfoObject) || $externalInfoObject == 'none') {
                 throw new \Exception (__('Le lien vers les infos externes doit être renseigné!', __FILE__));
                 return;
            }
@@ -165,13 +163,12 @@ class shutters extends eqLogic
             }
         
         } elseif($objectType == 'shutter') {
-
                 if (!in_array($this->getConfiguration('openingType'), $openingTypeList, true)) {
                     throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                     return;
                 }
                 $positionSensorType = $this->getConfiguration('positionSensorType');
-                if ($positionSensorType = 'analogPosition') {
+                if ($positionSensorType == 'analogPosition') {
                         if (empty($this->getConfiguration('shutterAnalogPosition'))) {
                             throw new \Exception (__('La commande de retour de position du volet doit être renseignée!', __FILE__));
                             return;
@@ -192,7 +189,7 @@ class shutters extends eqLogic
                             return;
                         }        
 
-                } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'closedLimitSwitch') {
+                } elseif ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'closedLimitSwitch') {
                     if (empty($this->getConfiguration('closedLimitSwith'))) {
                         throw new \Exception (__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
                         return;
@@ -202,7 +199,7 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Fin de course fermeture] La commande n\'est pas une commande valide!', __FILE__));
                         return;
                     }
-                } elseif ($positionSensorType = 'openedClosedLimitSwitch' || $positionSensorType = 'openedLimitSwitch') {
+                } elseif ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'openedLimitSwitch') {
                     if (empty($this->getConfiguration('openedLimitSwith'))) {
                         throw new \Exception (__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
                         return;
@@ -212,7 +209,7 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Fin de course ouverture] La commande n\'est pas une commande valide!', __FILE__));
                         return;
                     }
-            }
+                }
                 if (!empty($shutterArea)) {
                     if ($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100) {
                         $exceptionMessage = __('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__);
