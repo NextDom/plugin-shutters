@@ -20,13 +20,13 @@ $(document).ready(function() {
 
     initEvents();
 
-    displayl2Settings($('#positionSensorType').val());
+    displaySettings($('#positionSensorType').val());
     drawHeliotropePlan();
     drawWallPlan();
 
 
     $('#positionSensorType').off('change').on('change', function() {
-        displayl2Settings($('#positionSensorType').val());
+        displaySettings($('#positionSensorType').val());
     });
 
 
@@ -110,9 +110,9 @@ function displaySettingPanel(objectType = '') {
 	$(".panel[data-objecttype=" + objectType + "]").css('display', 'block');
 }
 
-function displayl2Settings(object) {
-    $('fieldset[data-l2Settings*=' + 'Settings' + ']').css('display', 'none');
-	$('fieldset[data-l2Settings~=' + object + 'Settings' + ']').css('display', 'block');
+function displaySettings(objectType = '') {
+    $('fieldset[data-setting-type]').css('display', 'none');
+	$('fieldset[data-setting-type~=' + objectType + ']').css('display', 'block');
 }
 
 /**

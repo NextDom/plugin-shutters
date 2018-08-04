@@ -584,7 +584,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </select>
                                             </div>
                                         </div>
-                                        <fieldset id="analogPositionSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="analogPositionSettings">  
+                                        <fieldset id="analogPositionSettings" class="display-none" data-setting-type="analogPosition">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Retour de position du volet}}</label>
                                                 <div class="col-sm-5">
@@ -621,7 +621,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="closedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings closedLimitSwitchSettings">  
+                                        <fieldset id="closedLimitSwitchSettings" class="display-none" data-setting-type="openedClosedLimitSwitch closedLimitSwitch">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Fin de course fermeture}}</label>
                                                 <div class="col-sm-5">
@@ -636,7 +636,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="openedLimitSwitchSettings" class="display-none" data-l1settings="shutterSettings" data-l2settings="openedClosedLimitSwitchSettings openedLimitSwitchSettings">  
+                                        <fieldset id="openedLimitSwitchSettings" class="display-none" data-setting-type="openedClosedLimitSwitch openedLimitSwitch">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Fin de course ouverture}}</label>
                                                 <div class="col-sm-5">
