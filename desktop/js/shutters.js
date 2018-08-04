@@ -44,19 +44,11 @@ function printEqLogic(_eqLogic) {
         lockControl($('#lockObjectTypeSelection'), true);
         displaySettingPanel($('#objectType').val());
 
+        updatePriorityManagement();
         refreshWallPlan();
         displaySelectedDawnOrDusk($('#dawnType').val());
         displaySelectedDawnOrDusk($('#duskType').val());
-
-        $( "#generalSettingsForm" ).validate({
-            rules: {
-                objectName: {
-                    required: true,
-                    minlength: 3
-              }
-            }
-        });
-          
+        
     });
 }
 
@@ -156,15 +148,16 @@ function listHeliotropeObject() {
 /**
  * selection of priority management (fire detection / absence)
  */
-function priorityManagement() {
+function updatePriorityManagement() {
+    var priorityManagement = $('#priorityManagement');
     if ($('#absenceInformation').val() != '' && $('#fireDetection').val() != '') {
-        $('#priorityManagement').prop('disabled', false);
-        if ($('#priorityManagement').val() == null) {
-            $('#priorityManagement').val('fireManagement');
+        priorityManagement.prop('disabled', false);
+        if (priorityManagement.val() == null) {
+            priorityManagement.val('fireManagement');
         }
     } else {
-        $('#priorityManagement').val('');
-        $('#priorityManagement').prop('disabled', true);
+        priorityManagement.val('');
+        priorityManagement.prop('disabled', true);
     }
 }
 

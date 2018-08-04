@@ -28,10 +28,10 @@ function initEvents() {
 
     // External info settings events
     $('#absenceInformation').off('change').on('change', function() {
-        priorityManagement();
+        updatePriorityManagement();
     });
     $('#fireDetection').off('change').on('change', function() {
-        priorityManagement();
+        updatePriorityManagement();
     });
 
     // Heliotrope zone settings events
