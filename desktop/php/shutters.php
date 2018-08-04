@@ -253,9 +253,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Général}} </a>
                             </h4>
                         </div>
-                        <div id="generalSettingsPanel" class="panel-collapse collapse in" data-paneltype="generalSettings">
+                        <div id="generalSettings" class="panel-collapse collapse in" data-paneltype="generalSettings">
                             <div class="panel-body"> 
-                                <form id="generalSettingsForm" class="form-horizontal">
+                                <form class="form-horizontal">
                                     <div class="col-sm-6">    
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label" for="objectName">{{Nom de l'équipement}}</label>
@@ -501,7 +501,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <div class="col-sm-5">
                                                 <div class="input-group">    
                                                     <span class="input-group-addon">0°</span>
-                                                    <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="wallAngle"/>
+                                                    <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control text-center" data-l1key="configuration" data-l2key="wallAngle"/>
                                                     <span class="input-group-addon">360°</span>
                                                 </div>
                                             </div>
@@ -703,8 +703,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 </div>
 
 <?php
-include_file('desktop', 'jquery.validate.min', 'js', 'shutters');
-include_file('desktop', 'additional-methods.min', 'js', 'shutters');
 include_file('desktop', 'jcanvas.min', 'js', 'shutters');
 include_file('desktop', 'shutters', 'js', 'shutters');
 include_file('desktop', 'shutters-events', 'js', 'shutters');
