@@ -189,7 +189,8 @@ class shutters extends eqLogic
                             return;
                         }        
 
-                } elseif ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'closedLimitSwitch') {
+                } 
+                if ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'closedLimitSwitch') {
                     if (empty($this->getConfiguration('closedLimitSwith'))) {
                         throw new \Exception (__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
                         return;
@@ -199,7 +200,8 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Fin de course fermeture] La commande n\'est pas une commande valide!', __FILE__));
                         return;
                     }
-                } elseif ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'openedLimitSwitch') {
+                } 
+                if ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'openedLimitSwitch') {
                     if (empty($this->getConfiguration('openedLimitSwith'))) {
                         throw new \Exception (__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
                         return;
