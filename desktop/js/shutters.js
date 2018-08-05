@@ -112,6 +112,8 @@ function displaySettingPanel(objectType = '') {
  * @param {string} objectType 
  */
 function displaySettings(objectType = '', settingsGroup = '') {
+    console.log(objectType);
+    console.log(settingsGroup);
     if (objectType !== null && settingsGroup !== null) {
         $('fieldset[data-settings-group=' + settingsGroup + ']').css('display', 'none');
         $('fieldset[data-settings-group=' + settingsGroup + '][data-setting-type~=' + objectType + ']').css('display', 'block');
