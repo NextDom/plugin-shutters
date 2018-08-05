@@ -39,17 +39,16 @@ try {
         ajax::success($return);
     } 
     if (init('action') == 'getCmdStatus') {
-        $return = array();
-        $cmdId = str_replace('#','',init('cmdId'));
-        $cmdSatus = cmd::byId($cmdId)->execCmd();
-        log::add('shutters', 'debug', '[$cmdId] => ' . $cmdId);
-        log::add('shutters', 'debug', '[$cmdSatus] => ' . $cmdSatus);
-        $cmdInfo = array(
-            'cmdId' => $cmdId,
-            'cmdStatus' => $cmdSatus,
-        );
-        $return[] = $cmdInfo;
-        ajax::success($return);
+        $cmdId = str_replace('#','',cmd::humanReadableToCmd(init('cmd')));
+        $cmd = cmd::byId($cmdId);
+        if (!is_object($cmd)) {
+            throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd'));
+        }
+        if ($cmd->getType() != 'info') {
+            throw new Exception(__('Commande pas de type [info] : ', __FILE__) . init('cmd'));
+        }
+        $cmdStatus = $cmd->execCmd();
+        ajax::success($cmdStatus);
     }
     
     throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

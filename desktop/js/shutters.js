@@ -219,16 +219,15 @@ function listHeliotropeObject() {
 /**
  * List external info object with configured heliotrope
  */
-function getCmdStatus(cmdId) {
-    console.log('cmdId: ' + cmdId);
+function getCmdStatus(cmd) {
+    console.log('cmdId: ' + cmd);
     $.ajax({
         type: 'POST',
         async: false,
         url: 'plugins/shutters/core/ajax/shutters.ajax.php',
         data: {
             action: 'getCmdStatus',
-            cmdId: cmdId,
-            
+            cmd: cmd
         },
         dataType: 'json',
         global: false,
@@ -240,7 +239,7 @@ function getCmdStatus(cmdId) {
                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 return;
             }
-            if (data.result.length == 0) {
+            if (data.result.length != 0) {
                 console.log('cmdStatus: ' + data.result);
                 return data.result;
             }

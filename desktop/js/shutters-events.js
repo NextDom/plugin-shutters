@@ -15,9 +15,10 @@ function initEvents() {
 
     $('body').off('click','.getCmdStatus').on('click','.getCmdStatus', function () {
         var dataInput = $(this).attr('data-input');
-        var cmdId = $('input[id=' + dataInput + ']').val();
-        getCmdStatus(cmdId);
-        //var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        var dataInputLink = $(this).attr('data-input-link');
+        var cmd = $('input[id=' + dataInputLink + ']').val();
+        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        el.val(getCmdStatus(cmd));
     });
 
     // General events

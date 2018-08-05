@@ -641,7 +641,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <div class="input-group">
                                                         <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwith">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwithStatus" data-input-link="closedLimitSwith">
                                                                 <span class="glyphicon glyphicon-import"></span>
                                                             </a>
                                                         </span>
