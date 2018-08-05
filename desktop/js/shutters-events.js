@@ -66,10 +66,10 @@ function initEvents() {
 
     // Shutter settings events
     $('#positionSensorType').off('change').on('change', function() {
-        displaySettings($(this).val());
+        displaySettings($(this).val(), $(this).attr('data-settings-group'));
     });
     $('#commandType').off('change').on('change', function() {
-        displaySettings($(this).val());
+        displaySettings($(this).val(), $(this).attr('data-settings-group'));
     });
 
 }
