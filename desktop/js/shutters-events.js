@@ -2,7 +2,8 @@
  * Init events
  */
 function initEvents() {
-    
+
+    // List commands
     $('body').off('click','.listCmd').on('click','.listCmd', function () {
         var dataType = $(this).attr('data-type');
         var dataInput = $(this).attr('data-input');
@@ -12,11 +13,18 @@ function initEvents() {
         });
     });
 
+    $('body').off('click','.getCmdStatus').on('click','.getCmdStatus', function () {
+        var dataInput = $(this).attr('data-input');
+        var cmdId = $('input[id=' + dataInput + ']').val();
+        getCmdStatus(cmdId);
+        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+    });
+
     // General events
     $('a.button-lock').on('click',function() {
         lockControl($(this));
     });
-    $('input[type=range]').on("change mousemove", function() {
+    $('input[type=range]').on('change mousemove', function() {
         $(this).parent().next().html($(this).val() + '%');
     });
 

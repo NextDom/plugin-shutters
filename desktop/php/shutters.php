@@ -635,6 +635,19 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Statut état fermé}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwith">
+                                                                <span class="glyphicon glyphicon-import"></span>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </fieldset>
                                         <fieldset id="openedLimitSwitchSettings" class="display-none" data-setting-type="openedClosedLimitSwitch openedLimitSwitch">  
                                             <div class="form-group">

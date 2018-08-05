@@ -110,39 +110,13 @@ function displaySettingPanel(objectType = '') {
 	$(".panel[data-objecttype=" + objectType + "]").css('display', 'block');
 }
 
+/**
+ * Display setting fieldset corresponding to object type
+ * @param {string} objectType 
+ */
 function displaySettings(objectType = '') {
     $('fieldset[data-setting-type]').css('display', 'none');
 	$('fieldset[data-setting-type~=' + objectType + ']').css('display', 'block');
-}
-
-/**
- * List external info object with configured heliotrope
- */
-function listHeliotropeObject() {
-    $.ajax({
-        type: 'POST',
-        async: false,
-        url: 'plugins/shutters/core/ajax/shutters.ajax.php',
-        data: {
-            action: 'listHeliotropeObject',
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) {
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            if (data.result.length == 0) {
-                $('#objectType').children("[value='heliotropeZone']").attr('disabled', true);
-            } else {
-                $('#objectType').children("[value='heliotropeZone']").attr('disabled', false);
-            }
-        }
-    });
 }
 
 /**
@@ -161,6 +135,9 @@ function updatePriorityManagement() {
     }
 }
 
+/**
+ * Update angle range according to angle unit
+ */
 function updateAngleRange() {
     var wallAngle = $('#wallAngle');
     if ($('#wallAngleUnit').val() == 'gon') {
@@ -207,4 +184,66 @@ function initDefaultValues() {
     if ($('#positionSensorType').val() === null) {
         $('#positionSensorType').val('none');
     }
+}
+
+/**
+ * List external info object with configured heliotrope
+ */
+function listHeliotropeObject() {
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: 'plugins/shutters/core/ajax/shutters.ajax.php',
+        data: {
+            action: 'listHeliotropeObject',
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            if (data.result.length == 0) {
+                $('#objectType').children("[value='heliotropeZone']").attr('disabled', true);
+            } else {
+                $('#objectType').children("[value='heliotropeZone']").attr('disabled', false);
+            }
+        }
+    });
+}
+
+/**
+ * List external info object with configured heliotrope
+ */
+function getCmdStatus(cmdId) {
+    console.log('cmdId: ' + cmdId);
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: 'plugins/shutters/core/ajax/shutters.ajax.php',
+        data: {
+            action: 'getCmdStatus',
+            cmdId: cmdId,
+            
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            if (data.result.length == 0) {
+                console.log('cmdStatus: ' + data.result);
+                return data.result;
+            }
+        }
+    });
 }

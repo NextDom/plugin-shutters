@@ -38,6 +38,16 @@ try {
         }
         ajax::success($return);
     } 
+    if (init('action') == 'getCmdStatus') {
+        $return = array();
+        $cmdId = str_replace('#','',init('cmdId'));
+        $cmdSatus = array(
+            'cmdId' => $cmdId,
+            'cmdStatus' => cmd::byId($cmdId)->execCmd(),
+        );
+        $return[] = $cmdSatus;
+        ajax::success($return);
+    }
     
     throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
