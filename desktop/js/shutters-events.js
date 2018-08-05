@@ -13,14 +13,15 @@ function initEvents() {
         });
     });
 
+    // Get status of a command of type 'info'
     $('body').off('click','.getCmdStatus').on('click','.getCmdStatus', function () {
         var dataInput = $(this).attr('data-input');
         var dataInputLink = $(this).attr('data-input-link');
         var dataMessage = $(this).attr('data-message');
         var cmd = $('input[id=' + dataInputLink + ']').val();
+        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         bootbox.confirm('{{Avant de récupérer le statut de la commande }}' + cmd + '{{, êtes vous sûr que }}' + dataMessage, function (result) {
             if (result) {
-                var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
                 el.val(getCmdStatus(cmd));
             }
         }) 
@@ -63,5 +64,12 @@ function initEvents() {
         refreshWallPlan();
     });
 
-    //shutter settings events
+    // Shutter settings events
+    $('#positionSensorType').off('change').on('change', function() {
+        displaySettings($(this).val());
+    });
+    $('#commandType').off('change').on('change', function() {
+        displaySettings($(this).val());
+    });
+
 }

@@ -25,9 +25,6 @@ $(document).ready(function() {
     drawWallPlan();
 
 
-    $('#positionSensorType').off('change').on('change', function() {
-        displaySettings($('#positionSensorType').val());
-    });
 
 
 });
@@ -184,6 +181,10 @@ function initDefaultValues() {
     if ($('#positionSensorType').val() === null) {
         $('#positionSensorType').val('none');
     }
+    if ($('#commandType').val() === null) {
+        $('#commandType').val('analogCmd');
+    }
+
 }
 
 /**

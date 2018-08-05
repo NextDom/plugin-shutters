@@ -641,7 +641,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <div class="input-group">
                                                         <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwithStatus" data-input-link="closedLimitSwith" data-message="le volet est fermé?">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwithStatus" data-input-link="closedLimitSwith" data-message="le volet est fermé complètement?">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
@@ -669,7 +669,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <div class="input-group">
                                                         <input id="openedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwithStatus" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openedLimitSwithStatus" data-input-link="openedLimitSwith" data-message="le volet est ouvert?">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openedLimitSwithStatus" data-input-link="openedLimitSwith" data-message="le volet est ouvert complètement?">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
@@ -683,11 +683,48 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Commandes du volet}}</label>
                                             <div class="col-sm-5">
                                                 <select id="commandType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="commandType">
-                                                    <option value="analogCommand">{{Analogique}}</option>
+                                                    <option value="analogCmd">{{Analogique}}</option>
                                                     <option value="OpenCloseStopCmd">{{Montée / Descente / Stop}}</option>
                                                 </select>
                                             </div>
                                         </div>
+                                        <fieldset id="analogCmdSettings" class="display-none" data-setting-type="analogCmd">  
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Command analogique}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="analogCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="action" data-input="analogCmd">
+                                                                <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Consigne fermeture complète}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">    
+                                                        <span class="input-group-addon">0%</span>
+                                                        <input id="fullClosureSetpoint" type="range" min="0" max="5" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="fullClosureSetpoint"/>
+                                                        <span class="input-group-addon">5%</span>
+                                                    </div>
+                                                    <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
+                                                </div>
+                                            </div>    
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Consigne ouverture complète}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">                                                        
+                                                        <span class="input-group-addon">95%</span>
+                                                        <input id="fullOpeningSetpoint" type="range" min="95" max="100" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="fullOpeningSetpoint"/>
+                                                        <span class="input-group-addon">100%</span>
+                                                    </div>                                                        
+                                                    <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
+                                                </div>
+                                            </div>
+                                        </fielset>
 
                                     </div>
                                 </form>    
