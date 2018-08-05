@@ -725,7 +725,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fielset>
-                                        <fieldset id="OpenCloseStopCmd" class="display-none" data-settings-group="commandType" data-setting-type="OpenCloseStopCmd">  
+                                        <fieldset id="OpenCloseStopCmdSettings" class="display-none" data-settings-group="commandType" data-setting-type="OpenCloseStopCmd">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande fermeture}}</label>
                                                 <div class="col-sm-5">
