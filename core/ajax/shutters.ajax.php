@@ -41,11 +41,14 @@ try {
     if (init('action') == 'getCmdStatus') {
         $return = array();
         $cmdId = str_replace('#','',init('cmdId'));
-        $cmdSatus = array(
+        $cmdSatus = cmd::byId($cmdId)->execCmd();
+        log::add('shutters', 'debug', '[$cmdId] => ' . $cmdId);
+        log::add('shutters', 'debug', '[$cmdSatus] => ' . $cmdSatus);
+        $cmdInfo = array(
             'cmdId' => $cmdId,
-            'cmdStatus' => cmd::byId($cmdId)->execCmd(),
+            'cmdStatus' => $cmdSatus,
         );
-        $return[] = $cmdSatus;
+        $return[] = $cmdInfo;
         ajax::success($return);
     }
     

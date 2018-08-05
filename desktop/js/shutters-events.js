@@ -17,7 +17,7 @@ function initEvents() {
         var dataInput = $(this).attr('data-input');
         var cmdId = $('input[id=' + dataInput + ']').val();
         getCmdStatus(cmdId);
-        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        //var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
     });
 
     // General events
