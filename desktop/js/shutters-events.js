@@ -66,10 +66,14 @@ function initEvents() {
 
     // Shutter settings events
     $('#positionSensorType').off('change').on('change', function() {
-        displaySettings($(this).val(), $(this).attr('data-settings-group'));
+        if ($(this).val() !== null){
+            displaySettings($(this).val(), $(this).attr('data-settings-group'));
+        }
     });
     $('#commandType').off('change').on('change', function() {
-        displaySettings($(this).val(), $(this).attr('data-settings-group'));
+        if ($(this).val() !== null){
+            displaySettings($(this).val(), $(this).attr('data-settings-group'));
+        }
     });
 
 }
