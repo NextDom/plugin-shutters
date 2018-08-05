@@ -87,7 +87,7 @@ function lockControl(lockCmdBtn, init = false) {
         return;
     }
     if (controlToLock.is(':disabled')) {
-        bootbox.confirm("{{Etes-vous sûr de vouloir changer le type d'objet? Cela peut entraîner des dysfonctionnements du système!}}", function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir changer le type d\'objet? Cela peut entraîner des dysfonctionnements du système!}}', function (result) {
             if (result) {
                 controlToLock.prop('disabled', false);
                 lockCommand.removeClass('fa-lock').addClass("fa-unlock");
@@ -217,9 +217,10 @@ function listHeliotropeObject() {
 }
 
 /**
- * List external info object with configured heliotrope
+ * Get status from a command of type 'info'
  */
 function getCmdStatus(cmd) {
+    var status = '';
     console.log('cmdId: ' + cmd);
     $.ajax({
         type: 'POST',
@@ -241,8 +242,9 @@ function getCmdStatus(cmd) {
             }
             if (data.result.length != 0) {
                 console.log('cmdStatus: ' + data.result);
-                return data.result;
+                status = data.result;
             }
         }
     });
+    return status;
 }

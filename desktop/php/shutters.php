@@ -639,10 +639,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Statut état fermé}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus"/>
+                                                        <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus" data-message="le volet est fermé?" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwithStatus" data-input-link="closedLimitSwith">
-                                                                <span class="glyphicon glyphicon-import"></span>
+                                                                <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
                                                     </div>
@@ -658,6 +658,19 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith">
                                                                     <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Statut état ouvert}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="openedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwithStatus" data-message="le volet est ouvert?" disabled/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openedLimitSwithStatus" data-input-link="openedLimitSwith">
+                                                                <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
                                                     </div>

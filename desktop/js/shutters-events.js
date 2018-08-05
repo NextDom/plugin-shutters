@@ -9,16 +9,21 @@ function initEvents() {
         var dataInput = $(this).attr('data-input');
         var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
-            el.value(result.human);
+            el.val(result.human);
         });
     });
 
     $('body').off('click','.getCmdStatus').on('click','.getCmdStatus', function () {
         var dataInput = $(this).attr('data-input');
         var dataInputLink = $(this).attr('data-input-link');
+        var dataMessage = $(this).attr('data-message');
         var cmd = $('input[id=' + dataInputLink + ']').val();
-        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
-        el.val(getCmdStatus(cmd));
+        bootbox.confirm('{{Avant de récupérer le statut de la commande}}' + cmd + '{{, êtes vous sûr que }}' + dataMessage, function (result) {
+            if (result) {
+                var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+                el.val(getCmdStatus(cmd));
+            }
+        }) 
     });
 
     // General events
