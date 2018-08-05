@@ -690,7 +690,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                         <fieldset id="analogCmdSettings" class="display-none" data-settings-group="commandType" data-setting-type="analogCmd">  
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Command analogique}}</label>
+                                                <label class="col-sm-3 control-label">{{Commande analogique}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
                                                         <input id="analogCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogCmd" placeholder="{{Sélectionner une commande}}"/>
@@ -722,6 +722,47 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         <span class="input-group-addon">100%</span>
                                                     </div>                                                        
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
+                                                </div>
+                                            </div>
+                                        </fielset>
+                                        <fieldset id="DUSCmd" class="display-none" data-settings-group="commandType" data-setting-type="DUSCmd">  
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Commande fermeture}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="closingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closingCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="action" data-input="closingCmd">
+                                                                <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Commande ouverture}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="openingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openingCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="action" data-input="openingCmd">
+                                                                <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Commande descente}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="stopCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="stopCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="action" data-input="stopCmd">
+                                                                <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fielset>
