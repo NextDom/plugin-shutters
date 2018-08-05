@@ -639,9 +639,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Statut état fermé}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus" data-message="le volet est fermé?" disabled/>
+                                                        <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwithStatus" data-input-link="closedLimitSwith">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwithStatus" data-input-link="closedLimitSwith" data-message="le volet est fermé?">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
@@ -667,9 +667,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Statut état ouvert}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="openedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwithStatus" data-message="le volet est ouvert?" disabled/>
+                                                        <input id="openedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwithStatus" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openedLimitSwithStatus" data-input-link="openedLimitSwith">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openedLimitSwithStatus" data-input-link="openedLimitSwith" data-message="le volet est ouvert?">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
