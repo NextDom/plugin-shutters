@@ -703,7 +703,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Consigne fermeture complète}}</label>
+                                                <label class="col-sm-3 control-label">{{Consigne fermeture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">    
                                                         <span class="input-group-addon">0%</span>
@@ -714,7 +714,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>    
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Consigne ouverture complète}}</label>
+                                                <label class="col-sm-3 control-label">{{Consigne ouverture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">                                                        
                                                         <span class="input-group-addon">95%</span>
@@ -738,6 +738,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <a class="btn btn-default cursor execCmd" data-input-link="closingCmd">
+                                                    <i class="fa fa-rss"></i> Tester                                                       
+                                                </a>                                                               
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande ouverture}}</label>
@@ -751,6 +754,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <a class="btn btn-default cursor execCmd" data-input-link="openingCmd">
+                                                    <i class="fa fa-rss"></i> Tester                                                       
+                                                </a>                                                               
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande stop}}</label>
@@ -764,9 +770,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <a class="btn btn-default cursor execCmd" data-input-link="stopCmd">
+                                                    <i class="fa fa-rss"></i> Tester                                                       
+                                                </a>                                                               
                                             </div>
                                         </fieldset>
-
                                     </div>
                                 </form>    
                             </div>

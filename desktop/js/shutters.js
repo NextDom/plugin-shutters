@@ -32,7 +32,6 @@ $(document).ready(function() {
 function printEqLogic(_eqLogic) {
 
     $(document).ready(function() {
-        //$(".collapse[data-paneltype='generalSettings']").collapse('show');
         console.log('printEqLogic');
 
         initDefaultValues();
