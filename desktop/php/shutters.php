@@ -676,7 +676,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     </div>
                                                 </div>
                                             </div>
-                                        </fielset>
+                                        </fieldset>
                                     </div>   
                                     <div class="col-sm-6">               
                                         <div class="form-group">
@@ -724,7 +724,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
                                             </div>
-                                        </fielset>
+                                        </fieldset>
                                         <fieldset id="OpenCloseStopCmdSettings" class="display-none" data-settings-group="commandType" data-setting-type="OpenCloseStopCmd">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande fermeture}}</label>
@@ -753,7 +753,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Commande descente}}</label>
+                                                <label class="col-sm-3 control-label">{{Commande stop}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
                                                         <input id="stopCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="stopCmd" placeholder="{{Sélectionner une commande}}"/>
@@ -765,7 +765,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     </div>
                                                 </div>
                                             </div>
-                                        </fielset>
+                                        </fieldset>
 
                                     </div>
                                 </form>    
