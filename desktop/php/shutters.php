@@ -564,41 +564,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <form class="form-horizontal">
                                     <div class="col-sm-6">               
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Type d'ouvrant}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="openingType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="openingType">
-                                                    <option value="window">{{Fenêtre}}</option>
-                                                    <option value="door">{{Porte}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Information ouvrant ouvert}}</label>
-                                                <div class="col-sm-5">
-                                                    <div class="input-group">
-                                                        <input id="openOpeningInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfo" placeholder="{{Sélectionner une commande}}"/>
-                                                        <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openOpeningInfo">
-                                                                    <i class="fa fa-list-alt"></i>
-                                                            </a>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Statut ouvrant ouvert}}</label>
-                                                <div class="col-sm-5">
-                                                    <div class="input-group">
-                                                        <input id="openOpeningInfoStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoStatus" disabled/>
-                                                        <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openOpeningInfoStatus" data-input-link="openOpeningInfo" data-message="l\'ouvrant est ouvert?">
-                                                                <span class="fa fa-check"></span>
-                                                            </a>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Information de position}}</label>
                                             <div class="col-sm-5">
                                                 <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType" data-settings-group="positionSensorType">
@@ -704,6 +669,49 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             </div>
                                         </fieldset>
                                     </div>   
+                                    <div class="col-sm-6">               
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Type d'ouvrant}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="openingType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="openingType">
+                                                    <option value="window">{{Fenêtre}}</option>
+                                                    <option value="door">{{Porte}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Information ouvrant ouvert}}</label>
+                                            <div class="col-sm-5">
+                                                <div class="input-group">
+                                                    <input id="openOpeningInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfo" placeholder="{{Sélectionner une commande}}"/>
+                                                    <span class="input-group-btn">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="openOpeningInfo">
+                                                                <i class="fa fa-list-alt"></i>
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Statut ouvrant ouvert}}</label>
+                                            <div class="col-sm-5">
+                                                <div class="input-group">
+                                                    <input id="openOpeningInfoStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoStatus" disabled/>
+                                                    <span class="input-group-btn">
+                                                        <a class="btn btn-default cursor getCmdStatus" data-input="openOpeningInfoStatus" data-input-link="openOpeningInfo" data-message="l\'ouvrant est ouvert?">
+                                                            <span class="fa fa-check"></span>
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>    
+                            </div>
+                        </div>
+                        <div id="shutterCmdSettings" class="panel-collapse collapse">
+                            <div class="panel-body"> 
+                                <form class="form-horizontal">
                                     <div class="col-sm-6">               
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Commandes du volet}}</label>

@@ -42,7 +42,10 @@ function initEvents() {
 
 
     // External info settings events
-    $('#absenceInformation, #fireDetection').off('change').on('change', function() {
+    $('#absenceInformation').off('change').on('change', function() {
+        updatePriorityManagement();
+    });
+    $('#fireDetection').off('change').on('change', function() {
         updatePriorityManagement();
     });
 
