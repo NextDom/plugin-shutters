@@ -42,17 +42,30 @@ try {
         $cmdId = str_replace('#','',cmd::humanReadableToCmd(init('cmd')));
         $cmd = cmd::byId($cmdId);
         if (!is_object($cmd)) {
-            throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd'));
+            throw new Exception(__('La commande sélectionnée est inconnue : ', __FILE__) . init('cmd'));
         }
         if ($cmd->getType() != 'info') {
-            throw new Exception(__('Commande pas de type [info] : ', __FILE__) . init('cmd'));
+            throw new Exception(__('La commande sélectionnée n\'est pas de type [info] : ', __FILE__) . init('cmd'));
         }
         $cmdStatus = $cmd->execCmd();
         ajax::success($cmdStatus);
     }
+
+    if (init('action') == 'execCmd') {
+        $cmdId = str_replace('#','',cmd::humanReadableToCmd(init('cmd')));
+        $cmd = cmd::byId($cmdId);
+        if (!is_object($cmd)) {
+            throw new Exception(__('La commande sélectionnée est inconnue : ', __FILE__) . init('cmd'));
+        }
+        if ($cmd->getType() != 'action') {
+            throw new Exception(__('La commande sélectionnée n\'est pas de type [action] : ', __FILE__) . init('cmd'));
+        }
+        $cmd->execute(null);
+        ajax::success(true);
+    }
     
     throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
+    /*     * *********Catch exception*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+    ajax::error(displayException($e), $e->getCode());
 }

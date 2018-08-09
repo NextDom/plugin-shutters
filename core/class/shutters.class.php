@@ -95,35 +95,35 @@ class shutters extends eqLogic
             if (!empty($this->getConfiguration('absenceInformation'))) {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInformation')));
                 if (!is_object($cmd)) {
-                    throw new \Exception (__('[Information d\'absence] La commande n\'est pas une commande valide!', __FILE__));
+                    throw new \Exception (__('[Information d\'absence] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                     return;
                 }
             }
             if (!empty($this->getConfiguration('presenceInformation'))) {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('presenceInformation')));
                 if (!is_object($cmd)) {
-                    throw new \Exception (__('[Information de présence] La commande n\'est pas une commande valide!', __FILE__));
+                    throw new \Exception (__('[Information de présence] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                     return;
                 }
             }
             if (!empty($this->getConfiguration('fireDetection'))) {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('fireDetection')));
                 if (!is_object($cmd)) {
-                    throw new \Exception (__('[Détection incendie] La commande n\'est pas une commande valide!', __FILE__));
+                    throw new \Exception (__('[Détection incendie] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                     return;
                 }
             }
             if (!empty($this->getConfiguration('outdoorLuninosity'))) {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorLuninosity')));
                 if (!is_object($cmd)) {
-                    throw new \Exception (__('[Luninosité extérieure] La commande n\'est pas une commande valide!', __FILE__));
+                    throw new \Exception (__('[Luninosité extérieure] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                     return;
                 }
             }
             if (!empty($this->getConfiguration('outdoorTemperature'))) {
                 $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorTemperature')));
                 if (!is_object($cmd)) {
-                    throw new \Exception (__('[Température extérieure] La commande n\'est pas une commande valide!', __FILE__));
+                    throw new \Exception (__('[Température extérieure] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                     return;
                 }
             }
@@ -167,6 +167,13 @@ class shutters extends eqLogic
                     throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                     return;
                 }
+                if (!empty($this->getConfiguration('openOpeningInfo'))) {
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('openOpeningInfo')));
+                    if (!is_object($cmd)) {
+                        throw new \Exception (__('[Information ouvrant ouvert] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
+                        return;
+                    }
+                }
                 $positionSensorType = $this->getConfiguration('positionSensorType');
                 if ($positionSensorType == 'analogPosition') {
                         if (empty($this->getConfiguration('shutterAnalogPosition'))) {
@@ -175,7 +182,7 @@ class shutters extends eqLogic
                         } 
                         $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('shutterAnalogPosition')));
                         if (!is_object($cmd)) {
-                            throw new \Exception (__('[Retour de position du volet] La commande n\'est pas une commande valide!', __FILE__));
+                            throw new \Exception (__('[Retour de position du volet] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                             return;
                         }
                         $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
@@ -190,25 +197,25 @@ class shutters extends eqLogic
                         }        
 
                 } 
-                if ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'closedLimitSwitch') {
-                    if (empty($this->getConfiguration('closedLimitSwith'))) {
+                if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'closedSensor') {
+                    if (empty($this->getConfiguration('closedSensor'))) {
                         throw new \Exception (__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
                         return;
                     }        
-                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('closedLimitSwith')));
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('closedSensor')));
                     if (!is_object($cmd)) {
-                        throw new \Exception (__('[Fin de course fermeture] La commande n\'est pas une commande valide!', __FILE__));
+                        throw new \Exception (__('[Fin de course fermeture] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                         return;
                     }
                 } 
-                if ($positionSensorType == 'openedClosedLimitSwitch' || $positionSensorType == 'openedLimitSwitch') {
-                    if (empty($this->getConfiguration('openedLimitSwith'))) {
+                if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'openedSensor') {
+                    if (empty($this->getConfiguration('openedSensor'))) {
                         throw new \Exception (__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
                         return;
                     }        
-                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('openedLimitSwith')));
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('openedSensor')));
                     if (!is_object($cmd)) {
-                        throw new \Exception (__('[Fin de course ouverture] La commande n\'est pas une commande valide!', __FILE__));
+                        throw new \Exception (__('[Fin de course ouverture] La commande sélectionnée n\'est pas une commande existante!', __FILE__));
                         return;
                     }
                 }

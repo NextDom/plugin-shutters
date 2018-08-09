@@ -20,13 +20,8 @@ $(document).ready(function() {
 
     initEvents();
 
-    displaySettings($('#positionSensorType').val());
     drawHeliotropePlan();
     drawWallPlan();
-
-
-
-
 });
 
 function printEqLogic(_eqLogic) {
@@ -120,7 +115,7 @@ function displaySettings(objectType = '', settingsGroup = '') {
 }
 
 /**
- * selection of priority management (fire detection / absence)
+ * Selection of priority management (fire detection / absence)
  */
 function updatePriorityManagement() {
     var priorityManagement = $('#priorityManagement');

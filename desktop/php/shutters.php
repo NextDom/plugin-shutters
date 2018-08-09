@@ -556,7 +556,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Paramètres retour de position / commandes}} </a>
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Informations de position du volet - type d'ouverture}} </a>
                             </h4>
                         </div>
                         <div id="shutterSettings" class="panel-collapse collapse">
@@ -573,14 +573,40 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Retour de position}}</label>
+                                                <label class="col-sm-3 control-label">{{Information ouvrant ouvert}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="openOpeningInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfo" placeholder="{{Sélectionner une commande}}"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openOpeningInfo">
+                                                                    <i class="fa fa-list-alt"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Statut ouvrant ouvert}}</label>
+                                                <div class="col-sm-5">
+                                                    <div class="input-group">
+                                                        <input id="openOpeningInfoStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoStatus" disabled/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openOpeningInfoStatus" data-input-link="openOpeningInfo" data-message="l\'ouvrant est ouvert?">
+                                                                <span class="fa fa-check"></span>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Information de position}}</label>
                                             <div class="col-sm-5">
                                                 <select id="positionSensorType" type="text" class="eqLogicAttr cursor form-control" data-l1key="configuration" data-l2key="positionSensorType" data-settings-group="positionSensorType">
-                                                    <option value="none">{{Sans}}</option>
+                                                    <option value="none">{{Aucune}}</option>
                                                     <option value="analogPosition">{{Analogique}}</option>
-                                                    <option value="openedClosedLimitSwitch">{{Fins de course ouverture et fermeture}}</option>
-                                                    <option value="openedLimitSwitch">{{Fin de course ouverture}}</option>
-                                                    <option value="closedLimitSwitch">{{Fin de course fermeture}}</option>
+                                                    <option value="openedClosedSensor">{{Ouverture et fermeture}}</option>
+                                                    <option value="openedSensor">{{Ouverture}}</option>
+                                                    <option value="closedSensor">{{Fermeture}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -621,14 +647,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="closedLimitSwitchSettings" class="display-none" data-settings-group="positionSensorType" data-setting-type="openedClosedLimitSwitch closedLimitSwitch">  
+                                        <fieldset id="closedSensorSettings" class="display-none" data-settings-group="positionSensorType" data-setting-type="openedClosedSensor closedSensor">  
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Fin de course fermeture}}</label>
+                                                <label class="col-sm-3 control-label">{{Détection volet fermé}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="closedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwith" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="closedSensor" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedSensor" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedLimitSwith">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="closedSensor">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -636,12 +662,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Statut état fermé}}</label>
+                                                <label class="col-sm-3 control-label">{{Statut volet fermé}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="closedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedLimitSwithStatus" disabled/>
+                                                        <input id="closedSensorStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedSensorStatus" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedLimitSwithStatus" data-input-link="closedLimitSwith" data-message="le volet est fermé complètement?">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="closedSensorStatus" data-input-link="closedSensor" data-message="le volet est fermé complètement?">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
@@ -649,14 +675,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="openedLimitSwitchSettings" class="display-none" data-settings-group="positionSensorType" data-setting-type="openedClosedLimitSwitch openedLimitSwitch">  
+                                        <fieldset id="openedSensorSettings" class="display-none" data-settings-group="positionSensorType" data-setting-type="openedClosedSensor openedSensor">  
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Fin de course ouverture}}</label>
+                                                <label class="col-sm-3 control-label">{{Détection volet}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="openedLimitSwith" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwith" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="openedSensor" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedSensor" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedLimitSwith">
+                                                            <a class="btn btn-default cursor listCmd" data-type="info" data-input="openedSensor">
                                                                     <i class="fa fa-list-alt"></i>
                                                             </a>
                                                         </span>
@@ -664,12 +690,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Statut état ouvert}}</label>
+                                                <label class="col-sm-3 control-label">{{Statut volet ouvert}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="openedLimitSwithStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedLimitSwithStatus" disabled/>
+                                                        <input id="openedSensorStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedSensorStatus" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openedLimitSwithStatus" data-input-link="openedLimitSwith" data-message="le volet est ouvert complètement?">
+                                                            <a class="btn btn-default cursor getCmdStatus" data-input="openedSensorStatus" data-input-link="openedSensor" data-message="le volet est ouvert complètement?">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
                                                         </span>
