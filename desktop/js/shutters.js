@@ -119,9 +119,9 @@ function displaySettings(objectType = '', settingsGroup = '') {
  */
 function updatePriorityManagement() {
     var priorityManagement = $('#priorityManagement');
-    if ($('#absenceInformation').val() != '' && $('#fireDetection').val() != '') {
+    if ($('#absenceInfo').val() != '' && $('#fireDetection').val() != '') {
         priorityManagement.prop('disabled', false);
-        if (priorityManagement.val() == null) {
+        if (priorityManagement.val() === null) {
             priorityManagement.val('fireManagement');
         }
     } else {

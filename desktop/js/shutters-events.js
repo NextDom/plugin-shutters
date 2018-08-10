@@ -9,7 +9,7 @@ function initEvents() {
         var dataInput = $(this).attr('data-input');
         var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
-            el.val(result.human);
+            el.val(result.human).event('change');
         });
     });
 
@@ -42,7 +42,7 @@ function initEvents() {
 
 
     // External info settings events
-    $('#absenceInformation').off('change').on('change', function() {
+    $('#absenceInfo').off('change').on('change', function() {
         updatePriorityManagement();
     });
     $('#fireDetection').off('change').on('change', function() {

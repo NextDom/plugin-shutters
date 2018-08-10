@@ -342,13 +342,28 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <form class="form-horizontal">
                                     <div class="col-sm-6"> 
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Information d'absence}}</label>
+                                            <label class="col-sm-3 control-label" for="absenceInfo">{{Information d'absence}}</label>
                                             <div class="col-sm-5">
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default cursor delCmd" data-type="info" data-input="absenceInfo">
+                                                        <i class="fa fa-minus-circle"></i>
+                                                    </a>
+                                                </span>
                                                 <div class="input-group">
-                                                    <input id="absenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInformation" placeholder="{{Sélectionner une commande}}"/>
+                                                    <input id="absenceInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfo" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInformation">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInfo">
                                                             <i class="fa fa-list-alt"></i>
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div id="absenceInfoStatus" class="input-group">
+                                                    <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoStatus" placeholder="{{Valider le statut}}" disabled/>
+                                                    <span class="input-group-btn">
+                                                        <a class="btn btn-default cursor getCmdStatus" data-input="absenceInfoStatus" data-input-link="absenceInfo" data-message="l\'absence est activée?">
+                                                            <span class="fa fa-check"></span>
                                                         </a>
                                                     </span>
                                                 </div>
@@ -398,12 +413,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Luninosité extérieure}}</label>
+                                            <label class="col-sm-3 control-label">{{Luminosité extérieure}}</label>
                                             <div class="col-sm-5">
                                                 <div class="input-group">
-                                                    <input id="outdoorLuninosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuninosity" placeholder="{{Sélectionner une commande}}"/>
+                                                    <input id="outdoorLuminosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuminosity" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuninosity">
+                                                        <a class="btn btn-default cursor listCmd" data-type="info" data-input="outdoorLuminosity">
                                                             <i class="fa fa-list-alt"></i>
                                                         </a>
                                                     </span>
