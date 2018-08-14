@@ -29,6 +29,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 ?>
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <div class="cursor-tooltip"></div>
 
@@ -232,7 +233,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             </li>
             <li role="presentation" class="active">
                 <a href="#eqLogicTab" aria-controls="home" role="tab" data-toggle="tab">
-                    <i class="fa fa-tachometer"></i> {{Equipement}}</a>
+                    <i class="fa fa-microchip"></i> {{Equipement}}</a>
             </li>
             <li role="presentation">
                 <a href="#settingsTab" aria-controls="profile" role="tab" data-toggle="tab">
