@@ -231,26 +231,26 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </a>
             </li>
             <li role="presentation" class="active">
-                <a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab">
+                <a href="#eqLogicTab" aria-controls="home" role="tab" data-toggle="tab">
                     <i class="fa fa-tachometer"></i> {{Equipement}}</a>
             </li>
             <li role="presentation">
-                <a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab">
-                    <i class="fa fa-list-alt"></i> {{Commandes}}</a>
+                <a href="#settingsTab" aria-controls="profile" role="tab" data-toggle="tab">
+                    <i class="fa fa-list-alt"></i> {{Paramètres}}</a>
             </li>
             <li role="presentation">
-                <a href="#avatartab" aria-controls="avatar" role="tab" data-toggle="tab">
-                    <i class="fa fa-list-alt"></i> {{Avatar}}</a>
+                <a href="#commandTab" aria-controls="avatar" role="tab" data-toggle="tab">
+                    <i class="fa fa-list-alt"></i> {{Commandes}}</a>
             </li>
         </ul>
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-            <div role="tabpanel" class="tab-pane active" id="eqlogictab">
+            <div role="tabpanel" class="tab-pane active" id="eqLogicTab">
                 <br/>
                 <div id="objectSettings" class="panel-group" >
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Général}} </a>
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Paramètres généraux}} </a>
                             </h4>
                         </div>
                         <div id="generalSettings" class="panel-collapse collapse in" data-paneltype="generalSettings">
@@ -331,6 +331,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settingsTab">
+            <br/>
+                <div id="objectSettings" class="panel-group" >
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="externalInfo">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -344,12 +349,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label" for="absenceInfo">{{Information d'absence}}</label>
                                             <div class="col-sm-5">
-                                                <span class="input-group-btn">
-                                                    <a class="btn btn-default cursor delCmd" data-type="info" data-input="absenceInfo">
-                                                        <i class="fa fa-minus-circle"></i>
-                                                    </a>
-                                                </span>
                                                 <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <a class="btn btn-default cursor delCmd" data-type="info" data-input="absenceInfo">
+                                                            <i class="fa fa-minus-circle"></i>
+                                                        </a>
+                                                    </span>
                                                     <input id="absenceInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfo" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
                                                         <a class="btn btn-default cursor listCmd" data-type="info" data-input="absenceInfo">
@@ -832,32 +837,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="commandtab">
-                <table id="table_cmd" class="table table-bordered table-condensed">
-                    <a class="btn btn-success btn-sm cmdAction pull-right bt_addlocate" data-action="add" style="margin-top:5px;">
-                        <i class="fa fa-plus-circle"></i> {{commande}}</a>
-                    <br/>
-                    <br/>
-                    <thead>
-                        <tr>
-                            <th>{{Nom}}</th>
-                            <th>{{Type}}</th>
-                            <th>{{Recherche adresse}}</th>
-                            <th>{{Type de loc}}</th>
-                            <th>{{Coordonnées GPS}}</th>
-                            <th>{{Parametres}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="avatartab">
-                <div id="collapseTwo" class="panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body" id="bsImagesPanel">
-                        <div class="col-sm-12" id="bsImagesView" style="min-height: 50px"></div>
-                    </div>
-                </div>
+            <div role="tabpanel" class="tab-pane" id="commandTab">
             </div>
         </div>
     </div>
