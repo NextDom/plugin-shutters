@@ -299,13 +299,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <select id="objectType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="objectType">
-                                                <option value="externalInfo">{{Informations externes générales}}</option>
-                                                <option value="heliotropeZone">{{Zone héliotrope}}</option>
-                                                <option value="shuttersGroup">{{Groupe de volets}}</option>
-                                                <option value="shutter">{{Volet}}</option>
+                                                    <option value="externalInfo">{{Informations externes générales}}</option>
+                                                    <option value="heliotropeZone">{{Zone héliotrope}}</option>
+                                                    <option value="shuttersGroup">{{Groupe de volets}}</option>
+                                                    <option value="shutter">{{Volet}}</option>
                                                 </select>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default btn-lock cursor">
+                                                    <a class="btn btn-default btn-lock cursor" data-input="objectType">
                                                         <i class="fa fa-unlock"></i>
                                                     </a>
                                                 </span>

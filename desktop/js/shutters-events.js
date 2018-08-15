@@ -5,8 +5,8 @@ function initEvents() {
 
     // List commands
     $('body').off('click','.listCmd').on('click','.listCmd', function () {
-        var dataType = $(this).attr('data-type');
         var dataInput = $(this).attr('data-input');
+        var dataType = $(this).attr('data-type');
         var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
             el.val(result.human).event('change');
@@ -37,12 +37,14 @@ function initEvents() {
         displaySettingPanel($(this).val());
     });
     $('.btn-lock').off('click').on('click',function() {
-        var element = $(this).closest('.input-group').find('[data-l1key=configuration][data-l2key=objectType]');
-        if (element.is(':disabled')) {
+        var dataInput = $(this).attr('data-input');
+        var element = $(this).closest('.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
+
+        if (dataInput =='objectType' && element.is(':disabled')) {
             bootbox.confirm('{{Etes-vous sûr de vouloir changer le type d\'objet? Cela peut entraîner des dysfonctionnements du plugin!}}', function (result) {
                 if (result) {
                     element.prop('disabled', false);
-                    $(this).removeClass('fa-lock').addClass("fa-unlock");
+                    $(this).children('.fa-unlock, .fa-lock').removeClass('fa-lock').addClass("fa-unlock");
                     return;
                 }
             }) 

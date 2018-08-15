@@ -30,9 +30,11 @@ function printEqLogic(_eqLogic) {
         console.log('printEqLogic');
 
         initDefaultValues();
+
+        disableElement($('#objectType'));
+
         $('input[type=range]').trigger('change');
         listHeliotropeObject();
-        lockControl($('#lockObjectTypeSelection'), true);
         displaySettingPanel($('#objectType').val());
 
         updatePriorityManagement();
@@ -59,37 +61,18 @@ function displayTooltip(message = '') {
 }
 
 /**
- * Lock or unlock an object with a toggle button
- * @param {object} lockCmdBtn command button for lock / unlock
- * @param {boolean} init lock object if object as a value
-*/
-function lockControl(lockCmdBtn, init = false) {
-    var controlToLock = $(lockCmdBtn).parent().find('.control-lockable');
-    var objectType = controlToLock.val();
-    var lockCommand = $(lockCmdBtn).children(":first");
-    if (objectType === null) {
-        controlToLock.prop('disabled', false);
-        lockCommand.removeClass('fa-lock').addClass("fa-unlock");
-        return;
-    }
-    if (init == true &&  objectType !== null) {
-        controlToLock.prop('disabled', true);
-        lockCommand.removeClass('fa-unlock').addClass("fa-lock");
-        return;
-    }
-    if (controlToLock.is(':disabled')) {
-        bootbox.confirm('{{Etes-vous sûr de vouloir changer le type d\'objet? Cela peut entraîner des dysfonctionnements du système!}}', function (result) {
-            if (result) {
-                controlToLock.prop('disabled', false);
-                lockCommand.removeClass('fa-lock').addClass("fa-unlock");
-                return;
-            }
-        }) 
+ * Disable an element if it's value different from null or ''
+ * @param {element} element element to disable
+ */
+function disableElement(element) {
+    if (element.val() !== null && element.val() !== '') {
+        $(element).attr('disabled', true);
+        element.closest('.input-group').find('a.btn_lock').children('.fa-unlock, .fa-lock').removeClass('fa-lock').addClass("fa-unlock");
     } else {
-        controlToLock.prop('disabled', true);
-        lockCommand.removeClass('fa-unlock').addClass("fa-lock");
-        return;
+        $(element).attr('disabled', false);
+        element.closest('.input-group').find('a.btn_lock').children('.fa-unlock, .fa-lock').removeClass('fa-unlock').addClass("fa-lock");
     }
+ 
 }  
 
 /**
