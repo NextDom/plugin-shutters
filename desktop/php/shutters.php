@@ -247,10 +247,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
             <div role="tabpanel" class="tab-pane active" id="eqLogicTab">
                 <br/>
-                <div id="objectSettings" class="panel-group" >
+                <div class="panel-group" >
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>{{Définition}}</h4>
+                            <h4 class="panel-title">{{Définition}}</h4>
                         </div>
                         <div class="panel-body"> 
                             <form class="form-horizontal">
@@ -339,139 +339,132 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <div class="alert alert-info">
                     <strong>Info!</strong> {{Vous devez créer un nouvel équipement avant de pouvoir le paramétrer.}}
                 </div>
-                <div id="objectSettings" class="panel-group" >
-                    <div class="panel panel-default">
-
-                    </div>
+                <div id="objectSettings" class="panel-group display-none" data-paneltype="setting">
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="externalInfo">
                         <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#externalInfoSettings"> {{Informations générales externes}} </a>
-                            </h4>
+                            <h4 class="panel-title">{{Informations générales externes}}</h4>
                         </div>
-                        <div id="externalInfoSettings" class="panel-collapse collapse">
-                            <div class="panel-body"> 
-                                <form class="form-horizontal">
-                                    <div class="col-sm-6"> 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="absenceInfo">{{Information d'absence}}</label>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-default delCmd cursor" data-type="info" data-input="absenceInfo">
-                                                            <i class="fa fa-minus-circle"></i>
-                                                        </a>
-                                                    </span>
-                                                    <input id="absenceInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfo" placeholder="{{Sélectionner une commande}}"/>
-                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-default listCmd cursor" data-type="info" data-input="absenceInfo">
-                                                            <i class="fa fa-list-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div id="absenceInfoStatus" class="input-group">
-                                                    <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoStatus" placeholder="{{Valider le statut}}" disabled/>
-                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-default getCmdStatus cursor" data-input="absenceInfoStatus" data-input-link="absenceInfo" data-message="l\'absence est activée?">
-                                                            <span class="fa fa-check"></span>
-                                                        </a>
-                                                    </span>
-                                                </div>
+                        <div class="panel-body"> 
+                            <form class="form-horizontal">
+                                <div class="col-sm-6"> 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="absenceInfo">{{Information d'absence}}</label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default delCmd cursor" data-type="info" data-input="absenceInfo">
+                                                        <i class="fa fa-minus-circle"></i>
+                                                    </a>
+                                                </span>
+                                                <input id="absenceInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfo" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="absenceInfo">
+                                                        <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Information de présence}}</label>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">
-                                                    <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation" placeholder="{{Sélectionner une commande}}"/>
-                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-default listCmd cursor" data-type="info" data-input="presenceInformation">
-                                                            <i class="fa fa-list-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                </div>
+                                        <div class="col-sm-3">
+                                            <div id="absenceInfoStatus" class="input-group">
+                                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoStatus" placeholder="{{Valider le statut}}" disabled/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default getCmdStatus cursor" data-input="absenceInfoStatus" data-input-link="absenceInfo" data-message="l\'absence est activée?">
+                                                        <span class="fa fa-check"></span>
+                                                    </a>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Détection incendie}}</label>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">
-                                                    <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection" placeholder="{{Sélectionner une commande}}"/>
-                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-default listCmd" data-type="info" data-input="fireDetection">
-                                                            <i class="fa fa-list-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Information de présence}}</label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="presenceInformation">
+                                                        <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="heliotrope" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotrope">
-                                                    <option value="none">{{Non affecté}}</option>
-                                                    <?php
-                                                    if (class_exists('heliotropeCmd')) {
-                                                        foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-                                                            echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
-                                                        }
-                                                    } else {
-                                                        echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Détection incendie}}</label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd" data-type="info" data-input="fireDetection">
+                                                        <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="heliotrope" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotrope">
+                                                <option value="none">{{Non affecté}}</option>
+                                                <?php
+                                                if (class_exists('heliotropeCmd')) {
+                                                    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+                                                        echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
                                                     }
-                                                    ?>
-                                                </select>
-                                            </div>
+                                                } else {
+                                                    echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Luminosité extérieure}}</label>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">
-                                                    <input id="outdoorLuminosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuminosity" placeholder="{{Sélectionner une commande}}"/>
-                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorLuminosity">
-                                                            <i class="fa fa-list-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Température extérieure}}</label>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">
-                                                    <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature" placeholder="{{Sélectionner une commande}}"/>
-                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorTemperature">
-                                                            <i class="fa fa-list-alt"></i>
-                                                        </a>
-                                                    </span>
-                                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Luminosité extérieure}}</label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <input id="outdoorLuminosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuminosity" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorLuminosity">
+                                                        <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6"> 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Gestion prioritaire}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="priorityManagement" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="priorityManagement">
-                                                    <option value="fireManagement">{{Gestion incendie}}</option>
-                                                    <option value="absenceManagement">{{Gestion absence}}</option>
-                                                </select>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Température extérieure}}</label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorTemperature">
+                                                        <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="panel panel-default col-sm-8">
-                                            <div class="panel-body">
-                                                <b>{{Gestion prioritaire}}</b>
-                                                <li>{{La gestion prioritaire n'est paramétrable que si les informations d'absence et de détection incendie sont renseignées.}}</li>
-                                                <li>{{Absence: les volets se ferment sans tenir compte des autres conditions.}}</li>
-                                                <li>{{Incendie: les volets s'ouvrent sans tenir compte des autres conditions.}}</li>
-                                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6"> 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Gestion prioritaire}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="priorityManagement" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="priorityManagement">
+                                                <option value="fireManagement">{{Gestion incendie}}</option>
+                                                <option value="absenceManagement">{{Gestion absence}}</option>
+                                            </select>
                                         </div>
                                     </div>
-                                </form>    
-                            </div>
+                                    <div class="panel panel-default col-sm-8">
+                                        <div class="panel-body">
+                                            <b>{{Gestion prioritaire}}</b>
+                                            <li>{{La gestion prioritaire n'est paramétrable que si les informations d'absence et de détection incendie sont renseignées.}}</li>
+                                            <li>{{Absence: les volets se ferment sans tenir compte des autres conditions.}}</li>
+                                            <li>{{Incendie: les volets s'ouvrent sans tenir compte des autres conditions.}}</li>
+                                            </div>
+                                    </div>
+                                </div>
+                            </form>    
                         </div>
                     </div>
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="heliotropeZone">
