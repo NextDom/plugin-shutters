@@ -249,12 +249,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <br/>
                 <div id="objectSettings" class="panel-group" >
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#generalSettings"> {{Paramètres généraux}} </a>
-                            </h4>
-                        </div>
-                        <div id="generalSettings" class="panel-collapse collapse in" data-paneltype="generalSettings">
+                        <div class="panel-heading">{{Paramètres généraux}}><div>
                             <div class="panel-body"> 
                                 <form class="form-horizontal">
                                     <div class="col-sm-6">    
@@ -331,7 +326,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </form>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="settingsTab">
