@@ -37,14 +37,15 @@ function initEvents() {
         displaySettingPanel($(this).val());
     });
     $('.btn-lock').off('click').on('click',function() {
-        var dataInput = $(this).attr('data-input');
-        var element = $(this).closest('.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        var lockBtn = $(this);
+        var dataInput = lockBtn.attr('data-input');
+        var element = lockBtn.closest('.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
 
         if (dataInput =='objectType' && element.is(':disabled')) {
             bootbox.confirm('{{Etes-vous sûr de vouloir changer le type d\'objet? Cela peut entraîner des dysfonctionnements du plugin!}}', function (result) {
                 if (result) {
                     element.prop('disabled', false);
-                    $(this).children('.fa-unlock, .fa-lock').removeClass('fa-lock').addClass("fa-unlock");
+                    lockBtn.children('i.fa-lock').removeClass('fa-lock').addClass('fa-unlock');
                     return;
                 }
             }) 

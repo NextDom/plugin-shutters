@@ -23,14 +23,6 @@
 .panel-title > a:focus  {
     text-decoration:none;
 }
-.button-lock {
-    text-decoration: none;
-    cursor: pointer;
-}
-.button-lock-icon {
-    font-size: 36px;
-    color: #b3b3b3;
-}
 .control-unit {
     padding: 7px 0px;
     margin-bottom: 0;
