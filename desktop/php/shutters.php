@@ -249,7 +249,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <br/>
                 <div id="objectSettings" class="panel-group" >
                     <div class="panel panel-default">
-                        <div class="panel-heading">{{Paramètres généraux}}</div>
+                        <div class="panel-heading">
+                            <h4>{{Définition}}</h4>
+                        </div>
                         <div class="panel-body"> 
                             <form class="form-horizontal">
                                 <div class="col-sm-6">    
@@ -333,8 +335,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="settingsTab">
-            <br/>
+                <br/>
+                <div class="alert alert-info">
+                    <strong>Info!</strong> {{Vous devez créer un nouvel équipement avant de pouvoir le paramétrer.}}
+                </div>
                 <div id="objectSettings" class="panel-group" >
+                    <div class="panel panel-default">
+
+                    </div>
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="externalInfo">
                         <div class="panel-heading">
                             <h4 class="panel-title">
@@ -459,7 +467,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <li>{{La gestion prioritaire n'est paramétrable que si les informations d'absence et de détection incendie sont renseignées.}}</li>
                                                 <li>{{Absence: les volets se ferment sans tenir compte des autres conditions.}}</li>
                                                 <li>{{Incendie: les volets s'ouvrent sans tenir compte des autres conditions.}}</li>
-                                             </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </form>    
@@ -835,7 +843,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </div>
 
                 </div>
-            </div>
+                </div>
             <div role="tabpanel" class="tab-pane" id="commandTab">
             </div>
         </div>

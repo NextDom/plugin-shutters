@@ -235,11 +235,9 @@ class shutters extends eqLogic
 
                    
         } else {
-            throw new \Exception (__('Le type d\'objet doit être renseigné!', __FILE__));
-            log::add('shutters','info','[exception] => Le type d\'objet doit être renseigné!');
+            throw new \Exception (__('Le type d\'équipement doit être renseigné!', __FILE__));
             return;
-    }
-
+        }
     }
     
 

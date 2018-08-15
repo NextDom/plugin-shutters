@@ -33,9 +33,6 @@ function initEvents() {
     });
 
     // General settings events
-     $('#objectType').off('change').on('change', function() {
-        displaySettingPanel($(this).val());
-    });
     $('.btn-lock').off('click').on('click',function() {
         var lockBtn = $(this);
         var dataInput = lockBtn.attr('data-input');

@@ -32,10 +32,10 @@ function printEqLogic(_eqLogic) {
         initDefaultValues();
 
         disableElement($('#objectType'));
+        displaySettingPanel($('#objectType').val());
 
         $('input[type=range]').trigger('change');
         listHeliotropeObject();
-        displaySettingPanel($('#objectType').val());
 
         updatePriorityManagement();
         refreshWallPlan();
