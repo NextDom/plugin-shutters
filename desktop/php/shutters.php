@@ -336,7 +336,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             </div>
             <div role="tabpanel" class="tab-pane" id="settingsTab">
                 <br/>
-                <div class="alert alert-info">
+                <div class="alert alert-info" data-alerttype="setting">
                     <strong>Info!</strong> {{Vous devez créer un nouvel équipement avant de pouvoir le paramétrer.}}
                 </div>
                 <div id="objectSettings" class="panel-group display-none" data-paneltype="setting">
@@ -356,10 +356,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         <i class="fa fa-minus-circle"></i>
                                                     </a>
                                                 </span>
-                                                <input id="absenceInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfo" placeholder="{{Sélectionner une commande}}"/>
+                                                <input id="absenceInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfo" placeholder="{{Sélectionner une commande}}" disabled/>
                                                 <span class="input-group-btn">
                                                     <a class="btn btn-default listCmd cursor" data-type="info" data-input="absenceInfo">
-                                                        <i class="fa fa-list-alt"></i>
+                                                        <i class="fa fa-list"></i>
                                                     </a>
                                                 </span>
                                             </div>
@@ -369,7 +369,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoStatus" placeholder="{{Valider le statut}}" disabled/>
                                                 <span class="input-group-btn">
                                                     <a class="btn btn-default getCmdStatus cursor" data-input="absenceInfoStatus" data-input-link="absenceInfo" data-message="l\'absence est activée?">
-                                                        <span class="fa fa-check"></span>
+                                                        <span class="fa fa-check-circle"></span>
                                                     </a>
                                                 </span>
                                             </div>

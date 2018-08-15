@@ -79,6 +79,7 @@ function disableElement(element) {
  * @param {string} objectType 
  */
 function displaySettingPanel(objectType = '') {
+    $('.alert[data-alerttype=setting]').css('display', 'none');
     $('.panel-group[data-paneltype=setting]').css('display', 'block');
     $('.panel[data-paneltype=setting]').css('display', 'none');
 	$('.panel[data-objecttype=' + objectType + ']').css('display', 'block');
