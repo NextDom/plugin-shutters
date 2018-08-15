@@ -28,9 +28,6 @@ function initEvents() {
     });
 
     // General events
-    $('a.button-lock').on('click',function() {
-        lockControl($(this));
-    });
     $('input[type=range]').on('change mousemove', function() {
         $(this).parent().next().html($(this).val() + '%');
     });
@@ -39,7 +36,18 @@ function initEvents() {
      $('#objectType').off('change').on('change', function() {
         displaySettingPanel($(this).val());
     });
-
+    $('.btn-lock').off('click').on('click',function() {
+        var element = $(this).closest('.input-group').find('[data-l1key=configuration][data-l2key=objectType]');
+        if (element.is(':disabled')) {
+            bootbox.confirm('{{Etes-vous sûr de vouloir changer le type d\'objet? Cela peut entraîner des dysfonctionnements du plugin!}}', function (result) {
+                if (result) {
+                    element.prop('disabled', false);
+                    $(this).removeClass('fa-lock').addClass("fa-unlock");
+                    return;
+                }
+            }) 
+        }
+    });
 
     // External info settings events
     $('#absenceInfo').off('change').on('change', function() {
