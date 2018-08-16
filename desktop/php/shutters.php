@@ -250,7 +250,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <div class="panel-group" >
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title">{{Définition}}</h4>
+                            <h4 class="panel-title">{{Définition de l'équipement}}</h4>
                         </div>
                         <div class="panel-body"> 
                             <form class="form-horizontal">
@@ -330,6 +330,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div> 
                             </form>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                    <div class="panel-heading">
+                            <h4 class="panel-title">{{Aide}}</h4>
+                        </div>
+                        <div class="panel-body"> 
                         </div>
                     </div>
                 </div>
