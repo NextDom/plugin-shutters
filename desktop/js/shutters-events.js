@@ -16,10 +16,15 @@ function initEvents() {
     //Delete command and it's status
     $('body').off('click', '.delCmd').on('click', '.delCmd', function () {
         var dataInput = $(this).attr('data-input');
-        var cmd = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
-        var cmdStatus = $(this).closest('div.form-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + 'Status]');
-        cmd.val(null);
-        cmdStatus.val(null);
+        var cmdElement = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        var cmdStatusElement = $(this).closest('div.form-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + 'Status]');
+        var cmd = cmdElement.val();
+        bootbox.confirm('{{Effacer la  commande }}' + cmd + '{{ peut engendrer une modification du fonctionnement de vos volets. Confirmez vous la suppression?}}', function (result) {
+            if (result) {
+                cmdElement.val(null);
+                cmdStatusElement.val(null);
+            }
+        }) 
     });
 
     // Get status of a command of type 'info'
