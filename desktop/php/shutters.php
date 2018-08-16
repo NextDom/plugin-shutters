@@ -337,6 +337,17 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <h4 class="panel-title">{{Aide}}</h4>
                         </div>
                         <div class="panel-body"> 
+                        <h4>{{Type d'équipement}}</h4>    
+                            <dl>
+                                <dt>Infos générales externes</dt>
+                                <dd>- black hot drink</dd>
+                                <dt>Zone héliotrope</dt>
+                                <dd>- white cold drink</dd>
+                                <dt>Groupes de volet</dt>
+                                <dd>- white cold drink</dd>
+                                <dt>Volet</dt>
+                                <dd>- white cold drink</dd>
+                            </dl>     
                         </div>
                     </div>
                 </div>
