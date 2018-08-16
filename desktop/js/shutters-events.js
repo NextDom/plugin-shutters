@@ -3,18 +3,27 @@
  */
 function initEvents() {
 
-    // List commands
-    $('body').off('click', '.listCmd').on('click', '.listCmd', function () {
+    /**
+     * Select a command
+     */
+    $('.listCmd').off('click').on('click', function () {
         var dataInput = $(this).attr('data-input');
         var dataType = $(this).attr('data-type');
         var element = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
             element.val(result.human);
         });
+
+        if (dataInput === 'absenceInfoCmd' || dataInput === 'fireDetectionCmd') {
+            updatePriorityManagement();
+        }
     });
 
-    //Delete command and it's status
-    $('body').off('click', '.delCmd').on('click', '.delCmd', function () {
+
+    /**
+     * Delete a command and it's status
+     */
+    $('.delCmd').off('click').on('click', function () {
         var dataInput = $(this).attr('data-input');
         var cmdElement = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         var cmdStatusElement = $(this).closest('div.form-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + 'Status]');
@@ -27,8 +36,10 @@ function initEvents() {
         }) 
     });
 
-    // Get status of a command of type 'info'
-    $('body').off('click', '.getCmdStatus').on('click', '.getCmdStatus', function () {
+    /**
+     * Get status of a command 'info'
+     */
+    $('.getCmdStatus').off('click').on('click', function () {
         var dataInput = $(this).attr('data-input');
         var dataCmdInput = $(this).attr('data-cmdinput');
         var dataMessage = $(this).attr('data-message');
@@ -53,8 +64,10 @@ function initEvents() {
         $(this).parent().next().html($(this).val() + '%');
     });
 
-    // General settings events
-    $('body').off('click', '.btn-lock').on('click', '.btn-lock', function() {
+    /**
+     * General settings events
+     */
+    $('.btn-lock').off('click').on('click', function() {
         var lockBtn = $(this);
         var dataInput = lockBtn.attr('data-input');
         var element = lockBtn.closest('div.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
@@ -70,11 +83,13 @@ function initEvents() {
         }
     });
 
-    // External info settings events
-    $('#absenceInfo').off('change').on('change', function() {
+    /**
+     * External info settings events
+     */
+    $('#absenceInfoCmd').off('change').on('change', function() {
         updatePriorityManagement();
     });
-    $('#fireDetection').off('change').on('change', function() {
+    $('#fireDetectionCmd').off('change').on('change', function() {
         updatePriorityManagement();
     });
 

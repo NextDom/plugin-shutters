@@ -347,6 +347,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="panel-body"> 
                             <form class="form-horizontal">
                                 <div class="col-sm-6"> 
+                                    <div class="col-sm-offset-3 col-sm-5">
+                                        <h4 class="text-center">Commande</h4>  
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h4 class="text-center">Statut</h4>
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="absenceInfo">{{Information d'absence}}</label>
                                         <div class="col-sm-5">
@@ -432,23 +438,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
-                                        <div class="col-sm-5">
-                                            <select id="heliotrope" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotrope">
-                                                <option value="none">{{Non affecté}}</option>
-                                                <?php
-                                                if (class_exists('heliotropeCmd')) {
-                                                    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-                                                        echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
-                                                    }
-                                                } else {
-                                                    echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label class="col-sm-3 control-label">{{Luminosité extérieure}}</label>
                                         <div class="col-sm-5">
                                             <div class="input-group">
@@ -502,6 +491,23 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     </a>
                                                 </span>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="heliotrope" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotrope">
+                                                <option value="none">{{Non affecté}}</option>
+                                                <?php
+                                                if (class_exists('heliotropeCmd')) {
+                                                    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+                                                        echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
+                                                    }
+                                                } else {
+                                                    echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
