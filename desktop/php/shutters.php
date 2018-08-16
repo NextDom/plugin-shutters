@@ -337,12 +337,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <h4 class="panel-title">{{Aide}}</h4>
                         </div>
                         <div class="panel-body"> 
-                            <h4>{{Type d'équipement}}</h4>    
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>{{Type d'équipement}}</th>
-                                        <th>Description</th>
+                                        <th>{{Description}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -351,12 +350,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <td>Doe</td>
                                     </tr>
                                     <tr>
-                                        <td>{{Zone héliotrope}}</td>
-                                        <td>Moe</td>
+                                        <td>{{Zone azimut}}</td>
+                                        <td>{{Equipement permettant la gestion azimut des volets.}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{Groupe de volets}}</td>
-                                        <td>Dooley</td>
+                                        <td>{{Equipement permettant de commander de façon grouper des volets, ainsi que d'avoir une signalisation groupée.}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{Volet}}</td>
