@@ -4,25 +4,34 @@
 function initEvents() {
 
     // List commands
-    $('body').off('click','.listCmd').on('click','.listCmd', function () {
+    $('body').off('click', '.listCmd').on('click', '.listCmd', function () {
         var dataInput = $(this).attr('data-input');
         var dataType = $(this).attr('data-type');
-        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        var element = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
-            el.val(result.human).event('change');
+            element.val(result.human);
         });
     });
 
-    // Get status of a command of type 'info'
-    $('body').off('click','.getCmdStatus').on('click','.getCmdStatus', function () {
+    //Delete command and it's status
+    $('body').off('click', '.delCmd').on('click', '.delCmd', function () {
         var dataInput = $(this).attr('data-input');
-        var dataInputLink = $(this).attr('data-input-link');
+        var cmd = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        var cmdStatus = $(this).closest('div.form-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + 'Status]');
+        cmd.val(null);
+        cmdStatus.val(null);
+    });
+
+    // Get status of a command of type 'info'
+    $('body').off('click', '.getCmdStatus').on('click', '.getCmdStatus', function () {
+        var dataInput = $(this).attr('data-input');
+        var dataCmdInput = $(this).attr('data-cmdinput');
         var dataMessage = $(this).attr('data-message');
-        var cmd = $('input[id=' + dataInputLink + ']').val();
-        var el = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        var cmd = $('input[id=' + dataCmdInput + ']').val();
+        var element = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         bootbox.confirm('{{Avant de récupérer le statut de la commande }}' + cmd + '{{, êtes vous sûr que }}' + dataMessage, function (result) {
             if (result) {
-                el.val(getCmdStatus(cmd));
+                element.val(getCmdStatus(cmd));
             }
         }) 
     });
@@ -33,10 +42,10 @@ function initEvents() {
     });
 
     // General settings events
-    $('.btn-lock').off('click').on('click',function() {
+    $('body').off('click', '.btn-lock').on('click', '.btn-lock', function() {
         var lockBtn = $(this);
         var dataInput = lockBtn.attr('data-input');
-        var element = lockBtn.closest('.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
+        var element = lockBtn.closest('div.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
 
         if (dataInput =='objectType' && element.is(':disabled')) {
             bootbox.confirm('{{Etes-vous sûr de vouloir changer le type d\'objet? Cela peut entraîner des dysfonctionnements du plugin!}}', function (result) {

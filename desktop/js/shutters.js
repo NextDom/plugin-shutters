@@ -67,10 +67,10 @@ function displayTooltip(message = '') {
 function disableElement(element) {
     if (element.val() !== null && element.val() !== '') {
         $(element).attr('disabled', true);
-        element.closest('.input-group').find('i.fa-unlock').removeClass('fa-unlock').addClass("fa-lock");
+        element.closest('div.input-group').find('i.fa-unlock').removeClass('fa-unlock').addClass("fa-lock");
     } else {
         $(element).attr('disabled', false);
-        element.closest('.input-group').find('i.fa-lock').removeClass('fa-lock').addClass("fa-unlock");
+        element.closest('div.input-group').find('i.fa-lock').removeClass('fa-lock').addClass("fa-unlock");
     }
 }  
 

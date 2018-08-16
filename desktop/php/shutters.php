@@ -352,23 +352,23 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="col-sm-5">
                                             <div class="input-group">
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default delCmd cursor" data-type="info" data-input="absenceInfo">
+                                                    <a class="btn btn-default delCmd cursor" data-input="absenceInfoCmd">
                                                         <i class="fa fa-minus-circle"></i>
                                                     </a>
                                                 </span>
-                                                <input id="absenceInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfo" placeholder="{{Sélectionner une commande}}" disabled/>
+                                                <input id="absenceInfoCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="absenceInfo">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="absenceInfoCmd">
                                                         <i class="fa fa-list"></i>
                                                     </a>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <div id="absenceInfoStatus" class="input-group">
-                                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoStatus" placeholder="{{Valider le statut}}" disabled/>
+                                            <div id="absenceInfoCmdStatus" class="input-group">
+                                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoCmdStatus" placeholder="{{Valider le statut}}" disabled/>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default getCmdStatus cursor" data-input="absenceInfoStatus" data-input-link="absenceInfo" data-message="l\'absence est activée?">
+                                                    <a class="btn btn-default getCmdStatus cursor" data-input="absenceInfoCmdStatus" data-cmdinput="absenceInfoCmd" data-message="{{l'absence est activée?}}">
                                                         <span class="fa fa-check-circle"></span>
                                                     </a>
                                                 </span>
