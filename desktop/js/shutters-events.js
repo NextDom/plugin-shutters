@@ -12,11 +12,10 @@ function initEvents() {
         var element = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
             element.val(result.human);
+            if (dataInput === 'absenceInfoCmd' || dataInput === 'fireDetectionCmd') {
+                element.trigger('change');
+            }
         });
-
-        if (dataInput === 'absenceInfoCmd' || dataInput === 'fireDetectionCmd') {
-            updatePriorityManagement();
-        }
     });
 
 
@@ -32,6 +31,9 @@ function initEvents() {
             if (result) {
                 cmdElement.val(null);
                 cmdStatusElement.val(null);
+                if (dataInput === 'absenceInfoCmd' || dataInput === 'fireDetectionCmd') {
+                    cmdElement.trigger('change');
+                }
             }
         }) 
     });
@@ -59,13 +61,15 @@ function initEvents() {
         }
     });
 
-    // General events
+    /**
+     *  Display value of input range
+     */
     $('input[type=range]').on('change mousemove', function() {
         $(this).parent().next().html($(this).val() + '%');
     });
 
     /**
-     * General settings events
+     * Unlock button events
      */
     $('.btn-lock').off('click').on('click', function() {
         var lockBtn = $(this);

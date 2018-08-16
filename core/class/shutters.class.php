@@ -92,40 +92,60 @@ class shutters extends eqLogic
         $shutterArea = $this->getConfiguration('shutterArea');
 
         if ($objectType == 'externalInfo') {
-            if (!empty($this->getConfiguration('absenceInfo'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInfo')));
+            if (!empty($this->getConfiguration('absenceInfoCmd'))) {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInfoCmd')));
                 if (!is_object($cmd)) {
                     throw new \Exception (__('[Information d\'absence] La commande sélectionnée est inconnue!', __FILE__));
                     return;
                 }
+                if (empty($this->getConfiguration('absenceInfoCmdStatus'))) {
+                    throw new \Exception (__('[Information d\'absence] Veuillez checker le statut de la commande!', __FILE__));
+                    return;
+                } 
             }
-            if (!empty($this->getConfiguration('presenceInformation'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('presenceInformation')));
+            if (!empty($this->getConfiguration('presenceInfoCmd'))) {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('presenceInfoCmd')));
                 if (!is_object($cmd)) {
                     throw new \Exception (__('[Information de présence] La commande sélectionnée est inconnue!', __FILE__));
                     return;
                 }
+                if (empty($this->getConfiguration('presenceInfoCmdStatus'))) {
+                    throw new \Exception (__('[Information de présence] Veuillez checker le statut de la commande!', __FILE__));
+                    return;
+                } 
             }
-            if (!empty($this->getConfiguration('fireDetection'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('fireDetection')));
+            if (!empty($this->getConfiguration('fireDetectionCmd'))) {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('fireDetectionCmd')));
                 if (!is_object($cmd)) {
                     throw new \Exception (__('[Détection incendie] La commande sélectionnée est inconnue!', __FILE__));
                     return;
                 }
+                if (empty($this->getConfiguration('fireDetectionCmdStatus'))) {
+                    throw new \Exception (__('[Détection incendie] Veuillez checker le statut de la commande!', __FILE__));
+                    return;
+                } 
             }
-            if (!empty($this->getConfiguration('outdoorLuminosity'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorLuminosity')));
+            if (!empty($this->getConfiguration('outdoorLuminosityCmd'))) {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorLuminosityCmd')));
                 if (!is_object($cmd)) {
                     throw new \Exception (__('[Luminosité extérieure] La commande sélectionnée est inconnue!', __FILE__));
                     return;
                 }
+                if (empty($this->getConfiguration('outdoorLuminosityCmdStatus'))) {
+                    throw new \Exception (__('[Luminosité extérieure] Veuillez checker le statut de la commande!', __FILE__));
+                    return;
+                } 
             }
-            if (!empty($this->getConfiguration('outdoorTemperature'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorTemperature')));
+            if (!empty($this->getConfiguration('outdoorTemperatureCmd'))) {
+                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorTemperatureCmd')));
                 if (!is_object($cmd)) {
                     throw new \Exception (__('[Température extérieure] La commande sélectionnée est inconnue!', __FILE__));
                     return;
                 }
+                if (empty($this->getConfiguration('outdoorTemperatureCmdStatus'))) {
+                    throw new \Exception (__('[Température extérieure] Veuillez checker le statut de la commande!', __FILE__));
+                    return;
+                } 
             }
 
         } elseif($objectType == 'heliotropeZone') {
