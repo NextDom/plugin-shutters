@@ -102,14 +102,15 @@ function displaySettings(objectType = '', settingsGroup = '') {
  * Selection of priority management (fire detection / absence)
  */
 function updatePriorityManagement() {
+    console.log('priority management');
     var priorityManagement = $('#priorityManagement');
-    if ($('#absenceInfo').val() != '' && $('#fireDetection').val() != '') {
+    if ($('#absenceInfoCmd').val() !== '' && $('#fireDetectionCmd').val() !== '') {
         priorityManagement.prop('disabled', false);
         if (priorityManagement.val() === null) {
             priorityManagement.val('fireManagement');
         }
     } else {
-        priorityManagement.val('');
+        priorityManagement.val(null);
         priorityManagement.prop('disabled', true);
     }
 }
