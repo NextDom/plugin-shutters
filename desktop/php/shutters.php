@@ -333,21 +333,37 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         </div>
                     </div>
                     <div class="panel panel-info">
-                    <div class="panel-heading">
+                        <div class="panel-heading">
                             <h4 class="panel-title">{{Aide}}</h4>
                         </div>
                         <div class="panel-body"> 
-                        <h4>{{Type d'équipement}}</h4>    
-                            <dl>
-                                <dt>Infos générales externes</dt>
-                                <dd>- black hot drink</dd>
-                                <dt>Zone héliotrope</dt>
-                                <dd>- white cold drink</dd>
-                                <dt>Groupes de volet</dt>
-                                <dd>- white cold drink</dd>
-                                <dt>Volet</dt>
-                                <dd>- white cold drink</dd>
-                            </dl>     
+                            <h4>{{Type d'équipement}}</h4>    
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>{{Type d'équipement}}</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{Informations générales externes}}</td>
+                                        <td>Doe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{Zone héliotrope}}</td>
+                                        <td>Moe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{Groupe de volets}}</td>
+                                        <td>Dooley</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{Volet}}</td>
+                                        <td>Dooley</td>
+                                    </tr>
+                                    </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
