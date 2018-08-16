@@ -34,11 +34,18 @@ function initEvents() {
         var dataMessage = $(this).attr('data-message');
         var cmd = $('input[id=' + dataCmdInput + ']').val();
         var element = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
-        bootbox.confirm('{{Avant de récupérer le statut de la commande }}' + cmd + '{{, êtes vous sûr que }}' + dataMessage, function (result) {
-            if (result) {
-                element.val(getCmdStatus(cmd));
-            }
-        }) 
+        if (cmd === null || cmd === '') {
+            return;
+        }
+        if (dataMessage !== '') {
+            bootbox.confirm('{{Avant de récupérer le statut de la commande }}' + cmd + '{{, êtes vous sûr que }}' + dataMessage, function (result) {
+                if (result) {
+                    element.val(getCmdStatus(cmd));
+                }
+            }) 
+        } else {
+            element.val(getCmdStatus(cmd));
+        }
     });
 
     // General events

@@ -368,7 +368,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <div id="absenceInfoCmdStatus" class="input-group">
                                                 <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="absenceInfoCmdStatus" placeholder="{{Valider le statut}}" disabled/>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default getCmdStatus cursor" data-input="absenceInfoCmdStatus" data-cmdinput="absenceInfoCmd" data-message="{{l'absence est activée?}}">
+                                                    <a class="btn btn-default getCmdStatus cursor" data-input="absenceInfoCmdStatus" data-cmdinput="absenceInfoCmd" data-message="{{l'information d'absence est active?}}">
                                                         <span class="fa fa-check-circle"></span>
                                                     </a>
                                                 </span>
@@ -379,10 +379,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <label class="col-sm-3 control-label">{{Information de présence}}</label>
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <input id="presenceInformation" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInformation" placeholder="{{Sélectionner une commande}}"/>
+                                            <span class="input-group-btn">
+                                                    <a class="btn btn-default delCmd cursor" data-input="presenceInfoCmd">
+                                                        <i class="fa fa-minus-circle"></i>
+                                                    </a>
+                                                </span>
+                                                 <input id="presenceInfoCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInfoCmd" placeholder="{{Sélectionner une commande}}"/>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="presenceInformation">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="presenceInfoCmd">
                                                         <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div id="presenceInfoCmdStatus" class="input-group">
+                                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="presenceInfoCmdStatus" placeholder="{{Valider le statut}}" disabled/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default getCmdStatus cursor" data-input="presenceInfoCmdStatus" data-cmdinput="presenceInfoCmd" data-message="{{l'information de présence est active?}}">
+                                                        <span class="fa fa-check-circle"></span>
                                                     </a>
                                                 </span>
                                             </div>
@@ -392,10 +407,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <label class="col-sm-3 control-label">{{Détection incendie}}</label>
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <input id="fireDetection" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetection" placeholder="{{Sélectionner une commande}}"/>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default listCmd" data-type="info" data-input="fireDetection">
+                                                    <a class="btn btn-default delCmd cursor" data-input="fireDetectionCmd">
+                                                        <i class="fa fa-minus-circle"></i>
+                                                    </a>
+                                                </span>
+                                                 <input id="fireDetectionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetectionCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd" data-type="info" data-input="fireDetectionCmd">
                                                         <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div id="fireDetectionStatus" class="input-group">
+                                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fireDetectionCmdStatus" placeholder="{{Valider le statut}}" disabled/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default getCmdStatus cursor" data-input="fireDetectionCmdStatus" data-cmdinput="fireDetectionCmd" data-message="{{la détection incendie est active?}}">
+                                                        <span class="fa fa-check-circle"></span>
                                                     </a>
                                                 </span>
                                             </div>
@@ -422,10 +452,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <label class="col-sm-3 control-label">{{Luminosité extérieure}}</label>
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <input id="outdoorLuminosity" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuminosity" placeholder="{{Sélectionner une commande}}"/>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorLuminosity">
+                                                    <a class="btn btn-default delCmd cursor" data-input="outdoorLuminosityCmd">
+                                                        <i class="fa fa-minus-circle"></i>
+                                                    </a>
+                                                </span>
+                                                 <input id="outdoorLuminosityCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuminosityCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorLuminosityCmd">
                                                         <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div id="outdoorLuminosityCmdStatus" class="input-group">
+                                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorLuminosityCmdStatus" placeholder="{{Valider le statut}}" disabled/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default getCmdStatus cursor" data-input="outdoorLuminosityCmdStatus" data-cmdinput="outdoorLuminosityCmd" data-message="">
+                                                        <span class="fa fa-check-circle"></span>
                                                     </a>
                                                 </span>
                                             </div>
@@ -435,10 +480,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <label class="col-sm-3 control-label">{{Température extérieure}}</label>
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <input id="outdoorTemperature" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperature" placeholder="{{Sélectionner une commande}}"/>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorTemperature">
+                                                    <a class="btn btn-default delCmd cursor" data-input="outdoorTemperatureCmd">
+                                                        <i class="fa fa-minus-circle"></i>
+                                                    </a>
+                                                </span>
+                                                 <input id="outdoorTemperatureCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperatureCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default listCmd cursor" data-type="info" data-input="outdoorTemperatureCmd">
                                                         <i class="fa fa-list-alt"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div id="outdoorTemperatureCmdStatus" class="input-group">
+                                                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="outdoorTemperatureCmdStatus" placeholder="{{Valider le statut}}" disabled/>
+                                                <span class="input-group-btn">
+                                                    <a class="btn btn-default getCmdStatus cursor" data-input="outdoorTemperatureCmdStatus" data-cmdinput="outdoorTemperatureCmd" data-message="">
+                                                        <span class="fa fa-check-circle"></span>
                                                     </a>
                                                 </span>
                                             </div>
