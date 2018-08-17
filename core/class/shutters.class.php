@@ -75,7 +75,6 @@ class shutters extends eqLogic
 
     public function postSave()
     {
-        $this->save();
     }
 
     public function preUpdate()
@@ -88,12 +87,12 @@ class shutters extends eqLogic
         $angleUnitList = array('deg', 'gon');
 
         $objectType = $this->getConfiguration('objectType');
-        
+        log::add('shutters','debug','[objectType] => '.$objectType);
         $incomingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
 
-        if ($objectType === '') {
+        if (empty($objectType)) {
             throw new \Exception (__('Le type d\'équipement doit être renseigné!', __FILE__));
             return;
         }
