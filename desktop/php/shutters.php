@@ -347,7 +347,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <tbody>
                                     <tr>
                                         <td>{{Informations générales externes}}</td>
-                                        <td>Doe</td>
+                                        <td>{{Equipement permettant la gestion d'informations externes au plugin (information d'absence, détection incendie, température, luminosité, héliotrope). Ces informations sont optionnelles, si elles ne sont pas renseignées.}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{Zone azimut}}</td>

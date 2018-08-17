@@ -68,12 +68,14 @@ class shutters extends eqLogic
 
     public function preSave()
     {
-        
+        if (!empty($this->getConfiguration('objectType'))) {
+            $this->setConfiguration('isObjectCreated', true);
+        }
     }
 
     public function postSave()
     {
-
+        $this->save();
     }
 
     public function preUpdate()
@@ -91,172 +93,176 @@ class shutters extends eqLogic
         $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle');
         $shutterArea = $this->getConfiguration('shutterArea');
 
-        if ($objectType == 'externalInfo') {
-            if (!empty($this->getConfiguration('absenceInfoCmd'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInfoCmd')));
-                if (!is_object($cmd)) {
-                    throw new \Exception (__('[Information d\'absence] La commande sélectionnée est inconnue!', __FILE__));
-                    return;
-                }
-                if (empty($this->getConfiguration('absenceInfoCmdStatus'))) {
-                    throw new \Exception (__('[Information d\'absence] Veuillez checker le statut de la commande!', __FILE__));
-                    return;
-                } 
-            }
-            if (!empty($this->getConfiguration('presenceInfoCmd'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('presenceInfoCmd')));
-                if (!is_object($cmd)) {
-                    throw new \Exception (__('[Information de présence] La commande sélectionnée est inconnue!', __FILE__));
-                    return;
-                }
-                if (empty($this->getConfiguration('presenceInfoCmdStatus'))) {
-                    throw new \Exception (__('[Information de présence] Veuillez checker le statut de la commande!', __FILE__));
-                    return;
-                } 
-            }
-            if (!empty($this->getConfiguration('fireDetectionCmd'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('fireDetectionCmd')));
-                if (!is_object($cmd)) {
-                    throw new \Exception (__('[Détection incendie] La commande sélectionnée est inconnue!', __FILE__));
-                    return;
-                }
-                if (empty($this->getConfiguration('fireDetectionCmdStatus'))) {
-                    throw new \Exception (__('[Détection incendie] Veuillez checker le statut de la commande!', __FILE__));
-                    return;
-                } 
-            }
-            if (!empty($this->getConfiguration('outdoorLuminosityCmd'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorLuminosityCmd')));
-                if (!is_object($cmd)) {
-                    throw new \Exception (__('[Luminosité extérieure] La commande sélectionnée est inconnue!', __FILE__));
-                    return;
-                }
-                if (empty($this->getConfiguration('outdoorLuminosityCmdStatus'))) {
-                    throw new \Exception (__('[Luminosité extérieure] Veuillez checker le statut de la commande!', __FILE__));
-                    return;
-                } 
-            }
-            if (!empty($this->getConfiguration('outdoorTemperatureCmd'))) {
-                $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorTemperatureCmd')));
-                if (!is_object($cmd)) {
-                    throw new \Exception (__('[Température extérieure] La commande sélectionnée est inconnue!', __FILE__));
-                    return;
-                }
-                if (empty($this->getConfiguration('outdoorTemperatureCmdStatus'))) {
-                    throw new \Exception (__('[Température extérieure] Veuillez checker le statut de la commande!', __FILE__));
-                    return;
-                } 
-            }
-
-        } elseif($objectType == 'heliotropeZone') {
-            $externalInfoObject = eqLogic::byId($this->getConfiguration('externalInfoObject'));
-            if (empty($externalInfoObject) || $externalInfoObject == 'none') {
-                throw new \Exception (__('Le lien vers les infos externes doit être renseigné!', __FILE__));
-                return;
-           }
-            $heliotrope = eqLogic::byId($externalInfoObject->getConfiguration('heliotrope'));
-            if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
-                throw new \Exception (__('Il n\'y a pas d\'héliotrope configuré dans l\'objet [ Informations externes : '.$externalInfoObject->getName().' ] sélectionné!', __FILE__));
-                return;
-            }        
-            if (!in_array($this->getConfiguration('dawnType'), $dawnTypeList, true)) {
-                throw new \Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
-                return;
-            }        
-            if (!in_array($this->getConfiguration('duskType'), $duskTypeList, true)) {
-                throw new \Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
-                return;
-            } 
-            $wallAngleUnit = $this->getConfiguration('wallAngleUnit');
-            $wallAngle = $this->getConfiguration('wallAngle');
-            if (!in_array($wallAngleUnit, $angleUnitList, true)) {
-                throw new \Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
-                return;
-            } 
-            if ($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)) {
-                throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
-                return;
-            }
-            if ($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)) {
-                throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
-                return;
-            }
-        
-        } elseif($objectType == 'shutter') {
-                if (!in_array($this->getConfiguration('openingType'), $openingTypeList, true)) {
-                    throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
-                    return;
-                }
-                if (!empty($this->getConfiguration('openOpeningInfo'))) {
-                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('openOpeningInfo')));
+        if ($objectType === '') {
+            throw new \Exception (__('Le type d\'équipement doit être renseigné!', __FILE__));
+            return;
+        }
+        if ($this->getConfiguration('isObjectCreated')) {
+            if ($objectType === 'externalInfo') {
+                if (!empty($this->getConfiguration('absenceInfoCmd'))) {
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('absenceInfoCmd')));
                     if (!is_object($cmd)) {
-                        throw new \Exception (__('[Information ouvrant ouvert] La commande sélectionnée est inconnue!', __FILE__));
+                        throw new \Exception (__('[Information d\'absence] La commande sélectionnée est inconnue!', __FILE__));
                         return;
                     }
-                }
-                $positionSensorType = $this->getConfiguration('positionSensorType');
-                if ($positionSensorType == 'analogPosition') {
-                        if (empty($this->getConfiguration('shutterAnalogPosition'))) {
-                            throw new \Exception (__('La commande de retour de position du volet doit être renseignée!', __FILE__));
-                            return;
-                        } 
-                        $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('shutterAnalogPosition')));
-                        if (!is_object($cmd)) {
-                            throw new \Exception (__('[Retour de position du volet] La commande sélectionnée est inconnue!', __FILE__));
-                            return;
-                        }
-                        $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
-                        $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
-                        if ($analogClosedPosition < 0 || $analogClosedPosition > 5) {
-                            throw new \Exception (__('La position volet fermé doit être renseignée et comprise entre 0% et 5%!', __FILE__));
-                            return;
-                        }        
-                        if ($analogOpenedPosition < 95 || $analogOpenedPosition > 100) {
-                            throw new \Exception (__('La position volet ouvert doit être renseignée et comprise entre 95% et 100%!', __FILE__));
-                            return;
-                        }        
-
-                } 
-                if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'closedSensor') {
-                    if (empty($this->getConfiguration('closedSensor'))) {
-                        throw new \Exception (__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
+                    if (empty($this->getConfiguration('absenceInfoCmdStatus'))) {
+                        throw new \Exception (__('[Information d\'absence] Veuillez checker le statut de la commande!', __FILE__));
                         return;
-                    }        
-                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('closedSensor')));
+                    } 
+                }
+                if (!empty($this->getConfiguration('presenceInfoCmd'))) {
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('presenceInfoCmd')));
                     if (!is_object($cmd)) {
-                        throw new \Exception (__('[Fin de course fermeture] La commande sélectionnée est inconnue!', __FILE__));
+                        throw new \Exception (__('[Information de présence] La commande sélectionnée est inconnue!', __FILE__));
                         return;
                     }
-                } 
-                if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'openedSensor') {
-                    if (empty($this->getConfiguration('openedSensor'))) {
-                        throw new \Exception (__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
+                    if (empty($this->getConfiguration('presenceInfoCmdStatus'))) {
+                        throw new \Exception (__('[Information de présence] Veuillez checker le statut de la commande!', __FILE__));
                         return;
-                    }        
-                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('openedSensor')));
+                    } 
+                }
+                if (!empty($this->getConfiguration('fireDetectionCmd'))) {
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('fireDetectionCmd')));
                     if (!is_object($cmd)) {
-                        throw new \Exception (__('[Fin de course ouverture] La commande sélectionnée est inconnue!', __FILE__));
+                        throw new \Exception (__('[Détection incendie] La commande sélectionnée est inconnue!', __FILE__));
                         return;
                     }
+                    if (empty($this->getConfiguration('fireDetectionCmdStatus'))) {
+                        throw new \Exception (__('[Détection incendie] Veuillez checker le statut de la commande!', __FILE__));
+                        return;
+                    } 
                 }
-                if (!empty($shutterArea)) {
-                    if ($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100) {
-                        $exceptionMessage = __('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__);
-                    }        
-                    if ($outgoingAzimuthAngle  < 0 || $outgoingAzimuthAngle > 100) {
-                        $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être renseigné!', __FILE__);
-                    }        
-                    if ($outgoingAzimuthAngle < $incomingAzimuthAngle) {
-                        $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être supérieur à l\'angle d\'entrée!', __FILE__);
+                if (!empty($this->getConfiguration('outdoorLuminosityCmd'))) {
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorLuminosityCmd')));
+                    if (!is_object($cmd)) {
+                        throw new \Exception (__('[Luminosité extérieure] La commande sélectionnée est inconnue!', __FILE__));
+                        return;
+                    }
+                    if (empty($this->getConfiguration('outdoorLuminosityCmdStatus'))) {
+                        throw new \Exception (__('[Luminosité extérieure] Veuillez checker le statut de la commande!', __FILE__));
+                        return;
+                    } 
+                }
+                if (!empty($this->getConfiguration('outdoorTemperatureCmd'))) {
+                    $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('outdoorTemperatureCmd')));
+                    if (!is_object($cmd)) {
+                        throw new \Exception (__('[Température extérieure] La commande sélectionnée est inconnue!', __FILE__));
+                        return;
+                    }
+                    if (empty($this->getConfiguration('outdoorTemperatureCmdStatus'))) {
+                        throw new \Exception (__('[Température extérieure] Veuillez checker le statut de la commande!', __FILE__));
+                        return;
                     } 
                 }
     
-        } elseif ($objectType == 'shuttersGroup') {
-
-                   
-        } else {
-            throw new \Exception (__('Le type d\'équipement doit être renseigné!', __FILE__));
-            return;
+            } elseif($objectType == 'heliotropeZone') {
+                $externalInfoObject = eqLogic::byId($this->getConfiguration('externalInfoObject'));
+                if (empty($externalInfoObject) || $externalInfoObject == 'none') {
+                    throw new \Exception (__('Le lien vers les infos externes doit être renseigné!', __FILE__));
+                    return;
+               }
+                $heliotrope = eqLogic::byId($externalInfoObject->getConfiguration('heliotrope'));
+                if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
+                    throw new \Exception (__('Il n\'y a pas d\'héliotrope configuré dans l\'objet [ Informations externes : '.$externalInfoObject->getName().' ] sélectionné!', __FILE__));
+                    return;
+                }        
+                if (!in_array($this->getConfiguration('dawnType'), $dawnTypeList, true)) {
+                    throw new \Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
+                    return;
+                }        
+                if (!in_array($this->getConfiguration('duskType'), $duskTypeList, true)) {
+                    throw new \Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
+                    return;
+                } 
+                $wallAngleUnit = $this->getConfiguration('wallAngleUnit');
+                $wallAngle = $this->getConfiguration('wallAngle');
+                if (!in_array($wallAngleUnit, $angleUnitList, true)) {
+                    throw new \Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
+                    return;
+                } 
+                if ($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)) {
+                    throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
+                    return;
+                }
+                if ($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)) {
+                    throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
+                    return;
+                }
+            
+            } elseif($objectType == 'shutter') {
+                    if (!in_array($this->getConfiguration('openingType'), $openingTypeList, true)) {
+                        throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
+                        return;
+                    }
+                    if (!empty($this->getConfiguration('openOpeningInfo'))) {
+                        $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('openOpeningInfo')));
+                        if (!is_object($cmd)) {
+                            throw new \Exception (__('[Information ouvrant ouvert] La commande sélectionnée est inconnue!', __FILE__));
+                            return;
+                        }
+                    }
+                    $positionSensorType = $this->getConfiguration('positionSensorType');
+                    if ($positionSensorType == 'analogPosition') {
+                            if (empty($this->getConfiguration('shutterAnalogPosition'))) {
+                                throw new \Exception (__('La commande de retour de position du volet doit être renseignée!', __FILE__));
+                                return;
+                            } 
+                            $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('shutterAnalogPosition')));
+                            if (!is_object($cmd)) {
+                                throw new \Exception (__('[Retour de position du volet] La commande sélectionnée est inconnue!', __FILE__));
+                                return;
+                            }
+                            $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
+                            $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
+                            if ($analogClosedPosition < 0 || $analogClosedPosition > 5) {
+                                throw new \Exception (__('La position volet fermé doit être renseignée et comprise entre 0% et 5%!', __FILE__));
+                                return;
+                            }        
+                            if ($analogOpenedPosition < 95 || $analogOpenedPosition > 100) {
+                                throw new \Exception (__('La position volet ouvert doit être renseignée et comprise entre 95% et 100%!', __FILE__));
+                                return;
+                            }        
+    
+                    } 
+                    if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'closedSensor') {
+                        if (empty($this->getConfiguration('closedSensor'))) {
+                            throw new \Exception (__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
+                            return;
+                        }        
+                        $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('closedSensor')));
+                        if (!is_object($cmd)) {
+                            throw new \Exception (__('[Fin de course fermeture] La commande sélectionnée est inconnue!', __FILE__));
+                            return;
+                        }
+                    } 
+                    if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'openedSensor') {
+                        if (empty($this->getConfiguration('openedSensor'))) {
+                            throw new \Exception (__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
+                            return;
+                        }        
+                        $cmd=cmd::byId(str_replace('#','',$this->getConfiguration('openedSensor')));
+                        if (!is_object($cmd)) {
+                            throw new \Exception (__('[Fin de course ouverture] La commande sélectionnée est inconnue!', __FILE__));
+                            return;
+                        }
+                    }
+                    if (!empty($shutterArea)) {
+                        if ($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100) {
+                            $exceptionMessage = __('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__);
+                        }        
+                        if ($outgoingAzimuthAngle  < 0 || $outgoingAzimuthAngle > 100) {
+                            $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être renseigné!', __FILE__);
+                        }        
+                        if ($outgoingAzimuthAngle < $incomingAzimuthAngle) {
+                            $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être supérieur à l\'angle d\'entrée!', __FILE__);
+                        } 
+                    }
+        
+            } elseif ($objectType == 'shuttersGroup') {
+    
+                       
+            } 
+    
         }
     }
     
