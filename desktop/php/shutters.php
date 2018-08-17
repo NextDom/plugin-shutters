@@ -929,12 +929,26 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="commandTab">
-                <div id="objectSettings" class="panel-group display-none" data-paneltype="setting">
-                    <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="externalInfo">
+                <br/>
+                <div class="panel-group">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title">{{Informations générales externes}}</h4>
+                            <h4 class="panel-title">{{Commandes liées à l'équipement informations externes}}</h4>
                         </div>
                         <div class="panel-body"> 
+                            <table id="table_cmd" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">{{Id}}</th>
+                                        <th style="width: 200px;">{{Nom}}</th>
+                                        <th style="width: 200px;">{{Type}}</th>
+                                        <th style="width: 100px;">{{Paramètres}}</th>
+                                        <th style="width: 150px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
