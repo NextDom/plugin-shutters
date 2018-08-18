@@ -166,6 +166,12 @@ class shutters extends eqLogic
                 }
     
             } elseif($objectType === 'heliotropeZone') {
+                $heliotrope = $this->getConfiguration('heliotrope');
+                if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
+                    throw new \Exception (__('L\'équipement héliotrope doit être renseigné!', __FILE__));
+                    return;
+                }        
+
                 if (!in_array($this->getConfiguration('dawnType'), $dawnTypeList, true)) {
                     throw new \Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
                     return;

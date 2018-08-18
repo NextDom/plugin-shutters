@@ -1,76 +1,28 @@
 {
-    "name": "externalInfo",
+    "name": "heliotropeZone",
     "commands": [
         {
-            "name": "Gestion absence",
+            "name": "Gestion nuit",
             "type": "action",
             "subtype": "select",
             "configuration": {
-				"type": "externalInfo",
+				"type": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets sur absence." 
+                  "description": "Activer ou désactiver la gestion des volets sur passage en nuit." 
             },
-            "logicalId": "externalInfo:disableAbsenceManagement",
+            "logicalId": "heliotropeZone:PresenceManagement",
             "isVisible": false
         },
         {
-            "name": "Gestion présence",
+            "name": "Gestion jour",
             "type": "action",
             "subtype": "select",
             "configuration": {
-				"type": "externalInfo",
+				"type": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
-                  "description": "Activer ou désactiver la gestion des volets sur présence." 
+                "description": "Activer ou désactiver la gestion des volets sur passage en jour." 
             },
-            "logicalId": "externalInfo:disablePresenceManagement",
-            "isVisible": false
-        },
-        {
-            "name": "Gestion détection incendie",
-            "type": "action",
-            "subtype": "select",
-            "configuration": {
-				"type": "externalInfo",
-                "listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets sur détection incendie." 
-            },
-            "logicalId": "externalInfo:disableFireManagement",
-            "isVisible": false
-        },
-        {
-            "name": "Gestion température extérieure",
-            "type": "action",
-            "subtype": "select",
-           "configuration": {
-            "type": "externalInfo",
-            "listValue": "Enable|Active;Disable|Inactive",
-            "description": "Activer ou désactiver la gestion des volets en fonction de la température extérieure." 
-        },
-            "logicalId": "externalInfo:disableTemperatureManagement",
-            "isVisible": false
-        },
-        {
-            "name": "Gestion luminosité extérieure",
-            "type": "action",
-            "subtype": "select",
-            "configuration": {
-				"type": "externalInfo",
-              	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets en fonction de la luminosité extérieure." 
-            },
-            "logicalId": "externalInfo:disableLuminosityManagement",
-            "isVisible": false
-        },
-        {
-            "name": "Gestion héliotrope",
-            "type": "action",
-            "subtype": "select",
-            "configuration": {
-				"type": "externalInfo",
-              	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets en fonction du soleil." 
-            },
-            "logicalId": "externalInfo:disableHeliotropeManagement",
+            "logicalId": "heliotropeZone:AbsenceManagement",
             "isVisible": false
         }
     ]

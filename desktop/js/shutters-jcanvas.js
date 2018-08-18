@@ -29,16 +29,16 @@ function drawWallPlan() {
         text: 'Nord'
     })
     .addLayer({
-        type: 'line',
+        type: 'vector',
         name: 'axe',
         strokeStyle: '#d9534f',
         strokeWidth: 5,
         strokeDash: [10],
         strokeDashOffset: 0,
         rounded: true,
-        x1: 200, y1: 200,
-        x2: parseInt(200 + (150 * (Math.cos(angle * Math.PI / 180)))),
-        y2: parseInt(200 + (150 * (Math.sin(angle * Math.PI / 180))))
+        x: 200, y: 200,
+        a1: angle,
+        y2: 150
     })
     .addLayer({
         type: 'arc',
@@ -388,33 +388,14 @@ function drawHeliotropePlan() {
 function refreshWallPlan() {
     var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
     $('#wallPlan').removeLayer('axe')
-        .removeLayer('arc')
         .setLayer('wall', {
             rotate: angle
         })
-        .addLayer({
-            type: 'line',
-            name: 'axe',
-            strokeStyle: '#d9534f',
-            strokeWidth: 5,
-            strokeDash: [10],
-            strokeDashOffset: 0,
-            rounded: true,
-            x1: 200, y1: 200,
-            x2: parseInt(200 + (150 * (Math.cos(angle * Math.PI / 180)))),
-            y2: parseInt(200 + (150 * (Math.sin(angle * Math.PI / 180))))
+        .setLayer('axe', {
+            a1: angle
         })
-        .addLayer({
-            type: 'arc',
-            name: 'arc',
-            strokeStyle: '#d9534f',
-            strokeWidth: 1,
-            strokeDash: [4],
-            strokeDashOffset: 0,
-            rounded: true,
-            x: 200, y: 200,
-            radius: 50,
-            start: 0, end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
+        .setLayer('arc', {
+            end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
         })
         .drawLayers();  
 }

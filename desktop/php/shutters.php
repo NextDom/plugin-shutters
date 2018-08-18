@@ -239,7 +239,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             </li>
             <li role="presentation">
                 <a href="#commandTab" aria-controls="avatar" role="tab" data-toggle="tab">
-                    <i class="fa fa-hand-point-up"></i> {{Commandes}}</a>
+                    <i class="fa fa-list-alt"></i> {{Commandes}}</a>
             </li>
         </ul>
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
