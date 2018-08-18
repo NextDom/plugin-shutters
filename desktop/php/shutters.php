@@ -936,7 +936,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <h4 class="panel-title">{{Commandes liées à l'équipement informations externes}}</h4>
                         </div>
                         <div class="panel-body"> 
-                            <table id="table_cmd" class="table table-bordered">
+                            <table id="cmdTable" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 50px;">{{Id}}</th>

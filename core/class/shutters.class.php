@@ -308,6 +308,37 @@ class shutters extends eqLogic
 
     }
 
+    public function loadCmdFromConfFile($objectType) {
+        $file = dirname(__FILE__) . '/../config/devices/' . $objectType . '.json';
+        if (!is_file($file)) {
+			return;
+		}
+		$content = file_get_contents($file);
+		if (!is_json($content)) {
+			return;
+		}
+		$device = json_decode($content, true);
+		if (!is_array($device) || !isset($device['commands'])) {
+			return true;
+		}
+		foreach ($device['commands'] as $command) {
+			$cmd = null;
+			foreach ($this->getCmd() as $existingCmd) {
+				if ((isset($command['logicalId']) && $existingCmd->getLogicalId() == $command['logicalId'])
+					|| (isset($command['name']) && $existingCmd->getName() == $command['name'])) {
+					$cmd = $existingCmd;
+					break;
+				}
+			}
+			if ($cmd == null || !is_object($cmd)) {
+				$cmd = new shuttersCmd();
+				$cmd->setEqLogic_id($this->getId());
+				utils::a2o($cmd, $command);
+				$cmd->save();
+			}
+		}
+    }
+    
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 
      en avez besoin

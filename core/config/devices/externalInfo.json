@@ -1,0 +1,59 @@
+{
+    "name": "externalInfo",
+    "commands": [
+        {
+            "name": "Désactiver la gestion absence",
+            "type": "action",
+            "subtype": "binary",
+            "configuration": {
+				"type": "externalInfo"
+            },
+            "logicalId": "externalInfo:disableAbsenceManagement"
+        },
+        {
+            "name": "Désactiver la gestion présence",
+            "type": "action",
+            "subtype": "binary",
+            "configuration": {
+				"type": "externalInfo"
+            },
+            "logicalId": "externalInfo:disablePresenceManagement"
+        },
+        {
+            "name": "Désactiver la gestion détection incendie",
+            "type": "action",
+            "subtype": "binary",
+            "configuration": {
+				"type": "externalInfo"
+            },
+            "logicalId": "externalInfo:disableFireManagement"
+        },
+        {
+            "name": "Désactiver la gestion température extérieure",
+            "type": "action",
+            "subtype": "binary",
+           "configuration": {
+				"type": "externalInfo"
+            },
+            "logicalId": "externalInfo:disableTemperatureManagement"
+        },
+        {
+            "name": "Désactiver la gestion de la luminosité extérieure",
+            "type": "action",
+            "subtype": "binary",
+            "configuration": {
+				"type": "externalInfo"
+            },
+            "logicalId": "externalInfo:disableLuminosityManagement"
+        },
+        {
+            "name": "Désactiver la gestion héliotrope",
+            "type": "action",
+            "subtype": "binary",
+            "configuration": {
+				"type": "externalInfo"
+            },
+            "logicalId": "externalInfo:disableHeliotropeManagement"
+        }
+    ]
+}
