@@ -284,7 +284,7 @@ class shutters extends eqLogic
 
     public function postUpdate()
     {
-
+        loadCmdFromConfFile($this->getConfiguration('objectType', null));
     }
 
     public function preRemove()
@@ -367,16 +367,10 @@ class shutters extends eqLogic
 class shuttersCmd extends cmd
 {
     /*     * *************************Attributs****************************** */
+
     /*     * ***********************Methode static*************************** */
+
     /*     * *********************Methode d'instance************************* */
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes 
-     même si elles ne sont pas dans la nouvelle configuration de l'équipement 
-     envoyé en JS
-      public function dontRemoveCmd() {
-      return true;
-      }
-     */
 
     public function execute($_options = array())
     {
