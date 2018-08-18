@@ -19,7 +19,7 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-//require_once 'shuttersCmd.class.php';
+require_once 'shuttersCmd.class.php';
 
 class shutters extends eqLogic
 {
@@ -284,7 +284,7 @@ class shutters extends eqLogic
 
     public function postUpdate()
     {
-        loadCmdFromConfFile($this->getConfiguration('objectType', null));
+        $this->loadCmdFromConfFile($this->getConfiguration('objectType', null));
     }
 
     public function preRemove()
@@ -364,18 +364,3 @@ class shutters extends eqLogic
     /*     * **********************Getteur Setteur*************************** */
 }
 
-class shuttersCmd extends cmd
-{
-    /*     * *************************Attributs****************************** */
-
-    /*     * ***********************Methode static*************************** */
-
-    /*     * *********************Methode d'instance************************* */
-
-    public function execute($_options = array())
-    {
-        
-    }
-
-    /*     * **********************Getteur Setteur*************************** */
-}
