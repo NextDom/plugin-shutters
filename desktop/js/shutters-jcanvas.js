@@ -38,7 +38,7 @@ function drawWallPlan() {
         rounded: true,
         x: 200, y: 200,
         a1: angle,
-        y2: 150
+        l1: 150
     })
     .addLayer({
         type: 'arc',
