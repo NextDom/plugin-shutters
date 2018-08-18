@@ -60,6 +60,18 @@
             },
             "logicalId": "externalInfo:disableLuminosityManagement",
             "isVisible": false
+        },
+        {
+            "name": "Gestion héliotrope",
+            "type": "action",
+            "subtype": "select",
+            "configuration": {
+				"type": "externalInfo",
+              	"listValue": "Enable|Active;Disable|Inactive",
+                "description": "Activer ou désactiver la gestion des volets en fonction du soleil." 
+            },
+            "logicalId": "externalInfo:disableHeliotropeManagement",
+            "isVisible": false
         }
     ]
 }

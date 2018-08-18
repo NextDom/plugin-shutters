@@ -169,14 +169,9 @@ function updateAngleRange() {
  * Initialize default values
  */
 function initDefaultValues() {
-    //Initialize default values for object external info      
+    //Initialize default values for object heliotrope zone  
     if ($('#heliotrope').val() === null) {
         $('#heliotrope').val('none');
-    }
-
-    //Initialize default values for object heliotrope zone  
-    if ($('#externalInfoObject').val() === null) {
-        $('#externalInfoObject').val('none');
     }
     if ($('#dawnType').val() === null) {
         $('#dawnType').val('sunrise').trigger('change');

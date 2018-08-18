@@ -521,24 +521,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
-                                        <div class="col-sm-5">
-                                            <select id="heliotrope" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotrope">
-                                                <option value="none">{{Non affecté}}</option>
-                                                <?php
-                                                if (class_exists('heliotropeCmd')) {
-                                                    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-                                                        echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
-                                                    }
-                                                } else {
-                                                    echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
+                                   <div class="form-group">
                                         <label class="col-sm-3 control-label">{{Gestion prioritaire}}</label>
                                         <div class="col-sm-5">
                                             <select id="priorityManagement" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="priorityManagement">
@@ -561,18 +544,18 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <form class="form-horizontal">
                                 <div class="col-sm-6">               
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">{{Lien informations externes}}</label>
+                                        <label class="col-sm-3 control-label" for="heliotrope">{{Héliotrope}}</label>
                                         <div class="col-sm-5">
-                                            <select id="externalInfoObject" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoObject">
+                                            <select id="heliotrope" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotrope">
                                                 <option value="none">{{Non affecté}}</option>
                                                 <?php
-                                                    foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                                        if ($shutters->getConfiguration('objectType') == 'externalInfo' && $eqLogic->getIsEnable() == true) {
-                                                            if ($shutters->getConfiguration('heliotrope') != null && $shutters->getConfiguration('heliotrope') != 'none') {
-                                                                echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                                            }
-                                                        }
+                                                if (class_exists('heliotropeCmd')) {
+                                                    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+                                                        echo '<option value="' . $heliotrope->getId() . '">' . $heliotrope->getName() . '</option>';
                                                     }
+                                                } else {
+                                                    echo '<option value="">{{Pas d\'héliotrope disponible}}</option>';
+                                                }
                                                 ?>
                                             </select>
                                         </div>
@@ -600,9 +583,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        <canvas id="heliotropePlan" class="col-sm-offset-3" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
                                      </div>
-                                   <div class="panel panel-default col-sm-9 col-sm-offset-1">
+                                   <div class="panel panel-default col-sm-offset-1 col-sm-9">
                                         <div class="panel-body">
                                             <b>{{Procédure de réglage de l'angle}}</b>
                                             <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
@@ -637,7 +620,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        <canvas id="wallPlan" class="col-sm-offset-3" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
                                     </div>
                                 </div>
                             </form>    
