@@ -585,22 +585,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     <div class="form-group">
                                         <canvas id="heliotropePlan" class="col-sm-offset-3" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
                                      </div>
-                                   <div class="panel panel-default col-sm-offset-1 col-sm-9">
-                                        <div class="panel-body">
-                                            <b>{{Procédure de réglage de l'angle}}</b>
-                                            <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
-                                            <li>{{Soit aller sur le site du }}<a href="https://www.cadastre.gouv.fr/scpc/accueil.do" target="_blank">{{cadastre}}</a> :</li>
-                                            <ol>
-                                                <li>{{Saisir votre adresse.}}</li>
-                                                <li>{{Sélectionner la feuille correspondante à votre parcelle.}}</li>
-                                                <li>{{Une fois le plan affiché, dans l'onglet outils avancés, sélectionner mesurer.}}</li>
-                                                <li>{{Sélectionner l'outil 'mesurer un gisement'.}}</li>
-                                                <li>{{Tracer sur le plan une droite parallèle à votre façade (sens horaire par rapport au centre de l'habitation).}}</li>
-                                                <li>{{Relever la valeur de l'angle mesuré (en grades) et le renseigner dans le champ du plugin.}}</li>
-                                                <li>{{Vérifier que l'orientation du graphique dans le plugin est conforme à la réalité.}}</li>
-                                            </ol>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-sm-6">               
                                     <div class="form-group">

@@ -387,8 +387,7 @@ function drawHeliotropePlan() {
 
 function refreshWallPlan() {
     var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
-    $('#wallPlan').removeLayer('axe')
-        .setLayer('wall', {
+    $('#wallPlan').setLayer('wall', {
             rotate: angle
         })
         .setLayer('axe', {
