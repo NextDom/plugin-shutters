@@ -68,9 +68,7 @@ class shutters extends eqLogic
 
     public function preSave()
     {
-        if (!empty($this->getConfiguration('objectType'))) {
-            $this->setConfiguration('isObjectCreated', true);
-        }
+
     }
 
     public function postSave()
