@@ -37,7 +37,6 @@ function printEqLogic(_eqLogic) {
         displaySettingPanel($('#objectType').val());
 
         $('input[type=range]').trigger('change');
-        listHeliotropeObject();
 
         updatePriorityManagement();
         refreshWallPlan();
@@ -197,36 +196,6 @@ function initDefaultValues() {
         $('#commandType').val('analogCmd');
     }
 
-}
-
-/**
- * List external info object with configured heliotrope
- */
-function listHeliotropeObject() {
-    $.ajax({
-        type: 'POST',
-        async: false,
-        url: 'plugins/shutters/core/ajax/shutters.ajax.php',
-        data: {
-            action: 'listHeliotropeObject',
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) {
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            if (data.result.length == 0) {
-                $('#objectType').children("[value='heliotropeZone']").attr('disabled', true);
-            } else {
-                $('#objectType').children("[value='heliotropeZone']").attr('disabled', false);
-            }
-        }
-    });
 }
 
 /**
