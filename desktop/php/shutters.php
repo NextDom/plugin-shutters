@@ -600,22 +600,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
-                                        <div class="col-sm-5">
-                                            <div class="input-group">    
-                                                <span class="input-group-addon">0°</span>
-                                                <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control text-center" data-l1key="configuration" data-l2key="wallAngle"/>
-                                                <span class="input-group-addon">360°</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <select id="wallAngleUnit" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="wallAngleUnit">
-                                            <option value="deg">{{degré}}</option>
-                                            <option value="gon">{{grade}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default col-sm-9 col-sm-offset-1">
+                                        <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                     </div>
+                                   <div class="panel panel-default col-sm-9 col-sm-offset-1">
                                         <div class="panel-body">
                                             <b>{{Procédure de réglage de l'angle}}</b>
                                             <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
@@ -634,7 +621,22 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </div>
                                 <div class="col-sm-6">               
                                     <div class="form-group">
-                                        <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">    
+                                                <span class="input-group-addon">0°</span>
+                                                <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control text-center" data-l1key="configuration" data-l2key="wallAngle"/>
+                                                <span class="input-group-addon">360°</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <select id="wallAngleUnit" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="wallAngleUnit">
+                                            <option value="deg">{{degré}}</option>
+                                            <option value="gon">{{grade}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
                                     </div>
                                 </div>
