@@ -20,6 +20,8 @@ $(document).ready(function() {
 
     initEvents();
 
+    $("#cmdTable").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+
     drawHeliotropePlan();
     drawWallPlan();
 });

@@ -9,9 +9,9 @@
 				"type": "externalInfo",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur absence." 
-  
             },
-            "logicalId": "externalInfo:disableAbsenceManagement"
+            "logicalId": "externalInfo:disableAbsenceManagement",
+            "isVisible": false
         },
         {
             "name": "Gestion présence",
@@ -19,9 +19,11 @@
             "subtype": "select",
             "configuration": {
 				"type": "externalInfo",
-              	"listValue": "Enable|Active;Disable|Inactive"
+              	"listValue": "Enable|Active;Disable|Inactive",
+                  "description": "Activer ou désactiver la gestion des volets sur présence." 
             },
-            "logicalId": "externalInfo:disablePresenceManagement"
+            "logicalId": "externalInfo:disablePresenceManagement",
+            "isVisible": false
         },
         {
             "name": "Gestion détection incendie",
@@ -32,7 +34,8 @@
                 "listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur détection incendie." 
             },
-            "logicalId": "externalInfo:disableFireManagement"
+            "logicalId": "externalInfo:disableFireManagement",
+            "isVisible": false
         },
         {
             "name": "Gestion température extérieure",
@@ -40,9 +43,11 @@
             "subtype": "select",
            "configuration": {
             "type": "externalInfo",
-            "listValue": "Enable|Active;Disable|Inactive"
-      },
-            "logicalId": "externalInfo:disableTemperatureManagement"
+            "listValue": "Enable|Active;Disable|Inactive",
+            "description": "Activer ou désactiver la gestion des volets en fonction de la température extérieure." 
+        },
+            "logicalId": "externalInfo:disableTemperatureManagement",
+            "isVisible": false
         },
         {
             "name": "Gestion luminosité extérieure",
@@ -50,9 +55,11 @@
             "subtype": "select",
             "configuration": {
 				"type": "externalInfo",
-              	"listValue": "Enable|Active;Disable|Inactive"
+              	"listValue": "Enable|Active;Disable|Inactive",
+                "description": "Activer ou désactiver la gestion des volets en fonction de la luminosité extérieure." 
             },
-            "logicalId": "externalInfo:disableLuminosityManagement"
+            "logicalId": "externalInfo:disableLuminosityManagement",
+            "isVisible": false
         },
         {
             "name": "Gestion héliotrope",
@@ -60,9 +67,11 @@
             "subtype": "select",
             "configuration": {
 				"type": "externalInfo",
-              	"listValue": "Enable|Active;Disable|Inactive"
+              	"listValue": "Enable|Active;Disable|Inactive",
+                "description": "Activer ou désactiver la gestion des volets en fonction du soleil." 
             },
-            "logicalId": "externalInfo:disableHeliotropeManagement"
+            "logicalId": "externalInfo:disableHeliotropeManagement",
+            "isVisible": false
         }
     ]
 }

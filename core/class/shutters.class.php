@@ -75,6 +75,7 @@ class shutters extends eqLogic
 
     public function postSave()
     {
+   
     }
 
     public function preUpdate()
@@ -98,6 +99,7 @@ class shutters extends eqLogic
             return;
         }
         if ($isObjectCreated) {
+            log::add('shutters','debug', '[isObjectCreated] => '.$isObjectCreated);
             if ($objectType === 'externalInfo') {
                 $cmd = $this->getConfiguration('absenceInfoCmd', null);
                 if (!empty($cmd)) {
@@ -165,7 +167,7 @@ class shutters extends eqLogic
                     } 
                 }
     
-            } elseif($objectType == 'heliotropeZone') {
+            } elseif($objectType === 'heliotropeZone') {
                 $externalInfoObject = eqLogic::byId($this->getConfiguration('externalInfoObject'));
                 if (empty($externalInfoObject) || $externalInfoObject == 'none') {
                     throw new \Exception (__('Le lien vers les infos externes doit être renseigné!', __FILE__));
@@ -199,7 +201,7 @@ class shutters extends eqLogic
                     return;
                 }
             
-            } elseif($objectType == 'shutter') {
+            } elseif($objectType === 'shutter') {
                     if (!in_array($this->getConfiguration('openingType'), $openingTypeList, true)) {
                         throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                         return;
@@ -268,7 +270,7 @@ class shutters extends eqLogic
                         } 
                     }
         
-            } elseif ($objectType == 'shuttersGroup') {
+            } elseif ($objectType === 'shuttersGroup') {
     
                        
             } 
