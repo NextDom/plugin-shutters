@@ -9,8 +9,10 @@ function initEvents() {
     $('.listCmd').off('click').on('click', function () {
         var dataInput = $(this).attr('data-input');
         var dataType = $(this).attr('data-type');
+        var dataSubType = $(this).attr('data-subtype');
+        console.log('data-subtype => ' + dataSubType);
         var element = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
-        jeedom.cmd.getSelectModal({cmd: {type: dataType}}, function (result) {
+        jeedom.cmd.getSelectModal({cmd: {type: dataType, subType: dataSubType}}, function (result) {
             element.val(result.human);
             if (dataInput === 'absenceInfoCmd' || dataInput === 'fireDetectionCmd') {
                 element.trigger('change');

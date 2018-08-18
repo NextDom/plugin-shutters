@@ -37,7 +37,7 @@ function drawWallPlan() {
         strokeDashOffset: 0,
         rounded: true,
         x: 200, y: 200,
-        a1: angle,
+        a1: angle + 90,
         l1: 150
     })
     .addLayer({
@@ -391,7 +391,7 @@ function refreshWallPlan() {
             rotate: angle
         })
         .setLayer('axe', {
-            a1: angle
+            a1: angle + 90
         })
         .setLayer('arc', {
             end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
