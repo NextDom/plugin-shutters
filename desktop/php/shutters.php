@@ -29,8 +29,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 ?>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
 <div class="cursor-tooltip"></div>
 
 <div class="row row-overflow">
@@ -369,9 +367,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
             </div>
             <div role="tabpanel" class="tab-pane" id="settingsTab">
                 <br/>
-                <div class="alert alert-info" data-alerttype="setting">
-                    <strong>Info!</strong> {{Vous devez créer un nouvel équipement avant de pouvoir le paramétrer.}}
-                </div>
                 <div id="objectSettings" class="panel-group display-none" data-paneltype="setting">
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="externalInfo">
                         <div class="panel-heading">
@@ -560,94 +555,90 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </div>
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="heliotropeZone">
                         <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#heliotropeZoneSettings"> {{Paramètres héliotrope}} </a>
-                            </h4>
+                            <h4 class="panel-title">{{Paramètres héliotrope}}</h4>
                         </div>
-                        <div id="heliotropeZoneSettings" class="panel-collapse collapse">
-                            <div class="panel-body"> 
-                                <form class="form-horizontal">
-                                    <div class="col-sm-6">               
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Lien informations externes}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="externalInfoObject" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoObject">
-                                                    <option value="none">{{Non affecté}}</option>
-                                                    <?php
-                                                        foreach (eqLogic::byType('shutters', true) as $shutters) {
-                                                            if ($shutters->getConfiguration('objectType') == 'externalInfo' && $eqLogic->getIsEnable() == true) {
-                                                                if ($shutters->getConfiguration('heliotrope') != null && $shutters->getConfiguration('heliotrope') != 'none') {
-                                                                    echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
-                                                                }
+                        <div class="panel-body"> 
+                            <form class="form-horizontal">
+                                <div class="col-sm-6">               
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Lien informations externes}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="externalInfoObject" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoObject">
+                                                <option value="none">{{Non affecté}}</option>
+                                                <?php
+                                                    foreach (eqLogic::byType('shutters', true) as $shutters) {
+                                                        if ($shutters->getConfiguration('objectType') == 'externalInfo' && $eqLogic->getIsEnable() == true) {
+                                                            if ($shutters->getConfiguration('heliotrope') != null && $shutters->getConfiguration('heliotrope') != 'none') {
+                                                                echo '<option value="' . $shutters->getId() . '">' . $shutters->getName() . '</option>';
                                                             }
                                                         }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="dawnType">{{Lever du soleil}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="dawnType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="dawnType">
-                                                    <option value="astronomicalDawn">{{Aube astronomique}}</option>
-                                                    <option value="nauticalDawn">{{Aube nautique}}</option>
-                                                    <option value="civilDawn">{{Aube civile}}</option>
-                                                    <option value="sunrise">{{Lever du soleil}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="duskType">{{Coucher du soleil}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="duskType" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="duskType">
-                                                    <option value="sunset">{{Coucher du soleil}}</option>
-                                                    <option value="civilDusk">{{Crépuscule civil}}</option>
-                                                    <option value="nauticalDusk">{{Crépuscule nautique}}</option>
-                                                    <option value="astronomicalDusk">{{Crépuscule astronomique}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">    
-                                                    <span class="input-group-addon">0°</span>
-                                                    <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control text-center" data-l1key="configuration" data-l2key="wallAngle"/>
-                                                    <span class="input-group-addon">360°</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <select id="wallAngleUnit" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="wallAngleUnit">
-                                                <option value="deg">{{degré}}</option>
-                                                <option value="gon">{{grade}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default col-sm-9 col-sm-offset-1">
-                                            <div class="panel-body">
-                                                <b>{{Procédure de réglage de l'angle}}</b>
-                                                <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
-                                                <li>{{Soit aller sur le site du }}<a href="https://www.cadastre.gouv.fr/scpc/accueil.do" target="_blank">{{cadastre}}</a> :</li>
-                                                <ol>
-                                                    <li>{{Saisir votre adresse.}}</li>
-                                                    <li>{{Sélectionner la feuille correspondante à votre parcelle.}}</li>
-                                                    <li>{{Une fois le plan affiché, dans l'onglet outils avancés, sélectionner mesurer.}}</li>
-                                                    <li>{{Sélectionner l'outil 'mesurer un gisement'.}}</li>
-                                                    <li>{{Tracer sur le plan une droite parallèle à votre façade (sens horaire par rapport au centre de l'habitation).}}</li>
-                                                    <li>{{Relever la valeur de l'angle mesuré (en grades) et le renseigner dans le champ du plugin.}}</li>
-                                                    <li>{{Vérifier que l'orientation du graphique dans le plugin est conforme à la réalité.}}</li>
-                                                </ol>
-                                            </div>
+                                                    }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">               
-                                        <div class="form-group">
-                                            <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
-                                            <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="dawnType">{{Lever du soleil}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="dawnType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="dawnType">
+                                                <option value="astronomicalDawn">{{Aube astronomique}}</option>
+                                                <option value="nauticalDawn">{{Aube nautique}}</option>
+                                                <option value="civilDawn">{{Aube civile}}</option>
+                                                <option value="sunrise">{{Lever du soleil}}</option>
+                                            </select>
                                         </div>
                                     </div>
-                                </form>    
-                            </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="duskType">{{Coucher du soleil}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="duskType" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="duskType">
+                                                <option value="sunset">{{Coucher du soleil}}</option>
+                                                <option value="civilDusk">{{Crépuscule civil}}</option>
+                                                <option value="nauticalDusk">{{Crépuscule nautique}}</option>
+                                                <option value="astronomicalDusk">{{Crépuscule astronomique}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
+                                        <div class="col-sm-5">
+                                            <div class="input-group">    
+                                                <span class="input-group-addon">0°</span>
+                                                <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control text-center" data-l1key="configuration" data-l2key="wallAngle"/>
+                                                <span class="input-group-addon">360°</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <select id="wallAngleUnit" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="wallAngleUnit">
+                                            <option value="deg">{{degré}}</option>
+                                            <option value="gon">{{grade}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default col-sm-9 col-sm-offset-1">
+                                        <div class="panel-body">
+                                            <b>{{Procédure de réglage de l'angle}}</b>
+                                            <li>{{Soit utiliser une boussole (appli smartphone par exemple) placée parallèlement au mur.}}</li>
+                                            <li>{{Soit aller sur le site du }}<a href="https://www.cadastre.gouv.fr/scpc/accueil.do" target="_blank">{{cadastre}}</a> :</li>
+                                            <ol>
+                                                <li>{{Saisir votre adresse.}}</li>
+                                                <li>{{Sélectionner la feuille correspondante à votre parcelle.}}</li>
+                                                <li>{{Une fois le plan affiché, dans l'onglet outils avancés, sélectionner mesurer.}}</li>
+                                                <li>{{Sélectionner l'outil 'mesurer un gisement'.}}</li>
+                                                <li>{{Tracer sur le plan une droite parallèle à votre façade (sens horaire par rapport au centre de l'habitation).}}</li>
+                                                <li>{{Relever la valeur de l'angle mesuré (en grades) et le renseigner dans le champ du plugin.}}</li>
+                                                <li>{{Vérifier que l'orientation du graphique dans le plugin est conforme à la réalité.}}</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">               
+                                    <div class="form-group">
+                                        <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                    </div>
+                                </div>
+                            </form>    
                         </div>
                     </div>
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shuttersGroup">
