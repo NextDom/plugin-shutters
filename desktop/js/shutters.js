@@ -58,23 +58,21 @@ function addCmdToTable(_cmd) {
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" >';
     tr += '</td>';
     tr += '<td>';
-    tr += '<span class="cmdAttr" data-l1key="type"></span>';
-    tr += '<br/>';
-    tr += '<span class="cmdAttr" data-l1key="subType"></span>';
+    tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="description">';
     tr += '</td>';
     tr += '<td>';
-    if (init(_cmd.subType) == 'numeric' || init(_cmd.subType) == 'binary') {
-        tr += '<label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" data-size="mini" checked/>{{Historiser}}</label></span> ';
-    }
+    tr += '<span class="cmdAttr" data-l1key="type"></span>';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<span class="cmdAttr" data-l1key="subType"></span>';
     tr += '</td>';
     tr += '<td>';
     if (is_numeric(_cmd.id)) {
         tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fa fa-cogs"></i></a> ';
     }
    if (init(_cmd.type) == 'info') {
-        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
+        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a></td>';
     }
-    tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
     tr += '</tr>';
     $('#cmdTable tbody').append(tr);
     $('#cmdTable tbody tr:last').setValues(_cmd, '.cmdAttr');

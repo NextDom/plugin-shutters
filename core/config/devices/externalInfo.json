@@ -2,56 +2,65 @@
     "name": "externalInfo",
     "commands": [
         {
-            "name": "Désactiver la gestion absence",
+            "name": "Gestion absence",
             "type": "action",
-            "subtype": "binary",
+            "subtype": "select",
             "configuration": {
-				"type": "externalInfo"
+				"type": "externalInfo",
+              	"listValue": "Enable|Active;Disable|Inactive",
+                "description": "Activer ou désactiver la gestion des volets sur absence." 
+  
             },
             "logicalId": "externalInfo:disableAbsenceManagement"
         },
         {
-            "name": "Désactiver la gestion présence",
+            "name": "Gestion présence",
             "type": "action",
-            "subtype": "binary",
+            "subtype": "select",
             "configuration": {
-				"type": "externalInfo"
+				"type": "externalInfo",
+              	"listValue": "Enable|Active;Disable|Inactive"
             },
             "logicalId": "externalInfo:disablePresenceManagement"
         },
         {
-            "name": "Désactiver la gestion détection incendie",
+            "name": "Gestion détection incendie",
             "type": "action",
-            "subtype": "binary",
+            "subtype": "select",
             "configuration": {
-				"type": "externalInfo"
+				"type": "externalInfo",
+                "listValue": "Enable|Active;Disable|Inactive",
+                "description": "Activer ou désactiver la gestion des volets sur détection incendie." 
             },
             "logicalId": "externalInfo:disableFireManagement"
         },
         {
-            "name": "Désactiver la gestion température extérieure",
+            "name": "Gestion température extérieure",
             "type": "action",
-            "subtype": "binary",
+            "subtype": "select",
            "configuration": {
-				"type": "externalInfo"
-            },
+            "type": "externalInfo",
+            "listValue": "Enable|Active;Disable|Inactive"
+      },
             "logicalId": "externalInfo:disableTemperatureManagement"
         },
         {
-            "name": "Désactiver la gestion de la luminosité extérieure",
+            "name": "Gestion luminosité extérieure",
             "type": "action",
-            "subtype": "binary",
+            "subtype": "select",
             "configuration": {
-				"type": "externalInfo"
+				"type": "externalInfo",
+              	"listValue": "Enable|Active;Disable|Inactive"
             },
             "logicalId": "externalInfo:disableLuminosityManagement"
         },
         {
-            "name": "Désactiver la gestion héliotrope",
+            "name": "Gestion héliotrope",
             "type": "action",
-            "subtype": "binary",
+            "subtype": "select",
             "configuration": {
-				"type": "externalInfo"
+				"type": "externalInfo",
+              	"listValue": "Enable|Active;Disable|Inactive"
             },
             "logicalId": "externalInfo:disableHeliotropeManagement"
         }
