@@ -99,63 +99,63 @@ class shutters extends eqLogic
         if ($isObjectCreated) {
             log::add('shutters','debug', '[isObjectCreated] => '.$isObjectCreated);
             if ($objectType === 'externalInfo') {
-                $cmd = $this->getConfiguration('absenceInfoCmd', null);
+                $cmd = str_replace('#','',$this->getConfiguration('absenceInfoCmd', null));
                 if (!empty($cmd)) {
-                    $cmdId=cmd::byId(str_replace('#','',$cmd));
+                    $cmdId=cmd::byId($cmd);
                     if (!is_object($cmdId)) {
                         throw new \Exception (__('[Information d\'absence] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
                     if (empty($this->getConfiguration('absenceInfoCmdStatus'))) {
-                        throw new \Exception (__('[Information d\'absence] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                        throw new \Exception (__('[Information d\'absence] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
-                $cmd = $this->getConfiguration('presenceInfoCmd', null);
+                $cmd = str_replace('#','',$this->getConfiguration('presenceInfoCmd', null));
                 if (!empty($cmd)) {
-                    $cmdId=cmd::byId(str_replace('#','',$cmd));
+                    $cmdId=cmd::byId($cmd);
                     if (!is_object($cmdId)) {
                         throw new \Exception (__('[Information de présence] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
                     if (empty($this->getConfiguration('presenceInfoCmdStatus'))) {
-                        throw new \Exception (__('[Information de présence] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                        throw new \Exception (__('[Information de présence] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
-                $cmd = $this->getConfiguration('fireDetectionCmd', null);
+                $cmd = str_replace('#','',$this->getConfiguration('fireDetectionCmd', null));
                 if (!empty($cmd)) {
-                    $cmdId=cmd::byId(str_replace('#','',$cmd));
+                    $cmdId=cmd::byId($cmd);
                     if (!is_object($cmdId)) {
                         throw new \Exception (__('[Détection incendie] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
                     if (empty($this->getConfiguration('fireDetectionCmdStatus'))) {
-                        throw new \Exception (__('[Détection incendie] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                        throw new \Exception (__('[Détection incendie] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
-                $cmd = $this->getConfiguration('outdoorLuminosityCmd', null);
+                $cmd = str_replace('#','',$this->getConfiguration('outdoorLuminosityCmd', null));
                 if (!empty($cmd)) {
-                    $cmdId=cmd::byId(str_replace('#','',$cmd));
+                    $cmdId=cmd::byId($cmd);
                     if (!is_object($cmdId)) {
                         throw new \Exception (__('[Luminosité extérieure] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
                     if (empty($this->getConfiguration('outdoorLuminosityCmdStatus'))) {
-                        throw new \Exception (__('[Luminosité extérieure] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                        throw new \Exception (__('[Luminosité extérieure] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
-                $cmd = $this->getConfiguration('outdoorTemperatureCmd', null);
+                $cmd = str_replace('#','',$this->getConfiguration('outdoorTemperatureCmd', null));
                 if (!empty($cmd)) {
-                    $cmdId=cmd::byId(str_replace('#','',$cmd));
+                    $cmdId=cmd::byId($cmd);
                     if (!is_object($cmdId)) {
                         throw new \Exception (__('[Température extérieure] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
                     if (empty($this->getConfiguration('outdoorTemperatureCmdStatus'))) {
-                        throw new \Exception (__('[Température extérieure] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                        throw new \Exception (__('[Température extérieure] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
@@ -195,23 +195,23 @@ class shutters extends eqLogic
                     throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                     return;
                 }
-                $cmd = $this->getConfiguration('openOpeningInfoCmd', null);
+                $cmd = str_replace('#','',$this->getConfiguration('absenopenOpeningInfoCmdceInfoCmd', null));
                 if (!empty($cmd)) {
-                    $cmdId=cmd::byId(str_replace('#','',$cmd));
+                    $cmdId=cmd::byId($cmd);
                     if (!is_object($cmdId)) {
                         throw new \Exception (__('[Information ouvrant ouvert] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
-                    if (empty($this->getConfiguration('closedPositionCmdStatus'))) {
-                        throw new \Exception (__('[Information ouvrant ouvert] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                    if (empty($this->getConfiguration('openOpeningInfoCmdStatus'))) {
+                        throw new \Exception (__('[Information ouvrant ouvert] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
                 $shutterPositionType = $this->getConfiguration('shutterPositionType');
                 if ($shutterPositionType === 'analogPosition') {
-                    $cmd = $this->getConfiguration('shutterAnalogPositionCmd', null);
+                    $cmd = str_replace('#','',$this->getConfiguration('shutterAnalogPositionCmd', null));
                     if (!empty($cmd)) {
-                        $cmdId=cmd::byId(str_replace('#','',$cmd));
+                        $cmdId=cmd::byId($cmd);
                         if (!is_object($cmdId)) {
                             throw new \Exception (__('[Position du volet] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
@@ -240,15 +240,15 @@ class shutters extends eqLogic
                     }        
                 } 
                 if ($shutterPositionType == 'closedOpenedPositions' || $shutterPositionType == 'closedPosition') {
-                    $cmd = $this->getConfiguration('closedPositionCmd', null);
+                    $cmd = str_replace('#','',$this->getConfiguration('closedPositionCmd', null));
                     if (!empty($cmd)) {
-                        $cmdId=cmd::byId(str_replace('#','',$cmd));
+                        $cmdId=cmd::byId($cmd);
                         if (!is_object($cmdId)) {
                             throw new \Exception (__('[Position volet fermé] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
                         if (empty($this->getConfiguration('closedPositionCmdStatus'))) {
-                            throw new \Exception (__('[Position volet fermé] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                            throw new \Exception (__('[Position volet fermé] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                             return;
                         } 
                     } else {
@@ -257,15 +257,15 @@ class shutters extends eqLogic
                     }
                 } 
                 if ($shutterPositionType == 'closedOpenedPositions' || $shutterPositionType == 'openedPosition') {
-                    $cmd = $this->getConfiguration('openedPositionCmd', null);
+                    $cmd = str_replace('#','',$this->getConfiguration('openedPositionCmd', null));
                     if (!empty($cmd)) {
-                        $cmdId=cmd::byId(str_replace('#','',$cmd));
+                        $cmdId=cmd::byId($cmd);
                         if (!is_object($cmdId)) {
                             throw new \Exception (__('[Position volet ouvert] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
                         if (empty($this->getConfiguration('openedPositionCmdStatus'))) {
-                            throw new \Exception (__('[Position volet ouvert] Veuillez valider le statut de la commande ', __FILE__) . $cmd);
+                            throw new \Exception (__('[Position volet ouvert] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                             return;
                         } 
                     } else {
