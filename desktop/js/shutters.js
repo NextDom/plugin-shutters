@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     $("#cmdTable").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
-    updateAnalogPositionRange();
+    updateInputRangeMinMax();
     drawHeliotropePlan();
     drawWallPlan();
 });
@@ -165,7 +165,10 @@ function updateAngleRange() {
    }
 }
 
-function updateAnalogPositionRange() {
+/**
+ * Update min and max value for input type range
+ */
+function updateInputRangeMinMax() {
     $('input[type=range]').each(function () {
         var element = $(this);
         element.prev('span.input-group-addon').html(element.attr('min') + '%');

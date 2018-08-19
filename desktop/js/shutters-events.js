@@ -81,7 +81,7 @@ function initEvents() {
         var dataInput = lockBtn.attr('data-input');
         var element = lockBtn.closest('div.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
 
-        if (dataInput =='objectType' && element.is(':disabled')) {
+        if (dataInput === 'objectType' && element.is(':disabled')) {
             bootbox.confirm('{{Etes-vous sûr de vouloir changer le type d\'objet? Cela peut entraîner des dysfonctionnements du plugin!}}', function (result) {
                 if (result) {
                     element.prop('disabled', false);
