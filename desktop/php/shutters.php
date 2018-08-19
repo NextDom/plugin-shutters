@@ -637,16 +637,16 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Information(s) de position}}</label>
                                             <div class="col-sm-5">
-                                                <select id="positionSensorType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="positionSensorType" data-settinggroup="positionSensorType">
+                                                <select id="shutterPositionType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterPositionType" data-settinggroup="shutterPositionType">
                                                     <option value="none">{{Aucune}}</option>
                                                     <option value="analogPosition">{{Analogique}}</option>
-                                                    <option value="openedClosedSensors">{{Ouverture et fermeture}}</option>
-                                                    <option value="openedSensor">{{Ouverture}}</option>
-                                                    <option value="closedSensor">{{Fermeture}}</option>
+                                                    <option value="openedClosedPositions">{{Ouverture et fermeture}}</option>
+                                                    <option value="openedPosition">{{Ouverture}}</option>
+                                                    <option value="closedPosition">{{Fermeture}}</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <fieldset id="analogPositionSettings" class="display-none" data-settinggroup="positionSensorType" data-settingtype="analogPosition">  
+                                        <fieldset id="analogPositionSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="analogPosition">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Position du volet}}</label>
                                                 <div class="col-sm-5">
@@ -656,7 +656,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="shutterAnalogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPositionCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="shutterAnalogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="shutterAnalogPositionCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="info" data-subtype="numeric" data-input="shutterAnalogPositionCmd">
                                                                 <i class="fa fa-list"></i>
@@ -688,56 +688,60 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="closedSensorSettings" class="display-none" data-settinggroup="positionSensorType" data-settingtype="openedClosedSensors closedSensor">  
+                                        <fieldset id="closedPositionSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="openedClosedPositions closedPosition">  
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Détection volet fermé}}</label>
+                                                <label class="col-sm-3 control-label">{{Position volet fermé}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="closedSensor" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedSensor" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default listCmd cursor" data-type="info" data-input="closedSensor">
-                                                                    <i class="fa fa-list"></i>
+                                                            <a class="btn btn-default delCmd cursor" data-input="closedPositionCmd">
+                                                                <i class="fa fa-minus-circle"></i>
+                                                            </a>
+                                                        </span>
+                                                        <input id="closedPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPositionCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default listCmd cursor" data-type="info" data-input="closedPositionCmd">
+                                                                <i class="fa fa-list"></i>
                                                             </a>
                                                         </span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Statut volet fermé}}</label>
-                                                <div class="col-sm-5">
-                                                    <div class="input-group">
-                                                        <input id="closedSensorStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedSensorStatus" disabled/>
+                                                <div class="col-sm-3">
+                                                    <div id="closedPositionCmdStatus" class="input-group">
+                                                        <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPositionCmdStatus" placeholder="{{Valider le statut}}" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default getCmdStatus cursor" data-input="closedSensorStatus" data-input-link="closedSensor" data-message="le volet est fermé complètement?">
-                                                                <span class="fa fa-check"></span>
+                                                            <a class="btn btn-default getCmdStatus cursor" data-input="closedPositionCmdStatus" data-cmdinput="closedPositionCmd" data-message="{{le volet est en position fermé?}}">
+                                                                <span class="fa fa-check-circle"></span>
                                                             </a>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="openedSensorSettings" class="display-none" data-settinggroup="positionSensorType" data-settingtype="openedClosedSensors openedSensor">  
+                                        <fieldset id="openedPositionSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="openedClosedPositions openedPosition">  
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Détection volet}}</label>
+                                                <label class="col-sm-3 control-label">{{Position volet ouvert}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="openedSensor" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedSensor" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default listCmd cursor" data-type="info" data-input="openedSensor">
-                                                                    <i class="fa fa-list"></i>
+                                                            <a class="btn btn-default delCmd cursor" data-input="openedPositionCmd">
+                                                                <i class="fa fa-minus-circle"></i>
+                                                            </a>
+                                                        </span>
+                                                        <input id="openedPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPositionCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default listCmd cursor" data-type="info" data-input="openedPositionCmd">
+                                                                <i class="fa fa-list"></i>
                                                             </a>
                                                         </span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Statut volet ouvert}}</label>
-                                                <div class="col-sm-5">
-                                                    <div class="input-group">
-                                                        <input id="openedSensorStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedSensorStatus" disabled/>
+                                                <div class="col-sm-3">
+                                                    <div id="openedPositionCmdStatus" class="input-group">
+                                                        <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPositionCmdStatus" placeholder="{{Valider le statut}}" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default getCmdStatus cursor" data-input="openedSensorStatus" data-input-link="openedSensor" data-message="le volet est ouvert complètement?">
-                                                                <span class="fa fa-check"></span>
+                                                            <a class="btn btn-default getCmdStatus cursor" data-input="openedPositionCmdStatus" data-cmdinput="openedPositionCmd" data-message="{{le volet est en position ouvert?}}">
+                                                                <span class="fa fa-check-circle"></span>
                                                             </a>
                                                         </span>
                                                     </div>

@@ -202,8 +202,8 @@ function initDefaultValues () {
     if ($('#openingType').val() === null) {
         $('#openingType').val('window');
     }
-    if ($('#positionSensorType').val() === null) {
-        $('#positionSensorType').val('none').trigger('change');
+    if ($('#shutterPositionType').val() === null) {
+        $('#shutterPositionType').val('none').trigger('change');
     }
     if ($('#commandType').val() === null) {
         $('#commandType').val('analogCmd').trigger('change');

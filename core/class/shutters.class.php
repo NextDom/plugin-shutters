@@ -191,84 +191,75 @@ class shutters extends eqLogic
                 }
             
             } elseif($objectType === 'shutter') {
-                    if (!in_array($this->getConfiguration('openingType'), $openingTypeList, true)) {
-                        throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
+                if (!in_array($this->getConfiguration('openingType'), $openingTypeList, true)) {
+                    throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
+                    return;
+                }
+                if (!empty($this->getConfiguration('openOpeningInfo'))) {
+                    $cmdId=cmd::byId(str_replace('#','',$this->getConfiguration('openOpeningInfo')));
+                    if (!is_object($cmdId)) {
+                        throw new \Exception (__('[Information ouvrant ouvert] La commande suivante sélectionnée est inconnue : ', __FILE__));
                         return;
                     }
-                    if (!empty($this->getConfiguration('openOpeningInfo'))) {
-                        $cmdId=cmd::byId(str_replace('#','',$this->getConfiguration('openOpeningInfo')));
+                }
+                $shutterPositionType = $this->getConfiguration('shutterPositionType');
+                if ($shutterPositionType === 'analogPosition') {
+                    $cmd = $this->getConfiguration('shutterAnalogPositionCmd', null);
+                    if (!empty($cmd)) {
+                        $cmdId=cmd::byId(str_replace('#','',$cmd));
                         if (!is_object($cmdId)) {
-                            throw new \Exception (__('[Information ouvrant ouvert] La commande suivante sélectionnée est inconnue : ', __FILE__));
+                            throw new \Exception (__('[Position du volet] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
-                    }
-                    $positionSensorType = $this->getConfiguration('positionSensorType');
-                    if ($positionSensorType === 'analogPosition') {
-                            $cmd = $this->getConfiguration('shutterAnalogPositionCmd', null);
-                            if (!empty($cmd)) {
-                                $cmdId=cmd::byId(str_replace('#','',$cmd));
-                                if (!is_object($cmdId)) {
-                                    throw new \Exception (__('[Position du volet] La commande suivante est inconnue : ', __FILE__) . $cmd);
-                                    return;
-                                }
-                                if ($cmdId->getSubType() !== 'numeric') {
-                                    throw new \Exception (__('[Position du volet] La commande suivante n\'est pas de type numeric : ', __FILE__) . $cmd);
-                                    return;
-                                }
-                            } else {
-                                throw new \Exception (__('[Position du volet] La commande doit être renseignée!', __FILE__));
-                                return;
-                            }
-                            $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
-                            $min = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMin')));
-                            $max = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMax')));
-                            if ($analogClosedPosition < $min || $analogClosedPosition > $max) {
-                                throw new \Exception (__('La position volet fermé doit être renseignée et comprise dans la plage ', __FILE__) . '[' . $min . '% - ' . $max . '%]');
-                                return;
-                            }        
-                            $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
-                            $min = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMin')));
-                            $max = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMax')));
-                            if ($analogOpenedPosition < $min || $analogOpenedPosition > $max) {
-                                throw new \Exception (__('La position volet ouvert doit être renseignée et comprise dans la plage ', __FILE__) .  '[' . $min . '% - ' . $max . '%]');
-                                return;
-                            }        
-    
-                    } 
-                    if ($positionSensorType == 'openedClosedSensors' || $positionSensorType == 'closedSensor') {
-                        if (empty($this->getConfiguration('closedSensor'))) {
-                            throw new \Exception (__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
-                            return;
-                        }        
-                        $cmdId=cmd::byId(str_replace('#','',$this->getConfiguration('closedSensor')));
-                        if (!is_object($cmdId)) {
-                            throw new \Exception (__('[Fin de course fermeture] La commande sélectionnée est inconnue : ', __FILE__));
+                        if ($cmdId->getSubType() !== 'numeric') {
+                            throw new \Exception (__('[Position du volet] La commande suivante n\'est pas de type numeric : ', __FILE__) . $cmd);
                             return;
                         }
-                    } 
-                    if ($positionSensorType == 'openedClosedSensors' || $positionSensorType == 'openedSensor') {
-                        if (empty($this->getConfiguration('openedSensor'))) {
-                            throw new \Exception (__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
-                            return;
-                        }        
-                        $cmdId=cmd::byId(str_replace('#','',$this->getConfiguration('openedSensor')));
+                    } else {
+                        throw new \Exception (__('[Position du volet] La commande doit être renseignée!', __FILE__));
+                        return;
+                    }
+                    $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
+                    $min = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMin')));
+                    $max = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMax')));
+                    if ($analogClosedPosition < $min || $analogClosedPosition > $max) {
+                        throw new \Exception (__('La position volet fermé doit être renseignée et comprise dans la plage ', __FILE__) . '[' . $min . '% - ' . $max . '%]');
+                        return;
+                    }        
+                    $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
+                    $min = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMin')));
+                    $max = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMax')));
+                    if ($analogOpenedPosition < $min || $analogOpenedPosition > $max) {
+                        throw new \Exception (__('La position volet ouvert doit être renseignée et comprise dans la plage ', __FILE__) .  '[' . $min . '% - ' . $max . '%]');
+                        return;
+                    }        
+                } 
+                if ($shutterPositionType == 'openedClosedPositions' || $shutterPositionType == 'closedPosition') {
+                    $cmd = $this->getConfiguration('closedPositionCmd', null);
+                    if (!empty($cmd)) {
+                        $cmdId=cmd::byId(str_replace('#','',$cmd));
                         if (!is_object($cmdId)) {
-                            throw new \Exception (__('[Fin de course ouverture] La commande sélectionnée est inconnue : ', __FILE__));
+                            throw new \Exception (__('[Position volet fermé] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
+                    } else {
+                        throw new \Exception (__('[Position volet fermé] La commande doit être renseignée!', __FILE__));
+                        return;
                     }
-                    if (!empty($shutterArea)) {
-                        if ($incomingAzimuthAngle < 0 || $incomingAzimuthAngle > 100) {
-                            $exceptionMessage = __('L\'angle d\'entrée du soleil dans l\'ouvrant doit être renseigné!', __FILE__);
-                        }        
-                        if ($outgoingAzimuthAngle  < 0 || $outgoingAzimuthAngle > 100) {
-                            $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être renseigné!', __FILE__);
-                        }        
-                        if ($outgoingAzimuthAngle < $incomingAzimuthAngle) {
-                            $exceptionMessage = __('L\'angle de sortie du soleil de l\'ouvrant doit être supérieur à l\'angle d\'entrée!', __FILE__);
-                        } 
+                } 
+                if ($shutterPositionType == 'openedClosedPositions' || $shutterPositionType == 'openedPosition') {
+                    $cmd = $this->getConfiguration('openedPositionCmd', null);
+                    if (!empty($cmd)) {
+                        $cmdId=cmd::byId(str_replace('#','',$cmd));
+                        if (!is_object($cmdId)) {
+                            throw new \Exception (__('[Position volet ouvert] La commande suivante est inconnue : ', __FILE__) . $cmd);
+                            return;
+                        }
+                    } else {
+                        throw new \Exception (__('[Position volet ouvert] La commande doit être renseignée!', __FILE__));
+                        return;
                     }
-        
+                }
             } elseif ($objectType === 'shuttersGroup') {
     
                        
@@ -298,17 +289,9 @@ class shutters extends eqLogic
         
     }
 
-    public function throwException($exceptionMessage = null, bool $writeToLog = false)
-    {
-        if (isset($exceptionMessage)) {
-            throw new \Exception($exceptionMessage);
-            if ($writeToLog) {
-                log::add('shutters','debug','[exception] => '.$exceptionMessage);
-            }
-        }
-
-    }
-
+    /**
+     * Load commands from JSON file
+     */
     public function loadCmdFromConfFile($objectType) {
         $file = dirname(__FILE__) . '/../config/devices/' . $objectType . '.json';
         if (!is_file($file)) {
