@@ -128,7 +128,7 @@ function displaySettings (settingGroup = '', settingType = '') {
     console.log(settingGroup);
     console.log(settingType);
     if (settingGroup !== null && settingType !== null) {
-        $('fieldset[data-settinggroup=' + settingGroup + ']'.css('display', 'none');
+        $('fieldset[data-settinggroup=' + settingGroup + ']').css('display', 'none');
         $('fieldset[data-settinggroup=' + settingGroup + '][data-settingtype~=' + settingType + ']').css('display', 'block');
     }
 }
