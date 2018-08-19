@@ -791,6 +791,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </form>    
                             </div>
                         </div>
+                    </div>
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
                         <div class="panel-heading">
                             <h4 class="panel-title">
