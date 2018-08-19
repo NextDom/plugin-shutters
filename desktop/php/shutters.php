@@ -627,7 +627,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Informations de position du volet - type d'ouverture}} </a>
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Informations de position du volet - type d'ouvrant}} </a>
                             </h4>
                         </div>
                         <div id="shutterSettings" class="panel-collapse collapse">
@@ -698,7 +698,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="closedPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPositionCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="closedPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closedPositionCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="info" data-input="closedPositionCmd">
                                                                 <i class="fa fa-list"></i>
@@ -728,7 +728,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="openedPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPositionCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="openedPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openedPositionCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="info" data-input="openedPositionCmd">
                                                                 <i class="fa fa-list"></i>
@@ -768,7 +768,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                             <i class="fa fa-minus-circle"></i>
                                                         </a>
                                                     </span>
-                                                    <input id="openOpeningInfoCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                    <input id="openOpeningInfoCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                     <span class="input-group-btn">
                                                         <a class="btn btn-default listCmd cursor" data-type="info" data-input="openOpeningInfoCmd">
                                                             <i class="fa fa-list"></i>
@@ -791,6 +791,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </form>    
                             </div>
                         </div>
+                    <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterCmdSettings"> {{Commandes du volet}} </a>
+                            </h4>
+                        </div>
                         <div id="shutterCmdSettings" class="panel-collapse collapse">
                             <div class="panel-body"> 
                                 <form class="form-horizontal">
@@ -809,7 +815,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Commande analogique}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="analogCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="analogCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="action" data-input="analogCmd">
                                                                 <i class="fa fa-list"></i>
@@ -896,7 +902,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="commandTab">
