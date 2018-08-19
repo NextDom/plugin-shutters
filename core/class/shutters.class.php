@@ -210,6 +210,9 @@ class shutters extends eqLogic
                                 if (!is_object($cmdId)) {
                                     throw new \Exception (__('[Position du volet] La commande suivante est inconnue : ', __FILE__) . $cmd);
                                     return;
+                                } else {
+                                    throw new \Exception (__('[Position du volet] La commande doit être renseignée!', __FILE__));
+                                    return;
                                 }
                                 if ($cmdId->getSubType() !== 'numeric') {
                                     throw new \Exception (__('[Position du volet] La commande suivante n\'est pas de type numeric : ', __FILE__) . $cmd);

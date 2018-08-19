@@ -637,7 +637,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Information(s) de position}}</label>
                                             <div class="col-sm-5">
-                                                <select id="positionSensorType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="positionSensorType" data-settings-group="positionSensorType">
+                                                <select id="positionSensorType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="positionSensorType" data-settinggroup="positionSensorType">
                                                     <option value="none">{{Aucune}}</option>
                                                     <option value="analogPosition">{{Analogique}}</option>
                                                     <option value="openedClosedSensors">{{Ouverture et fermeture}}</option>
@@ -646,7 +646,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </select>
                                             </div>
                                         </div>
-                                        <fieldset id="analogPositionSettings" class="display-none" data-settings-group="positionSensorType" data-setting-type="analogPosition">  
+                                        <fieldset id="analogPositionSettings" class="display-none" data-settinggroup="positionSensorType" data-settingtype="analogPosition">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Position du volet}}</label>
                                                 <div class="col-sm-5">
@@ -680,15 +680,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Position volet ouvert}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">                                                        
-                                                        <span class="input-group-addon" data-l1key="configuration" data-l2key="analogOpenedPositionMin">---%</span>
+                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="analogOpenedPositionMin">---%</span>
                                                         <input id="analogOpenedPosition" type="range" min="95" max="100" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
-                                                        <span class="input-group-addon" data-l1key="configuration" data-l2key="analogOpenedPositionMax">---%</span>
+                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="analogOpenedPositionMax">---%</span>
                                                     </div>                                                        
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="closedSensorSettings" class="display-none" data-settings-group="positionSensorType" data-setting-type="openedClosedSensors closedSensor">  
+                                        <fieldset id="closedSensorSettings" class="display-none" data-settinggroup="positionSensorType" data-settingtype="openedClosedSensors closedSensor">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Détection volet fermé}}</label>
                                                 <div class="col-sm-5">
@@ -716,7 +716,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="openedSensorSettings" class="display-none" data-settings-group="positionSensorType" data-setting-type="openedClosedSensors openedSensor">  
+                                        <fieldset id="openedSensorSettings" class="display-none" data-settinggroup="positionSensorType" data-settingtype="openedClosedSensors openedSensor">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Détection volet}}</label>
                                                 <div class="col-sm-5">
@@ -792,13 +792,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Commandes du volet}}</label>
                                             <div class="col-sm-5">
-                                                <select id="commandType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="commandType" data-settings-group="commandType">
+                                                <select id="commandType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="commandType" data-settinggroup="commandType">
                                                     <option value="analogCmd">{{Analogique}}</option>
                                                     <option value="OpenCloseStopCmd">{{Montée / Descente / Stop}}</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <fieldset id="analogCmdSettings" class="display-none" data-settings-group="commandType" data-setting-type="analogCmd">  
+                                        <fieldset id="analogCmdSettings" class="display-none" data-settinggroup="commandType" data-settingtype="analogCmd">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande analogique}}</label>
                                                 <div class="col-sm-5">
@@ -835,7 +835,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="OpenCloseStopCmdSettings" class="display-none" data-settings-group="commandType" data-setting-type="OpenCloseStopCmd">  
+                                        <fieldset id="OpenCloseStopCmdSettings" class="display-none" data-settinggroup="commandType" data-settingtype="OpenCloseStopCmd">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande fermeture}}</label>
                                                 <div class="col-sm-5">

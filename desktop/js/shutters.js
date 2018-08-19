@@ -36,7 +36,7 @@ function printEqLogic(_eqLogic) {
 
         disableElement($('#objectType'));
         displaySettingPanel($('#objectType').val());
-
+        displaySettings()
         $('input[type=range]').trigger('change');
 
         updatePriorityManagement();
@@ -121,14 +121,15 @@ function displaySettingPanel(objectType = '') {
 
 /**
  * Display setting fieldset corresponding to object type
- * @param {string} objectType 
+ * @param {string} settingGroup 
+ * @param {string} settingType
  */
-function displaySettings(objectType = '', settingsGroup = '') {
-    console.log(objectType);
-    console.log(settingsGroup);
-    if (objectType !== null && settingsGroup !== null) {
-        $('fieldset[data-settings-group=' + settingsGroup + ']').css('display', 'none');
-        $('fieldset[data-settings-group=' + settingsGroup + '][data-setting-type~=' + objectType + ']').css('display', 'block');
+function displaySettings(settingGroup = '', settingType = '') {
+    console.log(settingGroup);
+    console.log(settingType);
+    if (settingGroup !== null && settingType !== null) {
+        $('fieldset[data-settinggroup=' + settingGroup + '].css('display', 'none');
+        $('fieldset[data-settinggroup=' + settingGroup + '][data-settingtype~=' + settingType + ']').css('display', 'block');
     }
 }
 
@@ -202,12 +203,11 @@ function initDefaultValues() {
         $('#openingType').val('window');
     }
     if ($('#positionSensorType').val() === null) {
-        $('#positionSensorType').val('none');
+        $('#positionSensorType').val('none').trigger('change');
     }
     if ($('#commandType').val() === null) {
-        $('#commandType').val('analogCmd');
+        $('#commandType').val('analogCmd').trigger('change');
     }
-
 }
 
 /**
