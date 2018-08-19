@@ -1,7 +1,7 @@
 /**
  * Init events
  */
-function initEvents() {
+function initEvents () {
 
     /**
      * Select a command
@@ -69,14 +69,14 @@ function initEvents() {
     /**
      *  Display value of input range
      */
-    $('input[type=range]').on('change mousemove', function() {
+    $('input[type=range]').on('change mousemove', function () {
         $(this).parent().next('span.input-range-value').html($(this).val() + '%');
     });
 
     /**
      * Unlock button events
      */
-    $('.btn-lock').off('click').on('click', function() {
+    $('.btn-lock').off('click').on('click', function () {
         var lockBtn = $(this);
         var dataInput = lockBtn.attr('data-input');
         var element = lockBtn.closest('div.input-group').children('select[data-l1key=configuration][data-l2key=' + dataInput + ']');
@@ -95,33 +95,33 @@ function initEvents() {
     /**
      * External info settings events
      */
-    $('#absenceInfoCmd').off('change').on('change', function() {
+    $('#absenceInfoCmd').off('change').on('change', function () {
         updatePriorityManagement();
     });
-    $('#fireDetectionCmd').off('change').on('change', function() {
+    $('#fireDetectionCmd').off('change').on('change', function () {
         updatePriorityManagement();
     });
 
     // Heliotrope zone settings events
-    $('#dawnType').off('change').on('change', function() {
+    $('#dawnType').off('change').on('change', function () {
         displaySelectedDawnOrDusk($('#dawnType').val());
     });
-    $('#duskType').off('change').on('change', function() {
+    $('#duskType').off('change').on('change', function () {
         displaySelectedDawnOrDusk($('#duskType').val());
     });
-    $('#wallAngle').off('change').on('change', function() {
+    $('#wallAngle').off('change').on('change', function () {
         refreshWallPlan();
     });
-    $('#wallAngleUnit').off('change').on('change', function() {
+    $('#wallAngleUnit').off('change').on('change', function () {
         updateAngleRange()
         refreshWallPlan();
     });
 
     // Shutter settings events
-    $('#positionSensorType').off('change').on('change', function() {
+    $('#positionSensorType').off('change').on('change', function () {
         displaySettings($(this).attr('data-settinggroup'), $(this).val());
     });
-    $('#commandType').off('change').on('change', function() {
+    $('#commandType').off('change').on('change', function () {
         displaySettings($(this).attr('data-settinggroup'), $(this).val());
     });
 

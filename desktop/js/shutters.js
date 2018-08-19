@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function() {
+$(document).ready (function () {
     
     console.log('document ready');
 
@@ -27,16 +27,15 @@ $(document).ready(function() {
     drawWallPlan();
 });
 
-function printEqLogic(_eqLogic) {
+function printEqLogic (_eqLogic) {
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         console.log('printEqLogic');
 
         initDefaultValues();
 
         disableElement($('#objectType'));
         displaySettingPanel($('#objectType').val());
-        displaySettings()
         $('input[type=range]').trigger('change');
 
         updatePriorityManagement();
@@ -47,7 +46,7 @@ function printEqLogic(_eqLogic) {
     });
 }
 
-function addCmdToTable(_cmd) {
+function addCmdToTable (_cmd) {
     if (!isset(_cmd)) {
         var _cmd = {configuration: {}};
     }
@@ -83,7 +82,7 @@ function addCmdToTable(_cmd) {
 /**
  * Hide tooltip attach to cursor
  */
-function hideTooltip() {
+function hideTooltip () {
     $('.cursor-tooltip').css('visibility', 'hidden');
 }
 
@@ -91,7 +90,7 @@ function hideTooltip() {
  * Display tooltip attach to cursor
  * @param {string} message message to display in tooltip
  */
-function displayTooltip(message = '') {
+function displayTooltip (message = '') {
     $('.cursor-tooltip').html(message).css('visibility', 'visible');
 }
 
@@ -99,7 +98,7 @@ function displayTooltip(message = '') {
  * Disable an element if it's value different from null or ''
  * @param {element} element element to disable
  */
-function disableElement(element) {
+function disableElement (element) {
     if (element.val() !== null && element.val() !== '') {
         $(element).attr('disabled', true);
         element.closest('div.input-group').find('i.fa-unlock').removeClass('fa-unlock').addClass("fa-lock");
@@ -113,7 +112,7 @@ function disableElement(element) {
  * Display setting panels corresponding to object type
  * @param {string} objectType 
  */
-function displaySettingPanel(objectType = '') {
+function displaySettingPanel (objectType = '') {
     $('.panel-group[data-paneltype=setting]').css('display', 'block');
     $('.panel[data-paneltype=setting]').css('display', 'none');
 	$('.panel[data-objecttype=' + objectType + ']').css('display', 'block');
@@ -124,11 +123,11 @@ function displaySettingPanel(objectType = '') {
  * @param {string} settingGroup 
  * @param {string} settingType
  */
-function displaySettings(settingGroup = '', settingType = '') {
+function displaySettings (settingGroup = '', settingType = '') {
     console.log(settingGroup);
     console.log(settingType);
     if (settingGroup !== null && settingType !== null) {
-        $('fieldset[data-settinggroup=' + settingGroup + '].css('display', 'none');
+        $('fieldset[data-settinggroup=' + settingGroup + ']'.css('display', 'none');
         $('fieldset[data-settinggroup=' + settingGroup + '][data-settingtype~=' + settingType + ']').css('display', 'block');
     }
 }
@@ -136,7 +135,7 @@ function displaySettings(settingGroup = '', settingType = '') {
 /**
  * Selection of priority management (fire detection / absence)
  */
-function updatePriorityManagement() {
+function updatePriorityManagement () {
     console.log('priority management');
     var priorityManagement = $('#priorityManagement');
     if ($('#absenceInfoCmd').val() !== '' && $('#fireDetectionCmd').val() !== '') {
@@ -153,7 +152,7 @@ function updatePriorityManagement() {
 /**
  * Update angle range according to angle unit
  */
-function updateAngleRange() {
+function updateAngleRange () {
     var wallAngle = $('#wallAngle');
     if ($('#wallAngleUnit').val() == 'gon') {
         wallAngle.attr('max', 400);
@@ -169,7 +168,7 @@ function updateAngleRange() {
 /**
  * Update min and max value for input type range
  */
-function updateInputRangeMinMax() {
+function updateInputRangeMinMax () {
     $('input[type=range]').each(function () {
         var element = $(this);
         element.prev('span.input-group-addon').html(element.attr('min') + '%');
@@ -180,7 +179,7 @@ function updateInputRangeMinMax() {
 /**
  * Initialize default values
  */
-function initDefaultValues() {
+function initDefaultValues () {
     //Initialize default values for object heliotrope zone  
     if ($('#heliotrope').val() === null) {
         $('#heliotrope').val('none');
@@ -213,7 +212,7 @@ function initDefaultValues() {
 /**
  * Get status from a command of type 'info'
  */
-function getCmdStatus(cmd) {
+function getCmdStatus (cmd) {
     var status = '';
     console.log('cmdId: ' + cmd);
     $.ajax({
