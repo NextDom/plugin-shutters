@@ -10,6 +10,9 @@ function initEvents() {
         var dataInput = $(this).attr('data-input');
         var dataType = $(this).attr('data-type');
         var dataSubType = $(this).attr('data-subtype');
+        if (dataSubType === undefined) {
+            dataSubType = '';
+        }
         console.log('data-subtype => ' + dataSubType);
         var element = $(this).closest('div.input-group').find('input[data-l1key=configuration][data-l2key=' + dataInput + ']');
         jeedom.cmd.getSelectModal({cmd: {type: dataType, subType: dataSubType}}, function (result) {

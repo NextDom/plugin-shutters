@@ -209,14 +209,18 @@ class shutters extends eqLogic
                     }
                     $positionSensorType = $this->getConfiguration('positionSensorType');
                     if ($positionSensorType == 'analogPosition') {
-                            if (empty($this->getConfiguration('shutterAnalogPosition'))) {
-                                throw new \Exception (__('La commande de retour de position du volet doit être renseignée!', __FILE__));
-                                return;
-                            } 
-                            $cmdId=cmd::byId(str_replace('#','',$this->getConfiguration('shutterAnalogPosition')));
-                            if (!is_object($cmdId)) {
-                                throw new \Exception (__('[Retour de position du volet] La commande sélectionnée est inconnue!', __FILE__));
-                                return;
+                            $cmd = $this->getConfiguration('shutterAnalogPositionCmd', null);
+                            if (!empty($cmd)) {
+                                $cmdId=cmd::byId(str_replace('#','',$cmd));
+                                $cmdName = $cmdId->getHumanName();
+                                if (!is_object($cmdId)) {
+                                    throw new \Exception (__('[Position du volet] La commande ' . $cmdName .' est inconnue!', __FILE__));
+                                    return;
+                                }
+                                if ($cmd->getSubType() !== 'numeric') {
+                                    throw new \Exception (__('[Position du volet] La commande ' . $cmdName .' n\'est pas de type numeric!', __FILE__));
+                                    return;
+                                }
                             }
                             $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
                             $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
@@ -230,7 +234,7 @@ class shutters extends eqLogic
                             }        
     
                     } 
-                    if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'closedSensor') {
+                    if ($positionSensorType == 'openedClosedSensors' || $positionSensorType == 'closedSensor') {
                         if (empty($this->getConfiguration('closedSensor'))) {
                             throw new \Exception (__('La commande de retour du fin de course fermé doit être renseignée!', __FILE__));
                             return;
@@ -241,7 +245,7 @@ class shutters extends eqLogic
                             return;
                         }
                     } 
-                    if ($positionSensorType == 'openedClosedSensor' || $positionSensorType == 'openedSensor') {
+                    if ($positionSensorType == 'openedClosedSensors' || $positionSensorType == 'openedSensor') {
                         if (empty($this->getConfiguration('openedSensor'))) {
                             throw new \Exception (__('La commande de retour du fin de course ouvert doit être renseignée!', __FILE__));
                             return;

@@ -22,6 +22,7 @@ $(document).ready(function() {
 
     $("#cmdTable").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
+    updateAnalogPositionRange();
     drawHeliotropePlan();
     drawWallPlan();
 });
@@ -162,6 +163,14 @@ function updateAngleRange() {
         wallAngle.prev().html('0°');
         wallAngle.next().html('360°');
    }
+}
+
+function updateAnalogPositionRange() {
+    $('input[type=range]').each(function () {
+        var element = $(this);
+        element.prev('span.input-group-addon').html(element.attr('min') + '%');
+        element.next('span.input-group-addon').html(element.attr('max') + '%');
+    })
 }
 
 /**
