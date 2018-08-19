@@ -106,7 +106,7 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Information d\'absence] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
-                    if (empty($this->getConfiguration('absenceInfoCmdStatus'))) {
+                    if (empty($this->getConfiguration('absenceInfoCmdStatus', null))) {
                         throw new \Exception (__('[Information d\'absence] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
@@ -118,7 +118,7 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Information de présence] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
-                    if (empty($this->getConfiguration('presenceInfoCmdStatus'))) {
+                    if (empty($this->getConfiguration('presenceInfoCmdStatus', null))) {
                         throw new \Exception (__('[Information de présence] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
@@ -130,7 +130,7 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Détection incendie] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
-                    if (empty($this->getConfiguration('fireDetectionCmdStatus'))) {
+                    if (empty($this->getConfiguration('fireDetectionCmdStatus', null))) {
                         throw new \Exception (__('[Détection incendie] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
@@ -142,7 +142,7 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Luminosité extérieure] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
-                    if (empty($this->getConfiguration('outdoorLuminosityCmdStatus'))) {
+                    if (empty($this->getConfiguration('outdoorLuminosityCmdStatus', null))) {
                         throw new \Exception (__('[Luminosité extérieure] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
@@ -154,29 +154,29 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Température extérieure] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
-                    if (empty($this->getConfiguration('outdoorTemperatureCmdStatus'))) {
+                    if (empty($this->getConfiguration('outdoorTemperatureCmdStatus', null))) {
                         throw new \Exception (__('[Température extérieure] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
     
             } elseif($objectType === 'heliotropeZone') {
-                $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope'));
+                $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope', null));
                 if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
                     throw new \Exception (__('L\'équipement héliotrope doit être renseigné!', __FILE__));
                     return;
                 }        
 
-                if (!in_array($this->getConfiguration('dawnType'), $dawnTypeList, true)) {
+                if (!in_array($this->getConfiguration('dawnType', null), $dawnTypeList, true)) {
                     throw new \Exception (__('Le lever du soleil doit être renseigné!', __FILE__));
                     return;
                 }        
-                if (!in_array($this->getConfiguration('duskType'), $duskTypeList, true)) {
+                if (!in_array($this->getConfiguration('duskType', null), $duskTypeList, true)) {
                     throw new \Exception (__('La coucher du soleil doit être renseigné!', __FILE__));
                     return;
                 } 
-                $wallAngleUnit = $this->getConfiguration('wallAngleUnit');
-                $wallAngle = $this->getConfiguration('wallAngle');
+                $wallAngleUnit = $this->getConfiguration('wallAngleUnit', null);
+                $wallAngle = $this->getConfiguration('wallAngle', null);
                 if (!in_array($wallAngleUnit, $angleUnitList, true)) {
                     throw new \Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
                     return;
@@ -191,23 +191,23 @@ class shutters extends eqLogic
                 }
             
             } elseif($objectType === 'shutter') {
-                if (!in_array($this->getConfiguration('openingType'), $openingTypeList, true)) {
+                if (!in_array($this->getConfiguration('openingType', null), $openingTypeList, true)) {
                     throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                     return;
                 }
-                $cmd = str_replace('#','',$this->getConfiguration('absenopenOpeningInfoCmdceInfoCmd', null));
+                $cmd = str_replace('#','',$this->getConfiguration('openOpeningInfoCmd', null));
                 if (!empty($cmd)) {
                     $cmdId=cmd::byId($cmd);
                     if (!is_object($cmdId)) {
                         throw new \Exception (__('[Information ouvrant ouvert] La commande suivante est inconnue : ', __FILE__) . $cmd);
                         return;
                     }
-                    if (empty($this->getConfiguration('openOpeningInfoCmdStatus'))) {
+                    if (empty($this->getConfiguration('openOpeningInfoCmdStatus', null))) {
                         throw new \Exception (__('[Information ouvrant ouvert] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                         return;
                     } 
                 }
-                $shutterPositionType = $this->getConfiguration('shutterPositionType');
+                $shutterPositionType = $this->getConfiguration('shutterPositionType', null);
                 if ($shutterPositionType === 'analogPosition') {
                     $cmd = str_replace('#','',$this->getConfiguration('shutterAnalogPositionCmd', null));
                     if (!empty($cmd)) {
@@ -224,16 +224,16 @@ class shutters extends eqLogic
                         throw new \Exception (__('[Position du volet] La commande doit être renseignée!', __FILE__));
                         return;
                     }
-                    $analogClosedPosition = $this->getConfiguration('analogClosedPosition');
-                    $min = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMin')));
-                    $max = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMax')));
+                    $analogClosedPosition = $this->getConfiguration('analogClosedPosition', null);
+                    $min = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMin', null)));
+                    $max = (int)(str_replace('%','',$this->getConfiguration('analogClosedPositionMax', null)));
                     if ($analogClosedPosition < $min || $analogClosedPosition > $max) {
                         throw new \Exception (__('La position volet fermé doit être renseignée et comprise dans la plage ', __FILE__) . '[' . $min . '% - ' . $max . '%]');
                         return;
                     }        
-                    $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition');
-                    $min = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMin')));
-                    $max = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMax')));
+                    $analogOpenedPosition = $this->getConfiguration('analogOpenedPosition', null);
+                    $min = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMin', null)));
+                    $max = (int)(str_replace('%','',$this->getConfiguration('analogOpenedPositionMax', null)));
                     if ($analogOpenedPosition < $min || $analogOpenedPosition > $max) {
                         throw new \Exception (__('La position volet ouvert doit être renseignée et comprise dans la plage ', __FILE__) .  '[' . $min . '% - ' . $max . '%]');
                         return;
@@ -247,7 +247,7 @@ class shutters extends eqLogic
                             throw new \Exception (__('[Position volet fermé] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
-                        if (empty($this->getConfiguration('closedPositionCmdStatus'))) {
+                        if (empty($this->getConfiguration('closedPositionCmdStatus', null))) {
                             throw new \Exception (__('[Position volet fermé] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                             return;
                         } 
@@ -264,7 +264,7 @@ class shutters extends eqLogic
                             throw new \Exception (__('[Position volet ouvert] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
-                        if (empty($this->getConfiguration('openedPositionCmdStatus'))) {
+                        if (empty($this->getConfiguration('openedPositionCmdStatus', null))) {
                             throw new \Exception (__('[Position volet ouvert] Veuillez valider le statut de la commande ', __FILE__) . $cmdId->getHumanName());
                             return;
                         } 
