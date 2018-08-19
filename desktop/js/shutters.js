@@ -36,6 +36,7 @@ function printEqLogic (_eqLogic) {
 
         disableElement($('#objectType'));
         displaySettingPanel($('#objectType').val());
+        $('input[data-settinggroup]').trigger('change');
         $('input[type=range]').trigger('change');
 
         updatePriorityManagement();
