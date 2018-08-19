@@ -640,9 +640,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <select id="shutterPositionType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterPositionType" data-settinggroup="shutterPositionType">
                                                     <option value="none">{{Aucune}}</option>
                                                     <option value="analogPosition">{{Analogique}}</option>
-                                                    <option value="openedClosedPositions">{{Ouverture et fermeture}}</option>
-                                                    <option value="openedPosition">{{Ouverture}}</option>
+                                                    <option value="closedOpenedPositions">{{Fermeture et ouverture}}</option>
                                                     <option value="closedPosition">{{Fermeture}}</option>
+                                                    <option value="openedPosition">{{Ouverture}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -688,7 +688,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="closedPositionSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="openedClosedPositions closedPosition">  
+                                        <fieldset id="closedPositionSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="closedOpenedPositions closedPosition">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Position volet fermé}}</label>
                                                 <div class="col-sm-5">
@@ -718,7 +718,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="openedPositionSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="openedClosedPositions openedPosition">  
+                                        <fieldset id="openedPositionSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="closedOpenedPositions openedPosition">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Position volet ouvert}}</label>
                                                 <div class="col-sm-5">
@@ -763,23 +763,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Information ouvrant ouvert}}</label>
                                             <div class="col-sm-5">
                                                 <div class="input-group">
-                                                    <input id="openOpeningInfo" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfo" placeholder="{{Sélectionner une commande}}"/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default listCmd cursor" data-type="info" data-input="openOpeningInfo">
-                                                                <i class="fa fa-list"></i>
+                                                        <a class="btn btn-default delCmd cursor" data-input="openOpeningInfoCmd">
+                                                            <i class="fa fa-minus-circle"></i>
+                                                        </a>
+                                                    </span>
+                                                    <input id="openOpeningInfoCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                    <span class="input-group-btn">
+                                                        <a class="btn btn-default listCmd cursor" data-type="info" data-input="openOpeningInfoCmd">
+                                                            <i class="fa fa-list"></i>
                                                         </a>
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Statut ouvrant ouvert}}</label>
-                                            <div class="col-sm-5">
-                                                <div class="input-group">
-                                                    <input id="openOpeningInfoStatus" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoStatus" disabled/>
+                                            <div class="col-sm-3">
+                                                <div id="openOpeningInfoCmdStatus" class="input-group">
+                                                    <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openOpeningInfoCmdStatus" placeholder="{{Valider le statut}}" disabled/>
                                                     <span class="input-group-btn">
-                                                        <a class="btn btn-default getCmdStatus cursor" data-input="openOpeningInfoStatus" data-input-link="openOpeningInfo" data-message="l\'ouvrant est ouvert?">
-                                                            <span class="fa fa-check"></span>
+                                                        <a class="btn btn-default getCmdStatus cursor" data-input="openOpeningInfoCmdStatus" data-cmdinput="openOpeningInfoCmd" data-message="{{l'ouvrant est ouvert ?}}">
+                                                            <span class="fa fa-check-circle"></span>
                                                         </a>
                                                     </span>
                                                 </div>
