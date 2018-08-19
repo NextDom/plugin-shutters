@@ -669,9 +669,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Position volet fermé}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">    
-                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="analogClosedPositionMin"></span>
+                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="analogClosedPositionMin">---%</span>
                                                         <input id="analogClosedPosition" type="range" min="0" max="5" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="analogClosedPosition"/>
-                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="analogClosedPositionMax"></span>
+                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="analogClosedPositionMax">---%</span>
                                                     </div>
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
@@ -680,9 +680,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Position volet ouvert}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">                                                        
-                                                        <span class="input-group-addon">95%</span>
+                                                        <span class="input-group-addon" data-l1key="configuration" data-l2key="analogOpenedPositionMin">---%</span>
                                                         <input id="analogOpenedPosition" type="range" min="95" max="100" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="analogOpenedPosition"/>
-                                                        <span class="input-group-addon">100%</span>
+                                                        <span class="input-group-addon" data-l1key="configuration" data-l2key="analogOpenedPositionMax">---%</span>
                                                     </div>                                                        
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>

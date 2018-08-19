@@ -70,7 +70,7 @@ function initEvents() {
      *  Display value of input range
      */
     $('input[type=range]').on('change mousemove', function() {
-        $(this).parent().next().html($(this).val() + '%');
+        $(this).parent().next('span.input-range-value').html($(this).val() + '%');
     });
 
     /**
