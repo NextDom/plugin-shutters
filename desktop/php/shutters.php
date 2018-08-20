@@ -823,7 +823,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         </span>
                                                         <input id="analogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogPositionCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="numeric" data-input="analogPositionCmd">
+                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="slider" data-input="analogPositionCmd">
                                                                 <i class="fa fa-list"></i>
                                                             </a>
                                                         </span>
@@ -831,7 +831,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Consigne fermeture}}</label>
+                                                <label class="col-sm-3 control-label">{{Consigne fermeture complète}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">    
                                                     <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="fullClosureSetpointMin">---%</span>
@@ -842,7 +842,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 </div>
                                             </div>    
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">{{Consigne ouverture}}</label>
+                                                <label class="col-sm-3 control-label">{{Consigne ouverture complète}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">                                                        
                                                     <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="fullOpeningSetpointMin">---%</span>

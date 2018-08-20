@@ -291,6 +291,20 @@ class shutters extends eqLogic
                         return;
                     }
                 }
+                $fullClosureSetpoint = $this->getConfiguration('fullClosureSetpoint', null);
+                $min = (int)(str_replace('%','',$this->getConfiguration('fullClosureSetpointMin', null)));
+                $max = (int)(str_replace('%','',$this->getConfiguration('fullClosureSetpointMax', null)));
+                if ($fullClosureSetpoint < $min || $fullClosureSetpoint > $max) {
+                    throw new \Exception (__('La consigne fermeture complète du volet doit être renseignée et comprise dans la plage ', __FILE__) . '[' . $min . '% - ' . $max . '%]');
+                    return;
+                }        
+                $fullOpeningSetpoint = $this->getConfiguration('fullOpeningSetpoint', null);
+                $min = (int)(str_replace('%','',$this->getConfiguration('fullOpeningSetpointMin', null)));
+                $max = (int)(str_replace('%','',$this->getConfiguration('fullOpeningSetpointMax', null)));
+                if ($fullOpeningSetpoint < $min || $fullOpeningSetpoint > $max) {
+                    throw new \Exception (__('La consigne ouverture complète du volet doit être renseignée et comprise dans la plage ', __FILE__) .  '[' . $min . '% - ' . $max . '%]');
+                    return;
+                }        
 
 
             } elseif ($objectType === 'shuttersGroup') {
