@@ -124,5 +124,7 @@ function initEvents () {
     $('#shutterCmdType').off('change').on('change', function () {
         displaySettings($(this).attr('data-settinggroup'), $(this).val());
     });
-
+    $('#pointsNumber').off('change').on('change'), function () {
+        drawShutterClosingMvtTimeCurve();
+    }
 }

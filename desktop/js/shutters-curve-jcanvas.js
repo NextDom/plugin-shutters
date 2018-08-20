@@ -8,7 +8,7 @@
         yValueStepPoint: 1,
         curveType: 'downward', // possible type: free, ascending, downward
         zeroPointDraggable: true,
-        xAxisPointNumber: 10,
+        xAxisPointNumber: parseInt($('#pointsNumber').val()),
         xMinScale: 0,
         xMaxScale: 100,
         xAxisColor: '#b3b3b3',
@@ -212,40 +212,40 @@ function drawShutterClosingMvtTimeCurve () {
 }
 
 function calculateYValue(layer, y) {
-  var yMin = 0;
-  var yMax = 0;
-  var pointIndex = parseInt(layer.name.match(/\d+/));
-  var yStep = graph.yValueStepPoint * graph.yUnitLength;
-  var offset = Math.round(((graph.yOrigin / graph.yUnitLength) % 1) * graph.yUnitLength);
-  var yValue = Math.round(y / yStep) * yStep - 2;
-  switch (graph.curveType) {
-    case 'ascending':
-        if (pointIndex == 1) {
-            yMin = myGraph.getLayer('point' + (pointIndex + 1)).y;
-            yMax = graph.yAxisStartPoint;
-        } else if (pointIndex == graph.xAxisPointNumber + 1) {
+    var yMin = 0;
+    var yMax = 0;
+    var pointIndex = parseInt(layer.name.match(/\d+/));
+    var yStep = graph.yValueStepPoint * graph.yUnitLength;
+    var offset = Math.ceil(yStep / 2);
+    var yValue = Math.round(y / yStep) * yStep - offset;
+    switch (graph.curveType) {
+        case 'ascending':
+            if (pointIndex == 1) {
+                yMin = myGraph.getLayer('point' + (pointIndex + 1)).y;
+                yMax = graph.yAxisStartPoint;
+            } else if (pointIndex == graph.xAxisPointNumber + 1) {
+                yMin = graph.yAxisEndPoint;
+                yMax = myGraph.getLayer('point' + (pointIndex - 1)).y;
+            } else {
+                yMin = myGraph.getLayer('point' + (pointIndex + 1)).y;
+                yMax = myGraph.getLayer('point' + (pointIndex - 1)).y;
+            }
+            break;
+        case 'downward':
+            if (pointIndex == 1) {
+                yMin = graph.yAxisEndPoint;
+                yMax = myGraph.getLayer('point' + (pointIndex + 1)).y;
+            } else if (pointIndex == graph.xAxisPointNumber + 1) {
+                yMin = myGraph.getLayer('point' + (pointIndex - 1)).y;
+                yMax = graph.yAxisStartPoint;
+            } else {
+                yMin = myGraph.getLayer('point' + (pointIndex - 1)).y;
+                yMax = myGraph.getLayer('point' + (pointIndex + 1)).y;
+            }
+            break;
+        default:
             yMin = graph.yAxisEndPoint;
-            yMax = myGraph.getLayer('point' + (pointIndex - 1)).y;
-        } else {
-            yMin = myGraph.getLayer('point' + (pointIndex + 1)).y;
-            yMax = myGraph.getLayer('point' + (pointIndex - 1)).y;
-        }
-        break;
-    case 'downward':
-        if (pointIndex == 1) {
-            yMin = graph.yAxisEndPoint;
-            yMax = myGraph.getLayer('point' + (pointIndex + 1)).y;
-        } else if (pointIndex == graph.xAxisPointNumber + 1) {
-            yMin = myGraph.getLayer('point' + (pointIndex - 1)).y;
             yMax = graph.yAxisStartPoint;
-        } else {
-            yMin = myGraph.getLayer('point' + (pointIndex - 1)).y;
-            yMax = myGraph.getLayer('point' + (pointIndex + 1)).y;
-        }
-        break;
-    default:
-        yMin = graph.yAxisEndPoint;
-        yMax = graph.yAxisStartPoint;
     }
     if (yValue <= yMin) {
         yValue = yMin;
