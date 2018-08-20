@@ -57,6 +57,7 @@
 
 
 function drawShutterClosingMvtTimeCurve () {
+    graph.xAxisPointNumber = parseInt($('#pointsNumber').val());
     graph.xUnitLength = Math.round(graph.xAxisLength / (graph.xMaxScale - graph.xMinScale));
     graph.xStepValue = Math.round((graph.xMaxScale - graph.xMinScale) / graph.xAxisPointNumber);
     graph.xStepLength = graph.xStepValue * graph.xUnitLength;
@@ -74,7 +75,8 @@ function drawShutterClosingMvtTimeCurve () {
         myValue['y' + (i + 1)] = 0;
     }
 
-    myGraph.addLayer({
+    myGraph.clearCanvas()
+    .addLayer({
         type: 'line',
         name: 'xAxis',
         strokeStyle: graph.xAxisColor,
