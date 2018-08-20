@@ -7,7 +7,7 @@
         yAxisExtraLength: 20,
         yValueStepPoint: 1,
         curveType: 'ascending', // possible type: free, ascending, downward
-        zeroPointDraggable: true,
+        zeroPointDraggable: false,
         xAxisPointNumber: 4,
         xMinScale: 0,
         xMaxScale: 100,
