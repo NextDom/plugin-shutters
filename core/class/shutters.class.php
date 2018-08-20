@@ -332,7 +332,7 @@ class shutters extends eqLogic
                             return;
                         }
                     } else {
-                        throw new \Exception (__('CCommande ouverture] La commande doit être renseignée!', __FILE__));
+                        throw new \Exception (__('[Commande ouverture] La commande doit être renseignée!', __FILE__));
                         return;
                     }
                     $cmd = str_replace('#','',$this->getConfiguration('stopCmd', null));

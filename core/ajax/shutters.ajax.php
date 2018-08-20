@@ -21,14 +21,14 @@ try {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
     
-    if (init('action') == 'listHeliotropeObject') {
+    if (init('action') === 'listHeliotropeObject') {
         $return = array();
 		foreach (eqLogic::byType('shutters') as $eqLogic) {
-            if ($eqLogic->getConfiguration('objectType') != 'externalInfo' || $eqLogic->getIsEnable() == false) {
+            if ($eqLogic->getConfiguration('objectType') !== 'externalInfo' || $eqLogic->getIsEnable() === false) {
                 continue;
             }
             $heliotrope = eqLogic::byId($eqLogic->getConfiguration('heliotrope'));
-			if ((is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
+			if ((is_object($heliotrope) && $heliotrope->getEqType_name() === 'heliotrope')) {
 				$externalInfoObjectList = array(
                     'id' => $eqLogic->getId(),
                     'name' => $eqLogic->getName(),
@@ -38,26 +38,26 @@ try {
         }
         ajax::success($return);
     } 
-    if (init('action') == 'getCmdStatus') {
+    if (init('action') === 'getCmdStatus') {
         $cmdId = str_replace('#','',cmd::humanReadableToCmd(init('cmd')));
         $cmd = cmd::byId($cmdId);
         if (!is_object($cmd)) {
             throw new Exception(__('La commande sélectionnée est inconnue : ', __FILE__) . init('cmd'));
         }
-        if ($cmd->getType() != 'info') {
+        if ($cmd->getType() !== 'info') {
             throw new Exception(__('La commande sélectionnée n\'est pas de type [info] : ', __FILE__) . init('cmd'));
         }
         $cmdStatus = $cmd->execCmd();
         ajax::success($cmdStatus);
     }
 
-    if (init('action') == 'execCmd') {
+    if (init('action') === 'execCmd') {
         $cmdId = str_replace('#','',cmd::humanReadableToCmd(init('cmd')));
         $cmd = cmd::byId($cmdId);
         if (!is_object($cmd)) {
             throw new Exception(__('La commande sélectionnée est inconnue : ', __FILE__) . init('cmd'));
         }
-        if ($cmd->getType() != 'action') {
+        if ($cmd->getType() !== 'action') {
             throw new Exception(__('La commande sélectionnée n\'est pas de type [action] : ', __FILE__) . init('cmd'));
         }
         $cmd->execute(null);

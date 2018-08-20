@@ -25,6 +25,7 @@ $(document).ready (function () {
     updateInputRangeMinMax();
     drawHeliotropePlan();
     drawWallPlan();
+    drawShutterClosingMvtTimeCurve();
 });
 
 function printEqLogic (_eqLogic) {

@@ -821,7 +821,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="analogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogPositionCmd" placeholder="{{Sélectionner une commande}}" />
+                                                        <input id="analogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogPositionCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="slider" data-input="analogPositionCmd">
                                                                 <i class="fa fa-list"></i>
@@ -863,7 +863,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="closingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closingCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="closingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closingCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="other" data-input="closingCmd">
                                                                 <i class="fa fa-list"></i>
@@ -871,7 +871,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a class="btn btn-default execCmd cursor" data-input-link="closingCmd">
+                                                <a class="btn btn-default cmdAction cursor" data-action="test">
                                                     <i class="fa fa-rss"></i> Tester                                                       
                                                 </a>                                                               
                                             </div>
@@ -884,7 +884,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="openingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openingCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="openingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openingCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="other" data-input="openingCmd">
                                                                 <i class="fa fa-list"></i>
@@ -892,7 +892,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a class="btn btn-default execCmd cursor" data-input-link="openingCmd">
+                                                <a class="btn btn-default cmdAction cursor" data-action="test">
                                                     <i class="fa fa-rss"></i> Tester                                                       
                                                 </a>                                                               
                                             </div>
@@ -905,7 +905,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="stopCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="stopCmd" placeholder="{{Sélectionner une commande}}"/>
+                                                        <input id="stopCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="stopCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="other" data-input="stopCmd">
                                                                 <i class="fa fa-list"></i>
@@ -913,11 +913,16 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a class="btn btn-default execCmd cursor" data-input-link="stopCmd">
+                                                <a class="btn btn-default cmdAction cursor" data-action="test">
                                                     <i class="fa fa-rss"></i> Tester                                                       
                                                 </a>                                                               
                                             </div>
                                         </fieldset>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <canvas id="shutterClosingMvtTimeCurve" class="col-sm-offset-3" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        </div>
                                     </div>
                                 </form>    
                             </div>
@@ -960,5 +965,6 @@ include_file('desktop', 'jcanvas.min', 'js', 'shutters');
 include_file('desktop', 'shutters', 'js', 'shutters');
 include_file('desktop', 'shutters-events', 'js', 'shutters');
 include_file('desktop', 'shutters-jcanvas', 'js', 'shutters');
+include_file('desktop', 'shutters-curve-jcanvas', 'js', 'shutters');
 include_file('core', 'plugin.template', 'js');
 ?>
