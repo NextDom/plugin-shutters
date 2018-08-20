@@ -121,7 +121,7 @@ function initEvents () {
     $('#shutterPositionType').off('change').on('change', function () {
         displaySettings($(this).attr('data-settinggroup'), $(this).val());
     });
-    $('#commandType').off('change').on('change', function () {
+    $('#shutterCmdType').off('change').on('change', function () {
         displaySettings($(this).attr('data-settinggroup'), $(this).val());
     });
 

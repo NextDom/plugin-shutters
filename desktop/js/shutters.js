@@ -205,8 +205,8 @@ function initDefaultValues () {
     if ($('#shutterPositionType').val() === null) {
         $('#shutterPositionType').val('none').trigger('change');
     }
-    if ($('#commandType').val() === null) {
-        $('#commandType').val('analogCmd').trigger('change');
+    if ($('#shutterCmdType').val() === null) {
+        $('#shutterCmdType').val('analogPositionCmd').trigger('change');
     }
 }
 

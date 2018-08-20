@@ -630,7 +630,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Informations de position du volet - type d'ouvrant}} </a>
                             </h4>
                         </div>
-                        <div id="shutterSettings" class="panel-collapse collapse">
+                        <div id="shutterSettings" class="panel-collapse collapse in">
                             <div class="panel-body"> 
                                 <form class="form-horizontal">
                                     <div class="col-sm-6">               
@@ -805,20 +805,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Commandes du volet}}</label>
                                             <div class="col-sm-5">
-                                                <select id="commandType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="commandType" data-settinggroup="commandType">
-                                                    <option value="analogCmd">{{Analogique}}</option>
+                                                <select id="shutterCmdType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterCmdType" data-settinggroup="shutterCmdType">
+                                                    <option value="analogPositionCmd">{{Analogique}}</option>
                                                     <option value="OpenCloseStopCmd">{{Montée / Descente / Stop}}</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <fieldset id="analogCmdSettings" class="display-none" data-settinggroup="commandType" data-settingtype="analogCmd">  
+                                        <fieldset id="analogPositionCmdSettings" class="display-none" data-settinggroup="shutterCmdType" data-settingtype="analogPositionCmd">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande analogique}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
-                                                        <input id="analogCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogCmd" placeholder="{{Sélectionner une commande}}" disabled/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-input="analogCmd">
+                                                            <a class="btn btn-default delCmd cursor" data-input="analogPositionCmd">
+                                                                <i class="fa fa-minus-circle"></i>
+                                                            </a>
+                                                        </span>
+                                                        <input id="analogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogPositionCmd" placeholder="{{Sélectionner une commande}}" disabled/>
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="numeric" data-input="analogPositionCmd">
                                                                 <i class="fa fa-list"></i>
                                                             </a>
                                                         </span>
@@ -829,9 +834,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Consigne fermeture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">    
-                                                        <span class="input-group-addon">0%</span>
+                                                    <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="fullClosureSetpointMin">---%</span>
                                                         <input id="fullClosureSetpoint" type="range" min="0" max="5" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="fullClosureSetpoint"/>
-                                                        <span class="input-group-addon">5%</span>
+                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="afullClosureSetpointMax">---%</span>
                                                     </div>
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
@@ -840,15 +845,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Consigne ouverture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">                                                        
-                                                        <span class="input-group-addon">95%</span>
+                                                    <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="fullOpeningSetpointMin">---%</span>
                                                         <input id="fullOpeningSetpoint" type="range" min="95" max="100" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="fullOpeningSetpoint"/>
-                                                        <span class="input-group-addon">100%</span>
+                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="fullOpeningSetpointMax">---%</span>
                                                     </div>                                                        
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <fieldset id="OpenCloseStopCmdSettings" class="display-none" data-settinggroup="commandType" data-settingtype="OpenCloseStopCmd">  
+                                        <fieldset id="OpenCloseStopCmdSettings" class="display-none" data-settinggroup="shutterCmdType" data-settingtype="OpenCloseStopCmd">  
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">{{Commande fermeture}}</label>
                                                 <div class="col-sm-5">

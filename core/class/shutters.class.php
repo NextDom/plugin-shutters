@@ -162,7 +162,7 @@ class shutters extends eqLogic
     
             } elseif($objectType === 'heliotropeZone') {
                 $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope', null));
-                if (!(is_object($heliotrope) && $heliotrope->getEqType_name() == 'heliotrope')) {
+                if (!(is_object($heliotrope) && $heliotrope->getEqType_name() === 'heliotrope')) {
                     throw new \Exception (__('L\'équipement héliotrope doit être renseigné!', __FILE__));
                     return;
                 }        
@@ -181,11 +181,11 @@ class shutters extends eqLogic
                     throw new \Exception (__('L\'unité de l\'angle doit être renseignée!', __FILE__));
                     return;
                 } 
-                if ($wallAngleUnit == 'deg' && ($wallAngle < 0 || $wallAngle > 360)) {
+                if ($wallAngleUnit === 'deg' && ($wallAngle < 0 || $wallAngle > 360)) {
                     throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 360°!', __FILE__));
                     return;
                 }
-                if ($wallAngleUnit == 'gon' && ($wallAngle < 0 || $wallAngle > 400)) {
+                if ($wallAngleUnit === 'gon' && ($wallAngle < 0 || $wallAngle > 400)) {
                     throw new \Exception (__('L\'angle de la façade par rapport au nord doit être renseigné et compris entre 0 et 400gon!', __FILE__));
                     return;
                 }
@@ -239,7 +239,7 @@ class shutters extends eqLogic
                         return;
                     }        
                 } 
-                if ($shutterPositionType == 'closedOpenedPositions' || $shutterPositionType == 'closedPosition') {
+                if ($shutterPositionType === 'closedOpenedPositions' || $shutterPositionType === 'closedPosition') {
                     $cmd = str_replace('#','',$this->getConfiguration('closedPositionCmd', null));
                     if (!empty($cmd)) {
                         $cmdId=cmd::byId($cmd);
@@ -256,7 +256,7 @@ class shutters extends eqLogic
                         return;
                     }
                 } 
-                if ($shutterPositionType == 'closedOpenedPositions' || $shutterPositionType == 'openedPosition') {
+                if ($shutterPositionType === 'closedOpenedPositions' || $shutterPositionType === 'openedPosition') {
                     $cmd = str_replace('#','',$this->getConfiguration('openedPositionCmd', null));
                     if (!empty($cmd)) {
                         $cmdId=cmd::byId($cmd);
@@ -273,6 +273,26 @@ class shutters extends eqLogic
                         return;
                     }
                 }
+                $shutterCmdType = $this->getConfiguration('shutterCmdType', null);
+                if ($shutterCmdType === 'analogPositionCmd') {
+                    $cmd = str_replace('#','',$this->getConfiguration('analogPositionCmd', null));
+                    if (!empty($cmd)) {
+                        $cmdId=cmd::byId($cmd);
+                        if (!is_object($cmdId)) {
+                            throw new \Exception (__('[Commande analogique] La commande suivante est inconnue : ', __FILE__) . $cmd);
+                            return;
+                        }
+                        if ($cmdId->getSubType() !== 'numeric') {
+                            throw new \Exception (__('[Commande analogique] La commande suivante n\'est pas de type numeric : ', __FILE__) . $cmd);
+                            return;
+                        }
+                    } else {
+                        throw new \Exception (__('[Commande analogique] La commande doit être renseignée!', __FILE__));
+                        return;
+                    }
+                }
+
+
             } elseif ($objectType === 'shuttersGroup') {
     
                        
@@ -321,13 +341,13 @@ class shutters extends eqLogic
 		foreach ($device['commands'] as $command) {
 			$cmd = null;
 			foreach ($this->getCmd() as $existingCmd) {
-				if ((isset($command['logicalId']) && $existingCmd->getLogicalId() == $command['logicalId'])
-					|| (isset($command['name']) && $existingCmd->getName() == $command['name'])) {
+				if ((isset($command['logicalId']) && $existingCmd->getLogicalId() === $command['logicalId'])
+					|| (isset($command['name']) && $existingCmd->getName() === $command['name'])) {
 					$cmd = $existingCmd;
 					break;
 				}
 			}
-			if ($cmd == null || !is_object($cmd)) {
+			if ($cmd === null || !is_object($cmd)) {
 				$cmd = new shuttersCmd();
 				$cmd->setEqLogic_id($this->getId());
 				utils::a2o($cmd, $command);
