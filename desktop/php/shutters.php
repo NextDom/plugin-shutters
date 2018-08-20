@@ -921,19 +921,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Nombre de points}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="pointsNumber" type="text" class="form-control cursor">
-                                                    <option value="1">2</option>
-                                                    <option value="2">3</option>
-                                                    <option value="4">6</option>
-                                                    <option value="6">7</option>
-                                                    <option value="8">9</option>
-                                                    <option value="10">11</option>
-                                               </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <canvas id="shutterClosingMvtTimeCurve" class="col-sm-offset-3" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
                                         </div>
                                     </div>

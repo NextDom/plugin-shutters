@@ -6,9 +6,9 @@
         yAxisLength: 300,
         yAxisExtraLength: 20,
         yValueStepPoint: 1,
-        curveType: 'downward', // possible type: free, ascending, downward
+        curveType: 'ascending', // possible type: free, ascending, downward
         zeroPointDraggable: true,
-        xAxisPointNumber: parseInt($('#pointsNumber').val()),
+        xAxisPointNumber: 4,
         xMinScale: 0,
         xMaxScale: 100,
         xAxisColor: '#b3b3b3',
@@ -57,7 +57,6 @@
 
 
 function drawShutterClosingMvtTimeCurve () {
-    graph.xAxisPointNumber = parseInt($('#pointsNumber').val());
     graph.xUnitLength = Math.round(graph.xAxisLength / (graph.xMaxScale - graph.xMinScale));
     graph.xStepValue = Math.round((graph.xMaxScale - graph.xMinScale) / graph.xAxisPointNumber);
     graph.xStepLength = graph.xStepValue * graph.xUnitLength;
@@ -75,9 +74,7 @@ function drawShutterClosingMvtTimeCurve () {
         myValue['y' + (i + 1)] = 0;
     }
 
-    myGraph.removeLayer()
-    .clearCanvas()
-    .addLayer({
+    myGraph.addLayer({
         type: 'line',
         name: 'xAxis',
         strokeStyle: graph.xAxisColor,
