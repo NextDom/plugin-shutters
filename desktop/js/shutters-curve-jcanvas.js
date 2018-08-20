@@ -75,7 +75,8 @@ function drawShutterClosingMvtTimeCurve () {
         myValue['y' + (i + 1)] = 0;
     }
 
-    myGraph.clearCanvas()
+    myGraph.removeLayer()
+    .clearCanvas()
     .addLayer({
         type: 'line',
         name: 'xAxis',
