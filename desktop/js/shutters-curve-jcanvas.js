@@ -1,4 +1,3 @@
-function drawShutterClosingMvtTimeCurve () {
     var graph = {
         xOrigin: 50,
         yOrigin: 350,
@@ -56,6 +55,8 @@ function drawShutterClosingMvtTimeCurve () {
     var myGraph = $('#shutterClosingMvtTimeCurve');
     var myValue = {};
 
+
+function drawShutterClosingMvtTimeCurve () {
     graph.xUnitLength = Math.round(graph.xAxisLength / (graph.xMaxScale - graph.xMinScale));
     graph.xStepValue = Math.round((graph.xMaxScale - graph.xMinScale) / graph.xAxisPointNumber);
     graph.xStepLength = graph.xStepValue * graph.xUnitLength;
@@ -259,12 +260,7 @@ function updateCurve(layer) {
     var pointIndex = 'y' + layer.name.match(/\d+/);
     curve[pointIndex] = layer.y;
     myValue[pointIndex] = scaleValue(layer.y);
-    myGraph.setLayer('curve', curve)
-        .drawLayers();
-    $("#myTable > tbody > tr").each(function(i, item) {
-        $(item).find("td:eq(0)").text(myValue['x' + (i + 1)]);
-        $(item).find("td:eq(1)").text(myValue['y' + (i + 1)]);
-    });
+    myGraph.setLayer('curve', curve).drawLayers();
 }
 
 function scaleValue(value) {
