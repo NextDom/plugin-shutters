@@ -821,7 +821,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                                 <i class="fa fa-minus-circle"></i>
                                                             </a>
                                                         </span>
-                                                        <input id="analogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogPositionCmd" placeholder="{{Sélectionner une commande}}" disabled/>
+                                                        <input id="analogPositionCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analogPositionCmd" placeholder="{{Sélectionner une commande}}" />
                                                         <span class="input-group-btn">
                                                             <a class="btn btn-default listCmd cursor" data-type="action" data-subtype="slider" data-input="analogPositionCmd">
                                                                 <i class="fa fa-list"></i>
@@ -858,9 +858,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Commande fermeture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default delCmd cursor" data-input="closingCmd">
+                                                                <i class="fa fa-minus-circle"></i>
+                                                            </a>
+                                                        </span>
                                                         <input id="closingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="closingCmd" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-input="closingCmd">
+                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-type="other" data-input="closingCmd">
                                                                 <i class="fa fa-list"></i>
                                                             </a>
                                                         </span>
@@ -874,9 +879,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Commande ouverture}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default delCmd cursor" data-input="openingCmd">
+                                                                <i class="fa fa-minus-circle"></i>
+                                                            </a>
+                                                        </span>
                                                         <input id="openingCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="openingCmd" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-input="openingCmd">
+                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-type="other" data-input="openingCmd">
                                                                 <i class="fa fa-list"></i>
                                                             </a>
                                                         </span>
@@ -890,9 +900,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <label class="col-sm-3 control-label">{{Commande stop}}</label>
                                                 <div class="col-sm-5">
                                                     <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <a class="btn btn-default delCmd cursor" data-input="stopCmd">
+                                                                <i class="fa fa-minus-circle"></i>
+                                                            </a>
+                                                        </span>
                                                         <input id="stopCmd" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="stopCmd" placeholder="{{Sélectionner une commande}}"/>
                                                         <span class="input-group-btn">
-                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-input="stopCmd">
+                                                            <a class="btn btn-default listCmd cursor" data-type="action" data-type="other" data-input="stopCmd">
                                                                 <i class="fa fa-list"></i>
                                                             </a>
                                                         </span>

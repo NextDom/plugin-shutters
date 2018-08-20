@@ -217,7 +217,7 @@ class shutters extends eqLogic
                             return;
                         }
                         if ($cmdId->getSubType() !== 'numeric') {
-                            throw new \Exception (__('[Position du volet] La commande suivante n\'est pas de type numeric : ', __FILE__) . $cmd);
+                            throw new \Exception (__('[Position du volet] La commande suivante n\'est pas de type numeric : ', __FILE__) . $cmdId->getHumanName());
                             return;
                         }
                     } else {
@@ -282,29 +282,75 @@ class shutters extends eqLogic
                             throw new \Exception (__('[Commande analogique] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
-                        if ($cmdId->getSubType() !== 'numeric') {
-                            throw new \Exception (__('[Commande analogique] La commande suivante n\'est pas de type numeric : ', __FILE__) . $cmd);
+                        if ($cmdId->getSubType() !== 'slider') {
+                            throw new \Exception (__('[Commande analogique] La commande suivante n\'est pas de type slider : ', __FILE__) . $cmdId->getHumanName());
                             return;
                         }
                     } else {
                         throw new \Exception (__('[Commande analogique] La commande doit être renseignée!', __FILE__));
                         return;
                     }
+                    $fullClosureSetpoint = $this->getConfiguration('fullClosureSetpoint', null);
+                    $min = (int)(str_replace('%','',$this->getConfiguration('fullClosureSetpointMin', null)));
+                    $max = (int)(str_replace('%','',$this->getConfiguration('fullClosureSetpointMax', null)));
+                    if ($fullClosureSetpoint < $min || $fullClosureSetpoint > $max) {
+                        throw new \Exception (__('La consigne fermeture complète du volet doit être renseignée et comprise dans la plage ', __FILE__) . '[' . $min . '% - ' . $max . '%]');
+                        return;
+                    }        
+                    $fullOpeningSetpoint = $this->getConfiguration('fullOpeningSetpoint', null);
+                    $min = (int)(str_replace('%','',$this->getConfiguration('fullOpeningSetpointMin', null)));
+                    $max = (int)(str_replace('%','',$this->getConfiguration('fullOpeningSetpointMax', null)));
+                    if ($fullOpeningSetpoint < $min || $fullOpeningSetpoint > $max) {
+                        throw new \Exception (__('La consigne ouverture complète du volet doit être renseignée et comprise dans la plage ', __FILE__) .  '[' . $min . '% - ' . $max . '%]');
+                        return;
+                    }        
+                } elseif ($shutterCmdType === 'OpenCloseStopCmd') {
+                    $cmd = str_replace('#','',$this->getConfiguration('closingCmd', null));
+                    if (!empty($cmd)) {
+                        $cmdId=cmd::byId($cmd);
+                        if (!is_object($cmdId)) {
+                            throw new \Exception (__('[Commande fermeture] La commande suivante est inconnue : ', __FILE__) . $cmd);
+                            return;
+                        }
+                        if ($cmdId->getSubType() !== 'slider') {
+                            throw new \Exception (__('[Commande fermeture] La commande suivante n\'est pas de type other : ', __FILE__) . $cmdId->getHumanName());
+                            return;
+                        }
+                    } else {
+                        throw new \Exception (__('[Commande fermeture] La commande doit être renseignée!', __FILE__));
+                        return;
+                    }
+                    $cmd = str_replace('#','',$this->getConfiguration('openingCmd', null));
+                    if (!empty($cmd)) {
+                        $cmdId=cmd::byId($cmd);
+                        if (!is_object($cmdId)) {
+                            throw new \Exception (__('[Commande ouverture] La commande suivante est inconnue : ', __FILE__) . $cmd);
+                            return;
+                        }
+                        if ($cmdId->getSubType() !== 'slider') {
+                            throw new \Exception (__('[Commande ouverture] La commande suivante n\'est pas de type other : ', __FILE__) . $cmdId->getHumanName());
+                            return;
+                        }
+                    } else {
+                        throw new \Exception (__('CCommande ouverture] La commande doit être renseignée!', __FILE__));
+                        return;
+                    }
+                    $cmd = str_replace('#','',$this->getConfiguration('stopCmd', null));
+                    if (!empty($cmd)) {
+                        $cmdId=cmd::byId($cmd);
+                        if (!is_object($cmdId)) {
+                            throw new \Exception (__('[Commande stop] La commande suivante est inconnue : ', __FILE__) . $cmd);
+                            return;
+                        }
+                        if ($cmdId->getSubType() !== 'slider') {
+                            throw new \Exception (__('[Commande stop] La commande suivante n\'est pas de type other : ', __FILE__) . $cmdId->getHumanName());
+                            return;
+                        }
+                    } else {
+                        throw new \Exception (__('[Commande stop] La commande doit être renseignée!', __FILE__));
+                        return;
+                    }
                 }
-                $fullClosureSetpoint = $this->getConfiguration('fullClosureSetpoint', null);
-                $min = (int)(str_replace('%','',$this->getConfiguration('fullClosureSetpointMin', null)));
-                $max = (int)(str_replace('%','',$this->getConfiguration('fullClosureSetpointMax', null)));
-                if ($fullClosureSetpoint < $min || $fullClosureSetpoint > $max) {
-                    throw new \Exception (__('La consigne fermeture complète du volet doit être renseignée et comprise dans la plage ', __FILE__) . '[' . $min . '% - ' . $max . '%]');
-                    return;
-                }        
-                $fullOpeningSetpoint = $this->getConfiguration('fullOpeningSetpoint', null);
-                $min = (int)(str_replace('%','',$this->getConfiguration('fullOpeningSetpointMin', null)));
-                $max = (int)(str_replace('%','',$this->getConfiguration('fullOpeningSetpointMax', null)));
-                if ($fullOpeningSetpoint < $min || $fullOpeningSetpoint > $max) {
-                    throw new \Exception (__('La consigne ouverture complète du volet doit être renseignée et comprise dans la plage ', __FILE__) .  '[' . $min . '% - ' . $max . '%]');
-                    return;
-                }        
 
 
             } elseif ($objectType === 'shuttersGroup') {
