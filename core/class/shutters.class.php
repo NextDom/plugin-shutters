@@ -312,7 +312,7 @@ class shutters extends eqLogic
                             throw new \Exception (__('[Commande fermeture] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
-                        if ($cmdId->getSubType() !== 'slider') {
+                        if ($cmdId->getSubType() !== 'other') {
                             throw new \Exception (__('[Commande fermeture] La commande suivante n\'est pas de type other : ', __FILE__) . $cmdId->getHumanName());
                             return;
                         }
@@ -327,7 +327,7 @@ class shutters extends eqLogic
                             throw new \Exception (__('[Commande ouverture] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
-                        if ($cmdId->getSubType() !== 'slider') {
+                        if ($cmdId->getSubType() !== 'other') {
                             throw new \Exception (__('[Commande ouverture] La commande suivante n\'est pas de type other : ', __FILE__) . $cmdId->getHumanName());
                             return;
                         }
@@ -342,7 +342,7 @@ class shutters extends eqLogic
                             throw new \Exception (__('[Commande stop] La commande suivante est inconnue : ', __FILE__) . $cmd);
                             return;
                         }
-                        if ($cmdId->getSubType() !== 'slider') {
+                        if ($cmdId->getSubType() !== 'other') {
                             throw new \Exception (__('[Commande stop] La commande suivante n\'est pas de type other : ', __FILE__) . $cmdId->getHumanName());
                             return;
                         }
