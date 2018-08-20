@@ -53,7 +53,7 @@
     };
 
     var myGraph = $('#shutterClosingMvtTimeCurve');
-    var myValue = {};
+    var shutterMvtTimeCurve = {};
 
 
 function drawShutterClosingMvtTimeCurve () {
@@ -70,8 +70,8 @@ function drawShutterClosingMvtTimeCurve () {
     for (var i = 0; i <= graph.xAxisPointNumber; i++) {
         curve['x' + (i + 1)] = graph.xAxisStartPoint + (i * graph.xStepLength);
         curve['y' + (i + 1)] = graph.yOrigin;
-        myValue['x' + (i + 1)] = graph.xMinScale + (i * graph.xStepValue);
-        myValue['y' + (i + 1)] = 0;
+        shutterMvtTimeCurve['x' + (i + 1)] = graph.xMinScale + (i * graph.xStepValue);
+        shutterMvtTimeCurve['y' + (i + 1)] = 0;
     }
 
     myGraph.addLayer({
@@ -259,7 +259,7 @@ function calculateYValue(layer, y) {
 function updateCurve(layer) {
     var pointIndex = 'y' + layer.name.match(/\d+/);
     curve[pointIndex] = layer.y;
-    myValue[pointIndex] = scaleValue(layer.y);
+    shutterMvtTimeCurve[pointIndex] = scaleValue(layer.y);
     myGraph.setLayer('curve', curve).drawLayers();
 }
 

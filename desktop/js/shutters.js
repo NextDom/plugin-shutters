@@ -49,8 +49,8 @@ function printEqLogic (_eqLogic) {
 }
 
 function saveEqLogic(_eqLogic) {
-	_eqLogic.configuration.shutterMvtTimeCurve=new Object();
-	_eqLogic.configuration.shutterMvtTimeCurve=shutterMvtTimeCurve;
+	_eqLogic.configuration.shutterMvtTimeCurve = new Object();
+	_eqLogic.configuration.shutterMvtTimeCurve = shutterMvtTimeCurve;
    	return _eqLogic;
 }
 
