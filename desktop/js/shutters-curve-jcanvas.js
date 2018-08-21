@@ -211,8 +211,13 @@ function drawShutterClosingMvtTimeCurve () {
     myGraph.drawLayers();
 }
 
-function updateShutterMvtTimeCurve () {
-    
+function updateShutterMvtTimeCurve (curvePoints) {
+    for (var i = 2; i <= curvePoints.length / 2; i++) {
+        myGraph.setLayer('point' + i, {
+            y: curvePoints['y' + i]
+        })
+    }
+    myGraph.drawLayers();
 }
 
 function calculateYValue(layer, y) {

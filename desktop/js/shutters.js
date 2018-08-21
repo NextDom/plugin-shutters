@@ -44,7 +44,7 @@ function printEqLogic (_eqLogic) {
         refreshWallPlan();
         displaySelectedDawnOrDusk($('#dawnType').val());
         displaySelectedDawnOrDusk($('#duskType').val());
-        
+        updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
     });
 }
 
