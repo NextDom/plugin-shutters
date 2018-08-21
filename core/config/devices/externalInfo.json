@@ -10,7 +10,7 @@
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur absence." 
             },
-            "logicalId": "externalInfo:absenceManagement",
+            "logicalId": "externalInfo:absenceFunction",
             "isVisible": false
         },
         {
@@ -22,7 +22,7 @@
               	"listValue": "Enable|Active;Disable|Inactive",
                   "description": "Activer ou désactiver la gestion des volets sur présence." 
             },
-            "logicalId": "externalInfo:presenceManagement",
+            "logicalId": "externalInfo:presenceFunction",
             "isVisible": false
         },
         {
@@ -34,7 +34,7 @@
                 "listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur détection incendie." 
             },
-            "logicalId": "externalInfo:fireManagement",
+            "logicalId": "externalInfo:fireFunction",
             "isVisible": false
         },
         {
@@ -46,7 +46,7 @@
             "listValue": "Enable|Active;Disable|Inactive",
             "description": "Activer ou désactiver la gestion des volets en fonction de la température extérieure." 
         },
-            "logicalId": "externalInfo:temperatureManagement",
+            "logicalId": "externalInfo:temperatureFunction",
             "isVisible": false
         },
         {
@@ -58,7 +58,7 @@
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets en fonction de la luminosité extérieure." 
             },
-            "logicalId": "externalInfo:luminosityManagement",
+            "logicalId": "externalInfo:luminosityFunction",
             "isVisible": false
         }
     ]

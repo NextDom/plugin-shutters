@@ -22,22 +22,32 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class shuttersCmd extends cmd
 {
-    /*     * *************************Attributs****************************** */
-    /*     * ***********************Methode static*************************** */
-    /*     * *********************Methode d'instance************************* */
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes 
-     même si elles ne sont pas dans la nouvelle configuration de l'équipement 
-     envoyé en JS
-      public function dontRemoveCmd() {
-      return true;
-      }
-     */
-
-    public function execute($_options = array())
-    {
-        
-    }
-
+	/*     * *************************Attributs****************************** */
+	/*     * ***********************Methode static*************************** */
+	/*     * *********************Methode d'instance************************* */
+    
+    public function execute($_options = array()) {
+        $eqLogic = $this->getEqLogic();
+        $eqLogicName = $this->getName();
+		log::add('shutters', 'debug', $this->getHumanName() . ': receive cmd => ' . $this->getLogicalId());
+		log::add('shutters', 'debug', $this->getHumanName() . ': options => ' . $_options);
+		switch ($this->getLogicalId()) {
+			case 'externalInfo:absenceFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:presenceFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:fireFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:temperatureFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:luminosityFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+		}
+	}
     /*     * **********************Getteur Setteur*************************** */
 }

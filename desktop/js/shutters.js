@@ -42,7 +42,7 @@ function printEqLogic (_eqLogic) {
 
         switch (_eqLogic.configuration.objectType) {
             case 'externalInfo':
-                updatePriorityManagement();
+                updatePriorityFunction();
                 break;
             case 'heliotropeZone':
                 refreshWallPlan();
@@ -156,17 +156,17 @@ function displaySettings (settingGroup = '', settingType = '') {
 /**
  * Selection of priority management (fire detection / absence)
  */
-function updatePriorityManagement () {
+function updatePriorityFunction () {
     console.log('priority management');
-    var priorityManagement = $('#priorityManagement');
+    var priorityFunction = $('#priorityFunction');
     if ($('#absenceInfoCmd').val() !== '' && $('#fireDetectionCmd').val() !== '') {
-        priorityManagement.prop('disabled', false);
-        if (priorityManagement.val() === null) {
-            priorityManagement.val('fireManagement');
+        priorityFunction.prop('disabled', false);
+        if (priorityFunction.val() === null) {
+            priorityFunction.val('fireFunction');
         }
     } else {
-        priorityManagement.val(null);
-        priorityManagement.prop('disabled', true);
+        priorityFunction.val(null);
+        priorityFunction.prop('disabled', true);
     }
 }
 

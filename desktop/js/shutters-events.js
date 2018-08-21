@@ -96,10 +96,10 @@ function initEvents () {
      * External info settings events
      */
     $('#absenceInfoCmd').off('change').on('change', function () {
-        updatePriorityManagement();
+        updatePriorityFunction();
     });
     $('#fireDetectionCmd').off('change').on('change', function () {
-        updatePriorityManagement();
+        updatePriorityFunction();
     });
 
     // Heliotrope zone settings events

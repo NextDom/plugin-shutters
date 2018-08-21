@@ -524,9 +524,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                    <div class="form-group">
                                         <label class="col-sm-3 control-label">{{Gestion prioritaire}}</label>
                                         <div class="col-sm-5">
-                                            <select id="priorityManagement" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="priorityManagement">
-                                                <option value="fireManagement">{{Gestion incendie}}</option>
-                                                <option value="absenceManagement">{{Gestion absence}}</option>
+                                            <select id="priorityFunction" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="priorityFunction">
+                                                <option value="fireFunction">{{Gestion incendie}}</option>
+                                                <option value="absenceFunction">{{Gestion absence}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -620,10 +620,18 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <a data-toggle="collapse" data-parent="#objectSettings" href="#shuttersGroupSettings"> {{Paramètres groupe de volets}} </a>
                             </h4>
                         </div>
-                        <div id="shuttersGroupSettings" class="panel-collapse collapse">
+                        <div id="shuttersGroupSettings" class="panel-collapse collapse in">
                             <div class="panel-body"> 
                                 <form class="form-horizontal">
-
+                                    <div class="col-sm-6">               
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Equipement infos externes}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="shutterPositionType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterPositionType" data-settinggroup="shutterPositionType">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>    
                             </div>
                         </div>

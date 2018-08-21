@@ -419,6 +419,9 @@ class shutters extends eqLogic
 		}
     }
     
+    public function checkShutterFunctions () {
+
+    }
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 
      en avez besoin
