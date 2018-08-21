@@ -19,7 +19,7 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-require_once 'shuttersCmd.class.php';
+//require_once 'shuttersCmd.class.php';
 
 class shutters extends eqLogic
 {
@@ -29,12 +29,12 @@ class shutters extends eqLogic
 
     /*     * ***********************Methode static*************************** */
 
-    /*
-     * Fonction exécutée automatiquement toutes les minutes par Jeedom
+    
+     // Fonction exécutée automatiquement toutes les minutes par Jeedom
       public static function cron() {
-
+        log::add('shutters' ,'debug', )
       }
-     */
+     
 
 
     /*
@@ -51,10 +51,7 @@ class shutters extends eqLogic
       }
      */
 
-
-
-    /*     * *********************Méthodes 
-    d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function preInsert()
     {
@@ -447,3 +444,34 @@ class shutters extends eqLogic
     /*     * **********************Getteur Setteur*************************** */
 }
 
+class shuttersCmd extends cmd
+{
+	/*     * *************************Attributs****************************** */
+	/*     * ***********************Methode static*************************** */
+	/*     * *********************Methode d'instance************************* */
+    
+    public function execute($_options = array()) {
+        $eqLogic = $this->getEqLogic();
+        $eqLogicName = $this->getName();
+		log::add('shutters', 'debug', $this->getHumanName() . ': receive cmd => ' . $this->getLogicalId());
+		log::add('shutters', 'debug', $this->getHumanName() . ': options => ' . $_options);
+		switch ($this->getLogicalId()) {
+			case 'externalInfo:absenceFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:presenceFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:fireFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:temperatureFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+			case 'externalInfo:luminosityFunction':
+				$eqLogic->checkShutterFunctions();
+				break;
+		}
+	}
+    /*     * **********************Getteur Setteur*************************** */
+}
