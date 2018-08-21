@@ -31,9 +31,9 @@ class shutters extends eqLogic
 
     
      // Fonction exécutée automatiquement toutes les minutes par Jeedom
-      public static function cron() {
-        log::add('shutters' ,'debug', )
-      }
+    public static function cron() {
+
+    }
      
 
 
