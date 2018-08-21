@@ -54,7 +54,7 @@
 
     var myGraph = $('#shutterClosingMvtTimeCurve');
     var shutterMvtTimeValues = {};
-    var shutterMvtTimeCurve = {};
+    var shutterMvtTimeCurve = [];
 
 function drawShutterClosingMvtTimeCurve () {
     graph.xUnitLength = Math.round(graph.xAxisLength / (graph.xMaxScale - graph.xMinScale));
@@ -68,8 +68,9 @@ function drawShutterClosingMvtTimeCurve () {
     graph.yAxisStartPoint = graph.yOrigin - (graph.yMinScale * graph.yUnitLength);
     graph.yAxisEndPoint = graph.yOrigin - (graph.yMaxScale * graph.yUnitLength);
     for (var i = 0; i <= graph.xAxisPointNumber; i++) {
-        curve['x' + (i + 1)] = shutterMvtTimeCurve['x' + (i + 1)] = graph.xAxisStartPoint + (i * graph.xStepLength);
-        curve['y' + (i + 1)] = shutterMvtTimeCurve['x' + (i + 1)] = graph.yOrigin;
+        curve['x' + (i + 1)] = graph.xAxisStartPoint + (i * graph.xStepLength);
+        curve['y' + (i + 1)] = graph.yOrigin;
+        shutterMvtTimeCurve.push(graph.yOrigin);
         shutterMvtTimeValues['x' + (i + 1)] = graph.xMinScale + (i * graph.xStepValue);
         shutterMvtTimeValues['y' + (i + 1)] = 0;
     }
@@ -212,6 +213,8 @@ function drawShutterClosingMvtTimeCurve () {
 }
 
 function updateShutterMvtTimeCurve (curvePoints) {
+    console.log(curvePoints);
+    console.log(curvePoints.length)
     for (var i = 2; i <= curvePoints.length / 2; i++) {
         myGraph.setLayer('point' + i, {
             y: curvePoints['y' + i]
@@ -266,9 +269,9 @@ function calculateYValue(layer, y) {
 }
 
 function updateCurve(layer) {
-    var pointIndex = 'y' + layer.name.match(/\d+/);
-    curve[pointIndex] = shutterMvtTimeCurve[pointIndex] = layer.y;
-    shutterMvtTimeValues[pointIndex] = scaleValue(layer.y);
+    var pointIndex = parseInt(layer.name.match(/\d+/));
+    curve[ 'y' + pointIndex] = shutterMvtTimeCurve[pointIndex -1 ] = layer.y;
+    shutterMvtTimeValues[ 'y' + pointIndex] = scaleValue(layer.y);
     myGraph.setLayer('curve', curve).drawLayers();
 }
 
