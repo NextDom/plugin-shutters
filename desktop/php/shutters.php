@@ -640,7 +640,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <select id="shutterPositionType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterPositionType" data-settinggroup="shutterPositionType">
                                                     <option value="none">{{Aucune}}</option>
                                                     <option value="analogPosition">{{Analogique}}</option>
-                                                    <option value="closedOpenedPositions">{{Fermeture et ouverture}}</option>
+                                                    <option value="closedOpenedPositions">{{Fermeture / ouverture}}</option>
                                                     <option value="closedPosition">{{Fermeture}}</option>
                                                     <option value="openedPosition">{{Ouverture}}</option>
                                                 </select>
@@ -745,6 +745,17 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                             </a>
                                                         </span>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset id="positionSynchroSettings" class="display-none" data-settinggroup="shutterPositionType" data-settingtype="closedOpenedPositions closedPosition openedPosition">  
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">{{Synchro position virtuelle}}</label>
+                                                <div class="col-sm-5">
+                                                    <select id="positionSynchroType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="positionSynchroType">
+                                                        <option value="auto">{{Automatique}}</option>
+                                                        <option value="everyMvt">{{A chaque mouvement}}</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </fieldset>

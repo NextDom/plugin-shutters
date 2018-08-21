@@ -80,17 +80,14 @@ class shutters extends eqLogic
     {
         $exceptionMessage = NULL;
 
-        $openingTypeList = array('window', 'door');
         $dawnTypeList =  array('sunrise', 'civilDawn', 'nauticalDawn', 'astronomicalDawn');
         $duskTypeList = array('sunset', 'civilDusk', 'nauticalDusk', 'astronomicalDusk');
         $angleUnitList = array('deg', 'gon');
+        $openingTypeList = array('window', 'door');
+        $positionSynchroTypeList = array('auto', 'everyMvt');
 
         $objectType = $this->getConfiguration('objectType', null);
         $isObjectCreated = $this->getConfiguration('isObjectCreated', false);
-
-        $incomingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle', null);
-        $outgoingAzimuthAngle = $this->getConfiguration('outgoingAzimuthAngle', null);
-        $shutterArea = $this->getConfiguration('shutterArea', null);
 
         if (empty($objectType)) {
             throw new \Exception (__('Le type d\'équipement doit être renseigné!', __FILE__));
@@ -270,6 +267,12 @@ class shutters extends eqLogic
                         } 
                     } else {
                         throw new \Exception (__('[Position volet ouvert] La commande doit être renseignée!', __FILE__));
+                        return;
+                    }
+                }
+                if ($shutterPositionType === 'closedOpenedPositions' || $shutterPositionType === 'closedPosition'|| $shutterPositionType === 'openedPosition') {
+                    if (!in_array($this->getConfiguration('positionSynchroType', null), $positionSynchroTypeList, true)) {
+                        throw new \Exception (__('La synchronisation de position du volet doit être renseignée!', __FILE__));
                         return;
                     }
                 }

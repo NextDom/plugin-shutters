@@ -40,17 +40,27 @@ function printEqLogic (_eqLogic) {
         $('input[data-settinggroup]').trigger('change');
         $('input[type=range]').trigger('change');
 
-        updatePriorityManagement();
-        refreshWallPlan();
-        displaySelectedDawnOrDusk($('#dawnType').val());
-        displaySelectedDawnOrDusk($('#duskType').val());
-        updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
+        switch (_eqLogic.configuration.objectType) {
+            case 'externalInfo':
+                updatePriorityManagement();
+                break;
+            case 'heliotropeZone':
+                refreshWallPlan();
+                displaySelectedDawnOrDusk($('#dawnType').val());
+                displaySelectedDawnOrDusk($('#duskType').val());
+                break;
+            case 'shutter':
+                updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
+                break;
+            default:
+        }
     });
 }
 
 function saveEqLogic(_eqLogic) {
+    console.log('saveEqLogic');
     _eqLogic.configuration.shutterMvtTimeValues = new Object();
-    _eqLogic.configuration.shutterMvtTimeCurve = new Object();
+    _eqLogic.configuration.shutterMvtTimeCurve = new Array();
 	_eqLogic.configuration.shutterMvtTimeValues = shutterMvtTimeValues;
 	_eqLogic.configuration.shutterMvtTimeCurve = shutterMvtTimeCurve;
    	return _eqLogic;
