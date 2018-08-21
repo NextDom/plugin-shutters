@@ -51,6 +51,7 @@ function printEqLogic (_eqLogic) {
                 break;
             case 'shutter':
                 updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
+                updateValuesTable(_eqLogic.configuration.shutterMvtTimeValues);
                 break;
             default:
         }

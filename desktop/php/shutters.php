@@ -583,13 +583,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <canvas id="heliotropePlan" class="col-sm-offset-3" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
-                                     </div>
+                                        <div class="col-sm-5 col-sm-offset-3">            
+                                            <canvas id="heliotropePlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas>
+                                        </div> 
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">               
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="wallAngle">{{Angle façade / Nord}}</label>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-5"><div class="col-sm-5">
                                             <div class="input-group">    
                                                 <span class="input-group-addon">0°</span>
                                                 <input id="wallAngle" type="number" min="0" max="360" class="eqLogicAttr form-control text-center" data-l1key="configuration" data-l2key="wallAngle"/>
@@ -604,7 +606,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <canvas id="wallPlan" class="col-sm-offset-3" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        <div class="col-sm-5 col-sm-offset-3">            
+                                            <canvas id="wallPlan" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                        </div>
                                     </div>
                                 </div>
                             </form>    
@@ -932,6 +936,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <h4 class="text-center">Courbe de réglage des temps de déplacement du volet</h4>  
+                                            </div>
                                             <div class="col-sm-6">
                                                 <canvas id="shutterClosingMvtTimeCurve" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
                                             </div>
@@ -939,11 +946,31 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                 <table id="shutterMvtTimeTable" class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th style="width: 100px;">{{Position (%)}}</th>
-                                                            <th style="width: 200px;">{{Temps (s)}}</th>
+                                                            <th class="text-center">{{Position (%)}}</th>
+                                                            <th class="text-center">{{Temps de déplacement(s)}}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <tr>
+                                                            <td class="text-center"></td>
+                                                            <td class="text-center"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"></td>
+                                                            <td class="text-center"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"></td>
+                                                            <td class="text-center"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"></td>
+                                                            <td class="text-center"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center"></td>
+                                                            <td class="text-center"></td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
