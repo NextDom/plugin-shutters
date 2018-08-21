@@ -272,7 +272,16 @@ function updateCurve(layer) {
     curve[ 'y' + pointIndex] = shutterMvtTimeCurve[pointIndex -1 ] = layer.y;
     shutterMvtTimeValues[ 'y' + pointIndex] = scaleValue(layer.y);
     myGraph.setLayer('curve', curve).drawLayers();
+    updateValuesTable();
 }
+
+function updateValuesTable() {
+    $("#shutterMvtTimeTable > tbody > tr").each(function(i, item){
+        $(item).find("td:eq(0)").text(shutterMvtTimeValues['x' + (i+1)]);
+        $(item).find("td:eq(1)").text(shutterMvtTimeValues['y' + (i+1)]);
+    });
+}
+
 
 function scaleValue(value) {
     var scaledValue = Math.round((graph.yOrigin - value) * (graph.yMaxScale - graph.yMinScale) / graph.yAxisLength);

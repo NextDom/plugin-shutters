@@ -932,19 +932,21 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <canvas id="shutterClosingMvtTimeCurve" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
-                                        </div>
-                                        <div class="form-group">
-                                            <table id="shutterMvtTimeTable" class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width: 100px;">{{Position (%)}}</th>
-                                                        <th style="width: 200px;">{{Temps (s)}}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
+                                            <div class="col-sm-6">
+                                                <canvas id="shutterClosingMvtTimeCurve" width="400" height="400" style="border:1px solid #CCCCCC;"></canvas> 
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <table id="shutterMvtTimeTable" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 100px;">{{Position (%)}}</th>
+                                                            <th style="width: 200px;">{{Temps (s)}}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>    
