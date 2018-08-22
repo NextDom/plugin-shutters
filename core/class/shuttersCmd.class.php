@@ -28,15 +28,13 @@ class shuttersCmd extends cmd
     
     public function execute($_options = array()) {
         $eqLogic = $this->getEqLogic();
-        $eqLogicName = $this->getName();
-		log::add('shutters', 'debug', $this->getHumanName() . ': receive cmd => ' . $this->getLogicalId());
-		log::add('shutters', 'debug', $this->getHumanName() . ': options => ' . $_options);
+		log::add('shutters', 'debug', $this->getHumanName() . ': receive cmd => ' . $this->getLogicalId() . ' ; cmd value => '. $_options['select']);
 		switch ($this->getLogicalId()) {
 			case 'externalInfo:absenceFunction':
-				$eqLogic->checkShutterFunctions();
+				$eqLogic->checkShutterFunctions($_options['select']);
 				break;
 			case 'externalInfo:presenceFunction':
-				$eqLogic->checkShutterFunctions();
+				$eqLogic->checkShutterFunctions($_options['message']);
 				break;
 			case 'externalInfo:fireFunction':
 				$eqLogic->checkShutterFunctions();

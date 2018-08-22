@@ -93,9 +93,14 @@ function addCmdToTable (_cmd) {
         tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fa fa-cogs"></i></a> ';
     }
    if (init(_cmd.type) == 'info') {
-        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a></td>';
+        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
     }
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
+    tr += '</td>';
     tr += '</tr>';
+
     $('#cmdTable tbody').append(tr);
     $('#cmdTable tbody tr:last').setValues(_cmd, '.cmdAttr');
 }
