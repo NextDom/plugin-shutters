@@ -28,38 +28,31 @@ class shuttersCmd extends cmd
     
     public function execute($_options = array()) {
         $eqLogic = $this->getEqLogic();
-		log::add('shutters', 'debug', $this->getHumanName() . ': receive cmd => ' . $this->getLogicalId() . ' ; cmd value => '. $_options['select']);
-		switch ($this->getLogicalId()) {
-			case 'externalInfo:absenceFunction':
-				$this->updateShutterFunctionsStatus($this, $_options['select'], $this->getConfiguration('configuredCmd'));
-				break;
-			case 'externalInfo:presenceFunction':
-				$eqLogic->checkShutterFunctions($_options['message']);
-				break;
-			case 'externalInfo:fireFunction':
-				$eqLogic->checkShutterFunctions();
-				break;
-			case 'externalInfo:temperatureFunction':
-				$eqLogic->checkShutterFunctions();
-				break;
-			case 'externalInfo:luminosityFunction':
-				$eqLogic->checkShutterFunctions();
+		log::add('shutters', 'debug', 'eqLogic => ' . $eqLogic->getName() . ' ; received cmd => ' . $this->getLogicalId() . ' ; cmd value => '. $_options['select']);
+		switch ($this->getConfiguration('type')) {
+			case 'externalInfo':
+				if ($this->getType() === 'action') {
+					$this->updateShutterFunctionsStatus($this, $_options['select'], $this->getConfiguration('configuredCmd'));
+				}
 				break;
 		}
 	}
 
 	public function updateShutterFunctionsStatus ($_cmd, $_value, $_configuredCmd) {
 		$eqLogic = $_cmd->getEqLogic();
-		log::add('shutters', 'debug', 'eqLogic => ' . $eqLogic->getName() . ' ; cmd value => ' . $_value . ' ; configured cmd => ' . $_configuredCmd);
+		$eqLogicName = $eqLogic->getName();
+		$statusCmdName = $_cmd->getLogicalId() . 'Status';
 		if (empty($eqLogic->getConfiguration($_configuredCmd)) || $_value === 'Disable') {
-			$eqLogic->checkAndUpdateCmd($_cmd->getLogicalId() . 'Status', 'Inactive');
+			$eqLogic->checkAndUpdateCmd($statusCmdName, __('Désactivée', __FILE__));
+			log::add('shutters', 'debug', 'eqLogic => ' . $eqLogicName . ' ; cmd => ' . $statusCmdName . ' ; updated status => ' . $eqLogic->getCmd(null, $statusCmdName)->execCmd());
 			return; 
 		} 
 		if ($_value === 'Enable') {
-			$eqLogic->checkAndUpdateCmd($_logicalId . 'Status', 'Active');
+			$eqLogic->checkAndUpdateCmd($statusCmdName, __('Activée', __FILE__));
+			log::add('shutters', 'debug', 'eqLogic => ' . $eqLogicName . ' ; cmd => ' . $statusCmdName . ' ; updated status => ' . $eqLogic->getCmd(null, $statusCmdName)->execCmd());
 		}
 	}
 
-	}
+
     /*     * **********************Getteur Setteur*************************** */
 }
