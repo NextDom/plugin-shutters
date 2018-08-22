@@ -31,7 +31,7 @@ class shuttersCmd extends cmd
 		log::add('shutters', 'debug', $this->getHumanName() . ': receive cmd => ' . $this->getLogicalId() . ' ; cmd value => '. $_options['select']);
 		switch ($this->getLogicalId()) {
 			case 'externalInfo:absenceFunction':
-				$eqLogic->updateShutterFunctionsStatus($this->getLogicalId(), $_options['select']);
+				$this->updateShutterFunctionsStatus($this, $_options['select'], $this->getConfiguration('configuredCmd'));
 				break;
 			case 'externalInfo:presenceFunction':
 				$eqLogic->checkShutterFunctions($_options['message']);
@@ -48,9 +48,17 @@ class shuttersCmd extends cmd
 		}
 	}
 
-	public function updateShutterFunctionsStatus ($cmdLogicalId, $options) {
-		$eqLogic = $this->getEqLogic();
-		log::add('shutters', 'debug', 'eqLogic => ' . $eqLogic->getName());
+	public function updateShutterFunctionsStatus ($_cmd, $_value, $_configuredCmd) {
+		$eqLogic = $_cmd->getEqLogic();
+		log::add('shutters', 'debug', 'eqLogic => ' . $eqLogic->getName() . ' ; cmd value => ' . $_value . ' ; configured cmd => ' . $_configuredCmd);
+		if (empty($eqLogic->getConfiguration($_configuredCmd)) || $_value === 'Disable') {
+			$eqLogic->checkAndUpdateCmd($_cmd->getLogicalId() . 'Status', 'Inactive');
+			return; 
+		} 
+		if ($_value === 'Enable') {
+			$eqLogic->checkAndUpdateCmd($_logicalId . 'Status', 'Active');
+		}
+	}
 
 	}
     /*     * **********************Getteur Setteur*************************** */
