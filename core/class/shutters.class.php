@@ -416,7 +416,7 @@ class shutters extends eqLogic
 		}
     }
     
-    public function checkShutterFunctions () {
+    public function checkShutterFunctions ($_logicalId, $_options) {
 
     }
     /*

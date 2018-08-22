@@ -1007,7 +1007,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <th style="width: 50px;">{{Type}}</th>
                                         <th style="width: 50px;">{{Sous type}}</th>
                                         <th style="width: 50px;">{{Configuration}}</th>
-                                        <th style="width: 20px;"></th>
+                                        <th style="width: 30px;">{{Supprimer}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

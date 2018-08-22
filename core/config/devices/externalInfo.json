@@ -2,63 +2,123 @@
     "name": "externalInfo",
     "commands": [
         {
-            "name": "Gestion absence",
+            "name": "Fonction absence",
             "type": "action",
             "subtype": "select",
             "configuration": {
 				"type": "externalInfo",
               	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets sur absence." 
+                "description": "Activer ou désactiver la gestion des volets sur absence.",
+                "configuredCmd": "absenceInfoCmd"  
             },
             "logicalId": "externalInfo:absenceFunction",
             "isVisible": false
         },
         {
-            "name": "Gestion présence",
+            "name": "Fonction présence",
             "type": "action",
             "subtype": "select",
             "configuration": {
 				"type": "externalInfo",
               	"listValue": "Enable|Active;Disable|Inactive",
-                  "description": "Activer ou désactiver la gestion des volets sur présence." 
+                "description": "Activer ou désactiver la gestion des volets sur présence.",
+                "configuredCmd": "presenceInfoCmd"  
             },
             "logicalId": "externalInfo:presenceFunction",
             "isVisible": false
         },
         {
-            "name": "Gestion détection incendie",
+            "name": "Fonction détection incendie",
             "type": "action",
             "subtype": "select",
             "configuration": {
 				"type": "externalInfo",
                 "listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets sur détection incendie." 
+                "description": "Activer ou désactiver la gestion des volets sur détection incendie.",
+                "configuredCmd": "fireDetectionCmd"  
             },
             "logicalId": "externalInfo:fireFunction",
             "isVisible": false
         },
         {
-            "name": "Gestion température extérieure",
-            "type": "action",
-            "subtype": "select",
-           "configuration": {
-            "type": "externalInfo",
-            "listValue": "Enable|Active;Disable|Inactive",
-            "description": "Activer ou désactiver la gestion des volets en fonction de la température extérieure." 
-        },
-            "logicalId": "externalInfo:temperatureFunction",
-            "isVisible": false
-        },
-        {
-            "name": "Gestion luminosité extérieure",
+            "name": "Fonction luminosité extérieure",
             "type": "action",
             "subtype": "select",
             "configuration": {
 				"type": "externalInfo",
               	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets en fonction de la luminosité extérieure." 
+                "description": "Activer ou désactiver la gestion des volets en fonction de la luminosité extérieure.",
+                "configuredCmd": "outdoorLuminosityCmd" 
             },
             "logicalId": "externalInfo:luminosityFunction",
+            "isVisible": false
+        },
+        {
+            "name": "Fonction température extérieure",
+            "type": "action",
+            "subtype": "select",
+           "configuration": {
+                "type": "externalInfo",
+                "listValue": "Enable|Active;Disable|Inactive",
+                "description": "Activer ou désactiver la gestion des volets en fonction de la température extérieure.",
+                "configuredCmd": "outdoorTemperatureCmd"  
+            },
+            "logicalId": "externalInfo:temperatureFunction",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction absence",
+            "type": "info",
+            "subtype": "string",
+            "configuration": {
+				"type": "externalInfo",
+                "description": "Statut de la fonction de gestion des volets sur absence." 
+            },
+            "logicalId": "externalInfo:absenceFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction présence",
+            "type": "info",
+            "subtype": "string",
+            "configuration": {
+				"type": "externalInfo",
+                "description": "Statut de la fonction de gestion des volets sur présence." 
+            },
+            "logicalId": "externalInfo:presenceFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction détection incendie",
+            "type": "info",
+            "subtype": "string",
+            "configuration": {
+				"type": "externalInfo",
+                "description": "Statut de la fonction de gestion des volets sur détection incendie." 
+            },
+            "logicalId": "externalInfo:fireFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction luminosité extérieure",
+            "type": "info",
+            "subtype": "string",
+            "configuration": {
+				"type": "externalInfo",
+                "description": "Statut de la fonction de gestion des volets en fonction de la luminosité extérieure." 
+            },
+            "logicalId": "externalInfo:luminosityFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction température extérieure",
+            "type": "info",
+            "subtype": "string",
+           "configuration": {
+                "type": "externalInfo",
+                "description": "Statut de la fonction de gestion des volets en fonction de la température extérieure." 
+            },
+            "logicalId": "externalInfo:temperatureFunctionStatus",
             "isVisible": false
         }
     ]

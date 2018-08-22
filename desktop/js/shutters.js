@@ -97,7 +97,7 @@ function addCmdToTable (_cmd) {
     }
     tr += '</td>';
     tr += '<td>';
-    tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
+    tr += '<i class="fa fa-minus-circle cmdAction cursor" data-action="remove"></i>';
     tr += '</td>';
     tr += '</tr>';
 
