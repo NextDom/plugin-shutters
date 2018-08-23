@@ -35,9 +35,7 @@ class shutters extends eqLogic
 
     }
      
-
-
-    /*
+     /*
      * Fonction exécutée automatiquement toutes les heures par Jeedom
       public static function cronHourly() {
 
@@ -416,8 +414,8 @@ class shutters extends eqLogic
 		}
     }
     
-    public function checkShutterFunctions ($_logicalId, $_options) {
-
+    public function initShutterFunctions() {
+        
     }
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 
@@ -427,12 +425,9 @@ class shutters extends eqLogic
       }
      */
 
-    /*
-     * Non obligatoire mais ca permet de déclencher une action après 
-     modification de variable de configuration
-      public static function postConfig_<Variable>() {
+         public static function postConfig_outdoorLuminosityCmd() {
+             log::add('shutters', 'debug', 'test modif config');
       }
-     */
 
     /*
      * Non obligatoire mais ca permet de déclencher une action avant 
