@@ -26,30 +26,37 @@ class shuttersCmd extends cmd
 	/*     * ***********************Methode static*************************** */
 	/*     * *********************Methode d'instance************************* */
     
-    public function execute($_options = array()) {
+	public function execute($_options = array())
+	{
         $eqLogic = $this->getEqLogic();
-		log::add('shutters', 'debug', 'eqLogic => ' . $eqLogic->getName() . ' ; received cmd => ' . $this->getLogicalId() . ' ; cmd value => '. $_options['select']);
-		switch ($this->getConfiguration('type')) {
+		log::add('shutters', 'debug', 'shuttersCmd::execute() : eqLogic => ' . $eqLogic->getName() . ' ; received cmd => ' . $this->getLogicalId());
+		switch ($this->getConfiguration('objectType')) {
 			case 'externalInfo':
-				if ($this->getType() === 'action') {
-					$this->updateShutterFunctionsStatus($this, $_options['select'], $this->getConfiguration('configuredCmd'));
+				if ($this->getType() === 'action' && $this->getConfiguration('group') === 'shutterFunctions') {
+					$this->updateShutterFunctionsStatus($this, $_options['select']);
 				}
 				break;
 		}
 	}
 
-	public function updateShutterFunctionsStatus ($_cmd, $_value, $_configuredCmd) {
+	private function updateShutterFunctionsStatus ($_cmd, $_value) 
+	{
+		if (!is_object($_cmd) || empty($_value)) {
+			log::add('shutters', 'debug', 'shuttersCmd::initShutterFunctionStatus() => invalid parameters ; cmd => '. $_cmd . ' ; value => ' . $_value);
+			return;
+		}
 		$eqLogic = $_cmd->getEqLogic();
 		$eqLogicName = $eqLogic->getName();
-		$statusCmdName = $_cmd->getLogicalId() . 'Status';
-		if (empty($eqLogic->getConfiguration($_configuredCmd)) || $_value === 'Disable') {
-			$eqLogic->checkAndUpdateCmd($statusCmdName, __('Désactivée', __FILE__));
-			log::add('shutters', 'debug', 'eqLogic => ' . $eqLogicName . ' ; cmd => ' . $statusCmdName . ' ; updated status => ' . $eqLogic->getCmd(null, $statusCmdName)->execCmd());
+		$statusCmdLogicalId = $_cmd->getLogicalId() . 'Status';
+		$linkedCmd = $_cmd->getConfiguration('linkedCmd');
+		if (empty($eqLogic->getConfiguration($linkedCmd)) || $_value === 'Disable') {
+			$eqLogic->checkAndUpdateCmd($statusCmdLogicalId, __('Désactivée', __FILE__));
+			log::add('shutters', 'debug', 'shuttersCmd::initShutterFunctionStatus() : eqLogic => ' . $eqLogicName . ' ; cmd => ' . $statusCmdLogicalId . ' ; updated status => ' . $eqLogic->getCmd(null, $statusCmdLogicalId)->execCmd());
 			return; 
 		} 
 		if ($_value === 'Enable') {
-			$eqLogic->checkAndUpdateCmd($statusCmdName, __('Activée', __FILE__));
-			log::add('shutters', 'debug', 'eqLogic => ' . $eqLogicName . ' ; cmd => ' . $statusCmdName . ' ; updated status => ' . $eqLogic->getCmd(null, $statusCmdName)->execCmd());
+			$eqLogic->checkAndUpdateCmd($statusCmdLogicalId, __('Activée', __FILE__));
+			log::add('shutters', 'debug', 'shuttersCmd::initShutterFunctionStatus() : eqLogic => ' . $eqLogicName . ' ; cmd => ' . $statusCmdLogicalId . ' ; updated status => ' . $eqLogic->getCmd(null, $statusCmdLogicalId)->execCmd());
 		}
 	}
 

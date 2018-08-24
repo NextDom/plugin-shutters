@@ -4,11 +4,12 @@
         {
             "name": "Fonction nuit",
             "type": "action",
-            "subtype": "select",
+            "subType": "select",
             "configuration": {
-				"type": "heliotropeZone",
+				"objectType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
-                  "description": "Activer ou désactiver la gestion des volets sur passage en nuit." 
+                "description": "Activer ou désactiver la gestion des volets sur passage en nuit.",   
+                "group": "shutterFunctions" 
             },
             "logicalId": "heliotropeZone:PresenceManagement",
             "isVisible": false
@@ -16,11 +17,12 @@
         {
             "name": "Fonction jour",
             "type": "action",
-            "subtype": "select",
+            "subType": "select",
             "configuration": {
-				"type": "heliotropeZone",
+				"objectType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Activer ou désactiver la gestion des volets sur passage en jour." 
+                "description": "Activer ou désactiver la gestion des volets sur passage en jour.",   
+                "group": "shutterFunctions" 
             },
             "logicalId": "heliotropeZone:AbsenceManagement",
             "isVisible": false
@@ -28,11 +30,12 @@
         {
             "name": "Statut fonction nuit",
             "type": "info",
-            "subtype": "string",
+            "subType": "string",
             "configuration": {
-				"type": "heliotropeZone",
+				"objectType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
-                  "description": "Statut de la fonction de gestion des volets sur passage en nuit." 
+                "description": "Statut de la fonction de gestion des volets sur passage en nuit.",   
+                "group": "shutterFunctions" 
             },
             "logicalId": "heliotropeZone:PresenceManagementStatus<",
             "isVisible": false
@@ -40,11 +43,12 @@
         {
             "name": "Statut fonction jour",
             "type": "info",
-            "subtype": "string",
+            "subType": "string",
             "configuration": {
-				"type": "heliotropeZone",
+				"objectType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Statut de la fonction de gestion des volets sur passage en jour." 
+                "description": "Statut de la fonction de gestion des volets sur passage en jour.",   
+                "group": "shutterFunctions" 
             },
             "logicalId": "heliotropeZone:AbsenceManagementStatus",
             "isVisible": false

@@ -69,7 +69,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#objectList" href="#externalInfoObjectList"> {{Mes informations générales externes}} </a>
+                        <a data-toggle="collapse" data-parent="#objectList" href="#externalInfoObjectList"> {{Mes informations externes}} </a>
                         <span class="badge">
                             <?php
                                 $objectNumber =0;
@@ -344,7 +344,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{Informations générales externes}}</td>
+                                        <td>{{Informations externes}}</td>
                                         <td>{{Equipement permettant la gestion d'informations externes au plugin (information d'absence, détection incendie, température, luminosité, héliotrope). Ces informations sont optionnelles, si elles ne sont pas renseignées.}}</td>
                                     </tr>
                                     <tr>
@@ -370,7 +370,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 <div id="objectSettings" class="panel-group display-none" data-paneltype="setting">
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="externalInfo">
                         <div class="panel-heading">
-                            <h4 class="panel-title">{{Informations générales externes}}</h4>
+                            <h4 class="panel-title">{{Informations externes}}</h4>
                         </div>
                         <div class="panel-body"> 
                             <form class="form-horizontal">
@@ -639,10 +639,32 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterSettings"> {{Informations de position du volet - type d'ouvrant}} </a>
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterLinkSettings"> {{Liens vers informations externes, héliotrope, groupe}} </a>
                             </h4>
                         </div>
-                        <div id="shutterSettings" class="panel-collapse collapse in">
+                        <div id="shutterLinkSettings" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Infos externes}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="externalInfoLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoLink">
+                                                <option value="none">{{Aucune}}</option>
+                                            </select>
+                                        </div>
+                                    </div>.
+                                </div>  
+                            </form>             
+                        </div>
+                    </div>                            
+                    <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterPositionSettings"> {{Informations de position du volet - type d'ouvrant}} </a>
+                            </h4>
+                        </div>
+                        <div id="shutterPositionSettings" class="panel-collapse collapse">
                             <div class="panel-body"> 
                                 <form class="form-horizontal">
                                     <div class="col-sm-6">               

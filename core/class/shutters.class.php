@@ -383,7 +383,8 @@ class shutters extends eqLogic
     /**
      * Load commands from JSON file
      */
-    public function loadCmdFromConfFile($objectType) {
+    public function loadCmdFromConfFile($objectType)
+    {
         $file = dirname(__FILE__) . '/../config/devices/' . $objectType . '.json';
         if (!is_file($file)) {
 			return;
@@ -414,9 +415,6 @@ class shutters extends eqLogic
 		}
     }
     
-    public function initShutterFunctions() {
-        
-    }
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 
      en avez besoin
@@ -425,9 +423,12 @@ class shutters extends eqLogic
       }
      */
 
-         public static function postConfig_outdoorLuminosityCmd() {
-             log::add('shutters', 'debug', 'test modif config');
+    /*
+     * Non obligatoire mais ca permet de déclencher une action après 
+     modification de variable de configuration
+      public static function postConfig_outdoorLuminosityCmd() {
       }
+     */
 
     /*
      * Non obligatoire mais ca permet de déclencher une action avant 
