@@ -266,7 +266,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <select id="sel_object" class="eqLogicAttr form-control cursor" data-l1key="object_id">
                                                 <option value="">{{Aucun}}</option>
                                                 <?php
-                                                foreach (::all() as $object) {
+                                                foreach (object::all() as $object) {
                                                     echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
                                                 }
                                                 ?>

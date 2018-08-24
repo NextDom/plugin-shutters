@@ -294,6 +294,6 @@ function listEqByType () {
             }
         }
     });
-    console.log('listEqByType => ' + listEqByType)
+    console.log('listEqByType => ' + listEqByType);
     return listEqByType;
 }
