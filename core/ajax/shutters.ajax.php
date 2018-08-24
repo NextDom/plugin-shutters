@@ -65,6 +65,7 @@ try {
                     $return['shutter'][] = $eqLogicInfo;
                     break;
             }
+        }
         ajax::success($return);
     }
     if (init('action') === 'getCmdStatus') {
