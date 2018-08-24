@@ -74,7 +74,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <?php
                                 $objectNumber =0;
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'externalInfo') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'externalInfo') {
                                         ++$objectNumber;
                                     } 
                                 }
@@ -88,7 +88,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="eqLogicThumbnailContainer">
                             <?php
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'externalInfo') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'externalInfo') {
                                         $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
                                         echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
                                         echo '<img src="plugins/shutters/resources/images/externalInfo.png" height="100" width="100" />';
@@ -110,7 +110,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <?php
                                 $objectNumber =0;
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'heliotropeZone') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'heliotropeZone') {
                                         ++$objectNumber;
                                     } 
                                 }
@@ -124,7 +124,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="eqLogicThumbnailContainer">
                             <?php
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'heliotropeZone') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'heliotropeZone') {
                                         $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
                                         echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
                                         echo '<img src="plugins/shutters/resources/images/heliotropeZone.png" height="100" width="100" />';
@@ -150,7 +150,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <?php
                                 $objectNumber =0;
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'shuttersGroup') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'shuttersGroup') {
                                         ++$objectNumber;
                                     } 
                                 }
@@ -164,7 +164,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="eqLogicThumbnailContainer">
                             <?php
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'shuttersGroup') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'shuttersGroup') {
                                         $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
                                         echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
                                         echo '<img src="plugins/shutters/resources/images/shuttersGroup.png" height="100" width="100" />';
@@ -186,7 +186,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                             <?php
                                 $objectNumber =0;
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'shutter') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'shutter') {
                                         ++$objectNumber;
                                     } 
                                 }
@@ -200,7 +200,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         <div class="eqLogicThumbnailContainer">
                             <?php
                                 foreach ($eqLogics as $eqLogic) {
-                                    if ($eqLogic->getConfiguration('objectType') == 'shutter') {
+                                    if ($eqLogic->getConfiguration('eqType') == 'shutter') {
                                         $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
                                         echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
                                         echo '<img src="plugins/shutters/resources/images/shutter.png" height="100" width="100" />';
@@ -266,7 +266,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <select id="sel_object" class="eqLogicAttr form-control cursor" data-l1key="object_id">
                                                 <option value="">{{Aucun}}</option>
                                                 <?php
-                                                foreach (object::all() as $object) {
+                                                foreach (::all() as $object) {
                                                     echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
                                                 }
                                                 ?>
@@ -295,17 +295,17 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="objectType">{{Type d'équipement}}</label>
+                                        <label class="col-sm-3 control-label" for="eqType">{{Type d'équipement}}</label>
                                         <div class="col-sm-5">
                                             <div class="input-group">
-                                                <select id="objectType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="objectType">
+                                                <select id="eqType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="eqType">
                                                     <option value="externalInfo">{{Informations externes générales}}</option>
                                                     <option value="heliotropeZone">{{Zone héliotrope}}</option>
                                                     <option value="shuttersGroup">{{Groupe de volets}}</option>
                                                     <option value="shutter">{{Volet}}</option>
                                                 </select>
                                                 <span class="input-group-btn">
-                                                    <a class="btn btn-default btn-lock cursor" data-input="objectType">
+                                                    <a class="btn btn-default btn-lock cursor" data-input="eqType">
                                                         <i class="fa fa-unlock"></i>
                                                     </a>
                                                 </span>
@@ -644,18 +644,19 @@ $eqLogics = eqLogic::byType($plugin->getId());
                         </div>
                         <div id="shutterLinkSettings" class="panel-collapse collapse in">
                             <div class="panel-body">
-                            <form class="form-horizontal">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">{{Infos externes}}</label>
-                                        <div class="col-sm-5">
-                                            <select id="externalInfoLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoLink">
-                                                <option value="none">{{Aucune}}</option>
-                                            </select>
-                                        </div>
-                                    </div>.
-                                </div>  
-                            </form>             
+                                <form class="form-horizontal">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{Infos externes}}</label>
+                                            <div class="col-sm-5">
+                                                <select id="externalInfoLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoLink">
+                                                    <option value="none">{{Aucune}}</option>
+                                                </select>
+                                            </div>
+                                        </div>.
+                                    </div>  
+                                </form>             
+                            </div>
                         </div>
                     </div>                            
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">

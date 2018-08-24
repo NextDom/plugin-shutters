@@ -32,15 +32,15 @@ function printEqLogic (_eqLogic) {
 
     $(document).ready(function () {
         console.log('printEqLogic');
-
+        listEqByType();
         initDefaultValues();
 
-        disableElement($('#objectType'));
-        displaySettingPanel($('#objectType').val());
+        disableElement($('#eqType'));
+        displaySettingPanel($('#eqType').val());
         $('input[data-settinggroup]').trigger('change');
         $('input[type=range]').trigger('change');
 
-        switch (_eqLogic.configuration.objectType) {
+        switch (_eqLogic.configuration.eqType) {
             case 'externalInfo':
                 updatePriorityFunction();
                 break;
@@ -136,12 +136,12 @@ function disableElement (element) {
 
 /**
  * Display setting panels corresponding to object type
- * @param {string} objectType 
+ * @param {string} eqType 
  */
-function displaySettingPanel (objectType = '') {
+function displaySettingPanel (eqType = '') {
     $('.panel-group[data-paneltype=setting]').css('display', 'block');
     $('.panel[data-paneltype=setting]').css('display', 'none');
-	$('.panel[data-objecttype=' + objectType + ']').css('display', 'block');
+	$('.panel[data-objecttype=' + eqType + ']').css('display', 'block');
 }
 
 /**
@@ -243,7 +243,6 @@ function initDefaultValues () {
  */
 function getCmdStatus (cmd) {
     var status = '';
-    console.log('cmdId: ' + cmd);
     $.ajax({
         type: 'POST',
         async: false,
@@ -269,4 +268,32 @@ function getCmdStatus (cmd) {
         }
     });
     return status;
+}
+
+function listEqByType () {
+    var listEqByType = array();
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: 'plugins/shutters/core/ajax/shutters.ajax.php',
+        data: {
+            action: 'listEqByType'
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            if (data.result.length != 0) {
+                listEqByType = data.result;
+            }
+        }
+    });
+    console.log('listEqByType => ' + listEqByType)
+    return listEqByType;
 }

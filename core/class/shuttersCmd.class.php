@@ -30,7 +30,7 @@ class shuttersCmd extends cmd
 	{
         $eqLogic = $this->getEqLogic();
 		log::add('shutters', 'debug', 'shuttersCmd::execute() : eqLogic => ' . $eqLogic->getName() . ' ; received cmd => ' . $this->getLogicalId());
-		switch ($this->getConfiguration('objectType')) {
+		switch ($this->getConfiguration('eqType')) {
 			case 'externalInfo':
 				if ($this->getType() === 'action' && $this->getConfiguration('group') === 'shutterFunctions') {
 					$this->updateShutterFunctionsStatus($this, $_options['select']);

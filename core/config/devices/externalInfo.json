@@ -6,7 +6,7 @@
             "type": "action",
             "subType": "select",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur absence.",
                 "linkedCmd": "absenceInfoCmd",   
@@ -20,7 +20,7 @@
             "type": "action",
             "subType": "select",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur présence.",
                 "linkedCmd": "presenceInfoCmd",   
@@ -34,7 +34,7 @@
             "type": "action",
             "subType": "select",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
                 "listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur détection incendie.",
                 "linkedCmd": "fireDetectionCmd",   
@@ -48,7 +48,7 @@
             "type": "action",
             "subType": "select",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets en fonction de la luminosité extérieure.",
                 "linkedCmd": "outdoorLuminosityCmd",   
@@ -62,7 +62,7 @@
             "type": "action",
             "subType": "select",
            "configuration": {
-                "objectType": "externalInfo",
+                "eqType": "externalInfo",
                 "listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets en fonction de la température extérieure.",
                 "linkedCmd": "outdoorTemperatureCmd",   
@@ -76,7 +76,7 @@
             "type": "info",
             "subType": "string",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
                 "description": "Statut de la fonction de gestion des volets sur absence.",
                 "linkedCmd": "absenceInfoCmd",   
                 "group": "shutterFunctions"
@@ -89,7 +89,7 @@
             "type": "info",
             "subType": "string",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
                 "description": "Statut de la fonction de gestion des volets sur présence.",
                 "linkedCmd": "presenceInfoCmd",   
                 "group": "shutterFunctions"   
@@ -102,7 +102,7 @@
             "type": "info",
             "subType": "string",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
                 "description": "Statut de la fonction de gestion des volets sur détection incendie.",
                 "linkedCmd": "fireDetectionCmd",   
                 "group": "shutterFunctions"   
@@ -115,7 +115,7 @@
             "type": "info",
             "subType": "string",
             "configuration": {
-				"objectType": "externalInfo",
+				"eqType": "externalInfo",
                 "description": "Statut de la fonction de gestion des volets en fonction de la luminosité extérieure.",
                 "linkedCmd": "outdoorLuminosityCmd",   
                 "group": "shutterFunctions"   
@@ -128,7 +128,7 @@
             "type": "info",
             "subType": "string",
            "configuration": {
-                "objectType": "externalInfo",
+                "eqType": "externalInfo",
                 "description": "Statut de la fonction de gestion des volets en fonction de la température extérieure.",
                 "linkedCmd": "outdoorTemperatureCmd",   
                 "group": "shutterFunctions"   

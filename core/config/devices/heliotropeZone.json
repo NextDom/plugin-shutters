@@ -6,7 +6,7 @@
             "type": "action",
             "subType": "select",
             "configuration": {
-				"objectType": "heliotropeZone",
+				"eqType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur passage en nuit.",   
                 "group": "shutterFunctions" 
@@ -19,7 +19,7 @@
             "type": "action",
             "subType": "select",
             "configuration": {
-				"objectType": "heliotropeZone",
+				"eqType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur passage en jour.",   
                 "group": "shutterFunctions" 
@@ -32,7 +32,7 @@
             "type": "info",
             "subType": "string",
             "configuration": {
-				"objectType": "heliotropeZone",
+				"eqType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Statut de la fonction de gestion des volets sur passage en nuit.",   
                 "group": "shutterFunctions" 
@@ -45,7 +45,7 @@
             "type": "info",
             "subType": "string",
             "configuration": {
-				"objectType": "heliotropeZone",
+				"eqType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Statut de la fonction de gestion des volets sur passage en jour.",   
                 "group": "shutterFunctions" 

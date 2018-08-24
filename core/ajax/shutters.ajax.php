@@ -24,7 +24,7 @@ try {
     if (init('action') === 'listHeliotropeObject') {
         $return = array();
 		foreach (eqLogic::byType('shutters') as $eqLogic) {
-            if ($eqLogic->getConfiguration('objectType') !== 'externalInfo' || $eqLogic->getIsEnable() === false) {
+            if ($eqLogic->getConfiguration('eqType') !== 'externalInfo' || $eqLogic->getIsEnable() === false) {
                 continue;
             }
             $heliotrope = eqLogic::byId($eqLogic->getConfiguration('heliotrope'));
@@ -37,7 +37,36 @@ try {
             }
         }
         ajax::success($return);
-    } 
+    }
+    if (init('action') === 'listEqByType') {
+        $return['externalInfo'] = array();
+        $return['heliotropeZone'] = array();
+        $return['shuttersGroup'] = array();
+        $return['shutter'] = array();
+		foreach (eqLogic::byType('shutters') as $eqLogic) {
+            if (!is_object($eqLogic) || $eqLogic->getIsEnable() === false) {
+                continue;
+            }
+            $eqLogicInfo = array(
+                'id' => $eqLogic->getId(),
+                'name' => $eqLogic->getName(),
+            );
+            switch ($eqLogic->getConfiguration('eqType')) {
+                case 'externalInfo':
+                    $return['externalInfo'][] = $eqLogicInfo;
+                    break;
+                case 'heliotropeZone':
+                    $return['heliotropeZone'][] = $eqLogicInfo;
+                    break;
+                case 'shuttersGroup':
+                    $return['shuttersGroup'][] = $eqLogicInfo;
+                    break;
+                case 'shutter':
+                    $return['shutter'][] = $eqLogicInfo;
+                    break;
+            }
+        ajax::success($return);
+    }
     if (init('action') === 'getCmdStatus') {
         $cmdId = str_replace('#','',cmd::humanReadableToCmd(init('cmd')));
         $cmd = cmd::byId($cmdId);

@@ -81,16 +81,16 @@ class shutters extends eqLogic
         $openingTypeList = array('window', 'door');
         $positionSynchroTypeList = array('auto', 'everyMvt');
 
-        $objectType = $this->getConfiguration('objectType', null);
+        $eqType = $this->getConfiguration('eqType', null);
         $isObjectCreated = $this->getConfiguration('isObjectCreated', false);
 
-        if (empty($objectType)) {
+        if (empty($eqType)) {
             throw new \Exception (__('Le type d\'équipement doit être renseigné!', __FILE__));
             return;
         }
         if ($isObjectCreated) {
             log::add('shutters','debug', '[isObjectCreated] => '.$isObjectCreated);
-            if ($objectType === 'externalInfo') {
+            if ($eqType === 'externalInfo') {
                 $cmd = str_replace('#','',$this->getConfiguration('absenceInfoCmd', null));
                 if (!empty($cmd)) {
                     $cmdId=cmd::byId($cmd);
@@ -152,7 +152,7 @@ class shutters extends eqLogic
                     } 
                 }
     
-            } elseif($objectType === 'heliotropeZone') {
+            } elseif($eqType === 'heliotropeZone') {
                 $heliotrope = eqLogic::byId($this->getConfiguration('heliotrope', null));
                 if (!(is_object($heliotrope) && $heliotrope->getEqType_name() === 'heliotrope')) {
                     throw new \Exception (__('L\'équipement héliotrope doit être renseigné!', __FILE__));
@@ -182,7 +182,7 @@ class shutters extends eqLogic
                     return;
                 }
             
-            } elseif($objectType === 'shutter') {
+            } elseif($eqType === 'shutter') {
                 if (!in_array($this->getConfiguration('openingType', null), $openingTypeList, true)) {
                     throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                     return;
@@ -351,14 +351,14 @@ class shutters extends eqLogic
                 }
 
 
-            } elseif ($objectType === 'shuttersGroup') {
+            } elseif ($eqType === 'shuttersGroup') {
     
                        
             } 
     
         }
 
-        if (!empty($objectType) && !$isObjectCreated) {
+        if (!empty($eqType) && !$isObjectCreated) {
             $this->setConfiguration('isObjectCreated', true);
         }
 
@@ -367,7 +367,7 @@ class shutters extends eqLogic
 
     public function postUpdate()
     {
-        $this->loadCmdFromConfFile($this->getConfiguration('objectType', null));
+        $this->loadCmdFromConfFile($this->getConfiguration('eqType', null));
     }
 
     public function preRemove()
@@ -383,9 +383,9 @@ class shutters extends eqLogic
     /**
      * Load commands from JSON file
      */
-    public function loadCmdFromConfFile($objectType)
+    public function loadCmdFromConfFile($eqType)
     {
-        $file = dirname(__FILE__) . '/../config/devices/' . $objectType . '.json';
+        $file = dirname(__FILE__) . '/../config/devices/' . $eqType . '.json';
         if (!is_file($file)) {
 			return;
 		}
