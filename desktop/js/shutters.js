@@ -304,9 +304,19 @@ function listEqByType() {
 function updateEqLink(_listEqByType) {
     var optionList =[];
     for (var i = 0; i < _listEqByType.externalInfo.length; i++) {
-        optionList.push('<option value="', listEqByType.externalInfo[i].id, '">', listEqByType.externalInfo[i].name, '</option>');
+        optionList.push('<option value="', _listEqByType.externalInfo[i].id, '">', _listEqByType.externalInfo[i].name, '</option>');
     }
-    console.log(optionList);
-    $('#externalInfoLink').html(optionList.join(''));
+    $('[data-l1key=configuration][data-l2key=externalInfoLink]').append(optionList.join(''));
     
+    optionList =[];
+    for (var i = 0; i < _listEqByType.heliotropeZone.length; i++) {
+        optionList.push('<option value="', _listEqByType.heliotropeZone[i].id, '">', _listEqByType.heliotropeZone[i].name, '</option>');
+    }
+    $('[data-l1key=configuration][data-l2key=heliotropeZoneLink]').append(optionList.join(''));
+    
+    optionList =[];
+    for (var i = 0; i < _listEqByType.shuttersGroup.length; i++) {
+        optionList.push('<option value="', _listEqByType.shuttersGroup[i].id, '">', _listEqByType.shuttersGroup[i].name, '</option>');
+    }
+    $('[data-l1key=configuration][data-l2key=shuttersGroupLink]').append(optionList.join(''));
 }
