@@ -32,7 +32,7 @@ function printEqLogic(_eqLogic) {
 
     $(document).ready(function () {
         console.log('printEqLogic');
-        initDefaultValues();
+        initDefaultValues(_eqLogic);
 
         disableElement($('#eqType'));
         displaySettingPanel($('#eqType').val());
