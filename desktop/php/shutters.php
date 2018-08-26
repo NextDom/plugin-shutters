@@ -650,7 +650,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Infos externes}}</label>
                                             <div class="col-sm-5">
                                                 <select id="externalInfoLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoLink">
-                                                    <option value="none">{{Non affectées}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -658,7 +657,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Zone héliotrope}}</label>
                                             <div class="col-sm-5">
                                                 <select id="heliotropeZoneLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotropeZoneLink">
-                                                    <option value="none">{{Non affectée}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -668,7 +666,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                             <label class="col-sm-3 control-label">{{Groupe de volets}}</label>
                                             <div class="col-sm-5">
                                                 <select id="shuttersGroupLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shuttersGroupLink">
-                                                    <option value="none">{{Non affecté}}</option>
                                                 </select>
                                             </div>
                                         </div>

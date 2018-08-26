@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready (function () {
+$(document).ready(function () {
     
     console.log('document ready');
 
@@ -28,7 +28,7 @@ $(document).ready (function () {
     drawShutterClosingMvtTimeCurve();
 });
 
-function printEqLogic (_eqLogic) {
+function printEqLogic(_eqLogic) {
 
     $(document).ready(function () {
         console.log('printEqLogic');
@@ -49,7 +49,7 @@ function printEqLogic (_eqLogic) {
                 displaySelectedDawnOrDusk($('#duskType').val());
                 break;
             case 'shutter':
-                updateEqLink(listEqByType());
+                updateEqLink(_eqLogic, listEqByType());
                 updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
                 updateValuesTable(_eqLogic.configuration.shutterMvtTimeValues);
                 break;
@@ -67,7 +67,7 @@ function saveEqLogic(_eqLogic) {
    	return _eqLogic;
 }
 
-function addCmdToTable (_cmd) {
+function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
         var _cmd = {configuration: {}};
     }
@@ -301,22 +301,27 @@ function listEqByType() {
     return listEqByType;
 }
 
-function updateEqLink(_listEqByType) {
-    var optionList =[];
+/**
+ * Update select by equipment type in shutter settings
+ * @param {object} _eqLogic Shutters equipment
+ * @param {object} _listEqByType List of shutters equipment by type
+ */
+function updateEqLink(_eqLogic, _listEqByType) {
+    var optionList =['<option value="none" selected>{{Non affectées}}</option>'];
     for (var i = 0; i < _listEqByType.externalInfo.length; i++) {
         optionList.push('<option value="', _listEqByType.externalInfo[i].id, '">', _listEqByType.externalInfo[i].name, '</option>');
     }
-    $('[data-l1key=configuration][data-l2key=externalInfoLink]').append(optionList.join(''));
+    $('[data-l1key=configuration][data-l2key=externalInfoLink]').html(optionList.join('')).val(_eqLogic.configuration.externalInfoLink);
     
-    optionList =[];
+    optionList =['<option value="none" selected>{{Non affectée}}</option>'];
     for (var i = 0; i < _listEqByType.heliotropeZone.length; i++) {
         optionList.push('<option value="', _listEqByType.heliotropeZone[i].id, '">', _listEqByType.heliotropeZone[i].name, '</option>');
     }
-    $('[data-l1key=configuration][data-l2key=heliotropeZoneLink]').append(optionList.join(''));
+    $('[data-l1key=configuration][data-l2key=heliotropeZoneLink]').html(optionList.join('')).val(_eqLogic.configuration.heliotropeZoneLink);
     
-    optionList =[];
+    optionList =['<option value="none" selected>{{Non affecté}}</option>'];
     for (var i = 0; i < _listEqByType.shuttersGroup.length; i++) {
         optionList.push('<option value="', _listEqByType.shuttersGroup[i].id, '">', _listEqByType.shuttersGroup[i].name, '</option>');
     }
-    $('[data-l1key=configuration][data-l2key=shuttersGroupLink]').append(optionList.join(''));
+    $('[data-l1key=configuration][data-l2key=shuttersGroupLink]').html(optionList.join('')).val(_eqLogic.configuration.shuttersGroupLink);
 }
