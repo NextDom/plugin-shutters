@@ -387,22 +387,26 @@ class shutters extends eqLogic
     {
         $file = dirname(__FILE__) . '/../config/devices/' . $eqType . '.json';
         if (!is_file($file)) {
+			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => no commands configuration file to import for eqType => '. $eqType);
 			return;
 		}
 		$content = file_get_contents($file);
 		if (!is_json($content)) {
+			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands configuration file is not JSON formatted for eqType => '. $eqType);
 			return;
 		}
 		$device = json_decode($content, true);
 		if (!is_array($device) || !isset($device['commands'])) {
-			return true;
+			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands configuration file is not well formatted for eqType => '. $eqType);
+			return;
 		}
 		foreach ($device['commands'] as $command) {
 			$cmd = null;
 			foreach ($this->getCmd() as $existingCmd) {
 				if ((isset($command['logicalId']) && $existingCmd->getLogicalId() === $command['logicalId'])
-					|| (isset($command['name']) && $existingCmd->getName() === $command['name'])) {
-					$cmd = $existingCmd;
+				    || (isset($command['name']) && $existingCmd->getName() === $command['name'])) {
+                    log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => command => ' . $command . 'already exist for eqType => '. $eqType);
+                    $cmd = $existingCmd;
 					break;
 				}
 			}
@@ -412,7 +416,8 @@ class shutters extends eqLogic
 				utils::a2o($cmd, $command);
 				$cmd->save();
 			}
-		}
+        }
+        log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands successfully added for eqType => '. $eqType);
     }
     
     /*

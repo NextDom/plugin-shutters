@@ -32,10 +32,11 @@ function printEqLogic(_eqLogic) {
 
     $(document).ready(function () {
         console.log('printEqLogic');
+
         initDefaultValues(_eqLogic);
 
         disableElement($('#eqType'));
-        displaySettingPanel($('#eqType').val());
+        displaySettingsPanel(_eqLogic.configuration.eqType);
         $('input[data-settinggroup]').trigger('change');
         $('input[type=range]').trigger('change');
 
@@ -45,12 +46,11 @@ function printEqLogic(_eqLogic) {
                 break;
             case 'heliotropeZone':
                 refreshWallPlan();
-                displaySelectedDawnOrDusk($('#dawnType').val());
-                displaySelectedDawnOrDusk($('#duskType').val());
+                displaySelectedDawnOrDusk(_eqLogic.configuration.dawnType);
+                displaySelectedDawnOrDusk(_eqLogic.configuration.duskType);
                 break;
             case 'shutter':
                 updateEqLink(_eqLogic, listEqByType());
-                initDefaultValues(_eqLogic);
                 updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
                 updateValuesTable(_eqLogic.configuration.shutterMvtTimeValues);
                 break;
@@ -123,39 +123,39 @@ function displayTooltip (_message = '') {
 
 /**
  * Disable an element if it's value different from null or ''
- * @param {element} element element to disable
+ * @param {element} _element element to disable
  */
-function disableElement (element) {
-    if (element.val() !== null && element.val() !== '') {
-        $(element).attr('disabled', true);
-        element.closest('div.input-group').find('i.fa-unlock').removeClass('fa-unlock').addClass("fa-lock");
+function disableElement (_element = null) {
+    if (_element.val() !== null) {
+        _element.attr('disabled', true);
+        _element.closest('div.input-group').find('i.fa-unlock').removeClass('fa-unlock').addClass("fa-lock");
     } else {
-        $(element).attr('disabled', false);
-        element.closest('div.input-group').find('i.fa-lock').removeClass('fa-lock').addClass("fa-unlock");
+        _element.attr('disabled', false);
+        _element.closest('div.input-group').find('i.fa-lock').removeClass('fa-lock').addClass("fa-unlock");
     }
 }  
 
 /**
  * Display setting panels corresponding to object type
- * @param {string} eqType 
+ * @param {string} _eqType 
  */
-function displaySettingPanel (eqType = '') {
-    $('.panel-group[data-paneltype=setting]').css('display', 'block');
-    $('.panel[data-paneltype=setting]').css('display', 'none');
-	$('.panel[data-objecttype=' + eqType + ']').css('display', 'block');
+function displaySettingsPanel (_eqType = null) {
+    if (_eqType !== null) {
+        $('.panel-group[data-paneltype=setting]').css('display', 'block');
+        $('.panel[data-paneltype=setting]').css('display', 'none');
+        $('.panel[data-objecttype=' + _eqType + ']').css('display', 'block');
+    }
 }
 
 /**
  * Display setting fieldset corresponding to object type
- * @param {string} settingGroup 
- * @param {string} settingType
+ * @param {string} _settingGroup 
+ * @param {string} _settingType
  */
-function displaySettings (settingGroup = '', settingType = '') {
-    console.log(settingGroup);
-    console.log(settingType);
-    if (settingGroup !== null && settingType !== null) {
-        $('fieldset[data-settinggroup=' + settingGroup + ']').css('display', 'none');
-        $('fieldset[data-settinggroup=' + settingGroup + '][data-settingtype~=' + settingType + ']').css('display', 'block');
+function displaySettings (_settingGroup = null, _settingType = null) {
+    if (_settingGroup !== null && _settingType !== null) {
+        $('fieldset[data-settinggroup=' + _settingGroup + ']').css('display', 'none');
+        $('fieldset[data-settinggroup=' + _settingGroup + '][data-settingtype~=' + _settingType + ']').css('display', 'block');
     }
 }
 
@@ -163,16 +163,14 @@ function displaySettings (settingGroup = '', settingType = '') {
  * Selection of priority management (fire detection / absence)
  */
 function updatePriorityFunction () {
-    console.log('priority management');
     var priorityFunction = $('#priorityFunction');
-    if ($('#absenceInfoCmd').val() !== '' && $('#fireDetectionCmd').val() !== '') {
+    if ($('[data-l1key=configuration][data-l2key=absenceInfoCmd]').val() !== '' && $('[data-l1key=configuration][data-l2key=fireDetectionCmd]').val() !== '') {
         priorityFunction.prop('disabled', false);
         if (priorityFunction.val() === null) {
             priorityFunction.val('fireFunction');
         }
     } else {
-        priorityFunction.val(null);
-        priorityFunction.prop('disabled', true);
+        priorityFunction.val(null).prop('disabled', true);
     }
 }
 
@@ -180,8 +178,8 @@ function updatePriorityFunction () {
  * Update angle range according to angle unit
  */
 function updateAngleRange () {
-    var wallAngle = $('#wallAngle');
-    if ($('#wallAngleUnit').val() == 'gon') {
+    var wallAngle = $('[data-l1key=configuration][data-l2key=wallAngle]');
+    if ($('[data-l1key=configuration][data-l2key=wallAngleUnit]').val() == 'gon') {
         wallAngle.attr('max', 400);
         wallAngle.prev().html('0gon');
         wallAngle.next().html('400gon');
@@ -219,19 +217,19 @@ function initDefaultValues (_eqLogic) {
             }
             if (_eqLogic.configuration.dawnType === '') {
                 element = $('[data-l1key=configuration][data-l2key=dawnType]');
-                element.val(element.children().first().attr('value'));
+                element.val(element.children().first().attr('value')).trigger('change');
             }
             if (_eqLogic.configuration.duskType === '') {
                 element = $('[data-l1key=configuration][data-l2key=duskType]');
-                element.val(element.children().first().attr('value'));
+                element.val(element.children().first().attr('value')).trigger('change');
             }
             if (_eqLogic.configuration.wallAngle === '') {
                 element = $('[data-l1key=configuration][data-l2key=wallAngle]');
-                element.val(element.children().first().attr('value'));
+                element.val(0).trigger('change');
             }
             if (_eqLogic.configuration.wallAngleUnit === '') {
                 element = $('[data-l1key=configuration][data-l2key=wallAngleUnit]');
-                element.val(element.children().first().attr('value'));
+                element.val(element.children().first().attr('value')).trigger('change');
             }
             break;
         case 'shuttersGroup':
@@ -260,7 +258,7 @@ function initDefaultValues (_eqLogic) {
 /**
  * Get status from a command of type 'info'
  */
-function getCmdStatus(cmd) {
+function getCmdStatus(_cmd) {
     var status = '';
     $.ajax({
         type: 'POST',
@@ -268,7 +266,7 @@ function getCmdStatus(cmd) {
         url: 'plugins/shutters/core/ajax/shutters.ajax.php',
         data: {
             action: 'getCmdStatus',
-            cmd: cmd
+            cmd: _cmd
         },
         dataType: 'json',
         global: false,

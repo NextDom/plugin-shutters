@@ -1,11 +1,11 @@
 function drawWallPlan() {
-    var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
+    var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val());
     
     $('#wallPlan').addLayer({
         type: 'image',
         name: 'wall',
         source: 'plugins/shutters/resources/images/window.png',
-        rotate: angle,
+        rotate: angle - 90,
         x: 0, y: 0,
         fromCenter: false
     })
@@ -37,7 +37,7 @@ function drawWallPlan() {
         strokeDashOffset: 0,
         rounded: true,
         x: 200, y: 200,
-        a1: angle + 90,
+        a1: angle,
         l1: 150
     })
     .addLayer({
@@ -50,12 +50,18 @@ function drawWallPlan() {
         rounded: true,
         x: 200, y: 200,
         radius: 50,
-        start: 0, end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
+        start: 0,
+        end:  angle
     })
     .drawLayers();
 }
 
+/**
+ * Draw heliotrope plan
+ */
 function drawHeliotropePlan() {
+    var dawnTypeElement = $('[data-l1key=configuration][data-l2key=dawnType]');
+    var duskTypeElement = $('[data-l1key=configuration][data-l2key=duskType]');
     $('#heliotropePlan').addLayer({
         type: 'slice',
         name: 'day',
@@ -221,7 +227,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#dawnType').val('sunrise').trigger('change');
+            dawnTypeElement.val('sunrise').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Lever du soleil}}');
@@ -242,7 +248,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#dawnType').val('civilDawn').trigger('change');
+            dawnTypeElement.val('civilDawn').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Aube civile}}');
@@ -263,7 +269,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#dawnType').val('nauticalDawn').trigger('change');
+            dawnTypeElement.val('nauticalDawn').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Aube nautique}}');
@@ -284,7 +290,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#dawnType').val('astronomicalDawn').trigger('change');
+            dawnTypeElement.val('astronomicalDawn').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Aube astronomique}}');
@@ -304,7 +310,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#duskType').val('sunset').trigger('change');
+            duskTypeElement.val('sunset').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Coucher du soleil}}');
@@ -325,7 +331,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#duskType').val('civilDusk').trigger('change');
+            duskTypeElement.val('civilDusk').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Crépuscule civil}}');
@@ -346,7 +352,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#duskType').val('nauticalDusk').trigger('change');
+            duskTypeElement.val('nauticalDusk').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Crépuscule nautique}}');
@@ -367,7 +373,7 @@ function drawHeliotropePlan() {
         radius: 5,
         cursors: {mouseover: 'pointer'},
         click: function() {
-            $('#duskType').val('astronomicalDusk').trigger('change');
+            duskTypeElement.val('astronomicalDusk').trigger('change');
         },
         mouseover: function() {
             displayTooltip('{{Crépuscule astronomique}}');
@@ -385,13 +391,16 @@ function drawHeliotropePlan() {
     });
 }
 
+/**
+ * Refresh wall plan
+ */
 function refreshWallPlan() {
-    var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val()) - 90;
+    var angle = convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val());
     $('#wallPlan').setLayer('wall', {
-            rotate: angle
+            rotate: angle - 90
         })
         .setLayer('axe', {
-            a1: angle + 90
+            a1: angle
         })
         .setLayer('arc', {
             end:  convertAngleToDegree($('#wallAngle').val(), $('#wallAngleUnit').val())
@@ -399,22 +408,31 @@ function refreshWallPlan() {
         .drawLayers();  
 }
 
-function displaySelectedDawnOrDusk(name) {
-    $('#heliotropePlan').animateLayer(name, {
+/**
+ * Update display of selected dawn or dusk
+ * @param {*} _layerName Canvas layer name
+ */
+function displaySelectedDawnOrDusk(_layerName) {
+    var element = $('#heliotropePlan');
+    var deselectedGroupName = _layerName + 'DeselectedGroup';
+    element.animateLayer(_layerName, {
         fillStyle: '#d9534f'
     });
-    var deselectedGroupName = name + 'DeselectedGroup';
-    $('#heliotropePlan').animateLayerGroup(deselectedGroupName, {
+    element.animateLayerGroup(deselectedGroupName, {
         fillStyle: '#FEE200'
     });
 }
-
-function convertAngleToDegree(angle = 0, unit = 'deg') {
-    switch (unit) {
+/**
+ * Convert angle to Degree
+ * @param {int} _angle Angle value
+ * @param {string} _unit Unit angle
+ */
+function convertAngleToDegree(_angle = 0, _unit = 'deg') {
+    switch (_unit) {
         case 'deg':
-            return parseInt(angle);
+            return parseInt(_angle);
         case 'gon':
-            return parseInt(angle) * 0.9;
+            return parseInt(_angle) * 0.9;
         default:
             return 0;
     }
