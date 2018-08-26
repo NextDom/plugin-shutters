@@ -21,23 +21,6 @@ try {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
     
-    if (init('action') === 'listHeliotropeObject') {
-        $return = array();
-		foreach (eqLogic::byType('shutters') as $eqLogic) {
-            if ($eqLogic->getConfiguration('eqType') !== 'externalInfo' || $eqLogic->getIsEnable() === false) {
-                continue;
-            }
-            $heliotrope = eqLogic::byId($eqLogic->getConfiguration('heliotrope'));
-			if ((is_object($heliotrope) && $heliotrope->getEqType_name() === 'heliotrope')) {
-				$externalInfoObjectList = array(
-                    'id' => $eqLogic->getId(),
-                    'name' => $eqLogic->getName(),
-                );
-                $return[] = $externalInfoObjectList;
-            }
-        }
-        ajax::success($return);
-    }
     if (init('action') === 'listEqByType') {
         $return['externalInfo'] = array();
         $return['heliotropeZone'] = array();

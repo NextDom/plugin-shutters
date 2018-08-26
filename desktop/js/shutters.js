@@ -270,8 +270,11 @@ function getCmdStatus (cmd) {
     return status;
 }
 
+/**
+ * List shutters equipment by type
+ */
 function listEqByType () {
-    var listEqByType = array();
+    var listEqByType = new Object();
     $.ajax({
         type: 'POST',
         async: false,
@@ -294,6 +297,6 @@ function listEqByType () {
             }
         }
     });
-    console.log('listEqByType => ' + listEqByType);
+    console.log(listEqByType);
     return listEqByType;
 }
