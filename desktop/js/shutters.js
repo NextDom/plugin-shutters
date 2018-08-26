@@ -50,6 +50,7 @@ function printEqLogic(_eqLogic) {
                 break;
             case 'shutter':
                 updateEqLink(_eqLogic, listEqByType());
+                initDefaultValues(_eqLogic);
                 updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
                 updateValuesTable(_eqLogic.configuration.shutterMvtTimeValues);
                 break;
@@ -204,37 +205,55 @@ function updateInputRangeMinMax () {
 
 /**
  * Initialize default values
+ * @param {object} _eqLogic Shutters equipment
  */
-function initDefaultValues () {
-    //Initialize default values for object heliotrope zone  
-    if ($('#heliotrope').val() === null) {
-        $('#heliotrope').val('none');
-    }
-    if ($('#dawnType').val() === null) {
-        $('#dawnType').val('sunrise').trigger('change');
-    }
-    if ($('#duskType').val() === null) {
-        $('#duskType').val('sunset').trigger('change');
-    }
-    if ($('#wallAngle').val() === '') {
-    $('#wallAngle').val(0).trigger('change');
-    }
-    if ($('#wallAngleUnit').val() === null) {
-        $('#wallAngleUnit').val('deg').trigger('change');
-    }
-
-    //Initialize default values for object shutter     
-    if ($('#openingType').val() === null) {
-        $('#openingType').val('window');
-    }
-    if ($('#shutterPositionType').val() === null) {
-        $('#shutterPositionType').val('none').trigger('change');
-    }
-    if ($('#positionSynchroType').val() === null) {
-        $(this).val('auto').trigger('change');
-    }
-    if ($('#shutterCmdType').val() === null) {
-        $('#shutterCmdType').val('analogPositionCmd').trigger('change');
+function initDefaultValues (_eqLogic) {
+    var element = new Object();
+    switch (_eqLogic.configuration.eqType) {
+        case 'externalInfo':
+            break;
+        case 'heliotropeZone':
+            if (_eqLogic.configuration.heliotrope === '') {
+                element = $('[data-l1key=configuration][data-l2key=heliotrope]');
+                element.val(element.children().first().attr('value'));
+            }
+            if (_eqLogic.configuration.dawnType === '') {
+                element = $('[data-l1key=configuration][data-l2key=dawnType]');
+                element.val(element.children().first().attr('value'));
+            }
+            if (_eqLogic.configuration.duskType === '') {
+                element = $('[data-l1key=configuration][data-l2key=duskType]');
+                element.val(element.children().first().attr('value'));
+            }
+            if (_eqLogic.configuration.wallAngle === '') {
+                element = $('[data-l1key=configuration][data-l2key=wallAngle]');
+                element.val(element.children().first().attr('value'));
+            }
+            if (_eqLogic.configuration.wallAngleUnit === '') {
+                element = $('[data-l1key=configuration][data-l2key=wallAngleUnit]');
+                element.val(element.children().first().attr('value'));
+            }
+            break;
+        case 'shuttersGroup':
+            break;
+        case 'shutter':
+            if (_eqLogic.configuration.openingType === '') {
+                element = $('[data-l1key=configuration][data-l2key=openingType]');
+                element.val(element.children().first().attr('value'));
+            }
+            if (_eqLogic.configuration.shutterPositionType === '') {
+                element = $('[data-l1key=configuration][data-l2key=shutterPositionType]');
+                element.val(element.children().first().attr('value')).trigger('change');
+            }
+            if (_eqLogic.configuration.positionSynchroType === '') {
+                element = $('[data-l1key=configuration][data-l2key=positionSynchroType]');
+                element.val(element.children().first().attr('value'));
+            }
+            if (_eqLogic.configuration.shutterCmdType === '') {
+                element = $('[data-l1key=configuration][data-l2key=shutterCmdType]');
+                element.val(element.children().first().attr('value')).trigger('change');
+            }
+            break;
     }
 }
 

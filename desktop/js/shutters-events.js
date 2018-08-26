@@ -103,28 +103,29 @@ function initEvents () {
     });
 
     // Heliotrope zone settings events
-    $('#dawnType').off('change').on('change', function () {
-        displaySelectedDawnOrDusk($('#dawnType').val());
+    $('[data-l1key=configuration][data-l2key=dawnType]').off('change').on('change', function () {
+        var element = $(this);
+        displaySelectedDawnOrDusk(element.val());
     });
-    $('#duskType').off('change').on('change', function () {
-        displaySelectedDawnOrDusk($('#duskType').val());
+    $('[data-l1key=configuration][data-l2key=duskType]').off('change').on('change', function () {
+        var element = $(this);
+        displaySelectedDawnOrDusk(element.val());
     });
-    $('#wallAngle').off('change').on('change', function () {
+    $('[data-l1key=configuration][data-l2key=wallAngle]').off('change').on('change', function () {
         refreshWallPlan();
     });
-    $('#wallAngleUnit').off('change').on('change', function () {
+    $('[data-l1key=configuration][data-l2key=wallAngleUnit]').off('change').on('change', function () {
         updateAngleRange()
         refreshWallPlan();
     });
 
     // Shutter settings events
-    $('#shutterPositionType').off('change').on('change', function () {
-        displaySettings($(this).attr('data-settinggroup'), $(this).val());
+    $('[data-l1key=configuration][data-l2key=shutterPositionType]').off('change').on('change', function () {
+        var element = $(this);
+        displaySettings(element.attr('data-settinggroup'), element.val());
     });
-    $('#shutterCmdType').off('change').on('change', function () {
-        displaySettings($(this).attr('data-settinggroup'), $(this).val());
-    });
-    $('#pointsNumber').off('change').on('change', function () {
-        drawShutterClosingMvtTimeCurve();
+    $('[data-l1key=configuration][data-l2key=shutterCmdType]').off('change').on('change', function () {
+        var element = $(this);
+        displaySettings(element.attr('data-settinggroup'), element.val());
     });
 }
