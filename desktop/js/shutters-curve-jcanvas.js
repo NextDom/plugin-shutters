@@ -213,14 +213,14 @@ function drawShutterClosingMvtTimeCurve () {
 }
 
 function updateShutterMvtTimeCurve (curvePoints) {
-   for (var i = 0; i < curvePoints.length; i++) {
+    for (var i = 0; i < curvePoints.length; i++) {
         myGraph.setLayer('point' + (i + 1), {
             y: parseInt(curvePoints[i])
         });
         curve[ 'y' + (i + 1)] = parseInt(curvePoints[i]);
         }
        myGraph.setLayer('curve', curve).drawLayers();
-   }
+    }
 
 function calculateYValue(layer, y) {
     var yMin = 0;

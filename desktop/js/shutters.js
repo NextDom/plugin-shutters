@@ -32,7 +32,6 @@ function printEqLogic (_eqLogic) {
 
     $(document).ready(function () {
         console.log('printEqLogic');
-        listEqByType();
         initDefaultValues();
 
         disableElement($('#eqType'));
@@ -50,6 +49,7 @@ function printEqLogic (_eqLogic) {
                 displaySelectedDawnOrDusk($('#duskType').val());
                 break;
             case 'shutter':
+                updateEqLink(listEqByType());
                 updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
                 updateValuesTable(_eqLogic.configuration.shutterMvtTimeValues);
                 break;
@@ -114,10 +114,10 @@ function hideTooltip () {
 
 /**
  * Display tooltip attach to cursor
- * @param {string} message message to display in tooltip
+ * @param {string} _message message to display in tooltip
  */
-function displayTooltip (message = '') {
-    $('.cursor-tooltip').html(message).css('visibility', 'visible');
+function displayTooltip (_message = '') {
+    $('.cursor-tooltip').html(_message).css('visibility', 'visible');
 }
 
 /**
@@ -241,7 +241,7 @@ function initDefaultValues () {
 /**
  * Get status from a command of type 'info'
  */
-function getCmdStatus (cmd) {
+function getCmdStatus(cmd) {
     var status = '';
     $.ajax({
         type: 'POST',
@@ -273,7 +273,7 @@ function getCmdStatus (cmd) {
 /**
  * List shutters equipment by type
  */
-function listEqByType () {
+function listEqByType() {
     var listEqByType = new Object();
     $.ajax({
         type: 'POST',
@@ -299,4 +299,14 @@ function listEqByType () {
     });
     console.log(listEqByType);
     return listEqByType;
+}
+
+function updateEqLink(_listEqByType) {
+    var optionList =[];
+    for (var i = 0; i < _listEqByType.externalInfo.length; i++) {
+        optionList.push('<option value="', listEqByType.externalInfo[i].id, '">', listEqByType.externalInfo[i].name, '</option>');
+    }
+    console.log(optionList);
+    $('#externalInfoLink').html(optionList.join(''));
+    
 }

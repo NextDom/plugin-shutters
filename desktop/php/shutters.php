@@ -882,7 +882,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                                     <div class="input-group">    
                                                     <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="fullClosureSetpointMin">---%</span>
                                                         <input id="fullClosureSetpoint" type="range" min="0" max="5" class="eqLogicAttr form-control" style="z-index: 0;" data-l1key="configuration" data-l2key="fullClosureSetpoint"/>
-                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="afullClosureSetpointMax">---%</span>
+                                                        <span class="input-group-addon eqLogicAttr" data-l1key="configuration" data-l2key="fullClosureSetpointMax">---%</span>
                                                     </div>
                                                     <span class="col-sm-2 col-sm-offset-5 label label-info input-range-value">---%</span>
                                                 </div>
