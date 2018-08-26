@@ -39,6 +39,9 @@ class shuttersCmd extends cmd
 		}
 	}
 
+	/**
+	 * Update shutters function status
+	 */
 	private function updateShutterFunctionsStatus ($_cmd, $_value) 
 	{
 		if (!is_object($_cmd) || empty($_value)) {

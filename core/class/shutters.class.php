@@ -183,8 +183,20 @@ class shutters extends eqLogic
                 }
             
             } elseif($eqType === 'shutter') {
+                if ($this->getConfiguration('externalInfoLink', null) === null) {
+                    throw new \Exception (__('[Infos externes] L\'objet configuré  n\'existe plus!', __FILE__));
+                    return;
+                }
+                if ($this->getConfiguration('heliotropeZoneLink', null) === null) {
+                    throw new \Exception (__('[Zone héliotrope] L\'objet configuré  n\'existe plus!', __FILE__));
+                    return;
+                }
+                if ($this->getConfiguration('shuttersGroupLink', null) === null) {
+                    throw new \Exception (__('[Groupe de volets] L\'objet configuré  n\'existe plus!', __FILE__));
+                    return;
+                }
                 if (!in_array($this->getConfiguration('openingType', null), $openingTypeList, true)) {
-                    throw new \Exception (__('Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
+                    throw new \Exception (__('[Type d\'ouvrant] Le type d\'ouvrant associé au volet doit être renseigné!', __FILE__));
                     return;
                 }
                 $cmd = str_replace('#','',$this->getConfiguration('openOpeningInfoCmd', null));
@@ -405,7 +417,7 @@ class shutters extends eqLogic
 			foreach ($this->getCmd() as $existingCmd) {
 				if ((isset($command['logicalId']) && $existingCmd->getLogicalId() === $command['logicalId'])
 				    || (isset($command['name']) && $existingCmd->getName() === $command['name'])) {
-                    log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => command => ' . $command . 'already exist for eqType => '. $eqType);
+                    log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => command => ' . $command['logicalId'] . ' already exist for eqType => '. $eqType);
                     $cmd = $existingCmd;
 					break;
 				}
