@@ -272,7 +272,7 @@ function getCmdStatus(_cmd) {
     var status = '';
     $.ajax({
         type: 'POST',
-        async: true,
+        async: false,
         url: 'plugins/shutters/core/ajax/shutters.ajax.php',
         data: {
             action: 'getCmdStatus',
@@ -304,7 +304,7 @@ function listEqByType() {
     var listEqByType = new Object();
     $.ajax({
         type: 'POST',
-        async: true,
+        async: false,
         url: 'plugins/shutters/core/ajax/shutters.ajax.php',
         data: {
             action: 'listEqByType'
@@ -336,7 +336,7 @@ function getEqLogic(_eqLogicId) {
     var eqLogic = new Object();
     $.ajax({
         type: 'POST',
-        async: true,
+        async: false,
         url: 'plugins/shutters/core/ajax/shutters.ajax.php',
         data: {
             action: 'getEqLogic',
