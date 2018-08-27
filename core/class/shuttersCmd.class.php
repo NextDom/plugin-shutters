@@ -16,17 +16,12 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-/* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+require_once __DIR__ . '/../../../../core/php/core.inc.php';
 
 class shuttersCmd extends cmd
 {
-    /*     * *************************Attributs****************************** */
-    /*     * ***********************Methode static*************************** */
-    /*     * *********************Methode d'instance************************* */
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes 
+
+     /* Non obligatoire permet de demander de ne pas supprimer les commandes 
      même si elles ne sont pas dans la nouvelle configuration de l'équipement 
      envoyé en JS
       public function dontRemoveCmd() {
@@ -39,5 +34,4 @@ class shuttersCmd extends cmd
         
     }
 
-    /*     * **********************Getteur Setteur*************************** */
 }
