@@ -73,11 +73,14 @@ class shutters extends eqLogic
             case 'externalInfo':
                 foreach ($this->getCmd('info') as $cmd) {
                     $linkedCmd = $cmd->getConfiguration('linkedCmd');
-                    if ($cmd->execCmd() === null && !empty($this->getConfiguration($linkedCmd))) {
-                        $cmd->checkAndUpdateCmd($statusCmdLogicalId, __('Activée', __FILE__));
+                    if ($cmd->execCmd() === '' && !empty($this->getConfiguration($linkedCmd))) {
+                        $this->checkAndUpdateCmd($cmd, __('Activée', __FILE__));
                         log::add('shutters', 'debug', 'shutters::postSave() : eqLogic => ' . $eqLogicName . ' ; cmd => ' . $cmd->getLogicalId() . ' ; updated status => ' . $cmd->execCmd());
                     }
                 }
+                break;
+            case 'shutter':
+                shutters::addCmdListener();
                 break;
         }
     }
@@ -450,6 +453,44 @@ class shutters extends eqLogic
         log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands successfully added for eqType => '. $eqType);
     }
     
+    public function addCmdListener() {
+        $eqLogicName = $this->getName();
+		$listener = listener::byClassAndFunction('shutters', 'manageShuttersFunctions', array('shutterId' => $this->getId()));
+		if (!is_object($listener)) {
+			$listener = new listener();
+		}
+		$listener->setClass('shutters');
+		$listener->setFunction('manageShuttersFunctions');
+		$listener->setOption(array('shutterId' => $this->getId()));
+        $listener->emptyEvent();
+        $shutterExternalInfoLink = $this->getConfiguration('shutterExternalInfoLink');
+        if ($shutterExternalInfoLink !== null && $shutterExternalInfoLink !== 'none') {
+            $eqLogic = shutters::byId($shutterExternalInfoLink);
+            if (is_object($eqLogic)) {
+                $cmdListToListen = array('absenceInfoCmd', 'presenceInfoCmd', 'fireDetectionCmd', 'outdoorLuminosityCmd', 'outdoorTemperatureCmd'); 
+                foreach ($cmdToListen as $cmdToListen) {
+                    $cmdId = str_replace('#','',$eqLogic->getConfiguration($cmdToListen));
+                    if (!empty($cmdId)) {
+                        $cmd = cmd::byId($cmdId);
+                        if (is_object($cmd)) {
+                            $listener->addEvent($cmdId);
+                            log::add('shutters', 'debug', 'shutters::addCmdListener() : eqLogic => ' . $eqLogicName . ' ; cmd => ' . $cmd->getHumanName() . ' successfully added to listener');
+                        } else {
+                            log::add('shutters', 'debug', 'shutters::addCmdListener() : eqLogic => ' . $eqLogicName . ' ; cmd => ' . $cmdId . ' is not an existing command');
+                        }
+                    }
+                }
+            } else {
+                log::add('shutters', 'debug', 'shutters::addCmdListener() : eqLogic => ' . $eqLogicName . ' is not an existing eqLogic');
+            }
+        }
+		$listener->save();
+
+    }
+    
+    public function manageShuttersFunctions() {
+
+    }
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 
      en avez besoin
