@@ -1,13 +1,13 @@
 <?php
 
-/* This file is part of Jeedom.
+/* This file is part of NextDom Software.
  *
- * Jeedom is free software: you can redistribute it and/or modify
+ * NextDom is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Jeedom is distributed in the hope that it will be useful,
+ * NextDom is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -16,19 +16,12 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-/* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+ 
+require_once __DIR__ . '/../../../../core/php/core.inc.php';
 require_once 'shuttersCmd.class.php';
 
 class shutters extends eqLogic
 {
-    /*     * *************************Attributs****************************** */
-
-
-
-    /*     * ***********************Methode static*************************** */
-
     /*
      * Fonction exécutée automatiquement toutes les minutes par Jeedom
       public static function cron() {
@@ -54,7 +47,7 @@ class shutters extends eqLogic
 
 
     /*     * *********************Méthodes 
-    d'instance************************* */
+  
 
     public function preInsert()
     {
@@ -75,7 +68,7 @@ class shutters extends eqLogic
     {
 
     }
-
+    */
     public function preUpdate()
     {
         if($this->getConfiguration('objectType') == ''){
@@ -131,7 +124,7 @@ class shutters extends eqLogic
         }       
     }
 
-    public function postUpdate()
+    /*public function postUpdate()
     {
 
     }
@@ -144,7 +137,7 @@ class shutters extends eqLogic
     public function postRemove()
     {
         
-    }
+    }*/
 
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 
