@@ -68,7 +68,18 @@ class shutters extends eqLogic
 
     public function postSave()
     {
-   
+        $eqLogicName = $this->getName();
+        switch ($this->getConfiguration('eqType')) {
+            case 'externalInfo':
+                foreach ($this->getCmd('info') as $cmd) {
+                    $linkedCmd = $cmd->getConfiguration('linkedCmd');
+                    if ($cmd->execCmd() === null && !empty($this->getConfiguration($linkedCmd))) {
+                        $cmd->checkAndUpdateCmd($statusCmdLogicalId, __('Activée', __FILE__));
+                        log::add('shutters', 'debug', 'shutters::postSave() : eqLogic => ' . $eqLogicName . ' ; cmd => ' . $cmd->getLogicalId() . ' ; updated status => ' . $cmd->execCmd());
+                    }
+                }
+                break;
+        }
     }
 
     public function preUpdate()
@@ -182,6 +193,17 @@ class shutters extends eqLogic
                     return;
                 }
             
+            
+            } elseif ($eqType === 'shuttersGroup') {
+                if ($this->getConfiguration('shuttersGroupExternalInfoLink', null) === null) {
+                    throw new \Exception (__('[Infos externes] L\'objet configuré  n\'existe plus!', __FILE__));
+                    return;
+                }
+                if ($this->getConfiguration('shuttersGroupHeliotropeZoneLink', null) === null) {
+                    throw new \Exception (__('[Zone héliotrope] L\'objet configuré  n\'existe plus!', __FILE__));
+                    return;
+                }
+           } 
             } elseif($eqType === 'shutter') {
                 if ($this->getConfiguration('shutterExternalInfoLink', null) === null) {
                     throw new \Exception (__('[Infos externes] L\'objet configuré  n\'existe plus!', __FILE__));
@@ -363,10 +385,6 @@ class shutters extends eqLogic
                 }
 
 
-            } elseif ($eqType === 'shuttersGroup') {
-    
-                       
-            } 
     
         }
 
@@ -443,7 +461,7 @@ class shutters extends eqLogic
     /*
      * Non obligatoire mais ca permet de déclencher une action après 
      modification de variable de configuration
-      public static function postConfig_outdoorLuminosityCmd() {
+      public static function postConfig_<Variable>() {
       }
      */
 

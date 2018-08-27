@@ -54,6 +54,7 @@ function printEqLogic(_eqLogic) {
                 break;
             case 'shutter':
                 updateEqLink(_eqLogic, listEqByType());
+                $('[data-l1key=configuration][data-l2key=shuttersGroupLink]').trigger('change');                
                 updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
                 updateValuesTable(_eqLogic.configuration.shutterMvtTimeValues);
                 break;
