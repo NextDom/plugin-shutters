@@ -341,7 +341,7 @@ function getEqLogic(_eqLogicId) {
         data: {
             action: 'getEqLogic',
             type: 'shutters',
-            eqLogicId: _eqLogicId
+            id: _eqLogicId
         },
         dataType: 'json',
         global: false,
