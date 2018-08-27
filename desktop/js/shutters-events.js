@@ -119,6 +119,18 @@ function initEvents () {
         refreshWallPlan();
     });
 
+    // Shutters group settings events
+    $('[data-l1key=configuration][data-l2key=shuttersGroupLink]').off('change').on('change', function () {
+        var element = $(this);
+        if (element.val() !== 'none' && element.val() !== null) {
+            $('[data-l1key=configuration][data-l2key=shutterExternalInfoLink]').attr('disabled', true);
+            $('[data-l1key=configuration][data-l2key=shutterHeliotropeZoneLink]').attr('disabled', true);
+        } else {
+            $('[data-l1key=configuration][data-l2key=shutterExternalInfoLink]').attr('disabled', false);
+            $('[data-l1key=configuration][data-l2key=shutterHeliotropeZoneLink]').attr('disabled', false);
+        }
+    });
+
     // Shutter settings events
     $('[data-l1key=configuration][data-l2key=shutterPositionType]').off('change').on('change', function () {
         var element = $(this);

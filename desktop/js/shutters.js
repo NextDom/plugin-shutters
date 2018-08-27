@@ -68,6 +68,8 @@ function saveEqLogic(_eqLogic) {
         case 'shutter':
             if (_eqLogic.configuration.shuttersGroupLink !== 'none' && _eqLogic.configuration.shuttersGroupLink !== null) {
                 $eqLogic = getEqLogic(_eqLogic.configuration.shuttersGroupLink);
+                _eqLogic.configuration.shutterExternalInfoLink = $eqLogic.configuration.shuttersGroupExternalInfoLink;
+                _eqLogic.configuration.shutterHeliotropeZoneLink = $eqLogic.configuration.shuttersGroupHeliotropeZoneLink;
             }
             _eqLogic.configuration.shutterMvtTimeValues = new Object();
             _eqLogic.configuration.shutterMvtTimeCurve = new Array();
