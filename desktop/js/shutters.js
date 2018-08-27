@@ -49,6 +49,9 @@ function printEqLogic(_eqLogic) {
                 displaySelectedDawnOrDusk(_eqLogic.configuration.dawnType);
                 displaySelectedDawnOrDusk(_eqLogic.configuration.duskType);
                 break;
+            case 'shuttersGroup':
+                updateEqLink(_eqLogic, listEqByType());
+                break;
             case 'shutter':
                 updateEqLink(_eqLogic, listEqByType());
                 updateShutterMvtTimeCurve(_eqLogic.configuration.shutterMvtTimeCurve);
@@ -61,10 +64,17 @@ function printEqLogic(_eqLogic) {
 
 function saveEqLogic(_eqLogic) {
     console.log('saveEqLogic');
-    _eqLogic.configuration.shutterMvtTimeValues = new Object();
-    _eqLogic.configuration.shutterMvtTimeCurve = new Array();
-	_eqLogic.configuration.shutterMvtTimeValues = shutterMvtTimeValues;
-	_eqLogic.configuration.shutterMvtTimeCurve = shutterMvtTimeCurve;
+    switch (_eqLogic.configuration.eqType) {
+        case 'shutter':
+            if (_eqLogic.configuration.shuttersGroupLink !== 'none' && _eqLogic.configuration.shuttersGroupLink !== null) {
+                $eqLogic = getEqLogic(_eqLogic.configuration.shuttersGroupLink);
+            }
+            _eqLogic.configuration.shutterMvtTimeValues = new Object();
+            _eqLogic.configuration.shutterMvtTimeCurve = new Array();
+            _eqLogic.configuration.shutterMvtTimeValues = shutterMvtTimeValues;
+            _eqLogic.configuration.shutterMvtTimeCurve = shutterMvtTimeCurve;
+            break;
+    }
    	return _eqLogic;
 }
 
@@ -262,7 +272,7 @@ function getCmdStatus(_cmd) {
     var status = '';
     $.ajax({
         type: 'POST',
-        async: false,
+        async: true,
         url: 'plugins/shutters/core/ajax/shutters.ajax.php',
         data: {
             action: 'getCmdStatus',
@@ -294,7 +304,7 @@ function listEqByType() {
     var listEqByType = new Object();
     $.ajax({
         type: 'POST',
-        async: false,
+        async: true,
         url: 'plugins/shutters/core/ajax/shutters.ajax.php',
         data: {
             action: 'listEqByType'
@@ -319,6 +329,40 @@ function listEqByType() {
 }
 
 /**
+ * Get eqLogic by Id
+ * @param {string} _eqLogicId EqLogic Id
+ */
+function getEqLogic(_eqLogicId) {
+    var eqLogic = new Object();
+    $.ajax({
+        type: 'POST',
+        async: true,
+        url: 'plugins/shutters/core/ajax/shutters.ajax.php',
+        data: {
+            action: 'getEqLogic',
+            type: 'shutters',
+            eqLogicId: _eqLogicId
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) {
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            if (data.result.length != 0) {
+                eqLogic = data.result;
+            }
+        }
+    });
+    console.log(eqLogic);
+    return eqLogic;
+}
+
+/**
  * Update select by equipment type in shutter settings
  * @param {object} _eqLogic Shutters equipment
  * @param {object} _listEqByType List of shutters equipment by type
@@ -328,13 +372,15 @@ function updateEqLink(_eqLogic, _listEqByType) {
     for (var i = 0; i < _listEqByType.externalInfo.length; i++) {
         optionList.push('<option value="', _listEqByType.externalInfo[i].id, '">', _listEqByType.externalInfo[i].name, '</option>');
     }
-    $('[data-l1key=configuration][data-l2key=externalInfoLink]').html(optionList.join('')).val(_eqLogic.configuration.externalInfoLink);
+    $('[data-l1key=configuration][data-l2key=shutterExternalInfoLink]').html(optionList.join('')).val(_eqLogic.configuration.shutterExternalInfoLink);
+    $('[data-l1key=configuration][data-l2key=shuttersGroupExternalInfoLink]').html(optionList.join('')).val(_eqLogic.configuration.shuttersGroupExternalInfoLink);
     
     optionList =['<option value="none" selected>{{Non affectée}}</option>'];
     for (var i = 0; i < _listEqByType.heliotropeZone.length; i++) {
         optionList.push('<option value="', _listEqByType.heliotropeZone[i].id, '">', _listEqByType.heliotropeZone[i].name, '</option>');
     }
-    $('[data-l1key=configuration][data-l2key=heliotropeZoneLink]').html(optionList.join('')).val(_eqLogic.configuration.heliotropeZoneLink);
+    $('[data-l1key=configuration][data-l2key=shutterHeliotropeZoneLink]').html(optionList.join('')).val(_eqLogic.configuration.shutterHeliotropeZoneLink);
+    $('[data-l1key=configuration][data-l2key=shuttersGroupHeliotropeZoneLink]').html(optionList.join('')).val(_eqLogic.configuration.shuttersGroupHeliotropeZoneLink);
     
     optionList =['<option value="none" selected>{{Non affecté}}</option>'];
     for (var i = 0; i < _listEqByType.shuttersGroup.length; i++) {

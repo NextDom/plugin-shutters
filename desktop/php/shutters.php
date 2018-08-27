@@ -616,30 +616,35 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </div>
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shuttersGroup">
                         <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shuttersGroupSettings"> {{Paramètres groupe de volets}} </a>
-                            </h4>
+                            <h4 class="panel-title"> {{Liens vers informations externes et héliotrope}} </h4>
                         </div>
-                        <div id="shuttersGroupSettings" class="panel-collapse collapse in">
-                            <div class="panel-body"> 
-                                <form class="form-horizontal">
-                                    <div class="col-sm-6">               
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">{{Equipement infos externes}}</label>
-                                            <div class="col-sm-5">
-                                                <select id="shutterPositionType" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterPositionType" data-settinggroup="shutterPositionType">
-                                                </select>
-                                            </div>
+                        <div class="panel-body"> 
+                            <form class="form-horizontal">
+                                <div class="col-sm-6">               
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Infos externes}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="shuttersGroupExternalInfoLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shuttersGroupExternalInfoLink">
+                                            </select>
                                         </div>
                                     </div>
-                                </form>    
-                            </div>
+                                </div>
+                                <div class="col-sm-6">               
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Zone héliotrope}}</label>
+                                        <div class="col-sm-5">
+                                            <select id="shuttersGroupHeliotropeZoneLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shuttersGroupHeliotropeZoneLink">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>    
                         </div>
                     </div>
                     <div class="panel panel-default display-none" data-paneltype="setting" data-objecttype="shutter">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterLinkSettings"> {{Liens vers informations externes, héliotrope, groupe}} </a>
+                                <a data-toggle="collapse" data-parent="#objectSettings" href="#shutterLinkSettings"> {{Liens vers informations externes, héliotrope et groupe de volets}} </a>
                             </h4>
                         </div>
                         <div id="shutterLinkSettings" class="panel-collapse collapse in">
@@ -649,14 +654,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Infos externes}}</label>
                                             <div class="col-sm-5">
-                                                <select id="externalInfoLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="externalInfoLink">
+                                                <select id="shutterExternalInfoLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterExternalInfoLink">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">{{Zone héliotrope}}</label>
                                             <div class="col-sm-5">
-                                                <select id="heliotropeZoneLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="heliotropeZoneLink">
+                                                <select id="shutterHeliotropeZoneLink" type="text" class="eqLogicAttr form-control cursor" data-l1key="configuration" data-l2key="shutterHeliotropeZoneLink">
                                                 </select>
                                             </div>
                                         </div>

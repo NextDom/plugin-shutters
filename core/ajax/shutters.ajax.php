@@ -51,6 +51,21 @@ try {
         }
         ajax::success($return);
     }
+
+    if (init('action') === 'getEqLogic') {
+		$eqLogicType = init('type');
+		if ($eqLogicType === '' || !class_exists($eqLogicType)) {
+			throw new Exception(__('Type eqLogic incorrect (classe équipement inexistante) : ', __FILE__) . $eqLogicType);
+		}
+		$eqLogic = $eqLogicType::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+		}
+		$return = utils::o2a($eqLogic);
+		$return['cmd'] = utils::o2a($eqLogic->getCmd());
+		ajax::success(jeedom::toHumanReadable($return));
+	}
+    
     if (init('action') === 'getCmdStatus') {
         $cmdId = str_replace('#','',cmd::humanReadableToCmd(init('cmd')));
         $cmd = cmd::byId($cmdId);
