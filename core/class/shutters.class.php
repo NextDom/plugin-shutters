@@ -63,7 +63,8 @@ class shutters extends eqLogic
 
     public function preSave()
     {
-
+        $shuttersList = shutters::usedByShutters();
+        $this->setConfiguration('usedByShutters', $shuttersList);
     }
 
     public function postSave()
@@ -453,6 +454,34 @@ class shutters extends eqLogic
         log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands successfully added for eqType => '. $eqType);
     }
     
+    public function usedByShutters() {
+        $shuttersList = array();
+        if (isset($shuttersList)) {
+            unset($shuttersList);
+        }
+        $eqType = $this->getConfiguration('eqType');
+        foreach (eqLogic::byType('shutters') as $eqLogic) {
+            if (!is_object($eqLogic) || $eqLogic->getConfiguration('eqType') !== 'shutter') {
+                continue;
+            }
+            switch ($eqType) {
+                case 'externalInfo':
+                    $eqLogicId = $eqLogic->getConfiguration('shutterExternalInfoLink');
+                    break;
+                case 'heliotropeZone':
+                    $eqLogicId = $eqLogic->getConfiguration('heliotropeZoneLink');
+                    break;
+                case 'shuttersGroup':
+                    $eqLogicId = $eqLogic->getConfiguration('shuttersGroupLink');
+                    break;
+            }
+            if ($eqLogicId === $this->getId()) {
+                $shuttersList[] = $eqLogicId;
+            }                    
+        }
+        return $shuttersList;
+    }
+
     public function addCmdListener() {
         $eqLogicName = $this->getName();
 		$listener = listener::byClassAndFunction('shutters', 'manageShuttersFunctions', array('shutterId' => $this->getId()));
@@ -468,7 +497,7 @@ class shutters extends eqLogic
             $eqLogic = shutters::byId($shutterExternalInfoLink);
             if (is_object($eqLogic)) {
                 $cmdListToListen = array('absenceInfoCmd', 'presenceInfoCmd', 'fireDetectionCmd', 'outdoorLuminosityCmd', 'outdoorTemperatureCmd'); 
-                foreach ($cmdToListen as $cmdToListen) {
+                foreach ($cmdListToListen as $cmdToListen) {
                     $cmdId = str_replace('#','',$eqLogic->getConfiguration($cmdToListen));
                     if (!empty($cmdId)) {
                         $cmd = cmd::byId($cmdId);
@@ -488,8 +517,11 @@ class shutters extends eqLogic
 
     }
     
-    public function manageShuttersFunctions() {
+    public function manageShuttersFunctions($_option) {
+        $eventCmdId = $_option['event_id'];
+        if ($eventCmdId === $this->getConfiguration('absenceInfoCmd')) {
 
+        }
     }
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous 

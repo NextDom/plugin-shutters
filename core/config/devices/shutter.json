@@ -1,0 +1,95 @@
+{
+    "name": "shutter",
+    "commands": [
+        {
+            "name": "Statut du volet",
+            "type": "info",
+            "subType": "string",
+            "configuration": {
+				"eqType": "shutter",
+                "description": "Statut du volet.",
+                "group": "shutterStatus"   
+            },
+            "logicalId": "shutter:shutterStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Fonction de gestion sélectionnée",
+            "type": "info",
+            "subType": "string",
+           "configuration": {
+                "eqType": "shutter",
+                "description": "Fonction de gestion du volet sélectionnée.",
+                "group": "shutterFunctions"   
+            },
+            "logicalId": "shutter:selectedShutterFunction",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction absence",
+            "type": "info",
+            "subType": "string",
+            "configuration": {
+				"eqType": "shutter",
+                "description": "Statut de la fonction de gestion des volets sur absence.",
+                "linkedCmd": "absenceInfoCmd",   
+                "group": "shutterFunctions"
+            },
+            "logicalId": "shutter:absenceFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction présence",
+            "type": "info",
+            "subType": "string",
+            "configuration": {
+				"eqType": "shutter",
+                "description": "Statut de la fonction de gestion des volets sur présence.",
+                "linkedCmd": "presenceInfoCmd",   
+                "group": "shutterFunctions"   
+            },
+            "logicalId": "shutter:presenceFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction détection incendie",
+            "type": "info",
+            "subType": "string",
+            "configuration": {
+				"eqType": "shutter",
+                "description": "Statut de la fonction de gestion des volets sur détection incendie.",
+                "linkedCmd": "fireDetectionCmd",   
+                "group": "shutterFunctions"   
+            },
+            "logicalId": "shutter:fireFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction luminosité extérieure",
+            "type": "info",
+            "subType": "string",
+            "configuration": {
+				"eqType": "shutter",
+                "description": "Statut de la fonction de gestion des volets en fonction de la luminosité extérieure.",
+                "linkedCmd": "outdoorLuminosityCmd",   
+                "group": "shutterFunctions"   
+            },
+            "logicalId": "shutter:luminosityFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction température extérieure",
+            "type": "info",
+            "subType": "string",
+           "configuration": {
+                "eqType": "shutter",
+                "description": "Statut de la fonction de gestion des volets en fonction de la température extérieure.",
+                "linkedCmd": "outdoorTemperatureCmd",   
+                "group": "shutterFunctions"   
+            },
+            "logicalId": "shutter:temperatureFunctionStatus",
+            "isVisible": false
+        }
+
+    ]
+}
