@@ -484,12 +484,15 @@ class shutters extends eqLogic
             if ($shutterEqLogic->getConfiguration('eqType', null) === 'shutter'
             && $shutterEqLogic->getConfiguration('shutterExternalInfoLink', null) === $this->getId()) {
                 foreach ($shutterEqLogic->getCmd('info') as $shutterInfoCmd) {
-                    if (empty($shutterInfoCmd->execCmd())) {
+                    if ($shutterInfoCmd->getConfiguration('group',null) === 'shutterFunctions') {
                         $infoCmdConfigKey = $shutterInfoCmd->getConfiguration('infoCmdConfigKey', null);
                         if (empty($this->getConfiguration($infoCmdConfigKey, null))) {
-                            $shutterEqLogic->checkAndUpdateCmd($shutterInfoCmd, __('Inactive', __FILE__));
+                            $shutterEqLogic->checkAndUpdateCmd($shutterInfoCmd, __('Inhibée', __FILE__));
                         } else {
-                            $shutterEqLogic->checkAndUpdateCmd($shutterInfoCmd, __('Active', __FILE__));
+                            $shutterInfoCmdStatus = $shutterInfoCmd->execCmd();
+                            if (empty($shutterInfoCmdStatus) || $shutterInfoCmdStatus === __('Inhibée', __FILE__)) {
+                                $shutterEqLogic->checkAndUpdateCmd($shutterInfoCmd, __('Active', __FILE__));
+                            }
                         }
                     }
                     log::add('shutters', 'debug', 'shutters::initializeExternalInfoFunction() : eqLogic => ' . $shutterEqLogic->getName() . ' ; cmd => ' . $shutterInfoCmd->getLogicalId() . ' ; updated status => ' . $shutterInfoCmd->execCmd());
