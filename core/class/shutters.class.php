@@ -378,9 +378,7 @@ class shutters extends eqLogic
                         return;
                     }
                 }
-
-
-    
+            }
         }
 
         if (!empty($eqType) && !$isObjectCreated) {
