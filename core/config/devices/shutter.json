@@ -32,8 +32,9 @@
             "configuration": {
 				"eqType": "shutter",
                 "description": "Statut de la fonction de gestion des volets sur absence.",
-                "linkedCmd": "absenceInfoCmd",   
-                "group": "shutterFunctions"
+                "group": "shutterFunctions",  
+                "shutterFunction": "absenceFunction",
+                "infoCmdConfigKey": "absenceInfoCmd"
             },
             "logicalId": "shutter:absenceFunctionStatus",
             "isVisible": false
@@ -45,8 +46,9 @@
             "configuration": {
 				"eqType": "shutter",
                 "description": "Statut de la fonction de gestion des volets sur présence.",
-                "linkedCmd": "presenceInfoCmd",   
-                "group": "shutterFunctions"   
+                "group": "shutterFunctions",  
+                "shutterFunction": "presenceFunction",
+                "infoCmdConfigKey": "presenceInfoCmd"
             },
             "logicalId": "shutter:presenceFunctionStatus",
             "isVisible": false
@@ -58,8 +60,9 @@
             "configuration": {
 				"eqType": "shutter",
                 "description": "Statut de la fonction de gestion des volets sur détection incendie.",
-                "linkedCmd": "fireDetectionCmd",   
-                "group": "shutterFunctions"   
+                "group": "shutterFunctions",  
+                "shutterFunction": "fireFunction",
+                "infoCmdConfigKey": "fireDetectionCmd"
             },
             "logicalId": "shutter:fireFunctionStatus",
             "isVisible": false
@@ -71,10 +74,11 @@
             "configuration": {
 				"eqType": "shutter",
                 "description": "Statut de la fonction de gestion des volets en fonction de la luminosité extérieure.",
-                "linkedCmd": "outdoorLuminosityCmd",   
-                "group": "shutterFunctions"   
+                "group": "shutterFunctions",  
+                "shutterFunction": "outdoorLuminosityFunction",
+                "infoCmdConfigKey": "outdoorLuminosityCmd"
             },
-            "logicalId": "shutter:luminosityFunctionStatus",
+            "logicalId": "shutter:outdoorLuminosityFunctionStatus",
             "isVisible": false
         },
         {
@@ -84,12 +88,40 @@
            "configuration": {
                 "eqType": "shutter",
                 "description": "Statut de la fonction de gestion des volets en fonction de la température extérieure.",
-                "linkedCmd": "outdoorTemperatureCmd",   
-                "group": "shutterFunctions"   
+                "group": "shutterFunctions",  
+                "shutterFunction": "outdoorTemperatureFunction",
+                "infoCmdConfigKey": "outdoorTemperatureCmd"
             },
-            "logicalId": "shutter:temperatureFunctionStatus",
+            "logicalId": "shutter:outdoorTemperatureFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction nuit",
+            "type": "info",
+            "subType": "string",
+            "configuration": {
+				"eqType": "shutter",
+                "description": "Statut de la fonction de gestion des volets sur passage en nuit.",   
+                "group": "shutterFunctions",  
+                "shutterFunction": "nightFunction",
+                "infoCmdConfigKey": ""
+            },
+            "logicalId": "shutter:nightFunctionStatus",
+            "isVisible": false
+        },
+        {
+            "name": "Statut fonction jour",
+            "type": "info",
+            "subType": "string",
+            "configuration": {
+				"eqType": "shutter",
+                "description": "Statut de la fonction de gestion des volets sur passage en jour.",   
+                "group": "shutterFunctions",  
+                "shutterFunction": "dayFunction",
+                "infoCmdConfigKey": ""
+            },
+            "logicalId": "shutter:dayFunctionStatus",
             "isVisible": false
         }
-
     ]
 }

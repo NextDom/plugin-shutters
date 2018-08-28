@@ -9,9 +9,11 @@
 				"eqType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur passage en nuit.",   
-                "group": "shutterFunctions" 
+                "group": "shutterFunctions",  
+                "shutterFunction": "nightFunction",
+                "infoCmdConfigKey": ""
             },
-            "logicalId": "heliotropeZone:PresenceManagement",
+            "logicalId": "heliotropeZone:nightFunction",
             "isVisible": false
         },
         {
@@ -22,35 +24,11 @@
 				"eqType": "heliotropeZone",
               	"listValue": "Enable|Active;Disable|Inactive",
                 "description": "Activer ou désactiver la gestion des volets sur passage en jour.",   
-                "group": "shutterFunctions" 
+                "group": "shutterFunctions",  
+                "shutterFunction": "dayFunction",
+                "infoCmdConfigKey": ""
             },
-            "logicalId": "heliotropeZone:AbsenceManagement",
-            "isVisible": false
-        },
-        {
-            "name": "Statut fonction nuit",
-            "type": "info",
-            "subType": "string",
-            "configuration": {
-				"eqType": "heliotropeZone",
-              	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Statut de la fonction de gestion des volets sur passage en nuit.",   
-                "group": "shutterFunctions" 
-            },
-            "logicalId": "heliotropeZone:PresenceManagementStatus<",
-            "isVisible": false
-        },
-        {
-            "name": "Statut fonction jour",
-            "type": "info",
-            "subType": "string",
-            "configuration": {
-				"eqType": "heliotropeZone",
-              	"listValue": "Enable|Active;Disable|Inactive",
-                "description": "Statut de la fonction de gestion des volets sur passage en jour.",   
-                "group": "shutterFunctions" 
-            },
-            "logicalId": "heliotropeZone:AbsenceManagementStatus",
+            "logicalId": "heliotropeZone:dayFunction",
             "isVisible": false
         }
     ]

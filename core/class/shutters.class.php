@@ -63,8 +63,7 @@ class shutters extends eqLogic
 
     public function preSave()
     {
-        $shuttersList = shutters::usedByShutters();
-        $this->setConfiguration('usedByShutters', $shuttersList);
+
     }
 
     public function postSave()
@@ -72,16 +71,9 @@ class shutters extends eqLogic
         $eqLogicName = $this->getName();
         switch ($this->getConfiguration('eqType')) {
             case 'externalInfo':
-                foreach ($this->getCmd('info') as $cmd) {
-                    $linkedCmd = $cmd->getConfiguration('linkedCmd');
-                    if ($cmd->execCmd() === '' && !empty($this->getConfiguration($linkedCmd))) {
-                        $this->checkAndUpdateCmd($cmd, __('Activée', __FILE__));
-                        log::add('shutters', 'debug', 'shutters::postSave() : eqLogic => ' . $eqLogicName . ' ; cmd => ' . $cmd->getLogicalId() . ' ; updated status => ' . $cmd->execCmd());
-                    }
-                }
                 break;
             case 'shutter':
-                shutters::addCmdListener();
+                $this->addCmdListener();
                 break;
         }
     }
@@ -417,21 +409,21 @@ class shutters extends eqLogic
     /**
      * Load commands from JSON file
      */
-    public function loadCmdFromConfFile($eqType)
+    public function loadCmdFromConfFile($_eqType)
     {
-        $file = dirname(__FILE__) . '/../config/devices/' . $eqType . '.json';
+        $file = dirname(__FILE__) . '/../config/devices/' . $_eqType . '.json';
         if (!is_file($file)) {
-			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => no commands configuration file to import for eqType => '. $eqType);
+			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() : no commands configuration file to import for eqType => '. $_eqType);
 			return;
 		}
 		$content = file_get_contents($file);
 		if (!is_json($content)) {
-			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands configuration file is not JSON formatted for eqType => '. $eqType);
+			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() : commands configuration file is not JSON formatted for eqType => '. $_eqType);
 			return;
 		}
 		$device = json_decode($content, true);
 		if (!is_array($device) || !isset($device['commands'])) {
-			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands configuration file is not well formatted for eqType => '. $eqType);
+			log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() : commands configuration file is not well formatted for eqType => '. $_eqType);
 			return;
 		}
 		foreach ($device['commands'] as $command) {
@@ -439,7 +431,7 @@ class shutters extends eqLogic
 			foreach ($this->getCmd() as $existingCmd) {
 				if ((isset($command['logicalId']) && $existingCmd->getLogicalId() === $command['logicalId'])
 				    || (isset($command['name']) && $existingCmd->getName() === $command['name'])) {
-                    log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => command => ' . $command['logicalId'] . ' already exist for eqType => '. $eqType);
+                    log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() : command => ' . $command['logicalId'] . ' already exist for eqType => '. $_eqType);
                     $cmd = $existingCmd;
 					break;
 				}
@@ -451,37 +443,62 @@ class shutters extends eqLogic
 				$cmd->save();
 			}
         }
-        log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() => commands successfully added for eqType => '. $eqType);
+        log::add('shutters', 'debug', 'shutters::loadCmdFromConfFile() : commands successfully added for eqType => '. $_eqType);
     }
     
+    /**
+     * Unused function
+     */
     public function usedByShutters() {
         $shuttersList = array();
         if (isset($shuttersList)) {
             unset($shuttersList);
         }
-        $eqType = $this->getConfiguration('eqType');
+        $thisEqType = $this->getConfiguration('eqType');
+      	$thisId = $this->getId();
         foreach (eqLogic::byType('shutters') as $eqLogic) {
             if (!is_object($eqLogic) || $eqLogic->getConfiguration('eqType') !== 'shutter') {
                 continue;
             }
-            switch ($eqType) {
+            switch ($thisEqType) {
                 case 'externalInfo':
-                    $eqLogicId = $eqLogic->getConfiguration('shutterExternalInfoLink');
+                    $linkedEqLogicId = $eqLogic->getConfiguration('shutterExternalInfoLink');
                     break;
                 case 'heliotropeZone':
-                    $eqLogicId = $eqLogic->getConfiguration('heliotropeZoneLink');
+                    $linkedEqLogicId = $eqLogic->getConfiguration('shutterHeliotropeZoneLink');
                     break;
                 case 'shuttersGroup':
-                    $eqLogicId = $eqLogic->getConfiguration('shuttersGroupLink');
+                    $linkedEqLogicId = $eqLogic->getConfiguration('shuttersGroupLink');
                     break;
             }
-            if ($eqLogicId === $this->getId()) {
-                $shuttersList[] = $eqLogicId;
+            if ($linkedEqLogicId === $thisId) {
+                $shuttersList[] = $eqLogic->getId();
             }                    
         }
         return $shuttersList;
     }
 
+    /**
+     * Initialize shutters functions
+     */
+    public function initializeExternalInfoFunction() {
+        foreach (eqLogic::byType('shutters') as $shutterEqLogic) {
+            if ($shutterEqLogic->getConfiguration('eqType', null) === 'shutter'
+            && $shutterEqLogic->getConfiguration('shutterExternalInfoLink', null) === $this->getId()) {
+                foreach ($shutterEqLogic->getCmd('info') as $shutterInfoCmd) {
+                    $infoCmdConfigKey = $shutterInfoCmd->getConfiguration('infoCmdConfigKey', null);
+                    if ($shutterInfoCmd->execCmd() === '' && !empty($this->getConfiguration($infoCmdConfigKey, null))) {
+                        $shutterEqLogic->checkAndUpdateCmd($shutterInfoCmd->getLogicalId(), __('Active', __FILE__));
+                        log::add('shutters', 'debug', 'shutters::initializeExternalInfoFunction() : eqLogic => ' . $shutterEqLogic->getName() . ' ; cmd => ' . $shutterInfoCmd->getLogicalId() . ' ; updated status => ' . $shutterInfoCmd->execCmd());
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Add command listener for eqType shutter
+     */
     public function addCmdListener() {
         $eqLogicName = $this->getName();
 		$listener = listener::byClassAndFunction('shutters', 'manageShuttersFunctions', array('shutterId' => $this->getId()));
