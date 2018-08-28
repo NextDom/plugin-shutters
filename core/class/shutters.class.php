@@ -199,7 +199,6 @@ class shutters extends eqLogic
                     throw new \Exception (__('[Zone héliotrope] L\'objet configuré  n\'existe plus!', __FILE__));
                     return;
                 }
-           } 
             } elseif($eqType === 'shutter') {
                 if ($this->getConfiguration('shutterExternalInfoLink', null) === null) {
                     throw new \Exception (__('[Infos externes] L\'objet configuré  n\'existe plus!', __FILE__));
