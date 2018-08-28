@@ -26,10 +26,22 @@ class shuttersCmd extends cmd
 
 	/*     * ***********************Methode static*************************** */
 
+	/*     * *********************Methode d'instance************************* */
+    
+	public function execute($_options = array())
+	{
+        $thisEqLogic = $this->getEqLogic();
+		log::add('shutters', 'debug', 'shuttersCmd::execute() : eqLogic => ' . $thisEqLogic->getName() . ' ; received cmd => ' . $this->getLogicalId());
+
+		if ($this->getType() === 'action' && $this->getConfiguration('group', null) === 'shutterFunctions' && !empty($this->getConfiguration('shutterFunction', null))) {
+			$this->updateShutterFunctionsStatus($this, $_options['select']);
+		}
+	}
+
 	/**
 	 * Update shutters function status
 	 */
-	private static function updateShutterFunctionsStatus ($_cmd, $_value) 
+	private function updateShutterFunctionsStatus ($_cmd, $_value) 
 	{
 		if (!is_object($_cmd) || empty($_value)) {
 			log::add('shutters', 'debug', 'shuttersCmd::updateShutterFunctionsStatus() : invalid parameters ; cmd => '. $_cmd . ' ; value => ' . $_value);
@@ -68,28 +80,15 @@ class shuttersCmd extends cmd
 			foreach ($shutterEqLogic->getCmd('info') as $shutterInfoCmd) {
 				if ($shutterInfoCmd->getConfiguration('shutterFunction', null) === $cmdShutterFunction) {
 					if (!$enableShutterFunction) {
-						$shutterEqLogic->checkAndUpdateCmd($shutterInfoCmd->getLogicalId(), __('Inactive', __FILE__));
+						$shutterEqLogic->checkAndUpdateCmd($shutterInfoCmd, __('Inactive', __FILE__));
 					} else {
 						$cmdEqLogic->checkAndUpdateCmd($statusCmdLogicalId, __('Active', __FILE__));
 					}
-					log::add('shutters', 'debug', 'shuttersCmd::updateShutterFunctionsStatus() : eqLogic => ' . $shutterEqLogic->getName() . ' ; cmd => ' . $shutterInfoCmd->getLogicalId() . ' ; updated status => ' . $$shutterInfoCmd->execCmd());
+					log::add('shutters', 'debug', 'shuttersCmd::updateShutterFunctionsStatus() : eqLogic => ' . $shutterEqLogic->getName() . ' ; cmd => ' . $shutterInfoCmd->getLogicalId() . ' ; updated status => ' . $shutterInfoCmd->execCmd());
 				}
 			}
 		}
 	}
-
-	/*     * *********************Methode d'instance************************* */
-    
-	public function execute($_options = array())
-	{
-        $thisEqLogic = $this->getEqLogic();
-		log::add('shutters', 'debug', 'shuttersCmd::execute() : eqLogic => ' . $thisEqLogic->getName() . ' ; received cmd => ' . $this->getLogicalId());
-
-		if ($this->getType() === 'action' && $this->getConfiguration('group', null) === 'shutterFunctions' && !empty($this->getConfiguration('shutterFunction', null))) {
-			shuttersCmd::updateShutterFunctionsStatus($this, $_options['select']);
-		}
-	}
-
 
 
     /*     * **********************Getteur Setteur*************************** */
